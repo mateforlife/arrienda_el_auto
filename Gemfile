@@ -32,6 +32,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Amazon AWS sdk gem
 gem 'aws-sdk-s3', require: false
 
+# Devise is a flexible authentication solution for Rails
+gem 'devise'
+
 # figaro to manage environment variables
 gem 'figaro'
 
