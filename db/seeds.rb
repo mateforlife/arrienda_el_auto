@@ -2603,13 +2603,19 @@ brands_with_models = [
 
 
 
+bodyworks = ['Sedan', 'SUV', 'Convertible', 'Pickup', 'Minivan', 'Hatchback', 'Coupe', 'Station Wagon']
+
+bodyworks.each do |bodywork|
+  Bodywork.find_or_create_by(name: bodywork)
+end
+
 brands_with_models.each do |brand|
   brand_name = brand[:brand]
-  b = Brand.find_or_create_by(name: brand_name)
+  b = Brand.find_or_create_by(name: brand_name.downcase)
   next if b.nil?
 
   models = brand[:models]
   models.each do |model|
-    Model.find_or_create_by(name: model, brand_id: b.id)
+    Model.find_or_create_by(name: model.downcase, brand_id: b.id)
   end
 end
