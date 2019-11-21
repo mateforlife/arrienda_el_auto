@@ -38,6 +38,9 @@ gem 'devise'
 # figaro to manage environment variables
 gem 'figaro'
 
+# Chilean Rut validator
+gem 'rut_validation', '~> 1.1.1', git: 'https://github.com/mateforlife/rut_validation'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
