@@ -2601,13 +2601,8 @@ brands_with_models = [
   },
 ]
 
-
-
 bodyworks = ['Sedan', 'SUV', 'Convertible', 'Pickup', 'Minivan', 'Hatchback', 'Coupe', 'Station Wagon']
-
-bodyworks.each do |bodywork|
-  Bodywork.find_or_create_by(name: bodywork)
-end
+engine_types = ['Gasoline', 'Diesel', 'Electic', 'Hybrid']
 
 brands_with_models.each do |brand|
   brand_name = brand[:brand]
