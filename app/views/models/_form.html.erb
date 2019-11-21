@@ -4,8 +4,11 @@
       <h2><%= pluralize(model.errors.count, "error") %> prohibited this model from being saved:</h2>
 
       <ul>
+        <!-- display error messages -->
         <% model.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <div class="alert alert-danger" role="alert">
+            <%= message %>
+          </div>
         <% end %>
       </ul>
     </div>
