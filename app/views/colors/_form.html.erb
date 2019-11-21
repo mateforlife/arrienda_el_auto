@@ -1,0 +1,27 @@
+<%= form_with(model: color, local: true) do |form| %>
+  <% if color.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(color.errors.count, "error") %> prohibited this color from being saved:</h2>
+
+      <ul>
+        <% color.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hex_value %>
+    <%= form.text_field :hex_value %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
