@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_22_174032) do
+ActiveRecord::Schema.define(version: 2019_11_22_194230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,5 +66,36 @@ ActiveRecord::Schema.define(version: 2019_11_22_174032) do
     t.index ["brand_id"], name: "index_vehicle_models_on_brand_id"
   end
 
+  create_table "vehicles", force: :cascade do |t|
+    t.bigint "vehicle_model_id", null: false
+    t.string "year"
+    t.integer "odometer"
+    t.bigint "user_id", null: false
+    t.string "licence_plate"
+    t.string "ngine_number"
+    t.string "chasis_number"
+    t.integer "transmission"
+    t.integer "engine_type"
+    t.integer "passenger_capacity"
+    t.boolean "air_conditioning"
+    t.integer "airbags_quantity"
+    t.integer "door_quantity"
+    t.integer "traction"
+    t.integer "direction"
+    t.integer "body_type"
+    t.boolean "visible"
+    t.bigint "fee_id", null: false
+    t.text "comment"
+    t.datetime "deleted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fee_id"], name: "index_vehicles_on_fee_id"
+    t.index ["user_id"], name: "index_vehicles_on_user_id"
+    t.index ["vehicle_model_id"], name: "index_vehicles_on_vehicle_model_id"
+  end
+
   add_foreign_key "vehicle_models", "brands"
+  add_foreign_key "vehicles", "fees"
+  add_foreign_key "vehicles", "users"
+  add_foreign_key "vehicles", "vehicle_models"
 end
