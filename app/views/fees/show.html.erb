@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Engine type:</strong>
+  <%= @fee.engine_type %>
+</p>
+
+<p>
+  <strong>Body type:</strong>
+  <%= @fee.body_type %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @fee.amount %>
+</p>
+
+<%= link_to 'Edit', edit_fee_path(@fee) %> |
+<%= link_to 'Back', fees_path %>
