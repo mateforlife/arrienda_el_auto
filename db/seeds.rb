@@ -2611,6 +2611,6 @@ brands_with_models.each do |brand|
 
   models = brand[:models]
   models.each do |model|
-    Model.find_or_create_by(name: model.downcase, brand_id: b.id)
+    VehicleModel.find_or_create_by(name: model.downcase, brand_id: b.id)
   end
 end
