@@ -1,0 +1,104 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Vehicle model:</strong>
+  <%= @vehicle.vehicle_model_id %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @vehicle.year %>
+</p>
+
+<p>
+  <strong>Odometer:</strong>
+  <%= @vehicle.odometer %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @vehicle.user_id %>
+</p>
+
+<p>
+  <strong>Licence plate:</strong>
+  <%= @vehicle.licence_plate %>
+</p>
+
+<p>
+  <strong>Ngine number:</strong>
+  <%= @vehicle.ngine_number %>
+</p>
+
+<p>
+  <strong>Chasis number:</strong>
+  <%= @vehicle.chasis_number %>
+</p>
+
+<p>
+  <strong>Transmission:</strong>
+  <%= @vehicle.transmission %>
+</p>
+
+<p>
+  <strong>Engine type:</strong>
+  <%= @vehicle.engine_type %>
+</p>
+
+<p>
+  <strong>Passenger capacity:</strong>
+  <%= @vehicle.passenger_capacity %>
+</p>
+
+<p>
+  <strong>Air conditioning:</strong>
+  <%= @vehicle.air_conditioning %>
+</p>
+
+<p>
+  <strong>Airbags quantity:</strong>
+  <%= @vehicle.airbags_quantity %>
+</p>
+
+<p>
+  <strong>Door quantity:</strong>
+  <%= @vehicle.door_quantity %>
+</p>
+
+<p>
+  <strong>Traction:</strong>
+  <%= @vehicle.traction %>
+</p>
+
+<p>
+  <strong>Direction:</strong>
+  <%= @vehicle.direction %>
+</p>
+
+<p>
+  <strong>Body type:</strong>
+  <%= @vehicle.body_type %>
+</p>
+
+<p>
+  <strong>Visible:</strong>
+  <%= @vehicle.visible %>
+</p>
+
+<p>
+  <strong>Fee:</strong>
+  <%= @vehicle.fee_id %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @vehicle.comment %>
+</p>
+
+<p>
+  <strong>Deleted at:</strong>
+  <%= @vehicle.deleted_at %>
+</p>
+
+<%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
+<%= link_to 'Back', vehicles_path %>
