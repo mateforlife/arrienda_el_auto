@@ -7,7 +7,7 @@
 
 <p>
   <strong>Brand:</strong>
-  <%= @model.brand_id %>
+  <%= @model.brand.name.capitalize %>
 </p>
 
 <%= link_to 'Edit', edit_model_path(@model) %> |
