@@ -4,13 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :gender, presence: true
   validates :rut, presence: true
   validates :rut, uniqueness: true, if: proc { |usr| usr.rut.present? }
-  validates :rut, rut: true, if: proc { |usr| usr.rut.present? }
   validates :rut, format: { with: /\A\d{1,3}(\.\d{3})*-[0-9K]\z/,
                             message: 'Formato inválido' },
                   if: proc { |usr| usr.rut.present? }
 
   enum permission: %i[basic admin]
-  enum gender: %i[masculino femenino]
+  enum gender: %i[male female]
 end
