@@ -12,4 +12,5 @@ class User < ApplicationRecord
                   if: proc { |usr| usr.rut.present? }
 
   enum permission: %i[basic admin]
+  enum gender: %i[masculino femenino]
 end
