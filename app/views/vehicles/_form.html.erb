@@ -11,104 +11,91 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :vehicle_model_id %>
-    <%= form.text_field :vehicle_model_id %>
+  <div class="form-group col-md-10 row">
+    <%= form.label :brand, class:"col-md-3 col-form-label" %>
+    <%= form.collection_select :brand_id, Brand.order(:name), :id, :name, class:"form-control col-md-5" %>
   </div>
 
-  <div class="field">
+  <div class="form-group col-md-10 row">
+    <%= form.label :vehicle_model_id, class:"col-md-3 col-form-label" %>
+    <%= form.grouped_collection_select :vehicle_model_id, Brand.order(:name), :vehicle_models, :name, :id, :name, {class:"form-control col-md-5"} %>
+  </div>
+
+  <div class="form-group col-md-10 row">
     <%= form.label :year %>
     <%= form.text_field :year %>
   </div>
 
-  <div class="field">
-    <%= form.label :odometer %>
-    <%= form.number_field :odometer %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :licence_plate %>
-    <%= form.text_field :licence_plate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ngine_number %>
-    <%= form.text_field :ngine_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :chasis_number %>
-    <%= form.text_field :chasis_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :transmission %>
-    <%= form.number_field :transmission %>
-  </div>
-
-  <div class="field">
-    <%= form.label :engine_type %>
-    <%= form.number_field :engine_type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :passenger_capacity %>
-    <%= form.number_field :passenger_capacity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :air_conditioning %>
-    <%= form.check_box :air_conditioning %>
-  </div>
-
-  <div class="field">
-    <%= form.label :airbags_quantity %>
-    <%= form.number_field :airbags_quantity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :door_quantity %>
-    <%= form.number_field :door_quantity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :traction %>
-    <%= form.number_field :traction %>
-  </div>
-
-  <div class="field">
-    <%= form.label :direction %>
-    <%= form.number_field :direction %>
-  </div>
-
-  <div class="field">
+    <div class="form-group col-md-10 row">
     <%= form.label :body_type %>
     <%= form.number_field :body_type %>
   </div>
 
-  <div class="field">
-    <%= form.label :visible %>
-    <%= form.check_box :visible %>
+  <div class="form-group col-md-10 row">
+    <%= form.label :odometer %>
+    <%= form.number_field :odometer %>
   </div>
 
-  <div class="field">
-    <%= form.label :fee_id %>
-    <%= form.text_field :fee_id %>
+  <div class="form-group col-md-10 row">
+    <%= form.label :licence_plate %>
+    <%= form.text_field :licence_plate %>
   </div>
 
-  <div class="field">
+  <div class="form-group col-md-10 row">
+    <%= form.label :engine_number %>
+    <%= form.text_field :engine_number %>
+  </div>
+
+  <div class="form-group col-md-10 row">
+    <%= form.label :chasis_number %>
+    <%= form.text_field :chasis_number %>
+  </div>
+
+  <div class="form-group col-md-10 row">
+    <%= form.label :transmission %>
+    <%= form.number_field :transmission %>
+  </div>
+
+  <div class="form-group col-md-10 row">
+    <%= form.label :engine_type %>
+    <%= form.number_field :engine_type %>
+  </div>
+
+  <div class="form-group col-md-10 row">
+    <%= form.label :passenger_capacity %>
+    <%= form.number_field :passenger_capacity %>
+  </div>
+
+  <div class="form-group col-md-10 row">
+    <%= form.label :air_conditioning %>
+    <%= form.check_box :air_conditioning %>
+  </div>
+
+  <div class="form-group col-md-10 row">
+    <%= form.label :airbags_quantity %>
+    <%= form.number_field :airbags_quantity %>
+  </div>
+
+  <div class="form-group col-md-10 row">
+    <%= form.label :door_quantity %>
+    <%= form.number_field :door_quantity %>
+  </div>
+
+  <div class="form-group col-md-10 row">
+    <%= form.label :traction %>
+    <%= form.number_field :traction %>
+  </div>
+
+  <div class="form-group col-md-10 row">
+    <%= form.label :direction %>
+    <%= form.number_field :direction %>
+  </div>
+
+
+
+  <div class="form-group col-md-10 row">
     <%= form.label :comment %>
     <%= form.text_area :comment %>
-  </div>
-
-  <div class="field">
-    <%= form.label :deleted_at %>
-    <%= form.datetime_select :deleted_at %>
   </div>
 
   <div class="actions">

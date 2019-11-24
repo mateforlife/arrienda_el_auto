@@ -26,12 +26,15 @@
               Vehiculos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to 'Publicar', new_vehicle_path, class:"dropdown-item" %>
               <a class="dropdown-item" href="#">Arrendar</a>
-              <a class="dropdown-item" href="#">Publicar</a>
             </div>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'cerrar session', destroy_user_session_path, method: :delete, class:"nav-link" %>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

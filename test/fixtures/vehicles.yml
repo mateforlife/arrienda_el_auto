@@ -6,7 +6,7 @@ one:
   odometer: 1
   user: one
   licence_plate: MyString
-  ngine_number: MyString
+  engine_number: MyString
   chasis_number: MyString
   transmission: 1
   engine_type: 1
@@ -28,7 +28,7 @@ two:
   odometer: 1
   user: two
   licence_plate: MyString
-  ngine_number: MyString
+  engine_number: MyString
   chasis_number: MyString
   transmission: 1
   engine_type: 1

@@ -25,7 +25,7 @@ class VehiclesTest < ApplicationSystemTestCase
     fill_in "Engine type", with: @vehicle.engine_type
     fill_in "Fee", with: @vehicle.fee_id
     fill_in "Licence plate", with: @vehicle.licence_plate
-    fill_in "Ngine number", with: @vehicle.ngine_number
+    fill_in "Ngine number", with: @vehicle.engine_number
     fill_in "Odometer", with: @vehicle.odometer
     fill_in "Passenger capacity", with: @vehicle.passenger_capacity
     fill_in "Traction", with: @vehicle.traction
@@ -55,7 +55,7 @@ class VehiclesTest < ApplicationSystemTestCase
     fill_in "Engine type", with: @vehicle.engine_type
     fill_in "Fee", with: @vehicle.fee_id
     fill_in "Licence plate", with: @vehicle.licence_plate
-    fill_in "Ngine number", with: @vehicle.ngine_number
+    fill_in "Ngine number", with: @vehicle.engine_number
     fill_in "Odometer", with: @vehicle.odometer
     fill_in "Passenger capacity", with: @vehicle.passenger_capacity
     fill_in "Traction", with: @vehicle.traction

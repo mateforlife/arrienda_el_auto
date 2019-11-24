@@ -24,7 +24,7 @@ class VehiclesController < ApplicationController
   # POST /vehicles
   # POST /vehicles.json
   def create
-    @vehicle = Vehicle.new(vehicle_params)
+    @vehicle = current_user.vehicle.new(vehicle_params)
 
     respond_to do |format|
       if @vehicle.save
@@ -62,13 +62,21 @@ class VehiclesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_vehicle
-      @vehicle = Vehicle.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def vehicle_params
-      params.require(:vehicle).permit(:vehicle_model_id, :year, :odometer, :user_id, :licence_plate, :ngine_number, :chasis_number, :transmission, :engine_type, :passenger_capacity, :air_conditioning, :airbags_quantity, :door_quantity, :traction, :direction, :body_type, :visible, :fee_id, :comment, :deleted_at)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+
+  def set_vehicle
+    @vehicle = Vehicle.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def vehicle_params
+    params.require(:vehicle).permit(:vehicle_model_id, :year, :odometer,
+                                    :user_id, :licence_plate, :engine_number,
+                                    :chasis_number, :transmission, :engine_type,
+                                    :passenger_capacity, :air_conditioning,
+                                    :airbags_quantity, :door_quantity, :traction,
+                                    :direction, :body_type, :visible, :fee_id,
+                                    :comment, :deleted_at)
+  end
 end
