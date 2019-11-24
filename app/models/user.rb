@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :vehicles
+  #TODO add more presence validations
+
   validates :rut, presence: true
   validates :rut, uniqueness: true, if: proc { |usr| usr.rut.present? }
   validates :rut, rut: true, if: proc { |usr| usr.rut.present? }
