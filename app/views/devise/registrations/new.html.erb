@@ -1,68 +1,78 @@
-<div class="container">
-  <h2 class= "col-md-5">Sign up</h2>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  
-    <%= render "devise/shared/error_messages", resource: resource %>
-    
-    <div class="form-group col-md-10 row">
-      <%= f.label :name, class:"col-md-3 col-form-label" %>
-      <%= f.text_field :first_name, autofocus: true, class:"form-control col-md-5", placeholder:"Nombre" %>
-    </div>
+<div class="container col-md-10 offset-md-2 ">
+  <div class="card w-75">
+    <div class="card">
+      <div class="card-header">
+        <h2>Sign up</h2>
+      </div>
+    <div class="card-body">  
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="form-group col-md-10 row">
-      <%= f.label :last_name, class:"col-md-3 col-form-label" %>
-      <%= f.text_field :last_name, class:"form-control col-md-5", placeholder:"Primer apellido" %>
-    </div>
+        <div class="form-group">
+          <%= f.label :first_name%> 
+          <%= f.text_field :first_name, autofocus: true, class:"form-control", placeholder:"Name" %>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, class:"form-control", placeholder:"last name" %>
+          </div>
+          <div class="form-group col-md-6">
+            <%= f.label :second_last_name %>
+            <%= f.text_field :second_last_name, class:"form-control", placeholder:"second last name" %>
+          </div>
+        </div>
 
-    <div class="form-group col-md-10 row">
-      <%= f.label :second_last_name, class:"col-md-3 col-form-label" %>
-      <%= f.text_field :second_last_name, class:"form-control col-md-5", placeholder:"Segundo apellido" %>
-    </div>
+        <div class="form-row align-items-center">
+          <div class="form-group col-md-6">
+            <%= f.label :birthdate %>
+            <%= f.date_field :birthdate, class:"form-control" %>
+          </div>
 
-    <div class="form-group col-md-10 row">
-      <%= f.label :gender, class:"col-md-3 col-form-label" %>
-      <% User.genders.keys.each do |genders| %>
-        <%= f.radio_button :gender, genders %>
-        <%= f.label genders.to_sym %>
+          <div class="form-group col-md-6">     
+            <%= f.label :gender %>        
+            <%= f.collection_select :gender, User.genders, :first, :first, {}, { class:"form-control" } %>          
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= f.label :phone_number %>
+            <%= f.text_field :phone_number, class:"form-control", placeholder:"+569xxxxxxxx" %>
+          </div>
+          <div class="form-group col-md-6">
+            <%= f.label :rut %>
+            <%= f.text_field :rut, class:"form-control", placeholder:"11.111.111-1" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email %> 
+          <%= f.email_field :email, autocomplete: "email", class:"form-control", placeholder:"Email" %>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= f.label :password %>
+            <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"6 characters minimum" %>
+          </div>
+          <div class="form-group col-md-6">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:"Confirm your password" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "Sign up", class: "btn btn-primary btn-lg btn-block" %>
+        </div>
+
+        <div class="text-right">
+          <%= render "devise/shared/links" %>
+        </div>
       <% end %>
-    </div> 
-
-    <div class="form-group col-md-10 row">
-      <%= f.label :birthdate, class:"col-md-3 col-form-label" %>
-      <%= f.date_field :birthdate, class:"form-control col-md-5" %>
     </div>
-
-    <div class="form-group col-md-10 row">
-      <%= f.label :rut, class:"col-md-3 col-form-label" %>
-      <%= f.text_field :rut, class:"form-control col-md-5", placeholder:"Rut" %>
-    </div>
-
-    <div class="form-group col-md-10 row">
-      <%= f.label :phone_number, class:"col-md-3 col-form-label" %>
-      <%= f.text_field :phone_number, class:"form-control col-md-5", placeholder:"Phone number" %>
-    </div>
-
-    <div class="form-group col-md-10 row">
-      <%= f.label :email, class:"col-md-3 col-form-label" %>
-      <%= f.email_field :email, autocomplete: "email", class:"form-control col-md-5", placeholder:"Email" %>
-    </div>
-
-    <div class="form-group col-md-10 row">
-      <%= f.label :password, class:"col-md-3 col-form-label" %>
-      <%= f.password_field :password, autocomplete: "new-password", class:"form-control col-md-5", placeholder:"Contraseña(6 caracteres minimo)" %>
-    </div>
-
-    <div class="form-group col-md-10 row">
-      <%= f.label :password_confirmation, class:"col-md-3 col-form-label" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control col-md-5", placeholder:"Confirmar contraseña" %>
-    </div>
-
-    <div class="form-group col-md-5">
-      <%= f.submit "Sign up", class: "btn btn-primary btn-lg btn-block offset-md-2" %>
-    </div>
-
-    <div class="col-md-3">
-      <%= render "devise/shared/links" %>
-    </div>
-  <% end %>
+  </div>
 </div>
+
