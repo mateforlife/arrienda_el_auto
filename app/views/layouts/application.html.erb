@@ -33,6 +33,13 @@
           <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Dashboard</a>
           </li>
+          <li class="nav-item">
+            <%if user_signed_in?%>
+              <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"nav-link", tabindex:"-1", aria_disabled:"true"  %>
+            <%else%>
+              <%= link_to "Sign in", new_user_session_path, class:"nav-link", tabindex:"-1", aria_disabled:"true"  %>
+            <%end%>
+          </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
