@@ -11,5 +11,19 @@ class User < ApplicationRecord
                   if: proc { |usr| usr.rut.present? }
 
   enum permission: %i[basic admin]
-  enum gender: %i[masculino femenino]
+
+  before_save :sanitize_email
+  before_save :trim_and_capitalize_names
+
+  def sanitize_email
+    self.email = email.downcase if email?
+  end
+
+  def trim_and_capitalize_names
+    %i[first_name last_name second_last_name].each do |attribute|
+      if self[attribute].present?
+        self[attribute] = self[attribute].downcase.strip.titleize
+      end
+    end
+  end
 end

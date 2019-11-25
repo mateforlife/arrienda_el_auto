@@ -1,5 +1,12 @@
-<h1>New Vehicle</h1>
-
-<%= render 'form', vehicle: @vehicle %>
-
-<%= link_to 'Back', vehicles_path %>
+<div class="container col-md-10 offset-md-2">
+  <div class="card w-75">
+    <div class="card">
+      <div class="card-header">
+        <h2>New Vehicle</h2>
+      </div>
+      <div class="card-body"> 
+        <%= render 'form', vehicle: @vehicle %>
+      </div>
+    </div>  
+  </div>  
+</div>
