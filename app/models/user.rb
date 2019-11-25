@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
+  has_many :vehicles
   validates :rut, presence: true
   validates :rut, uniqueness: true, if: proc { |usr| usr.rut.present? }
   validates :rut, format: { with: /\A\d{1,3}(\.\d{3})*-[0-9K]\z/,

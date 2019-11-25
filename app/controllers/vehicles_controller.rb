@@ -24,7 +24,7 @@ class VehiclesController < ApplicationController
   # POST /vehicles
   # POST /vehicles.json
   def create
-    @vehicle = current_user.vehicle.new(vehicle_params)
+    @vehicle = current_user.vehicles.new(vehicle_params)
 
     respond_to do |format|
       if @vehicle.save
@@ -72,11 +72,10 @@ class VehiclesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def vehicle_params
     params.require(:vehicle).permit(:vehicle_model_id, :year, :odometer,
-                                    :user_id, :licence_plate, :engine_number,
+                                    :licence_plate, :engine_number, :traction,
                                     :chasis_number, :transmission, :engine_type,
                                     :passenger_capacity, :air_conditioning,
-                                    :airbags_quantity, :door_quantity, :traction,
-                                    :direction, :body_type, :visible, :fee_id,
-                                    :comment, :deleted_at)
+                                    :airbags_quantity, :door_quantity,
+                                    :direction, :body_type, :visible, :comment)
   end
 end

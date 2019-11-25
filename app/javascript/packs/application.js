@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("packs/vehicles")
 import 'bootstrap/dist/js/bootstrap';
 
 
@@ -16,3 +17,4 @@ import 'bootstrap/dist/js/bootstrap';
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
