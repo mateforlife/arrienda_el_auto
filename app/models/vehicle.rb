@@ -2,6 +2,8 @@ class Vehicle < ApplicationRecord
   belongs_to :vehicle_model
   belongs_to :user
   belongs_to :fee, required: false
+  has_many :user_profile_images
+  accepts_nested_attibutes_for :user_profile_images
 
   enum body_type: %i[citycar sedan]
   enum engine_type: %i[gasoline diesel]
