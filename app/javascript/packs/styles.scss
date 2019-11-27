@@ -1,5 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
+@import 'direct_uploads';
 
 input[type=submit] {
+  background-color: rgb(57, 82, 100);
+}
+
+input[type=file] {
   background-color: rgb(57, 82, 100);
 }

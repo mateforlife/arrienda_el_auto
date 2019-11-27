@@ -1,6 +1,6 @@
 class VehiclesController < ApplicationController
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /vehicles
   # GET /vehicles.json
   def index
@@ -25,9 +25,9 @@ class VehiclesController < ApplicationController
   # POST /vehicles.json
   def create
     @vehicle = current_user.vehicles.new(vehicle_params)
-
     respond_to do |format|
       if @vehicle.save
+        @vehicle.attach_images(params['vehicle']['profile_images'])
         format.html { redirect_to @vehicle, notice: 'Vehicle was successfully created.' }
         format.json { render :show, status: :created, location: @vehicle }
       else
