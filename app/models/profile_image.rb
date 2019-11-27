@@ -5,5 +5,5 @@ class ProfileImage < ApplicationRecord
   belongs_to :resource, polymorphic: true
   has_one_attached :image
 
-  #todo: add validation to image file time
+  #todo: add validation to image file type
 end
