@@ -2,5 +2,8 @@
 
 # ProfileImage
 class ProfileImage < ApplicationRecord
-  has_one :image
+  belongs_to :resource, polymorphic: true
+  has_one_attached :image
+
+  #todo: add validation to image file time
 end

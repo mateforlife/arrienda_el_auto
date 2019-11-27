@@ -2,5 +2,5 @@
 
 # VehicleImage
 class VehicleImage < ProfileImage
-
+  
 end
