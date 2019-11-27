@@ -1,6 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'direct_uploads';
 
+body {
+  padding-top: 70px;
+}
+
 input[type=submit] {
   background-color: rgb(57, 82, 100);
 }
@@ -8,3 +12,4 @@ input[type=submit] {
 input[type=file] {
   background-color: rgb(57, 82, 100);
 }
+
