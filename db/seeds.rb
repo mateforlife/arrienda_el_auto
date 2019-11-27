@@ -2601,17 +2601,17 @@ brands_with_models = [
   },
 ]
 
-bodyworks = ['Sedan', 'SUV', 'Convertible', 'Pickup', 'Minivan', 'Hatchback', 'Coupe', 'Station Wagon']
-engine_types = ['Gasoline', 'Diesel', 'Electic', 'Hybrid']
+# bodyworks = ['Sedan', 'SUV', 'Convertible', 'Pickup', 'Minivan', 'Hatchback', 'Coupe', 'Station Wagon']
+# engine_types = ['Gasoline', 'Diesel', 'Electic', 'Hybrid']
 
 brands_with_models.each do |brand|
   brand_name = brand[:brand]
-  b = Brand.find_or_create_by(name: brand_name.downcase)
+  b = Brand.find_or_create_by(name: brand_name.downcase.titleize)
   next if b.nil?
 
   models = brand[:models]
   models.each do |model|
-    VehicleModel.find_or_create_by(name: model.downcase, brand_id: b.id)
+    VehicleModel.find_or_create_by(name: model.downcase.titleize, brand_id: b.id)
   end
 end
 
