@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style='background-color: rgb(57, 82, 100);'>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style='background-color: rgb(57, 82, 100);'>
       <a class="navbar-brand" href="/">EasyCar</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -26,12 +26,19 @@
               Vehiculos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to 'Publicar', new_vehicle_path, class:"dropdown-item" %>
               <a class="dropdown-item" href="#">Arrendar</a>
-              <a class="dropdown-item" href="#">Publicar</a>
             </div>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <%if user_signed_in?%>
+              <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"nav-link", tabindex:"-1", aria_disabled:"true"  %>
+            <%else%>
+              <%= link_to "Sign in", new_user_session_path, class:"nav-link", tabindex:"-1", aria_disabled:"true"  %>
+            <%end%>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

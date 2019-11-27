@@ -1,0 +1,122 @@
+<%= form_with(model: vehicle, local: true) do |form| %>
+  <% if vehicle.errors.any? %>
+    <div class="form-group">
+      <% vehicle.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <%= message %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :brand_id %>
+    <%= form.collection_select :brand_id, Brand.order(:name), :id, :name, { include_blank: true }, { class: 'form-control'} %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :vehicle_model_id %>
+    <%= form.grouped_collection_select :vehicle_model_id, Brand.order(:name), :vehicle_models, :name, :id, :name, { include_blank: true }, { class:"form-control" } %>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= form.label :body_type %>
+      <%= form.collection_select :body_type, Vehicle.body_types, :first, :first, {}, { class:"form-control" } %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :engine_type %>
+      <%= form.collection_select :engine_type, Vehicle.engine_types, :first, :first, {}, { class:"form-control" } %>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= form.label :door_quantity %>
+      <%= form.number_field :door_quantity, class:"form-control" %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :passenger_capacity %>
+      <%= form.number_field :passenger_capacity, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= form.label :air_conditioning %>
+      <%= form.check_box :air_conditioning, class:"form-control" %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :airbags_quantity %>
+      <%= form.number_field :airbags_quantity, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= form.label :year %>
+      <%= form.text_field :year, class:"form-control" %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :licence_plate %>
+      <%= form.text_field :licence_plate, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= form.label :engine_number %>
+      <%= form.text_field :engine_number, class:"form-control" %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :chasis_number %>
+      <%= form.text_field :chasis_number, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= form.label :transmission %>
+      <%= form.collection_select :transmission, Vehicle.transmissions, :first, :first, {}, { class:"form-control" } %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :traction %>
+      <%= form.number_field :traction, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= form.label :direction %>
+      <%= form.number_field :direction, class:"form-control" %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :odometer %>
+      <%= form.number_field :odometer, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :comment %>
+    <%= form.text_area :comment, class:"form-control" %>
+  </div>
+
+  <div class="form-group"><div class="form-group">
+    <%= form.label 'Imagenes de tu vehículo' %>
+    <%= form.file_field :profile_images, multiple: true, direct_upload: true, class: "btn btn-primary btn-lg btn-block" %>
+  </div>  
+
+  <div class="form-group">
+    <%= form.submit 'ingresar', class: "btn btn-primary btn-lg btn-block" %>
+  </div>
+<% end %>

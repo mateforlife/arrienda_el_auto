@@ -2601,13 +2601,8 @@ brands_with_models = [
   },
 ]
 
-
-
 bodyworks = ['Sedan', 'SUV', 'Convertible', 'Pickup', 'Minivan', 'Hatchback', 'Coupe', 'Station Wagon']
-
-bodyworks.each do |bodywork|
-  Bodywork.find_or_create_by(name: bodywork)
-end
+engine_types = ['Gasoline', 'Diesel', 'Electic', 'Hybrid']
 
 brands_with_models.each do |brand|
   brand_name = brand[:brand]
@@ -2616,6 +2611,14 @@ brands_with_models.each do |brand|
 
   models = brand[:models]
   models.each do |model|
-    Model.find_or_create_by(name: model.downcase, brand_id: b.id)
+    VehicleModel.find_or_create_by(name: model.downcase, brand_id: b.id)
   end
 end
+
+if Fee.count.zero?
+  Fee.find_or_create_by(body_type: 'citycar',engine_type: 'diesel', amount: 17.142)
+  Fee.find_or_create_by(body_type: 'citycar',engine_type: 'gasoline', amount: 14285)
+  Fee.find_or_create_by(body_type: 'sedan',engine_type: 'diesel', amount: 18.571)
+  Fee.find_or_create_by(body_type: 'sedan',engine_type: 'gasoline', amount: 15714)
+end
+
