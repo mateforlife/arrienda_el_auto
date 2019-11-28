@@ -8,7 +8,7 @@ class Vehicle < ApplicationRecord
   enum body_type: %i[citycar sedan]
   enum engine_type: %i[gasoline diesel]
   enum transmission: %i[manual automatic]
-  validates_presence_of %i[year licence_plate engine_number chasis_number]
+  validates_presence_of %i[year license_plate engine_number chasis_number]
 
   before_create :associate_fee
 
