@@ -9,6 +9,18 @@ es:
       index:
         vehicles: "Vehículos"  
         my_vehicles: "Mis Vehículos"
+        new: Nuevo vehículo
+        edit: Editar vehículo
+  text:	
+    password:	
+      minimum: '6 caracteres mínimo'	
+      confirmation: 'Confirma tu contraseña'	
+      current: 'Contraseña actual'	
+    leave_blank: 'déjelo en blanco si no desea cambiar la contraseña'	
+    current_password: 'necesitamos su contraseña actual para confirmar sus cambios'	
+    back: 'Atrás'	
+    update: 'Actualizar'	
+    are_you_sure: 'Estás seguro?'      
   activerecord:
     attributes:
       user:
