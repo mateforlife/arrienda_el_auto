@@ -30,6 +30,25 @@ es:
         unconfirmed_email: Email no confirmado
         unlock_token: Código de desbloqueo
         updated_at: Actualizado en
+      vehicle:
+        brand_id: Marca
+        vehicle_model_id: Modelo
+        body_type: Carroceria
+        engine_type: Motor
+        door_quantity: Puertas
+        passenger_capacity: Capacidad de pasajeros
+        air_conditioning: Aire acondicionado
+        airbags_quantity: Cantidadde airbags
+        year: Año
+        licence_plate: Patente
+        engine_number: Número de motor
+        chasis_number: Número de chasis
+        transmission: Transmicion
+        traction: Traccion
+        direction: Direccion  
+        odometer: Tacometro
+        
+
     models:
       user:
         one: Usuario
