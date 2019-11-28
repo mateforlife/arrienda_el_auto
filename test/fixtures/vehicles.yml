@@ -5,7 +5,7 @@ one:
   year: MyString
   odometer: 1
   user: one
-  licence_plate: MyString
+  license_plate: MyString
   engine_number: MyString
   chasis_number: MyString
   transmission: 1
@@ -27,7 +27,7 @@ two:
   year: MyString
   odometer: 1
   user: two
-  licence_plate: MyString
+  license_plate: MyString
   engine_number: MyString
   chasis_number: MyString
   transmission: 1
