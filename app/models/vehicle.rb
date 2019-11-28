@@ -8,12 +8,22 @@ class Vehicle < ApplicationRecord
   enum body_type: %i[citycar sedan]
   enum engine_type: %i[gasoline diesel]
   enum transmission: %i[manual automatic]
+  enum steering: %i[mechanical power electric]
+  enum drive: %w[4x2 4x4]
   validates_presence_of %i[year license_plate engine_number chasis_number]
+  validates :year, length: { is: 4 }
+  validates :license_plate, length: { is: 6 }
+  validates :odometer, length: { in: 1..7 }
 
   before_create :associate_fee
+  before_save :upcase_license_plate
 
   scope :available, -> { where(visible: true) }
   scope :not_mine, ->(current_user) { where.not(user: current_user) }
+
+  def upcase_license_plate
+    self.license_plate = license_plate.upcase
+  end
 
   def belongs_to_current_user?(current_user)
     user == current_user

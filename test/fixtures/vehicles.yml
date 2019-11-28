@@ -14,8 +14,8 @@ one:
   air_conditioning: false
   airbags_quantity: 1
   door_quantity: 1
-  traction: 1
-  direction: 1
+  drive: 1
+  steering: 1
   body_type: 1
   visible: false
   fee: one
@@ -36,8 +36,8 @@ two:
   air_conditioning: false
   airbags_quantity: 1
   door_quantity: 1
-  traction: 1
-  direction: 1
+  drive: 1
+  steering: 1
   body_type: 1
   visible: false
   fee: two

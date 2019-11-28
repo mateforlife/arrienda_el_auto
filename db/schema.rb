@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_173124) do
+ActiveRecord::Schema.define(version: 2019_11_28_231729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,8 +110,8 @@ ActiveRecord::Schema.define(version: 2019_11_28_173124) do
     t.boolean "air_conditioning"
     t.integer "airbags_quantity"
     t.integer "door_quantity"
-    t.integer "traction"
-    t.integer "direction"
+    t.integer "drive"
+    t.integer "steering"
     t.integer "body_type"
     t.boolean "visible"
     t.bigint "fee_id", null: false

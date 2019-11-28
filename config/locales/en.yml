@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+  language: Language
+  buttons:
+    show: Show
+    edit: Edit
+    destroy: Delete

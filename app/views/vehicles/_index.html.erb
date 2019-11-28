@@ -6,16 +6,20 @@
     <div class="row">
       <% @vehicles.each do |vehicle| %>
       <!-- vehicle card -->
-        <div class="col-md-3">
-          <div class="card" style="width: 25rem;">
+        <div class="col-md-3" style="padding-bottom: 20px;">
+          <div class="card text-left" style="width: 26rem;">
             <%= image_tag vehicle&.profile_images&.first&.image, size: '300x300', class:"card-img-top" %>
             <div class="card-body">
-              <h5 class="card-title"><%= vehicle.brand_and_model %></h5>
-              <p class="card-text"><%= vehicle.comment %></p>
-              <p class="card-text">Tarifa diaria: $<%= vehicle.fee.amount %> CLP</p>
-              <%= link_to 'Show', vehicle, class:"btn btn-primary" %>
-              <%= link_to 'Edit', edit_vehicle_path(vehicle), class:"btn btn-primary" if vehicle.belongs_to_current_user?(current_user) %>
-              <%= link_to 'Destroy', vehicle, method: :delete, class:"btn btn-danger", data: { confirm: 'Are you sure?' } if vehicle.belongs_to_current_user?(current_user) %>
+              <h5 class="card-title"><%= vehicle.brand_and_model %> - <%= vehicle.year %></h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Tarifa diaria: $<%= vehicle.fee.amount %> CLP</li>
+                <li class="list-group-item">Propietario: <%= vehicle.user.full_name %></li>
+                <li class="list-group-item">Información: <%= vehicle.comment %></li>
+              </ul>
+              <br>
+              <%= link_to I18n.t('buttons.show'), vehicle, class:"btn btn-primary" %>
+              <%= link_to I18n.t('buttons.edit'), edit_vehicle_path(vehicle), class:"btn btn-primary" if vehicle.belongs_to_current_user?(current_user) %>
+              <%= link_to I18n.t('buttons.destroy'), vehicle, method: :delete, class:"btn btn-danger", data: { confirm: 'Are you sure?' } if vehicle.belongs_to_current_user?(current_user) %>
             </div>
           </div>
         </div>    

@@ -1,4 +1,9 @@
 es:
+  language: Idioma
+  buttons:
+    show: Detalles
+    edit: Editar
+    destroy: Eliminar
   vehicle:
     headers:
       index:
