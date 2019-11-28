@@ -1,0 +1,2 @@
+module MyVehiclesHelper
+end

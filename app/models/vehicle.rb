@@ -12,6 +12,8 @@ class Vehicle < ApplicationRecord
 
   before_create :associate_fee
 
+  scope :available, -> { where(visible: true) }
+
   def attach_images(images = [])
     images.each do |image|
       profile_images.create!(image: image)
