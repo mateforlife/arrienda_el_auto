@@ -28,6 +28,8 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to 'Publicar', new_vehicle_path, class:"dropdown-item" %>
               <a class="dropdown-item" href="#">Arrendar</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Mis Vehículos</a>
             </div>
           </li>
           <li class="nav-item">
@@ -35,9 +37,9 @@
           </li>
           <li class="nav-item">
             <%if user_signed_in?%>
-              <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"nav-link", tabindex:"-1", aria_disabled:"true"  %>
+              <%= link_to I18n.t('devise.text.sign_out'), destroy_user_session_path, method: :delete, class:"nav-link", tabindex:"-1", aria_disabled:"true"  %>
             <%else%>
-              <%= link_to "Sign in", new_user_session_path, class:"nav-link", tabindex:"-1", aria_disabled:"true"  %>
+              <%= link_to I18n.t('devise.text.log_in'), new_user_session_path, class:"nav-link", tabindex:"-1", aria_disabled:"true"  %>
             <%end%>
           </li>
         </ul>
