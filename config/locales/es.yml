@@ -1,4 +1,20 @@
 es:  
+  vehicle:
+    headers:
+      new: Nuevo vehículo
+      edit: Editar vehículo
+
+  text:
+    password:
+      minimum: '6 caracteres mínimo'
+      confirmation: 'Confirma tu contraseña'
+      current: 'Contraseña actual'
+    leave_blank: 'déjelo en blanco si no desea cambiar la contraseña'
+    current_password: 'necesitamos su contraseña actual para confirmar sus cambios'
+    back: 'Atrás'
+    update: 'Actualizar'
+    are_you_sure: 'Estás seguro?'
+
   activerecord:
     attributes:
       user:
@@ -30,29 +46,32 @@ es:
         unconfirmed_email: Email no confirmado
         unlock_token: Código de desbloqueo
         updated_at: Actualizado en
+
       vehicle:
         brand_id: Marca
         vehicle_model_id: Modelo
-        body_type: Carroceria
+        body_type: Carrocería
         engine_type: Motor
         door_quantity: Puertas
         passenger_capacity: Capacidad de pasajeros
         air_conditioning: Aire acondicionado
-        airbags_quantity: Cantidadde airbags
+        airbags_quantity: Cantidad de airbags
         year: Año
-        licence_plate: Patente
+        license_plate: Patente
         engine_number: Número de motor
         chasis_number: Número de chasis
-        transmission: Transmicion
-        traction: Traccion
-        direction: Direccion  
+        transmission: Transmición
+        traction: Tracción
+        direction: Dirección  
         odometer: Tacometro
-        
+        comment: Comentario
+        profile_images: Imágenes de tu vehículo
 
     models:
       user:
         one: Usuario
         other: Usuarios
+
     errors:
       models:
         user:
@@ -73,8 +92,13 @@ es:
               blank: 'no puede ser vacío'
             password:
               blank: 'no puede ser vacío'
+              too_short: '6 caracteres mínimo'
             password_confirmation:
-              blank: 'no puede ser vacío'              
+              blank: 'no puede ser vacío'     
+              confirmation: 'no coincide o esta vacío'       
+            current_password: 
+              blank: 'no puede ser vacío'
+              ivalid: 'Incorrecta'
               
 
 

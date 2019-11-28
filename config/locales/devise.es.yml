@@ -7,6 +7,8 @@ es:
       log_in: "Iniciar Sesión"
       sign_out: "Cerrar Sesión"
       password: "Contraseña"
+      edit_user: "Editar usuario"
+      cancel_account: "Cancelar mi cuenta"
     confirmations:
       confirmed: "Tu correo electrónico ha sido confirmado exitosamente."
       send_instructions: "Recibirás un email con las instrucciones para confirmar tu correo electrónico en unos minutos."
