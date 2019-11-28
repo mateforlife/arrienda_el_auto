@@ -13,6 +13,15 @@ class Vehicle < ApplicationRecord
   before_create :associate_fee
 
   scope :available, -> { where(visible: true) }
+  scope :not_mine, ->(current_user) { where.not(user: current_user) }
+
+  def belongs_to_current_user?(current_user)
+    user == current_user
+  end
+
+  def brand_and_model
+    "#{vehicle_model.brand.name} #{vehicle_model.name}"
+  end
 
   def attach_images(images = [])
     images.each do |image|

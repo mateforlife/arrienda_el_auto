@@ -4,7 +4,8 @@ class VehiclesController < ApplicationController
   # GET /vehicles
   # GET /vehicles.json
   def index
-    @vehicles = Vehicle.available
+    @vehicles = Vehicle.available.not_mine(current_user)
+    render '_index'
   end
 
   # GET /vehicles/1

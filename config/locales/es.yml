@@ -1,4 +1,9 @@
-es:  
+es:
+  vehicle:
+    headers:
+      index:
+        vehicles: "Vehículos"  
+        my_vehicles: "Mis Vehículos"
   activerecord:
     attributes:
       user:
