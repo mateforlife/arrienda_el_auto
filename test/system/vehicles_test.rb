@@ -20,7 +20,7 @@ class VehiclesTest < ApplicationSystemTestCase
     fill_in "Chasis number", with: @vehicle.chasis_number
     fill_in "Comment", with: @vehicle.comment
     fill_in "Deleted at", with: @vehicle.deleted_at
-    fill_in "Direction", with: @vehicle.direction
+    fill_in "steering", with: @vehicle.steering
     fill_in "Door quantity", with: @vehicle.door_quantity
     fill_in "Engine type", with: @vehicle.engine_type
     fill_in "Fee", with: @vehicle.fee_id
@@ -28,7 +28,7 @@ class VehiclesTest < ApplicationSystemTestCase
     fill_in "Ngine number", with: @vehicle.engine_number
     fill_in "Odometer", with: @vehicle.odometer
     fill_in "Passenger capacity", with: @vehicle.passenger_capacity
-    fill_in "Traction", with: @vehicle.traction
+    fill_in "drive", with: @vehicle.drive
     fill_in "Transmission", with: @vehicle.transmission
     fill_in "User", with: @vehicle.user_id
     fill_in "Vehicle model", with: @vehicle.vehicle_model_id
@@ -50,7 +50,7 @@ class VehiclesTest < ApplicationSystemTestCase
     fill_in "Chasis number", with: @vehicle.chasis_number
     fill_in "Comment", with: @vehicle.comment
     fill_in "Deleted at", with: @vehicle.deleted_at
-    fill_in "Direction", with: @vehicle.direction
+    fill_in "steering", with: @vehicle.steering
     fill_in "Door quantity", with: @vehicle.door_quantity
     fill_in "Engine type", with: @vehicle.engine_type
     fill_in "Fee", with: @vehicle.fee_id
@@ -58,7 +58,7 @@ class VehiclesTest < ApplicationSystemTestCase
     fill_in "Ngine number", with: @vehicle.engine_number
     fill_in "Odometer", with: @vehicle.odometer
     fill_in "Passenger capacity", with: @vehicle.passenger_capacity
-    fill_in "Traction", with: @vehicle.traction
+    fill_in "drive", with: @vehicle.drive
     fill_in "Transmission", with: @vehicle.transmission
     fill_in "User", with: @vehicle.user_id
     fill_in "Vehicle model", with: @vehicle.vehicle_model_id

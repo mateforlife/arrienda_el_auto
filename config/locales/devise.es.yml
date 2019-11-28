@@ -4,8 +4,8 @@ es:
     text:
       sign_in: "Registrarse"
       sign_up: "Regístrate"
-      log_in: "Iniciar Sesión"
-      sign_out: "Cerrar Sesión"
+      log_in: "Iniciar sesión"
+      sign_out: "Cerrar sesión"
       password: "Contraseña"
       edit_user: "Editar usuario"
       cancel_account: "Cancelar mi cuenta"

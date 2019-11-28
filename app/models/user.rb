@@ -20,6 +20,10 @@ class User < ApplicationRecord
   before_save :sanitize_email
   before_save :trim_and_capitalize_names
 
+  def full_name
+    "#{first_name} #{last_name} #{second_last_name}"
+  end
+
   def sanitize_email
     self.email = email.downcase if email?
   end

@@ -1,10 +1,11 @@
 class VehiclesController < ApplicationController
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
-  
+
   # GET /vehicles
   # GET /vehicles.json
   def index
-    @vehicles = Vehicle.all
+    @vehicles = Vehicle.available.not_mine(current_user)
+    render '_index'
   end
 
   # GET /vehicles/1
@@ -72,10 +73,10 @@ class VehiclesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def vehicle_params
     params.require(:vehicle).permit(:vehicle_model_id, :year, :odometer,
-                                    :license_plate, :engine_number, :traction,
+                                    :license_plate, :engine_number, :drive,
                                     :chasis_number, :transmission, :engine_type,
                                     :passenger_capacity, :air_conditioning,
                                     :airbags_quantity, :door_quantity,
-                                    :direction, :body_type, :visible, :comment)
+                                    :steering, :body_type, :visible, :comment)
   end
 end
