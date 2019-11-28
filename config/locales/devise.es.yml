@@ -1,6 +1,12 @@
 
 es:
   devise:
+    text:
+      sign_in: "Registrarse"
+      sign_up: "Regístrate"
+      log_in: "Iniciar Sesión"
+      sign_out: "Cerrar Sesión"
+      password: "Contraseña"
     confirmations:
       confirmed: "Tu correo electrónico ha sido confirmado exitosamente."
       send_instructions: "Recibirás un email con las instrucciones para confirmar tu correo electrónico en unos minutos."
@@ -35,6 +41,10 @@ es:
       send_paranoid_instructions: "Si tu email existe en el sistema, recibirás un email con instrucciones para reiniciar tu contraseña en unos minutos."
       updated: "Tu contraseña fue modificada correctamente. Has iniciado sesión."
       updated_not_active: "Tu contraseña fue modificada correctamente."
+      forgotten: "Has olvidado tu contraseña?"
+      change: "Cambia tu contraseña"
+      new: "Nueva contraseña"
+      instructions: "Envíar mi nueva contraseña"
     registrations:
       destroyed: "Adiós, tu cuenta ha sido eliminada. Esperamos verte de vuelta pronto!"
       signed_up: "Bienvenido! Te has registrado correctamente."
