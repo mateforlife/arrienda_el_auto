@@ -9,8 +9,8 @@ es:
       index:
         vehicles: "Vehículos"  
         my_vehicles: "Mis Vehículos"
-        new: Nuevo vehículo
-        edit: Editar vehículo
+      new: Nuevo vehículo
+      edit: Editar vehículo
   text:	
     password:	
       minimum: '6 caracteres mínimo'	
