@@ -14,12 +14,12 @@
 
   <div class="form-group">
     <%= form.label :brand_id %>
-    <%= form.collection_select :brand_id, Brand.order(:name), :id, :name, { include_blank: true }, { class: 'form-control' } %>
+    <%= form.collection_select :brand_id, @brands, :id, :name, { include_blank: true }, { class: 'form-control' } %>
   </div>
 
   <div class="form-group">
     <%= form.label :vehicle_model_id %>
-    <%= form.grouped_collection_select :vehicle_model_id, Brand.order(:name), :vehicle_models, :name, :id, :name, { include_blank: true }, { class:"form-control" } %>
+    <%= form.grouped_collection_select :vehicle_model_id, @brands, :vehicle_models, :name, :id, :name, { include_blank: true }, { class:"form-control" } %>
   </div>
   
   <div class="form-row">

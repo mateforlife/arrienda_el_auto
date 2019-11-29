@@ -1,10 +1,11 @@
 class VehiclesController < ApplicationController
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
+  before_action :set_brands, only: %i[edit new]
 
   # GET /vehicles
   # GET /vehicles.json
   def index
-    @vehicles = Vehicle.available.not_mine(current_user)
+    @vehicles = Vehicle.available.not_from_current_user(current_user)
     render '_index'
   end
 
@@ -64,6 +65,9 @@ class VehiclesController < ApplicationController
 
   private
 
+  def set_brands
+    @brands = Brand.order(:name)
+  end  
   # Use callbacks to share common setup or constraints between actions.
 
   def set_vehicle
