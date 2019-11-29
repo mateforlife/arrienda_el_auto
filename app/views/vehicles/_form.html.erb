@@ -14,7 +14,7 @@
 
   <div class="form-group">
     <%= form.label :brand_id %>
-    <%= form.collection_select :brand_id, Brand.order(:name), :id, :name, { include_blank: true }, { class: 'form-control'} %>
+    <%= form.collection_select :brand_id, Brand.order(:name), :id, :name, { include_blank: true }, { class: 'form-control' } %>
   </div>
 
   <div class="form-group">
@@ -61,12 +61,12 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <%= form.label :year %>
-      <%= form.text_field :year, class:"form-control" %>
+      <%= form.select :year, (Date.today.year - 10..Date.today.year + 1), { selected: Date.today.year }, { class:"form-control" } %>
     </div>
 
     <div class="form-group col-md-6">
-      <%= form.label :licence_plate %>
-      <%= form.text_field :licence_plate, class:"form-control" %>
+      <%= form.label :license_plate %>
+      <%= form.text_field :license_plate, class:"form-control" %>
     </div>
   </div>
 
@@ -89,15 +89,15 @@
     </div>
 
     <div class="form-group col-md-6">
-      <%= form.label :traction %>
-      <%= form.number_field :traction, class:"form-control" %>
+      <%= form.label :drive %>
+      <%= form.collection_select :drive, Vehicle.drives, :first, :first, {}, { class:"form-control" } %>
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <%= form.label :direction %>
-      <%= form.number_field :direction, class:"form-control" %>
+      <%= form.label :steering %>
+      <%= form.collection_select :steering, Vehicle.steerings, :first, :first, {}, { class:"form-control" } %>
     </div>
 
     <div class="form-group col-md-6">
@@ -112,11 +112,11 @@
   </div>
 
   <div class="form-group"><div class="form-group">
-    <%= form.label 'Imagenes de tu vehículo' %>
+    <%= form.label :profile_images %>
     <%= form.file_field :profile_images, multiple: true, direct_upload: true, class: "btn btn-primary btn-lg btn-block" %>
   </div>  
 
   <div class="form-group">
-    <%= form.submit 'ingresar', class: "btn btn-primary btn-lg btn-block" %>
+    <%= form.submit I18n.t('buttons.submit'), class: "btn btn-primary btn-lg btn-block" %>
   </div>
 <% end %>
