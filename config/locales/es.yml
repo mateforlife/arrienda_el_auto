@@ -4,7 +4,10 @@ es:
     show: Detalles
     edit: Editar
     destroy: Eliminar
+    submit: Aceptar
   vehicle:
+    publish: Publicar
+    leasing: Arrendar
     headers:
       index:
         vehicles: "Vehículos"  
@@ -67,8 +70,8 @@ es:
         engine_number: Número de motor
         chasis_number: Número de chasis
         transmission: Transmisión
-        traction: Tracción
-        direction: Dirección  
+        drive: Tracción
+        steering: Dirección  
         odometer: Kilometraje
         comment: Comentario
         profile_images: Imágenes de tu vehículo

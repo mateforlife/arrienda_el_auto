@@ -36,3 +36,12 @@ en:
     show: Show
     edit: Edit
     destroy: Delete
+    submit: Submit
+  vehicle:
+    publish: Publish
+    leasing: Leasing
+    headers:
+      index:
+        vehicles: "Vehicles"  
+        my_vehicles: "My Vehicles"  
+      new: "New Vehicle"
