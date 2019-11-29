@@ -23,10 +23,10 @@ Things you may want to cover:
   `$ rails db:setup`
 
 * How to run the test suite
-
+ 
 * How to run the local server
 
-  `$ bin/webpack-dev-server`
+  `$ bin/webpack-dev-server` or `$ gem install foreman && foreman start -f Procfile.dev`
   
   `$ bin/rails s`
 
