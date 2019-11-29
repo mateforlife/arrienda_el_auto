@@ -1,5 +1,12 @@
-<p id="notice"><%= notice %></p>
-
+<% if notice %>
+  <div class="alert alert-success" role="alert" id="notice">
+    <%= notice %>
+    
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>  
 <p>
   <strong>Vehicle model:</strong>
   <%= @vehicle.vehicle_model_id %>
