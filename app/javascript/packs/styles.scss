@@ -1,3 +1,5 @@
+$primary: rgb(0, 102, 153);
+$danger: rgb(179, 0, 0);
 @import '~bootstrap/scss/bootstrap';
 @import 'direct_uploads';
 
@@ -6,11 +8,6 @@ body {
   padding-right: 5px;
   padding-left: 5px;
 }
-
-input[type=submit] {
-  background-color: rgb(57, 82, 100);
-}
-
-input[type=file] {
-  background-color: rgb(57, 82, 100);
-}
+ nav {
+  background-color: rgb(0, 102, 153);
+ }

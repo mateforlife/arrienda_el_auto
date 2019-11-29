@@ -5,7 +5,9 @@ class VehiclesController < ApplicationController
   # GET /vehicles
   # GET /vehicles.json
   def index
-    @vehicles = Vehicle.available.not_from_current_user(current_user)
+    @vehicles = Vehicle.available
+                       .not_from_current_user(current_user)
+                       .preload(:profile_images)
     render '_index'
   end
 
@@ -65,10 +67,10 @@ class VehiclesController < ApplicationController
 
   private
 
-  def set_brands
-    @brands = Brand.order(:name)
-  end  
   # Use callbacks to share common setup or constraints between actions.
+  def set_brands
+    @brands = Brand.preload(:vehicle_models).order(:name)
+  end
 
   def set_vehicle
     @vehicle = Vehicle.find(params[:id])
