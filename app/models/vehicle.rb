@@ -32,9 +32,7 @@ class Vehicle < ApplicationRecord
   # =      SCOPES      =
   # ====================
   scope :available, -> { where(visible: true) }
-  scope :not_from_current_user, lambda(current_user) {
-    where.not(user: current_user)
-  }
+  scope :not_from_current_user, ->(current_user) { where.not(user: current_user) }
 
   # ====================
   # = INSTANCE METHODS =
