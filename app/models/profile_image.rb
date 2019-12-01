@@ -7,5 +7,4 @@ class ProfileImage < ApplicationRecord
 
   validates :image, attached: true,
                     content_type: ['image/png', 'image/jpg', 'image/jpeg']
-  #todo: add validation to image file type
 end

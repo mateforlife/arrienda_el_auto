@@ -30,8 +30,7 @@ class VehiclesController < ApplicationController
   def create
     @vehicle = current_user.vehicles.new(vehicle_params)
     respond_to do |format|
-      if @vehicle.save
-        @vehicle.attach_images(params['vehicle']['profile_images'])
+      if @vehicle.save_with_images
         format.html { redirect_to @vehicle, notice: 'Vehicle was successfully created.' }
         format.json { render :show, status: :created, location: @vehicle }
       else
@@ -68,6 +67,11 @@ class VehiclesController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
+
+  def attach_images
+    @vehicle.attach_images(params['vehicle']['profile_images'])
+  end
+
   def set_brands
     @brands = Brand.preload(:vehicle_models).order(:name)
   end
@@ -83,6 +87,7 @@ class VehiclesController < ApplicationController
                                     :chasis_number, :transmission, :engine_type,
                                     :passenger_capacity, :air_conditioning,
                                     :airbags_quantity, :door_quantity,
-                                    :steering, :body_type, :visible, :comment)
+                                    :steering, :body_type, :visible, :comment,
+                                    images: [])
   end
 end

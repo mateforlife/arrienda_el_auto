@@ -4,6 +4,7 @@ class Vehicle < ApplicationRecord
   belongs_to :fee, required: false
   has_many :profile_images, as: :resource, dependent: :destroy
   accepts_nested_attributes_for :profile_images
+  attr_accessor :images
 
   # ====================
   # =     ENUMS        =
@@ -17,10 +18,10 @@ class Vehicle < ApplicationRecord
   # ====================
   # =   VALIDATORS     =
   # ====================
-  validates_presence_of %i[year license_plate engine_number chasis_number]
-  validates :year, length: { is: 4 }
-  validates :license_plate, length: { is: 6 }
-  validates :odometer, length: { in: 1..7 }
+  # validates_presence_of %i[year license_plate engine_number chasis_number]
+  # validates :year, length: { is: 4 }
+  # validates :license_plate, length: { is: 6 }
+  # validates :odometer, length: { in: 1..7 }
 
   # ====================
   # =    CALLBACKS     =
@@ -49,9 +50,17 @@ class Vehicle < ApplicationRecord
     "#{vehicle_model.brand.name} #{vehicle_model.name}"
   end
 
-  def attach_images(images = [])
-    images.each do |image|
-      profile_images.create!(image: image)
+  def save_with_images
+    ActiveRecord::Base.transaction do
+      save
+      images.each do |image|
+        profile_images.create!(image: image)
+      rescue ActiveRecord::RecordInvalid => e
+        errors.add(:profile_images, e)
+      end
+      raise ActiveRecord::Rollback if errors.count.positive?
+
+      true
     end
   end
 
