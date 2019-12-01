@@ -15,7 +15,7 @@
       <% @vehicles.each do |vehicle| %>
       <!-- vehicle  -->
         <div class="col-lg-4 col-md-10 col-sm-12" style="padding-bottom: 20px;">
-          <%= image_tag vehicle&.profile_images&.first&.image, size: '300x300', class:"card-img-top" %>
+          <%= image_tag vehicle&.profile_images&.first&.image, size: '300x300', class:"card-img-top" unless vehicle.profile_images.first.nil? %>
           <div class="card-body">
             <h5 class="card-title"><%= vehicle.brand_and_model %> - <%= vehicle.year %></h5>
             <ul class="list-group list-group-flush">
