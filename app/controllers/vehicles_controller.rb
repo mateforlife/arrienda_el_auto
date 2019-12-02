@@ -1,6 +1,7 @@
 class VehiclesController < ApplicationController
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
-  before_action :set_brands, only: %i[edit new create]
+  before_action :set_brands, only: %i[edit new create update]
+  before_action :brand_select_option, only: %i[edit update]
 
   # GET /vehicles
   # GET /vehicles.json
@@ -68,8 +69,9 @@ class VehiclesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
 
-  def attach_images
-    @vehicle.attach_images(params['vehicle']['profile_images'])
+  def brand_select_option
+    @selected_option = @vehicle&.vehicle_model&.brand&.id
+    @disabled = true
   end
 
   def set_brands
