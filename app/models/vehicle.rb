@@ -40,6 +40,7 @@ class Vehicle < ApplicationRecord
   scope :available, -> { where(visible: true) }
   scope :not_from_current_user, ->(current_user) { where.not(user: current_user) }
 
+
   # ====================
   # = INSTANCE METHODS =
   # ====================
@@ -93,6 +94,17 @@ class Vehicle < ApplicationRecord
     self.fee = fee
   end
 
+  def self.search(params)
+    base_query = Vehicle.joins(vehicle_model: :brand)
+    base_query.where(vehicle_models: { name: params })
+              .or(base_query.where('lower(vehicle_models.name) LIKE ?', "%#{params}"))
+              .or(base_query.where('lower(vehicle_models.name) LIKE ?', "#{params}%"))
+              .or(base_query.where('lower(vehicle_models.name) LIKE ?', "%#{params}%"))
+              .or(base_query.where('lower(vehicle_models.name) = ?', params))
+              .or(base_query.where('lower(brands.name) LIKE ?', "%#{params}"))
+              .or(base_query.where('lower(brands.name) LIKE ?', "#{params}%"))
+              .or(base_query.where('lower(brands.name) LIKE ?', "%#{params}%"))
+  end
   # ====================
   # =  CLASS METHODS   =
   # ====================
