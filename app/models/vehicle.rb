@@ -73,6 +73,10 @@ class Vehicle < ApplicationRecord
     "#{vehicle_model.brand.name} #{vehicle_model.name}"
   end
 
+  def brand_model_and_year
+    "#{vehicle_model.brand.name} #{vehicle_model.name} - #{year}"
+  end
+
   def save_with_images
     ActiveRecord::Base.transaction do
       return false unless save
