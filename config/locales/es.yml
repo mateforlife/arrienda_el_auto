@@ -12,6 +12,7 @@ es:
       index:
         vehicles: "Vehículos"  
         my_vehicles: "Mis Vehículos"
+        search_result: 'Resultados de busqueda' 
       new: Nuevo vehículo
       edit: Editar vehículo
   text:	
@@ -23,7 +24,7 @@ es:
     current_password: 'necesitamos su contraseña actual para confirmar sus cambios'	
     back: 'Atrás'	
     update: 'Actualizar'	
-    are_you_sure: 'Estás seguro?'      
+    are_you_sure: 'Estás seguro?'     
   activerecord:
     attributes:
       user:

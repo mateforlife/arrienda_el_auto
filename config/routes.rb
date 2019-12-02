@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   scope '(:locale)', locale: /es|en/ do
+    get 'search/index', to: 'search#index'
     resources :vehicles
     resources :vehicle_models
     resources :fees
