@@ -64,12 +64,13 @@ class Vehicle < ApplicationRecord
   end
 
   def self.search(params)
+    params.downcase!
     base_query = Vehicle.joins(vehicle_model: :brand)
     base_query.where(vehicle_models: { name: params })
               .or(base_query.where('lower(vehicle_models.name) LIKE ?', "%#{params}"))
               .or(base_query.where('lower(vehicle_models.name) LIKE ?', "#{params}%"))
               .or(base_query.where('lower(vehicle_models.name) LIKE ?', "%#{params}%"))
-              .or(base_query.where('lower(vehicle_models.name) = ?', params))
+              .or(base_query.where('lower(brands.name) = ?', params))
               .or(base_query.where('lower(brands.name) LIKE ?', "%#{params}"))
               .or(base_query.where('lower(brands.name) LIKE ?', "#{params}%"))
               .or(base_query.where('lower(brands.name) LIKE ?', "%#{params}%"))
