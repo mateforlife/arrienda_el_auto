@@ -107,7 +107,7 @@
   <%= @vehicle.deleted_at %>
 </p>
 
-<%= render 'images', images: @vehicle.profile_images %>
+<%= render 'images', vehicle: @vehicle %>
 
 <%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
 <%= link_to 'Back', vehicles_path %>
