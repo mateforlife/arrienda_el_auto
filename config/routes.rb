@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'profile_images/destroy'
   scope '(:locale)', locale: /es|en/ do
     get 'search/index', to: 'search#index'
     resources :vehicles
