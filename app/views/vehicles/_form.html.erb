@@ -12,7 +12,6 @@
     </div>
   <% end %>
 
-  <%= form.text_field :visible %>
   <div class="form-group">
     <%= form.label :brand_id %>
     <%= form.collection_select :brand_id, @brands, :id, :name, { include_blank: true, selected: @selected_option }, { class: 'form-control', disabled: @disabled } %>
