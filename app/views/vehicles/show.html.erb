@@ -11,7 +11,6 @@
 <div class="container col-xl-6 col-lg-10 col-md-6 col-sm-10">
   <div class="card">
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"  data-interval="4000">
-      
 
       <!-- The slideshow -->
       <div class="carousel-inner">
@@ -43,23 +42,11 @@
           <tr>
             <th>Tarifa diaria:</th>
             <td>$<%= @vehicle.fee.amount %> CLP</td>
-          </tr>
-          <tr>
-            <th>Patente:</th>
-            <td><%= @vehicle.license_plate %></td>
-          </tr>
+          </tr>          
           <tr>
             <th>Kilomatraje:</th>
             <td><%= @vehicle.odometer %></td>
-          </tr>
-          <tr>
-            <th>N° de motor:</th>
-            <td><%= @vehicle.engine_number %></td>
-          </tr>
-          <tr>
-            <th>N° de chasis:</th>
-            <td><%= @vehicle.chasis_number %></td>
-          </tr>
+          </tr>          
           <tr>
             <th>Transmisión:</th>
             <td><%= @vehicle.transmission %></td>
@@ -97,9 +84,28 @@
             <td><%= @vehicle.body_type %></td>
           </tr>
         </tbody>
-      </table>
+      </table><br>
+      <%if @vehicle.belongs_to_current_user?(current_user)%>
+        <h5 class="card-title">Información Legal:</h5><br>
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th>N° de motor:</th>
+              <td><%= @vehicle.engine_number %></td>
+            </tr>
+            <tr>
+              <th>N° de chasis:</th>
+              <td><%= @vehicle.chasis_number %></td>
+            </tr>
+            <tr>
+              <th>Patente:</th>
+              <td><%= @vehicle.license_plate %></td>
+            </tr>
+          <tbody>
+        <table>
+      <%end%>
       <div class="card-body text-center">
-        <%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
+        <%= link_to 'Edit', edit_vehicle_path(@vehicle)%> |
         <%= link_to 'Back', vehicles_path %>
       </div>
     </div>
