@@ -21,7 +21,7 @@ class Vehicle < ApplicationRecord
   # =   VALIDATORS     =
   # ====================
   validates_presence_of %i[year license_plate engine_number
-                           chasis_number images]
+                           chasis_number]
   validates :year, length: { is: 4 }
   validates :license_plate, length: { is: 6 }
   validates :odometer, length: { in: 1..7 }
@@ -40,11 +40,12 @@ class Vehicle < ApplicationRecord
   scope :available, -> { where(visible: true) }
   scope :not_from_current_user, ->(current_user) { where.not(user: current_user) }
 
-
   # ====================
   # = INSTANCE METHODS =
   # ====================
   def update_images
+    return if images.nil?
+
     images.each do |image|
       if images_full?
         errors.add(:images, :limit_exceded)
