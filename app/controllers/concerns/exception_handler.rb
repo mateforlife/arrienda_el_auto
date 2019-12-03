@@ -25,6 +25,6 @@ module ExceptionHandler
   end
 
   def not_found
-    render file: "#{Rails.root}/public/404.jpeg", layout: false, status: :not_found
+    render file: "#{Rails.root}/public/404.png", layout: false, status: :not_found
   end
 end

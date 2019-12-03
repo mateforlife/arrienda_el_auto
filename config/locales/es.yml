@@ -5,6 +5,8 @@ es:
     edit: Editar
     destroy: Eliminar
     submit: Aceptar
+    back: Regresar
+    options: Opciones
   vehicle:
     publish: Publicar
     leasing: Arrendar
