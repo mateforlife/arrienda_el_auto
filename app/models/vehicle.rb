@@ -26,7 +26,7 @@ class Vehicle < ApplicationRecord
   validates :license_plate, length: { is: 6 }
   validates :odometer, length: { in: 1..7 }
   validates_length_of :images, maximum: IMAGES_LIMIT
-
+  validates :images, presence: true, on: :create
   # ====================
   # =    CALLBACKS     =
   # ====================
