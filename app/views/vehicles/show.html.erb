@@ -34,9 +34,9 @@
 
     <div class="card-body">
       <div class='row'>
-        <h3 class="card-title col-xl-9 col-sm-7 col-9"><%= @vehicle.brand_model_and_year %></h3>
+        <h3 class="card-title col-xl-9 col-sm-7 col-14"><%= @vehicle.brand_model_and_year %></h3>
       <!-- Example single danger button -->
-        <div class='container col-xl-3 col-3' style='text-align: end;padding-left: 0%;'>
+        <div class='container col-xl-3 col-sm-4 col-14' style='text-align: end;'>
           <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%= I18n.t('buttons.options') %>
@@ -44,7 +44,7 @@
             <div class="dropdown-menu">
             <% if @vehicle.belongs_to_current_user?(current_user) %>
               <%= link_to I18n.t('buttons.edit'), edit_vehicle_path(@vehicle), class:"dropdown-item" %>
-              <%= link_to 'Documentos legales', new_vehicle_legal_document_path(@vehicle), class:"dropdown-item disabled" %>
+              <%= link_to I18n.t('buttons.legal_documents'), new_vehicle_legal_document_path(@vehicle), class:"dropdown-item disabled" %>
               <div class="dropdown-divider"></div>
               <%= link_to I18n.t('buttons.back'), my_vehicles_path, class:"dropdown-item" %>
             <% else %> 

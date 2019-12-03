@@ -7,6 +7,7 @@ es:
     submit: Aceptar
     back: Regresar
     options: Opciones
+    legal_documents: Documentación legal
   vehicle:
     publish: Publicar
     leasing: Arrendar
