@@ -1,12 +1,16 @@
 class Vehicle < ApplicationRecord
+  has_many :legal_documents
   belongs_to :vehicle_model
   belongs_to :user
   belongs_to :fee, required: false
   has_many :profile_images, as: :resource, dependent: :destroy
+  has_many :legal_documents, as: :resource, dependent: :destroy
   accepts_nested_attributes_for :profile_images
   attr_accessor :images
 
   IMAGES_LIMIT = 5
+  REQUIRED_DOCUMENTS = ['traffic permit', 'obligatory insurance',
+                        'technical review', 'vehicle register'].freeze
 
   # ====================
   # =     ENUMS        =
@@ -27,6 +31,7 @@ class Vehicle < ApplicationRecord
   validates :odometer, length: { in: 1..7 }
   validates_length_of :images, maximum: IMAGES_LIMIT
   validates :images, presence: true, on: :create
+
   # ====================
   # =    CALLBACKS     =
   # ====================
@@ -38,15 +43,22 @@ class Vehicle < ApplicationRecord
   # =      SCOPES      =
   # ====================
   scope :available, -> { where(visible: true) }
-  scope :not_from_current_user, ->(current_user) { where.not(user: current_user) }
+  scope :not_from_current_user, lambda { |current_user|
+    where.not(user: current_user)
+  }
 
   # ====================
   # = INSTANCE METHODS =
   # ====================
-  def update_images
-    return if images.nil?
 
-    images.each do |image|
+  def validate_legal_documents
+    return false if legal_documents.empty?
+
+    legal_documents.active&.pluck(:document_type)&.sort == REQUIRED_DOCUMENTS
+  end
+
+  def update_images
+    images&.each do |image|
       if images_full?
         errors.add(:images, :limit_exceded)
         raise ActiveRecord::Rollback
@@ -99,19 +111,19 @@ class Vehicle < ApplicationRecord
     self.fee = fee
   end
 
-  def self.search(params)
-      params.downcase!
-      base_query = Vehicle.joins(vehicle_model: :brand)
-      base_query.where(vehicle_models: { name: params })
-                .or(base_query.where('lower(vehicle_models.name) LIKE ?', "%#{params}"))
-                .or(base_query.where('lower(vehicle_models.name) LIKE ?', "#{params}%"))
-                .or(base_query.where('lower(vehicle_models.name) LIKE ?', "%#{params}%"))
-                .or(base_query.where('lower(brands.name) = ?', params))
-                .or(base_query.where('lower(brands.name) LIKE ?', "%#{params}"))
-                .or(base_query.where('lower(brands.name) LIKE ?', "#{params}%"))
-                .or(base_query.where('lower(brands.name) LIKE ?', "%#{params}%"))
-  end
   # ====================
   # =  CLASS METHODS   =
   # ====================
+  def self.search(params)
+    params.downcase!
+    base_query = Vehicle.joins(vehicle_model: :brand)
+    base_query.where(vehicle_models: { name: params })
+              .or(base_query.where('lower(vehicle_models.name) LIKE ?', "%#{params}"))
+              .or(base_query.where('lower(vehicle_models.name) LIKE ?', "#{params}%"))
+              .or(base_query.where('lower(vehicle_models.name) LIKE ?', "%#{params}%"))
+              .or(base_query.where('lower(brands.name) = ?', params))
+              .or(base_query.where('lower(brands.name) LIKE ?', "%#{params}"))
+              .or(base_query.where('lower(brands.name) LIKE ?', "#{params}%"))
+              .or(base_query.where('lower(brands.name) LIKE ?', "%#{params}%"))
+  end
 end

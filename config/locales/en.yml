@@ -37,6 +37,8 @@ en:
     edit: Edit
     destroy: Delete
     submit: Submit
+    back: Go back
+    options: Options
   vehicle:
     publish: Publish
     leasing: Leasing
