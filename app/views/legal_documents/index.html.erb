@@ -1,0 +1,29 @@
+<h1>Listing legal_documents</h1>
+
+<table>
+  <tr>
+    <th>Document type</th>
+    <th>Resource</th>
+    <th>Due date</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @legal_documents.each do |legal_document| %>
+  <tr>
+    <td><%= legal_document.document_type %></td>
+    <td><%= legal_document.resource %></td>
+    <td><%= legal_document.due_date %></td>
+    <td><%= legal_document.status %></td>
+    <td><%= link_to 'Show', [legal_document.vehicle, legal_document] %></td>
+    <td><%= link_to 'Edit', edit_vehicle_legal_document_path(legal_document.vehicle, legal_document) %></td>
+    <td><%= link_to 'Destroy', [legal_document.vehicle, legal_document], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Legal document', new_vehicle_legal_document_path(params[:vehicle_id]) %>

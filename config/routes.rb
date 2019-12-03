@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   scope '(:locale)', locale: /es|en/ do
     get 'search/index', to: 'search#index'
-    resources :vehicles
+    resources :vehicles do
+      resources :legal_documents
+    end
     resources :vehicle_models
     resources :fees
     devise_for :users

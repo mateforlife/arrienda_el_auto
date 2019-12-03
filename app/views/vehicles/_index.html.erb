@@ -17,7 +17,7 @@
         <div class="col-xl-3 col-lg-4 col-md-10 col-sm-12" style="padding-bottom: 20px;">
           <%= image_tag vehicle&.profile_images&.first&.image, size: '300x300', class:"card-img-top" if vehicle.profile_images.present? %>
           <div class="card-body">
-            <h5 class="card-title"><%= vehicle.brand_and_model %> - <%= vehicle.year %></h5>
+            <h5 class="card-title"><%= vehicle.brand_model_and_year %></h5>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Tarifa diaria: $<%= vehicle.fee.amount %> CLP</li>
               <li class="list-group-item">Propietario: <%= vehicle.user.full_name %></li>

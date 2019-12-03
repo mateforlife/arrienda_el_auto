@@ -1,0 +1,33 @@
+<%= form_for([@legal_document.resource, @legal_document]) do |f| %>
+  <% if @legal_document.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@legal_document.errors.count, "error") %> prohibited this legal_document from being saved:</h2>
+
+      <ul>
+      <% @legal_document.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :document_type %><br />
+    <%= f.collection_select :document_type, LegalDocument.document_types, :first, :first  %>
+  </div>
+  <div class="field">
+    <%= f.label :file %><br />
+    <%= f.file_field :file %>
+  </div>
+  <div class="field">
+    <%= f.label :due_date %><br />
+    <%= f.date_field :due_date %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.collection_select :status, LegalDocument.statuses, :first, :first %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

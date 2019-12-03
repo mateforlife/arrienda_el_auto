@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_231729) do
+ActiveRecord::Schema.define(version: 2019_12_03_034621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,17 @@ ActiveRecord::Schema.define(version: 2019_11_28_231729) do
     t.float "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "legal_documents", force: :cascade do |t|
+    t.integer "document_type"
+    t.string "resource_type", null: false
+    t.bigint "resource_id", null: false
+    t.date "due_date"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_type", "resource_id"], name: "index_legal_documents_on_resource_type_and_resource_id"
   end
 
   create_table "profile_images", force: :cascade do |t|
