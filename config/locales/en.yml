@@ -44,4 +44,6 @@ en:
       index:
         vehicles: "Vehicles"  
         my_vehicles: "My Vehicles"  
+        search_result: 'Search results'
       new: "New Vehicle"
+      

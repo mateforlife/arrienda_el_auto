@@ -6,108 +6,116 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-<% end %>  
-<p>
-  <strong>Vehicle model:</strong>
-  <%= @vehicle.vehicle_model_id %>
-</p>
+<% end %>
 
-<p>
-  <strong>Year:</strong>
-  <%= @vehicle.year %>
-</p>
+<div class="card">
+  <h5 class="card-header"><%= @vehicle.brand_model_and_year %></h5>
+  <div class="card-body">
+    <div class="row">
+      <p>
+        <strong>Vehicle model:</strong>
+        <%= @vehicle.vehicle_model_id %>
+      </p>
 
-<p>
-  <strong>Odometer:</strong>
-  <%= @vehicle.odometer %>
-</p>
+      <p>
+        <strong>Year:</strong>
+        <%= @vehicle.year %>
+      </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @vehicle.user_id %>
-</p>
+      <p>
+        <strong>Odometer:</strong>
+        <%= @vehicle.odometer %>
+      </p>
 
-<p>
-  <strong>Licence plate:</strong>
-  <%= @vehicle.license_plate %>
-</p>
+      <p>
+        <strong>User:</strong>
+        <%= @vehicle.user_id %>
+      </p>
 
-<p>
-  <strong>Ngine number:</strong>
-  <%= @vehicle.engine_number %>
-</p>
+      <p>
+        <strong>Licence plate:</strong>
+        <%= @vehicle.license_plate %>
+      </p>
 
-<p>
-  <strong>Chasis number:</strong>
-  <%= @vehicle.chasis_number %>
-</p>
+      <p>
+        <strong>Ngine number:</strong>
+        <%= @vehicle.engine_number %>
+      </p>
 
-<p>
-  <strong>Transmission:</strong>
-  <%= @vehicle.transmission %>
-</p>
+      <p>
+        <strong>Chasis number:</strong>
+        <%= @vehicle.chasis_number %>
+      </p>
 
-<p>
-  <strong>Engine type:</strong>
-  <%= @vehicle.engine_type %>
-</p>
+      <p>
+        <strong>Transmission:</strong>
+        <%= @vehicle.transmission %>
+      </p>
 
-<p>
-  <strong>Passenger capacity:</strong>
-  <%= @vehicle.passenger_capacity %>
-</p>
+      <p>
+        <strong>Engine type:</strong>
+        <%= @vehicle.engine_type %>
+      </p>
 
-<p>
-  <strong>Air conditioning:</strong>
-  <%= @vehicle.air_conditioning %>
-</p>
+      <p>
+        <strong>Passenger capacity:</strong>
+        <%= @vehicle.passenger_capacity %>
+      </p>
 
-<p>
-  <strong>Airbags quantity:</strong>
-  <%= @vehicle.airbags_quantity %>
-</p>
+      <p>
+        <strong>Air conditioning:</strong>
+        <%= @vehicle.air_conditioning %>
+      </p>
 
-<p>
-  <strong>Door quantity:</strong>
-  <%= @vehicle.door_quantity %>
-</p>
+      <p>
+        <strong>Airbags quantity:</strong>
+        <%= @vehicle.airbags_quantity %>
+      </p>
 
-<p>
-  <strong>drive:</strong>
-  <%= @vehicle.drive %>
-</p>
+      <p>
+        <strong>Door quantity:</strong>
+        <%= @vehicle.door_quantity %>
+      </p>
 
-<p>
-  <strong>steering:</strong>
-  <%= @vehicle.steering %>
-</p>
+      <p>
+        <strong>drive:</strong>
+        <%= @vehicle.drive %>
+      </p>
 
-<p>
-  <strong>Body type:</strong>
-  <%= @vehicle.body_type %>
-</p>
+      <p>
+        <strong>steering:</strong>
+        <%= @vehicle.steering %>
+      </p>
 
-<p>
-  <strong>Visible:</strong>
-  <%= @vehicle.visible %>
-</p>
+      <p>
+        <strong>Body type:</strong>
+        <%= @vehicle.body_type %>
+      </p>
 
-<p>
-  <strong>Fee:</strong>
-  <%= @vehicle.fee_id %>
-</p>
+      <p>
+        <strong>Visible:</strong>
+        <%= @vehicle.visible %>
+      </p>
 
-<p>
-  <strong>Comment:</strong>
-  <%= @vehicle.comment %>
-</p>
+      <p>
+        <strong>Fee:</strong>
+        <%= @vehicle.fee_id %>
+      </p>
 
-<p>
-  <strong>Deleted at:</strong>
-  <%= @vehicle.deleted_at %>
-</p>
+      <p>
+        <strong>Comment:</strong>
+        <%= @vehicle.comment %>
+      </p>
 
-<%= render 'images', images: @vehicle.profile_images %>
+      <p>
+        <strong>Deleted at:</strong>
+        <%= @vehicle.deleted_at %>
+      </p>
+      <%= render 'images', vehicle: @vehicle %>
+    </div>
+  </div>
+</div>
+
 
 <%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
 <%= link_to 'Back', vehicles_path %>

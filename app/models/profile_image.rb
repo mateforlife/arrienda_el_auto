@@ -3,7 +3,8 @@
 # ProfileImage
 class ProfileImage < ApplicationRecord
   belongs_to :resource, polymorphic: true
-  has_one_attached :image
+  has_one_attached :image, dependent: :destroy
 
-  #todo: add validation to image file type
+  validates :image, attached: true,
+                    content_type: ['image/png', 'image/jpg', 'image/jpeg']
 end
