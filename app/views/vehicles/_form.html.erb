@@ -14,7 +14,7 @@
 
   <div class="form-group">
     <%= form.label :brand_id %>
-    <%= form.collection_select :brand_id, @brands, :id, :name, { include_blank: true }, { class: 'form-control' } %>
+    <%= form.collection_select :brand_id, @brands, :id, :name, { include_blank: true, selected: @selected_option }, { class: 'form-control', disabled: @disabled } %>
   </div>
 
   <div class="form-group">
@@ -111,10 +111,18 @@
     <%= form.text_area :comment, class:"form-control" %>
   </div>
 
-  <div class="form-group"><div class="form-group">
-    <%= form.label :profile_images %>
-    <%= form.file_field :profile_images, multiple: true, direct_upload: true, class: "btn btn-primary btn-lg btn-block" %>
-  </div>  
+  <div class="form-group">
+    <div class="input-group">
+      <div class="custom-file">
+        <%= form.label :images, class: "custom-file-label"%>
+        <%= form.file_field :images, multiple: true, class: "form-control custom-file-input",accept: "image/png,image/jpg,image/jpeg", label: "Add an image" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= render 'images', vehicle: vehicle %>
+  </div>
 
   <div class="form-group">
     <%= form.submit I18n.t('buttons.submit'), class: "btn btn-primary btn-lg btn-block" %>

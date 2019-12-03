@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     resources :vehicle_models
     resources :fees
     devise_for :users
-    resources :colors
     resources :brands
+    resources :profile_images, only: :destroy
     get '/my_vehicles', to: 'my_vehicles#index'
     root to: 'vehicles#index'
   end

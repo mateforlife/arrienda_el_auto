@@ -60,6 +60,7 @@ es:
       vehicle:
         brand_id: Marca
         vehicle_model_id: Modelo
+        vehicle_model: Marca y Modelo
         body_type: Carrocería
         engine_type: Motor
         door_quantity: Puertas
@@ -76,12 +77,11 @@ es:
         odometer: Kilometraje
         comment: Comentario
         profile_images: Imágenes de tu vehículo
-
+        images: Imágenes
     models:
       user:
         one: Usuario
         other: Usuarios
-
     errors:
       models:
         user:
@@ -109,6 +109,32 @@ es:
             current_password: 
               blank: 'no puede ser vacío'
               ivalid: 'Incorrecta'
+        vehicle:
+          attributes:
+            images:
+              blank: 'deben existir'
+              ivalid: 'formato inválido'
+              record_invalid: 'formato inválido'
+              too_long: 'límite excedido'
+              limit_exceded: 'límite excedido'
+            vehicle_model: 
+              blank: 'debe existir'
+              ivalid: 'formato inválido'
+              required: 'son requeridos'
+            license_plate: 
+              blank: 'debe existir'
+              ivalid: 'formato inválido'
+              wrong_length: 'debe contener 6 caractéres'
+            engine_number: 
+              blank: 'debe existir'
+              ivalid: 'formato inválido'
+            chasis_number: 
+              blank: 'debe existir'
+              ivalid: 'formato inválido'
+            odometer:
+              blank: 'debe existir'
+              too_short: 'muy corto'
+              ivalid: 'formato inválido' 
               
 
 
