@@ -51,7 +51,7 @@ class LegalDocumentsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_vehicle
-    @vehicle = Vehicle.find(params[:vehicle_id])
+    @vehicle = Vehicle.find_by(id: params[:vehicle_id])
   end
 
   def set_legal_document
