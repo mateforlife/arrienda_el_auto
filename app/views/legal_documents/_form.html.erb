@@ -1,33 +1,25 @@
 <%= form_for([@legal_document.resource, @legal_document]) do |f| %>
-  <% if @legal_document.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@legal_document.errors.count, "error") %> prohibited this legal_document from being saved:</h2>
+  <%= render 'shared/errors', resource: @legal_document %>
 
-      <ul>
-      <% @legal_document.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
+  <div class="form-group">
     <%= f.label :document_type %><br />
-    <%= f.collection_select :document_type, LegalDocument.document_types, :first, :first  %>
+    <%= f.collection_select :document_type, @legal_document.resource.remaining_documents, :first, :first, {}, { class:"form-control" }  %>
   </div>
-  <div class="field">
-    <%= f.label :file %><br />
-    <%= f.file_field :file %>
+  <div class="form-group">
+    <%= f.label :attachments %><br />
+    <%= f.file_field :attachments, multiple: true, class:"form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :due_date %><br />
-    <%= f.date_field :due_date %>
+    <%= f.date_field :due_date, class:"form-control"%>
   </div>
-  <div class="field">
-    <%= f.label :status %><br />
-    <%= f.collection_select :status, LegalDocument.statuses, :first, :first %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <% if current_user.admin? && action_name == 'edit'%>
+    <div class="form-group">
+      <%= f.label :status %><br />
+      <%= f.collection_select :status, LegalDocument.statuses, :first, :first, {}, { class:"form-control" } %>
+    </div>
+  <% end %>  
+  <div class="form-group">
+    <%= f.submit I18n.t('buttons.submit'), { class: "btn btn-outline-primary btn-lg btn-block" }%>
   </div>
 <% end %>

@@ -17,9 +17,7 @@
     <td><%= legal_document.resource %></td>
     <td><%= legal_document.due_date %></td>
     <td><%= legal_document.status %></td>
-    <td><%= link_to 'Show', [legal_document.vehicle, legal_document] %></td>
-    <td><%= link_to 'Edit', edit_vehicle_legal_document_path(legal_document.vehicle, legal_document) %></td>
-    <td><%= link_to 'Destroy', [legal_document.vehicle, legal_document], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', [legal_document.resource, legal_document] %></td>
   </tr>
 <% end %>
 </table>
