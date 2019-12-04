@@ -11,7 +11,12 @@ es:
   vehicle:
     publish: Publicar
     leasing: Arrendar
+    legal_status:
+      effective: Al día
+      pending: Pendiente (doc. legal)
     headers:
+      legal_document:
+        new: Nuevo documento
       index:
         vehicles: "Vehículos"  
         my_vehicles: "Mis Vehículos"
@@ -87,6 +92,13 @@ es:
         other: Usuarios
     errors:
       models:
+        legal_document:
+          attributes:
+            document_type:
+              blank: debe existir
+            attachments:
+              wrong_length: deben ser 2
+              blank: se deben adjuntar
         user:
           attributes:
             email:

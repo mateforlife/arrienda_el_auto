@@ -1,16 +1,5 @@
 <%= form_with(model: vehicle, local: true) do |form| %>
-  <% if vehicle.errors.any? %>
-    <div class="form-group">
-      <% vehicle.errors.full_messages.each do |message| %>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <%= message %>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+  <%= render 'shared/errors', resource: vehicle %>
 
   <div class="form-group">
     <%= form.label :brand_id %>
@@ -125,6 +114,6 @@
   </div>
 
   <div class="form-group">
-    <%= form.submit I18n.t('buttons.submit'), class: "btn btn-primary btn-lg btn-block" %>
+    <%= form.submit I18n.t('buttons.submit'), class: "btn btn-outline-primary btn-lg btn-block" %>
   </div>
 <% end %>

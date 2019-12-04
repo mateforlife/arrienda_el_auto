@@ -2,7 +2,6 @@
 <% if notice %>
   <div class="alert alert-success" role="alert" id="notice">
     <%= notice %>
-    
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -15,21 +14,18 @@
       <% @vehicles.each do |vehicle| %>
       <!-- vehicle  -->
         <div class="col-xl-3 col-lg-4 col-md-10 col-sm-12" style="padding-bottom: 20px;">
-          <%= image_tag vehicle&.profile_images&.first&.image, size: '300x210', class:"card-img-top" if vehicle.profile_images.present? %>
+          <%= image_tag vehicle&.profile_images&.first&.file, size: '300x210', class:"card-img-top" if vehicle.profile_images.present? %>
           <div class="card-body">
             <h5 class="card-title"><%= vehicle.brand_model_and_year %></h5>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Tarifa diaria: $<%= vehicle.fee.amount %> CLP</li>
               <li class="list-group-item">Combustible: <%= vehicle.engine_type %></li>
+              <%= render 'vehicles/legal_status', vehicle: vehicle if vehicle.belongs_to_current_user?(current_user)%>
             </ul>
-            <%= link_to I18n.t('buttons.show'), vehicle, class:"btn btn-primary col-xl-12" %>
+            <%= link_to I18n.t('buttons.show'), vehicle, class:"btn btn-outline-primary col-xl-12" %>
           </div>
         </div>
       <% end %>
     </div>
   </div>
 </div>
-
-<br>
-
-<%= link_to 'New Vehicle', new_vehicle_path %>

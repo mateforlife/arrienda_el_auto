@@ -13,6 +13,9 @@ class LegalDocumentsController < ApplicationController
 
   # GET vehicles/1/legal_documents/new
   def new
+    if @vehicle.remaining_documents.count.zero?
+      redirect_to vehicle_legal_documents_url(@vehicle)
+    end
     @legal_document = @vehicle.legal_documents.build
   end
 
@@ -24,7 +27,7 @@ class LegalDocumentsController < ApplicationController
   def create
     @legal_document = @vehicle.legal_documents.build(legal_document_params)
 
-    if @legal_document.save
+    if @legal_document.save_with_images
       redirect_to([@legal_document.resource, @legal_document], notice: 'Legal document was successfully created.')
     else
       render action: 'new'
@@ -61,6 +64,6 @@ class LegalDocumentsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def legal_document_params
     params.require(:legal_document).permit(:document_type, :resource_id,
-                                           :due_date, :status, :file)
+                                           :due_date, :status, attachments: [])
   end
 end
