@@ -37,6 +37,9 @@ en:
     edit: Edit
     destroy: Delete
     submit: Submit
+    back: Go back
+    options: Options
+    legal_documents: Legal documents
   vehicle:
     publish: Publish
     leasing: Leasing

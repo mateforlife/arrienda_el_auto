@@ -1,7 +1,7 @@
 <div class="row images-show">
   <% vehicle.profile_images.each do |image| %>
-    <div class="card" style="width: 18rem;">
-      <%= image_tag image.image, size: size, class:"card-img-top" %>
+    <div class="card col-xl-5 col-lg-6 col-md-3" style="width: 18rem;margin-right: 15px;">
+      <%= image_tag image.file, size: size, class:"card-img-top" %>
       <%= link_to I18n.t('buttons.destroy'), profile_image_path(id: image.id),
           method: :delete, data: { confirm: 'Are you sure?' }  %>
     </div>

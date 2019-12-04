@@ -1,0 +1,25 @@
+<%= form_for([@legal_document.resource, @legal_document]) do |f| %>
+  <%= render 'shared/errors', resource: @legal_document %>
+
+  <div class="form-group">
+    <%= f.label :document_type %><br />
+    <%= f.collection_select :document_type, @legal_document.resource.remaining_documents, :first, :first, {}, { class:"form-control" }  %>
+  </div>
+  <div class="form-group">
+    <%= f.label :attachments %><br />
+    <%= f.file_field :attachments, multiple: true, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :due_date %><br />
+    <%= f.date_field :due_date, class:"form-control"%>
+  </div>
+  <% if current_user.admin? && action_name == 'edit'%>
+    <div class="form-group">
+      <%= f.label :status %><br />
+      <%= f.collection_select :status, LegalDocument.statuses, :first, :first, {}, { class:"form-control" } %>
+    </div>
+  <% end %>  
+  <div class="form-group">
+    <%= f.submit I18n.t('buttons.submit'), { class: "btn btn-outline-primary btn-lg btn-block" }%>
+  </div>
+<% end %>
