@@ -36,77 +36,79 @@
       <h3 class="card-title"><%= @vehicle.brand_model_and_year %></h3><br>
       <h5 class="card-title">Descripción:</h5>
       <p class="card-text"><%= @vehicle.comment %></p><br>
-      <h5 class="card-title">Detalles:</h5><br>
-      <table class="table table-striped">
-        <tbody>
-          <tr>
-            <th>Tarifa diaria:</th>
-            <td>$<%= @vehicle.fee.amount %> CLP</td>
-          </tr>          
-          <tr>
-            <th>Kilomatraje:</th>
-            <td><%= @vehicle.odometer %></td>
-          </tr>          
-          <tr>
-            <th>Transmisión:</th>
-            <td><%= @vehicle.transmission %></td>
-          </tr>
-          <tr>
-            <th>Tipo de motor:</th>
-            <td><%= @vehicle.engine_type %></td>
-          </tr>
-          <tr>
-            <th>Capacidad:</th>
-            <td><%= @vehicle.passenger_capacity %> personas</td>
-          </tr>
-          <tr>
-            <th>Aire acondicionado:</th>
-            <td><%= @vehicle.air_conditioning %></td>
-          </tr>
-          <tr>
-            <th>Airbags:</th>
-            <td><%= @vehicle.airbags_quantity %></td>
-          </tr>
-          <tr>
-            <th>Puertas:</th>
-            <td><%= @vehicle.door_quantity %></td>
-          </tr>
-          <tr>
-            <th>Tracción:</th>
-            <td><%= @vehicle.drive %></td>
-          </tr>
-          <tr>
-            <th>Dirección:</th>
-            <td><%= @vehicle.steering %></td>
-          </tr>
-          <tr>
-            <th>Carrocería:</th>
-            <td><%= @vehicle.body_type %></td>
-          </tr>
-        </tbody>
-      </table><br>
-      <%if @vehicle.belongs_to_current_user?(current_user)%>
-        <h5 class="card-title">Información Legal:</h5><br>
+      <div class="row-fluid">
+        <h5 class="card-title">Detalles:</h5><br>
         <table class="table table-striped">
           <tbody>
             <tr>
-              <th>N° de motor:</th>
-              <td><%= @vehicle.engine_number %></td>
+              <th style="width:50%;"> Tarifa diaria:</th>
+              <td>$<%= @vehicle.fee.amount %> CLP</td>
+            </tr>          
+            <tr>
+              <th style="width:50%;"> Kilomatraje:</th>
+              <td><%= @vehicle.odometer %></td>
+            </tr>          
+            <tr>
+              <th style="width:50%;"> Transmisión:</th>
+              <td><%= @vehicle.transmission %></td>
             </tr>
             <tr>
-              <th>N° de chasis:</th>
-              <td><%= @vehicle.chasis_number %></td>
+              <th style="width:50%;"> Tipo de motor:</th>
+              <td><%= @vehicle.engine_type %></td>
             </tr>
             <tr>
-              <th>Patente:</th>
-              <td><%= @vehicle.license_plate %></td>
+              <th style="width:50%;"> Capacidad:</th>
+              <td><%= @vehicle.passenger_capacity %> personas</td>
             </tr>
-          <tbody>
-        <table>
-      <%end%>
-      <div class="card-body text-center">
-        <%= link_to 'Edit', edit_vehicle_path(@vehicle)%> |
-        <%= link_to 'Back', vehicles_path %>
+            <tr>
+              <th style="width:50%;"> Aire acondicionado:</th>
+              <td><%= @vehicle.air_conditioning %></td>
+            </tr>
+            <tr>
+              <th style="width:50%;"> Airbags:</th>
+              <td><%= @vehicle.airbags_quantity %></td>
+            </tr>
+            <tr>
+              <th style="width:50%;"> Puertas:</th>
+              <td><%= @vehicle.door_quantity %></td>
+            </tr>
+            <tr>
+              <th style="width:50%;"> Tracción:</th>
+              <td><%= @vehicle.drive %></td>
+            </tr>
+            <tr>
+              <th style="width:50%;"> Dirección:</th>
+              <td><%= @vehicle.steering %></td>
+            </tr>
+            <tr>
+              <th style="width:50%;"> Carrocería:</th>
+              <td><%= @vehicle.body_type %></td>
+            </tr>
+          </tbody>
+        </table><br>
+        <%if @vehicle.belongs_to_current_user?(current_user)%>
+          <h5 class="card-title">Información Legal:</h5><br>
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <th style="width:50%;"> N° de motor:</th>
+                <td><%= @vehicle.engine_number %></td>
+              </tr>
+              <tr>
+                <th style="width:50%;"> N° de chasis:</th>
+                <td><%= @vehicle.chasis_number %></td>
+              </tr>
+              <tr>
+                <th style="width:50%;"> Patente:</th>
+                <td><%= @vehicle.license_plate %></td>
+              </tr>
+            <tbody>
+          <table>
+        <%end%>
+        <div class="card-body text-center">
+          <%= link_to 'Edit', edit_vehicle_path(@vehicle)%> |
+          <%= link_to 'Back', vehicles_path %>
+        </div>
       </div>
     </div>
   </div>
