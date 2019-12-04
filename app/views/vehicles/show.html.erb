@@ -55,80 +55,83 @@
         </div>
       </div>
       <br>
-      <h5 class="card-title">Descripción:</h5>
+      <h5 class="card-title"><%= I18n.t('vehicle.show.description') %>:</h5>
       <p class="card-text"><%= @vehicle.comment %></p><br>
       <div class="row-fluid">
-        <h5 class="card-title">Detalles:</h5><br>
-        <table class="table table-striped">
-          <tbody>
-            <tr>
-              <th style="width:50%;"> Tarifa diaria:</th>
-              <td>$<%= @vehicle.fee.amount %> CLP</td>
-            </tr>          
-            <tr>
-              <th style="width:50%;"> Kilomatraje:</th>
-              <td><%= @vehicle.odometer %></td>
-            </tr>          
-            <tr>
-              <th style="width:50%;"> Transmisión:</th>
-              <td><%= @vehicle.transmission %></td>
-            </tr>
-            <tr>
-              <th style="width:50%;"> Tipo de motor:</th>
-              <td><%= @vehicle.engine_type %></td>
-            </tr>
-            <tr>
-              <th style="width:50%;"> Capacidad:</th>
-              <td><%= @vehicle.passenger_capacity %> personas</td>
-            </tr>
-            <tr>
-              <th style="width:50%;"> Aire acondicionado:</th>
-              <td><%= @vehicle.air_conditioning %></td>
-            </tr>
-            <tr>
-              <th style="width:50%;"> Airbags:</th>
-              <td><%= @vehicle.airbags_quantity %></td>
-            </tr>
-            <tr>
-              <th style="width:50%;"> Puertas:</th>
-              <td><%= @vehicle.door_quantity %></td>
-            </tr>
-            <tr>
-              <th style="width:50%;"> Tracción:</th>
-              <td><%= @vehicle.drive %></td>
-            </tr>
-            <tr>
-              <th style="width:50%;"> Dirección:</th>
-              <td><%= @vehicle.steering %></td>
-            </tr>
-            <tr>
-              <th style="width:50%;"> Carrocería:</th>
-              <td><%= @vehicle.body_type %></td>
-            </tr>
-          </tbody>
-        </table><br>
-        <%if @vehicle.belongs_to_current_user?(current_user)%>
-          <h5 class="card-title">Información Legal:</h5><br>
+        <h5 class="card-title"><%= I18n.t('vehicle.show.details') %>:</h5><br>
+        <div class="table table-responsive">
           <table class="table table-striped">
             <tbody>
               <tr>
-                <th style="width:50%;"> N° de motor:</th>
-                <td><%= @vehicle.engine_number %></td>
+                <th style="width:50%;"><%= I18n.t('vehicle.show.daily_price') %>:</th>
+                <td>$<%= @vehicle.fee.amount %> CLP</td>
+              </tr>          
+              <tr>
+                <th style="width:50%;"> <%= I18n.t('activerecord.attributes.vehicle.odometer')%>:</th>
+                <td><%= @vehicle.odometer %></td>
+              </tr>          
+              <tr>
+                <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.transmission')%>:</th>
+                <td><%= @vehicle.transmission %></td>
               </tr>
               <tr>
-                <th style="width:50%;"> N° de chasis:</th>
-                <td><%= @vehicle.chasis_number %></td>
+                <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.engine_type')%>:</th>
+                <td><%= @vehicle.engine_type %></td>
               </tr>
               <tr>
-                <th style="width:50%;"> Patente:</th>
-                <td><%= @vehicle.license_plate %></td>
+                <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.passenger_capacity')%>:</th>
+                <td><%= @vehicle.passenger_capacity %> personas</td>
               </tr>
-            <tbody>
-          <table>
+              <tr>
+                <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.air_conditioning')%>:</th>
+                <td><%= @vehicle.air_conditioning %></td>
+              </tr>
+              <tr>
+                <th style="width:50%;"> Airbags:</th>
+                <td><%= @vehicle.airbags_quantity %></td>
+              </tr>
+              <tr>
+                <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.door_quantity')%>:</th>
+                <td><%= @vehicle.door_quantity %></td>
+              </tr>
+              <tr>
+                <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.drive')%>:</th>
+                <td><%= @vehicle.drive %></td>
+              </tr>
+              <tr>
+                <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.steering')%>:</th>
+                <td><%= @vehicle.steering %></td>
+              </tr>
+              <tr>
+                <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.body_type')%>:</th>
+                <td><%= @vehicle.body_type %></td>
+              </tr>
+            </tbody>
+          </table><br>
+        </div>
+        <%if @vehicle.belongs_to_current_user?(current_user)%>
+          <h5 class="card-title"><%= I18n.t('vehicle.show.legal_information') %>:</h5><br>
+          <div class="table table-responsive">
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.engine_number')%>:</th>
+                  <td><%= @vehicle.engine_number %></td>
+                </tr>
+                <tr>
+                  <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.chasis_number')%>:</th>
+                  <td><%= @vehicle.chasis_number %></td>
+                </tr>
+                <tr>
+                  <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.license_plate')%>:</th>
+                  <td><%= @vehicle.license_plate %></td>
+                </tr>
+              <tbody>
+            <table>
+          </div>
         <%end%>
-        <div class="card-body text-center">
-          <%= link_to 'Edit', edit_vehicle_path(@vehicle)%> |
-          <%= link_to 'Back', vehicles_path %>
+        <div class="card-body text-right">
+          <%= link_to I18n.t('buttons.back'), vehicles_path %>
         </div>
       </div>
     </div>
