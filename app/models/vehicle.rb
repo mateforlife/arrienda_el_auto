@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
+# Vehicle
 class Vehicle < ApplicationRecord
-  has_many :legal_documents
   belongs_to :vehicle_model
   belongs_to :user
   belongs_to :fee, required: false
@@ -8,9 +10,8 @@ class Vehicle < ApplicationRecord
   accepts_nested_attributes_for :profile_images
   attr_accessor :images
 
-  IMAGES_LIMIT = 5
-  REQUIRED_DOCUMENTS = ['traffic permit', 'obligatory insurance',
-                        'technical review', 'vehicle register'].freeze
+  REQUIRED_DOCUMENTS = %w[circulation_permit obligatory_insurance
+                          technical_review vehicle_register].freeze
 
   # ====================
   # =     ENUMS        =
@@ -29,7 +30,7 @@ class Vehicle < ApplicationRecord
   validates :year, length: { is: 4 }
   validates :license_plate, length: { is: 6 }
   validates :odometer, length: { in: 1..7 }
-  validates_length_of :images, maximum: IMAGES_LIMIT
+  validates_length_of :images, maximum: ProfileImage::ATTACHMENTS_LIMIT
   validates :images, presence: true, on: :create
 
   # ====================
@@ -51,7 +52,29 @@ class Vehicle < ApplicationRecord
   # = INSTANCE METHODS =
   # ====================
 
-  def validate_legal_documents
+  def remaining_documents
+    all_documents = LegalDocument.document_types.deep_dup
+    current_documents = legal_documents&.pluck(:document_type)
+    documents_difference = (all_documents.keys - REQUIRED_DOCUMENTS)
+    documents_difference.concat(current_documents)
+    documents_difference.each do |document|
+      all_documents.except!(document)
+    end
+    all_documents
+  end
+
+  def legal_status_badge
+    if legal_documents_effective?
+      text = I18n.t('vehicle.legal_status.effective')
+      badge_color = 'success'
+    else
+      text = I18n.t('vehicle.legal_status.pending')
+      badge_color = 'danger'
+    end
+    { text: text, badge_color: badge_color }
+  end
+
+  def legal_documents_effective?
     return false if legal_documents.empty?
 
     legal_documents.active&.pluck(:document_type)&.sort == REQUIRED_DOCUMENTS
@@ -63,7 +86,7 @@ class Vehicle < ApplicationRecord
         errors.add(:images, :limit_exceded)
         raise ActiveRecord::Rollback
       end
-      profile_images.create!(image: image)
+      profile_images.create!(file: image)
     rescue ActiveRecord::RecordInvalid
       errors.add(:images, :record_invalid)
       raise ActiveRecord::Rollback
@@ -71,7 +94,7 @@ class Vehicle < ApplicationRecord
   end
 
   def images_full?
-    profile_images.size >= IMAGES_LIMIT
+    profile_images.size >= ProfileImage::ATTACHMENTS_LIMIT
   end
 
   def upcase_license_plate
@@ -95,7 +118,7 @@ class Vehicle < ApplicationRecord
       return false unless save
 
       images.each do |image|
-        profile_images.create!(image: image)
+        profile_images.create!(file: image)
       rescue ActiveRecord::RecordInvalid => e
         errors.add(:images, e)
         raise ActiveRecord::Rollback

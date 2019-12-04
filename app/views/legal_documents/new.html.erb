@@ -1,5 +1,12 @@
-<h1>New legal_document</h1>
+<div class="container col-xl-5 col-lg-10 col-md-6 col-sm-10">
+  <div class="card">
+    <div class="card-header">
+      <h2><%= I18n.t('vehicle.headers.legal_document.new') %></h2>
+    </div>
+    <div class="card-body"> 
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>
 
-<%= render 'form' %>
 
-<%= link_to 'Back', vehicle_legal_documents_path(@legal_document.resource) %>

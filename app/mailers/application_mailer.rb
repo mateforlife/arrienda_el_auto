@@ -1,4 +1,10 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  include SendGrid
+  default from: 'root@easycar.cl'
   layout 'mailer'
+
+  def test_mail
+    mail(to: 'rodriguez.ruiz.alex@gmail.com', cc: '',
+         subject: 'asuntito')
+  end
 end

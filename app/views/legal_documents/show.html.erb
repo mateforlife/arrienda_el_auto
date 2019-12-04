@@ -6,8 +6,10 @@
 </p>
 
 <p>
-  <b>File:</b>
-  <%= image_tag @legal_document.file %>
+  <b>Files:</b>
+  <% @legal_document.files&.each do |image| %>
+    <%= image_tag image %>
+  <% end %>
 </p>
 
 <p>
@@ -21,5 +23,4 @@
 </p>
 
 
-<%= link_to 'Edit', edit_vehicle_legal_document_path(@legal_document.resource, @legal_document) %> |
 <%= link_to 'Back', vehicle_legal_documents_path(@legal_document.resource) %>
