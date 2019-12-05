@@ -121,10 +121,10 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 end
 
-# AssetSync.configure do |config|
-#   config.fog_provider = 'AWS'
-#   config.aws_access_key_id = ENV['S3_ACCESS_KEY_ID']
-#   config.aws_secret_access_key = ENV['S3_SECRET_ACCESS_KEY']
-#   config.fog_directory = ENV['S3_BUCKET']
-#   config.fog_region = ENV['S3_REGION']
-# end
+AssetSync.configure do |config|
+  config.fog_provider = 'AWS'
+  config.aws_access_key_id = ENV['S3_ACCESS_KEY_ID']
+  config.aws_secret_access_key = ENV['S3_SECRET_ACCESS_KEY']
+  config.fog_directory = ENV['S3_BUCKET']
+  config.fog_region = ENV['S3_REGION']
+end
