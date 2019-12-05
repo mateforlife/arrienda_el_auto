@@ -49,4 +49,31 @@ en:
         my_vehicles: "My Vehicles"  
         search_result: 'Search results'
       new: "New Vehicle"
-      
+    show:
+      description: "Description"
+      details: "Details"
+      legal_information: "Legal information"
+      daily_price: "Daily price"
+  activerecord:
+    attributes:
+      vehicle:
+        brand_id: Brand
+        vehicle_model_id: Model
+        vehicle_model: Brand and model
+        body_type: Body type
+        engine_type: Engine
+        door_quantity: Doors
+        passenger_capacity: Passenger capacity
+        air_conditioning: Air conditioning
+        airbags_quantity: Airbags quantity
+        year: Year
+        license_plate: License plate
+        engine_number: Engine number
+        chasis_number: Chasis number
+        transmission: Transmission
+        drive: Drive
+        steering: Steering 
+        odometer: Odometer
+        comment: Comment
+        profile_images: Your vehicle images
+        images: images
