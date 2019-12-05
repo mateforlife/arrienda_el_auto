@@ -86,6 +86,7 @@ class Vehicle < ApplicationRecord
         errors.add(:images, :limit_exceded)
         raise ActiveRecord::Rollback
       end
+      debugger
       profile_images.create!(file: image)
     rescue ActiveRecord::RecordInvalid
       errors.add(:images, :record_invalid)
@@ -118,6 +119,7 @@ class Vehicle < ApplicationRecord
       return false unless save
 
       images.each do |image|
+        debugger
         profile_images.create!(file: image)
       rescue ActiveRecord::RecordInvalid => e
         errors.add(:images, e)

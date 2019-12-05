@@ -274,6 +274,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.1)
+  redis
   rut_validation (~> 1.1.1)!
   sass-rails (>= 6)
   selenium-webdriver
