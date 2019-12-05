@@ -23,6 +23,11 @@ es:
         search_result: 'Resultados de busqueda' 
       new: Nuevo vehículo
       edit: Editar vehículo
+    show:
+      description: "Descripción"
+      details: "Detalles"
+      legal_information: "Información legal"
+      daily_price: "Tarifa diaria"
   text:	
     password:	
       minimum: '6 caracteres mínimo'	
