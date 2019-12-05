@@ -96,7 +96,7 @@ Rails.application.configure do
   config.action_controller.asset_host = ENV['CLOUDFRONT_DNS']
   config.action_mailer.asset_host = ENV['CLOUDFRONT_DNS']
   config.serve_static_files = true
-  config.assets.compile = true
+  
   config.assets.digest = true
   config.assets.enabled = true
   config.assets.initialize_on_precompile = true
