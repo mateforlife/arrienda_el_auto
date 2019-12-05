@@ -1,27 +1,35 @@
-<h1>Listing legal_documents</h1>
+<div class="container col-xl-5 col-lg-10 col-md-6 col-sm-10">
+  <div class="card">
+    <div class="card-header">
+      <h2><%= I18n.t('vehicle.headers.legal_document.index') %></h2>
+    </div>
+    <div class="card-body"> 
+      <table>
+        <tr>
+          <th>Document type</th>
+          <th>Resource</th>
+          <th>Due date</th>
+          <th>Status</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
 
-<table>
-  <tr>
-    <th>Document type</th>
-    <th>Resource</th>
-    <th>Due date</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+      <% @legal_documents.each do |legal_document| %>
+        <tr>
+          <td><%= legal_document.document_type %></td>
+          <td><%= legal_document.resource %></td>
+          <td><%= legal_document.due_date %></td>
+          <td><%= legal_document.status %></td>
+          <td><%= link_to 'Show', [legal_document.resource, legal_document] %></td>
+        </tr>
+      <% end %>
+      </table>
 
-<% @legal_documents.each do |legal_document| %>
-  <tr>
-    <td><%= legal_document.document_type %></td>
-    <td><%= legal_document.resource %></td>
-    <td><%= legal_document.due_date %></td>
-    <td><%= legal_document.status %></td>
-    <td><%= link_to 'Show', [legal_document.resource, legal_document] %></td>
-  </tr>
-<% end %>
-</table>
+      <br />
 
-<br />
+      <%= link_to 'New Legal document', new_vehicle_legal_document_path(params[:vehicle_id]) %>
 
-<%= link_to 'New Legal document', new_vehicle_legal_document_path(params[:vehicle_id]) %>
+    </div>
+  </div>
+</div>
