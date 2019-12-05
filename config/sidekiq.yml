@@ -1,0 +1,6 @@
+production:
+  :concurrency: 20
+:queues:
+  - default
+  - mailers
+  - easy_car_production_active_storage_analysis
