@@ -49,6 +49,9 @@ gem 'rut_validation', '~> 1.1.1', git: 'https://github.com/mateforlife/rut_valid
 # to send emails with Sendgrid
 gem 'sendgrid-ruby'
 
+gem 'fog-aws'
+gem 'asset_sync'
+
 # to perform async jobs
 gem 'sidekiq', '~> 5.2.7'
 
