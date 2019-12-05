@@ -20,7 +20,8 @@ module EasyCar
           'https://easy-car.herokuapp.com',
           'http://easy-car.herokuapp.com'
         ]
-        resource '/assets/*'
+        resource '/assets/*', headers: :any,
+                              methods: %i[get post delete put options head]
       end
     end
 
