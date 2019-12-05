@@ -26,10 +26,8 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = 'd10ksa83zize95.cloudfront.net'
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
@@ -95,6 +93,13 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.action_controller.asset_host = ENV['CLOUDFRONT_DNS']
+  config.action_mailer.asset_host = ENV['CLOUDFRONT_DNS']
+  config.serve_static_files = true
+  config.assets.compile = true
+  config.assets.digest = true
+  config.assets.enabled = true
+  config.assets.initialize_on_precompile = true
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
   # middleware. The `delay` is used to determine how long to wait after a write
@@ -115,4 +120,12 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+end
+
+AssetSync.configure do |config|
+  config.fog_provider = 'AWS'
+  config.aws_access_key_id = ENV['S3_ACCESS_KEY_ID']
+  config.aws_secret_access_key = ENV['S3_SECRET_ACCESS_KEY']
+  config.fog_directory = ENV['S3_BUCKET']
+  config.fog_region = ENV['S3_REGION']
 end
