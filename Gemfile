@@ -51,7 +51,6 @@ gem 'sendgrid-ruby'
 
 gem 'fog-aws'
 gem 'asset_sync'
-gem 'rack-cors'
 
 # to perform async jobs
 gem 'sidekiq', '~> 5.2.7'
