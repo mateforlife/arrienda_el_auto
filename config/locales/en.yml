@@ -41,6 +41,9 @@ en:
     options: Options
     legal_documents: Legal documents
   vehicle:
+    legal_status:
+        effective: Al día
+        pending: Pending (legal doc.)
     publish: Publish
     leasing: Leasing
     headers:
@@ -54,6 +57,8 @@ en:
       details: "Details"
       legal_information: "Legal information"
       daily_price: "Daily price"
+      fuel: "Fuel"
+      status: "Status"
   activerecord:
     attributes:
       vehicle:
