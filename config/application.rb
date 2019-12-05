@@ -15,11 +15,11 @@ module EasyCar
 
     config.middleware.use Rack::Cors do
       allow do
-        origins '*'
-        resource '*',
-                 headers: :any,
-                 expose: ['access-token', 'expiry', 'token-type', 'uid', 'client'],
-                 methods: %i[get post options delete put]
+        origins %w[
+          https://easy-car.herokuapp.com
+          http://easy-car.herokuapp.com
+        ]
+        resource '/assets/*'
       end
     end
 
