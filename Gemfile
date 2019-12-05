@@ -32,7 +32,7 @@ gem 'image_processing', '~> 1.2'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 # Amazon AWS sdk gem
-gem 'aws-sdk-s3', require: false
+gem 'aws-sdk-s3'
 
 # Devise is a flexible authentication solution for Rails
 gem 'devise'
