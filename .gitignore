@@ -33,3 +33,5 @@ yarn-debug.log*
 # Ignore application configuration
 /config/application.yml
 sendgrid.env
+dump.rdb
+/vendor
