@@ -40,6 +40,9 @@ gem 'devise'
 # figaro to manage environment variables
 gem 'figaro'
 
+# Rack::Cors provides support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications.
+gem 'rack-cors'
+
 # Chilean Rut validator
 gem 'rut_validation', '~> 1.1.1', git: 'https://github.com/mateforlife/rut_validation'
 
