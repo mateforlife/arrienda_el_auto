@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
   scope '(:locale)', locale: /es|en/ do
     get 'search/index', to: 'search#index'
     resources :vehicles do
