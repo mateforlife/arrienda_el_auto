@@ -17,6 +17,7 @@ es:
     headers:
       legal_document:
         new: Nuevo documento
+        index: Estado de documentos legales
       index:
         vehicles: "Vehículos"  
         my_vehicles: "Mis Vehículos"
