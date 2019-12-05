@@ -13,17 +13,17 @@ module EasyCar
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
-    config.middleware.use Rack::Cors do
-      allow do
-        origins [
-          ENV['CLOUDFRONT_DNS'],
-          'https://easy-car.herokuapp.com',
-          'http://easy-car.herokuapp.com'
-        ]
-        resource '/assets/*', headers: :any,
-                              methods: %i[get post delete put options head]
-      end
-    end
+    # config.middleware.use Rack::Cors do
+    #   allow do
+    #     origins [
+    #       ENV['CLOUDFRONT_DNS'],
+    #       'https://easy-car.herokuapp.com',
+    #       'http://easy-car.herokuapp.com'
+    #     ]
+    #     resource '/assets/*', headers: :any,
+    #                           methods: %i[get post delete put options head]
+    #   end
+    # end
 
     # Use Vips for processing variants.
     config.active_storage.variant_processor = :vips

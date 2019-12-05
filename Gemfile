@@ -41,7 +41,7 @@ gem 'devise'
 gem 'figaro'
 
 # Rack::Cors provides support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications.
-gem 'rack-cors'
+# gem 'rack-cors'
 
 # Chilean Rut validator
 gem 'rut_validation', '~> 1.1.1', git: 'https://github.com/mateforlife/rut_validation'
@@ -49,8 +49,8 @@ gem 'rut_validation', '~> 1.1.1', git: 'https://github.com/mateforlife/rut_valid
 # to send emails with Sendgrid
 gem 'sendgrid-ruby'
 
-gem 'fog-aws'
-gem 'asset_sync'
+# gem 'fog-aws'
+# gem 'asset_sync'
 
 # to perform async jobs
 gem 'sidekiq', '~> 5.2.7'
