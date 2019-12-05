@@ -97,9 +97,7 @@ Rails.application.configure do
   config.action_mailer.asset_host = ENV['CLOUDFRONT_DNS']
   config.serve_static_files = true
   
-  config.assets.digest = true
-  config.assets.enabled = true
-  config.assets.initialize_on_precompile = true
+
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
   # middleware. The `delay` is used to determine how long to wait after a write
