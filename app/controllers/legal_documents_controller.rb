@@ -14,7 +14,7 @@ class LegalDocumentsController < ApplicationController
   # GET vehicles/1/legal_documents/new
   def new
     if @vehicle.remaining_documents.count.zero?
-      redirect_to vehicle_legal_documents_url(@vehicle)
+      redirect_to vehicle_legal_documents_url(@vehicle), notice: 'Ya has subido todos los documentos, espera a que los validemos'
     end
     @legal_document = @vehicle.legal_documents.build
   end
@@ -63,7 +63,7 @@ class LegalDocumentsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def legal_document_params
-    params.require(:legal_document).permit(:document_type, :resource_id,
-                                           :due_date, :status, attachments: [])
+    params.require(:legal_document).permit(:document_type, :due_date, :status,
+                                           attachments: [])
   end
 end

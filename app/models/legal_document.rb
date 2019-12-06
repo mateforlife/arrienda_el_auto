@@ -9,12 +9,22 @@ class LegalDocument < ApplicationRecord
   attr_accessor :attachments
 
   ATTACHMENTS_LIMIT = 2
+  STATUSES_TABLE_COLORS = {
+    pending: :warning,
+    effective: :success,
+    rejected: :danger,
+    expired: :danger
+  }.freeze
 
   validates_length_of :attachments, is: ATTACHMENTS_LIMIT, on: :create
   validates :attachments, presence: true, on: :create
   validates :document_type, presence: true, on: :create
 
   scope :active, -> { where(status: :effective) }
+
+  def table_status_color
+    STATUSES_TABLE_COLORS[status.to_sym]
+  end
 
   def save_with_images
     ActiveRecord::Base.transaction do

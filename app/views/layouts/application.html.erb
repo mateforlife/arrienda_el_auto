@@ -68,6 +68,7 @@
           <% end %>
         </div>
       </nav>
+      <%= render 'shared/notice', notice: notice if notice %>
       <%= yield %>
     </body>  
   </div>

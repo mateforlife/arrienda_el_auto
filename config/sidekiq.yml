@@ -1,5 +1,5 @@
-production:
-  :concurrency: 20
+---
+# These must be ordered by priority
 :queues:
   - default
   - mailers
