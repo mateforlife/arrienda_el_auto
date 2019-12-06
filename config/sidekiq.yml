@@ -4,3 +4,4 @@ production:
   - default
   - mailers
   - easy_car_production_active_storage_analysis
+  - active_storage_analysis
