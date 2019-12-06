@@ -5,6 +5,8 @@ class LegalDocument < ApplicationRecord
   enum document_type: %i[circulation_permit obligatory_insurance
                          technical_review vehicle_register identity]
   enum status: %i[pending effective rejected expired]
+  translate_enum :document_type
+  translate_enum :status
 
   attr_accessor :attachments
 
@@ -22,7 +24,7 @@ class LegalDocument < ApplicationRecord
 
   scope :active, -> { where(status: :effective) }
 
-  def table_status_color
+  def status_color
     STATUSES_TABLE_COLORS[status.to_sym]
   end
 

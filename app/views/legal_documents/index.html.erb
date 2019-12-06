@@ -6,18 +6,20 @@
     <div class="card-body"> 
       <table class="table table-hover">
         <tr>
-          <th>Document type</th>
-          <th>Due date</th>
-          <th>Status</th>
-          <th></th>
+          <th> <%= I18n.t('activerecord.attributes.legal_document.document_type') %> </th>
+          <th> <%= I18n.t('activerecord.attributes.legal_document.due_date') %> </th>
+          <th> <%= I18n.t('activerecord.attributes.legal_document.status') %> </th>
         </tr>
 
       <% @legal_documents.each do |legal_document| %>
-        <tr class="table-<%= legal_document.table_status_color %>">
+        <tr>
           <td><%= legal_document.document_type %></td>
           <td><%= legal_document.due_date %></td>
-          <td><%= legal_document.status %></td>
-          <td><%= link_to 'Show', [legal_document.resource, legal_document] %></td>
+          <td>
+            <span class="badge badge-pill badge-<%= legal_document.status_color %>">
+              <%= legal_document.status %>
+            </span>
+          </td>
         </tr>
       <% end %>
       </table>
@@ -27,3 +29,4 @@
     </div>
   </div>
 </div>
+

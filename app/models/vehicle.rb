@@ -19,8 +19,12 @@ class Vehicle < ApplicationRecord
   enum body_type: %i[citycar sedan]
   enum engine_type: %i[gasoline diesel]
   enum transmission: %i[manual automatic]
-  enum steering: %i[mechanical power electric]
+  enum steering: %i[mechanical power electric hydraulic]
   enum drive: %w[4x2 4x4]
+  translate_enum :body_type
+  translate_enum :engine_type
+  translate_enum :transmission
+  translate_enum :steering
 
   # ====================
   # =   VALIDATORS     =
