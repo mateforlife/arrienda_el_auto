@@ -27,3 +27,7 @@ body {
 .inner:hover img{
   transform: scale(1.2);
 }
+.card-link-hover {
+  text-decoration:none !important;
+  color:inherit;
+ }
