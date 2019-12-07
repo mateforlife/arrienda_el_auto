@@ -1,6 +1,6 @@
 
 
-<div class="container col-xl-7 col-lg-10 col-md-6 col-sm-10">
+<div class="container col-xl-8 col-lg-10 col-md-6 col-sm-10">
   <div class="card shadow">
 
     <%= render 'carousel', vehicle: @vehicle %>
@@ -99,18 +99,14 @@
                   <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.license_plate')%>:</th>
                   <td><%= @vehicle.license_plate %></td>
                 </tr>
-              <tbody>
-            <table>
+              </tbody>
+            </table>
           </div>
         <%end%>
-        <div class="card-body text-right">
+        <div class="text-right">
           <%= link_to I18n.t('buttons.back'), vehicles_path %>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
