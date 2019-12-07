@@ -39,4 +39,8 @@ class LegalDocument < ApplicationRecord
     end
     true
   end
+
+  def self.translated_document(key)
+    I18n.t(key, scope: 'activerecord.attributes.legal_document.document_type_list')
+  end
 end

@@ -13,11 +13,11 @@
 
       <% @legal_documents.each do |legal_document| %>
         <tr>
-          <td><%= legal_document.document_type %></td>
+          <td><%= LegalDocument.translated_document_type(legal_document.document_type) %></td>
           <td><%= legal_document.due_date %></td>
           <td>
             <span class="badge badge-pill badge-<%= legal_document.status_color %>">
-              <%= legal_document.status %>
+              <%= LegalDocument.translated_status(legal_document.status) %>
             </span>
           </td>
         </tr>

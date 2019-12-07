@@ -61,6 +61,27 @@ en:
       status: "Status"
   activerecord:
     attributes:
+      legal_document:
+        document_type_list:
+          circulation_permit: Circulation permit
+          obligatory_insurance: Obligatory insurance
+          technical_review: Technical review
+          vehicle_register: Vehicle Register
+          identity: Identity
+        status_list:
+          pending: Pending
+          effective: Effective
+          rejected: Rejected
+          expired: Expired
+        document_type: Document Type
+        attachments: Attachments
+        status: Status
+        due_date: Due date
+        statuses:
+          pending: Pending
+          effective: Effective
+          rejected: Rejected
+          expired: Expired
       vehicle:
         brand_id: Brand
         vehicle_model_id: Model
