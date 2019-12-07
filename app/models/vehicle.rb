@@ -58,7 +58,7 @@ class Vehicle < ApplicationRecord
 
   def remaining_documents
     all_documents = LegalDocument.document_types.deep_dup
-    current_documents = legal_documents&.pluck(:document_type)
+    current_documents = legal_documents.not_rejected&.pluck(:document_type)
     documents_difference = (all_documents.keys - REQUIRED_DOCUMENTS)
     documents_difference.concat(current_documents)
     documents_difference.each do |document|

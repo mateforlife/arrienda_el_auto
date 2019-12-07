@@ -21,8 +21,10 @@ class LegalDocument < ApplicationRecord
   validates_length_of :attachments, is: ATTACHMENTS_LIMIT, on: :create
   validates :attachments, presence: true, on: :create
   validates :document_type, presence: true, on: :create
+  validates :due_date, presence: true, on: :update
 
   scope :active, -> { where(status: :effective) }
+  scope :not_rejected, -> { where.not(status: 'rejected') }
 
   def status_color
     STATUSES_TABLE_COLORS[status.to_sym]
@@ -33,7 +35,8 @@ class LegalDocument < ApplicationRecord
       return false unless save
 
       files.attach(attachments)
-    rescue ActiveRecord::RecordInvalid => e
+      files.each(&:save!)
+    rescue StandardError => e
       errors.add(:attachments, e)
       raise ActiveRecord::Rollback
     end
@@ -41,6 +44,7 @@ class LegalDocument < ApplicationRecord
   end
 
   def self.translated_document(key)
-    I18n.t(key, scope: 'activerecord.attributes.legal_document.document_type_list')
+    I18n.t(key,
+           scope: 'activerecord.attributes.legal_document.document_type_list')
   end
 end

@@ -1,4 +1,4 @@
-<div class="container col-xl-5 col-lg-10 col-md-6 col-sm-10">
+<div class="container col-xl-6 col-lg-10 col-md-6 col-sm-10">
   <div class="card">
     <div class="card-header">
       <h2><%= I18n.t('vehicle.headers.legal_document.index') %></h2>
@@ -6,6 +6,7 @@
     <div class="card-body"> 
       <table class="table table-hover">
         <tr>
+          <th> <%= I18n.t('created_at') %> </th>
           <th> <%= I18n.t('activerecord.attributes.legal_document.document_type') %> </th>
           <th> <%= I18n.t('activerecord.attributes.legal_document.due_date') %> </th>
           <th> <%= I18n.t('activerecord.attributes.legal_document.status') %> </th>
@@ -13,6 +14,7 @@
 
       <% @legal_documents.each do |legal_document| %>
         <tr>
+          <td><%= legal_document.created_at.strftime('%d-%m-%Y') %></td>
           <td><%= LegalDocument.translated_document_type(legal_document.document_type) %></td>
           <td><%= legal_document.due_date %></td>
           <td>
