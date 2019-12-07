@@ -7,7 +7,7 @@
   </div>
   <div class="form-group">
     <%= f.label :attachments %><br />
-    <%= f.file_field :attachments, multiple: true, class:"form-control" %>
+    <%= f.file_field :attachments, multiple: true, accept: document_types, class:"form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :due_date %><br />

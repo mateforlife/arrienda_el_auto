@@ -18,6 +18,10 @@ class LegalDocument < ApplicationRecord
     expired: :danger
   }.freeze
 
+  # PERMITED_CONTENT_TYPES = %w[
+  #   image/png image/jpg image/jpeg application/pdf
+  # ].freeze
+
   validates_length_of :attachments, is: ATTACHMENTS_LIMIT, on: :create
   validates :attachments, presence: true, on: :create
   validates :document_type, presence: true, on: :create
@@ -32,15 +36,19 @@ class LegalDocument < ApplicationRecord
 
   def save_with_images
     ActiveRecord::Base.transaction do
-      return false unless save
-
-      files.attach(attachments)
-      files.each(&:save!)
-    rescue StandardError => e
-      errors.add(:attachments, e)
-      raise ActiveRecord::Rollback
+      begin
+        save!
+        files.attach(attachments)
+        files.each(&:save!)
+      rescue ActiveRecord::RecordInvalid => e
+        errors.add(:attachments, e)
+        raise ActiveRecord::Rollback
+      rescue StandardError => e
+        errors.add(:attachments, e)
+        raise ActiveRecord::Rollback
+      end
+      true
     end
-    true
   end
 
   def self.translated_document(key)

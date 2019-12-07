@@ -1,4 +1,5 @@
 class LegalDocumentsController < ApplicationController
+  include LegalDocumentsHelper
   before_action :set_vehicle
   before_action :set_legal_document, only: [:show, :edit, :update, :destroy]
 
