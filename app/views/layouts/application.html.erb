@@ -8,13 +8,12 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'styles', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <div class="container-fuid">
-    <body>
+  <body>
+    <div class="container-fuid">
       <%= render 'nav/main_navbar'  %>
       <%= render 'shared/flash_messages'  %>
       <%= yield %>
       <%= render 'layouts/footer'%>
-    </body>  
-  </div>
+    </div>  
+  </body>  
 </html>
