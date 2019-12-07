@@ -19,8 +19,12 @@ class Vehicle < ApplicationRecord
   enum body_type: %i[citycar sedan]
   enum engine_type: %i[gasoline diesel]
   enum transmission: %i[manual automatic]
-  enum steering: %i[mechanical power electric]
+  enum steering: %i[mechanical power electric hydraulic]
   enum drive: %w[4x2 4x4]
+  translate_enum :body_type
+  translate_enum :engine_type
+  translate_enum :transmission
+  translate_enum :steering
 
   # ====================
   # =   VALIDATORS     =
@@ -54,7 +58,7 @@ class Vehicle < ApplicationRecord
 
   def remaining_documents
     all_documents = LegalDocument.document_types.deep_dup
-    current_documents = legal_documents&.pluck(:document_type)
+    current_documents = legal_documents.not_rejected&.pluck(:document_type)
     documents_difference = (all_documents.keys - REQUIRED_DOCUMENTS)
     documents_difference.concat(current_documents)
     documents_difference.each do |document|

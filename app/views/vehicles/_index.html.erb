@@ -1,12 +1,5 @@
 <% resource ||= 'vehicles' %>
-<% if notice %>
-  <div class="alert alert-success" role="alert" id="notice">
-    <%= notice %>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-<% end %>  
+
 <div class="card">
   <h5 class="card-header"><%= I18n.t("vehicle.headers.index.#{resource}")%> (<%= @vehicles.count %>)</h5>
   <div class="card-body">
@@ -18,7 +11,7 @@
             <div class="card shadow " >            
               <div class="inner">
                 <%=image_tag vehicle&.profile_images&.first&.file, size: '300x210', class:"card-img-top" if vehicle.profile_images.present? %>
-              </div>                
+              </div>
               <div class="card-body">
                 <h5 class="card-title"><%= vehicle.brand_model_and_year %></h5>
                 <div class="table table-responsive">

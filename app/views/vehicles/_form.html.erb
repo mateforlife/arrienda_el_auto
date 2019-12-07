@@ -10,16 +10,40 @@
     <%= form.label :vehicle_model_id %>
     <%= form.grouped_collection_select :vehicle_model_id, @brands, :vehicle_models, :name, :id, :name, { include_blank: true }, { class:"form-control" } %>
   </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= form.label :year %>
+      <%= form.select :year, (Date.today.year - 10..Date.today.year + 1), { selected: Date.today.year }, { class:"form-control" } %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :license_plate %>
+      <%= form.text_field :license_plate, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= form.label :engine_number %>
+      <%= form.text_field :engine_number, class:"form-control" %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :chasis_number %>
+      <%= form.text_field :chasis_number, class:"form-control" %>
+    </div>
+  </div>
   
   <div class="form-row">
     <div class="form-group col-md-6">
       <%= form.label :body_type %>
-      <%= form.collection_select :body_type, Vehicle.body_types, :first, :first, {}, { class:"form-control" } %>
+      <%= form.select :body_type, options_for_select(vehicle.class.translated_body_types.map { |t, k, _v| [t, k] }), {}, { class:"form-control" } %>
     </div>
 
     <div class="form-group col-md-6">
       <%= form.label :engine_type %>
-      <%= form.collection_select :engine_type, Vehicle.engine_types, :first, :first, {}, { class:"form-control" } %>
+      <%= form.select :engine_type, options_for_select(vehicle.class.translated_engine_types.map { |t, k, _v| [t, k] }), {}, { class:"form-control" } %>
     </div>
   </div>
 
@@ -49,32 +73,8 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <%= form.label :year %>
-      <%= form.select :year, (Date.today.year - 10..Date.today.year + 1), { selected: Date.today.year }, { class:"form-control" } %>
-    </div>
-
-    <div class="form-group col-md-6">
-      <%= form.label :license_plate %>
-      <%= form.text_field :license_plate, class:"form-control" %>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <%= form.label :engine_number %>
-      <%= form.text_field :engine_number, class:"form-control" %>
-    </div>
-
-    <div class="form-group col-md-6">
-      <%= form.label :chasis_number %>
-      <%= form.text_field :chasis_number, class:"form-control" %>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group col-md-6">
       <%= form.label :transmission %>
-      <%= form.collection_select :transmission, Vehicle.transmissions, :first, :first, {}, { class:"form-control" } %>
+      <%= form.select :transmission, options_for_select(vehicle.class.translated_transmissions.map { |t, k, _v| [t, k] }), {}, { class:"form-control" } %>
     </div>
 
     <div class="form-group col-md-6">
@@ -86,7 +86,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <%= form.label :steering %>
-      <%= form.collection_select :steering, Vehicle.steerings, :first, :first, {}, { class:"form-control" } %>
+      <%= form.select :steering, options_for_select(vehicle.class.translated_steerings.map { |t, k, _v| [t, k] }), {}, { class:"form-control" } %>
     </div>
 
     <div class="form-group col-md-6">

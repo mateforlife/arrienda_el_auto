@@ -55,7 +55,11 @@ gem 'sendgrid-ruby'
 # to perform async jobs
 gem 'sidekiq', '~> 5.2.7'
 
+# redis db
 gem 'redis'
+
+# to translate enums
+gem 'translate_enum', require: 'translate_enum/active_record'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
