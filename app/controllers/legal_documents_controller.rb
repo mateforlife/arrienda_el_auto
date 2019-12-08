@@ -1,5 +1,6 @@
 class LegalDocumentsController < ApplicationController
   include LegalDocumentsHelper
+  load_and_authorize_resource
   before_action :set_vehicle
   before_action :set_legal_document, only: [:show, :edit, :update, :destroy]
 
