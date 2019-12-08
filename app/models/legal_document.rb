@@ -29,6 +29,13 @@ class LegalDocument < ApplicationRecord
 
   scope :active, -> { where(status: :effective) }
   scope :not_rejected, -> { where.not(status: 'rejected') }
+  scope :from_current_user_vehicles, lambda { |current_user|
+    joins(:vehicle).where(vehicles: { user_id: current_user.id })
+  }
+
+  def from_current_user_vehicle?(current_user)
+    resource.user_id == current_user.id
+  end
 
   def status_color
     STATUSES_TABLE_COLORS[status.to_sym]
