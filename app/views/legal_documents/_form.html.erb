@@ -1,25 +1,37 @@
 <%= form_for([@legal_document.resource, @legal_document]) do |f| %>
   <%= render 'shared/errors', resource: @legal_document %>
 
-  <div class="form-group">
-    <%= f.label :document_type %><br />
-    <%= f.select :document_type, options_for_select(@legal_document.resource.remaining_documents.map { |k, _v| [@legal_document.class.translated_document(k), k] }), {}, { class:"form-control" } %>
-  </div>
-  <div class="form-group">
-    <%= f.label :attachments %><br />
-    <%= f.file_field :attachments, multiple: true, accept: document_types, class:"form-control" %>
-  </div>
+  <% if action_name == 'new' || action_name == 'create' %>
+
+    <div class="form-group">
+      <%= f.label :document_type %><br />
+      <%= f.select :document_type, options_for_select(@legal_document.resource.remaining_documents.map { |k, _v| [@legal_document.class.translated_document(k), k] }), {}, { class:"form-control" } %>
+    </div>
+    <div class="form-group">
+      <%= f.label :attachments %><br />
+      <%= f.file_field :attachments, multiple: true, accept: document_types, class:"form-control" %>
+    </div>
+
+  <% elsif action_name == 'edit' ||  action_name == 'update' %>  
+
+    <div class="form-group">
+      <%= f.label :document_type %><br />
+      <%= f.select :document_type, options_for_select(@legal_document.class.translated_document_types.map { |t, k, _v| [t, k] },
+       @legal_document.document_type ), {}, { disabled: true, class:"form-control" } %>
+    </div>
+    <div class="form-group">
+      <%= f.label :status %><br />
+      <%= f.select :status, options_for_select(@legal_document.class.translated_statuses.map { |t, k, _v| [t, k] }), {}, { class:"form-control" } %>
+    </div>
+  
+  <% end %>
+
   <div class="form-group">
     <%= f.label :due_date %><br />
     <%= f.date_field :due_date, class:"form-control"%>
   </div>
-  <% if current_user.admin? && action_name == 'edit' %>
-    <div class="form-group">
-      <%= f.label :status %><br />
-      <%= f.select :status, options_for_select(@legal_document.class.translated_statusses.map { |t, k, _v| [t, k] }), {}, { class:"form-control" } %>
-    </div>
-  <% end %>  
+
   <div class="form-group">
-    <%= f.submit I18n.t('buttons.submit'), { class: "btn btn-outline-primary btn-lg btn-block" }%>
+    <%= f.submit I18n.t('buttons.submit'), { class: "btn btn-outline-primary btn-lg btn-block" } %>
   </div>
 <% end %>

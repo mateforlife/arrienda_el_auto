@@ -15,9 +15,9 @@
               <%= I18n.t('buttons.options') %>
             </button>
             <div class="dropdown-menu dropdown-menu-right">
-            <% if @vehicle.belongs_to_current_user?(current_user) %>
+            <% if @vehicle.belongs_to_current_user?(current_user) || current_user.admin? %>
               <%= link_to I18n.t('buttons.edit'), edit_vehicle_path(@vehicle), class:"dropdown-item" %>
-              <%= link_to I18n.t('buttons.legal_documents'), new_vehicle_legal_document_path(@vehicle), class:"dropdown-item" %>
+              <%= link_to I18n.t('buttons.legal_documents'), vehicle_legal_documents_path(@vehicle), class:"dropdown-item" %>
               <div class="dropdown-divider"></div>
               <%= link_to I18n.t('buttons.back'), my_vehicles_path, class:"dropdown-item" %>
             <% else %> 

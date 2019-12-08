@@ -1,6 +1,7 @@
 
 
 class User < ApplicationRecord
+  include Documentable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -20,6 +21,8 @@ class User < ApplicationRecord
 
   before_save :sanitize_email
   before_save :trim_and_capitalize_names
+
+  REQUIRED_DOCUMENTS = %w[identity].freeze
 
   def full_name
     "#{first_name} #{last_name} #{second_last_name}"

@@ -2,11 +2,11 @@
 
 # Vehicle
 class Vehicle < ApplicationRecord
+  include Documentable
   belongs_to :vehicle_model
   belongs_to :user
   belongs_to :fee, required: false
   has_many :profile_images, as: :resource, dependent: :destroy
-  has_many :legal_documents, as: :resource, dependent: :destroy
   accepts_nested_attributes_for :profile_images
   attr_accessor :images
 
@@ -51,21 +51,13 @@ class Vehicle < ApplicationRecord
   scope :not_from_current_user, lambda { |current_user|
     where.not(user: current_user)
   }
+  scope :pending_document_validation, lambda {
+    joins(:legal_documents).where(legal_documents: { status: :pending }).distinct
+  }
 
   # ====================
   # = INSTANCE METHODS =
   # ====================
-
-  def remaining_documents
-    all_documents = LegalDocument.document_types.deep_dup
-    current_documents = legal_documents.not_rejected&.pluck(:document_type)
-    documents_difference = (all_documents.keys - REQUIRED_DOCUMENTS)
-    documents_difference.concat(current_documents)
-    documents_difference.each do |document|
-      all_documents.except!(document)
-    end
-    all_documents
-  end
 
   def legal_status_badge
     if legal_documents_effective?

@@ -1,7 +1,7 @@
 <div class="container col-xl-6 col-lg-10 col-md-6 col-sm-10">
   <div class="card">
     <div class="card-header">
-      <h2><%= I18n.t('vehicle.headers.legal_document.index') %></h2>
+      <h2><%= I18n.t('vehicle.headers.legal_document.index') %> (restantes: <%= @remaining_documents %>)</h2>
     </div>
     <div class="card-body"> 
       <table class="table table-hover">
@@ -22,6 +22,9 @@
               <%= LegalDocument.translated_status(legal_document.status) %>
             </span>
           </td>
+          <% if current_user.admin? %>
+            <td><%= link_to I18n.t('buttons.edit'), edit_vehicle_legal_document_path(legal_document.resource, legal_document) %></td>
+          <% end %>
         </tr>
       <% end %>
       </table>

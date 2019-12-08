@@ -20,7 +20,7 @@
       </li>
 
       <!-- admin menu -->
-      <%= render 'nav/admin_dropdown' if current_user.admin? %>
+      <%= render 'nav/admin_dropdown' if current_user&.admin? %>
       <!--  -->
 
       <!-- language -->
