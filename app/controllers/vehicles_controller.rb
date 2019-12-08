@@ -1,4 +1,5 @@
 class VehiclesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
   before_action :set_brands, only: %i[edit new create update]
   before_action :brand_select_option, only: %i[edit update]

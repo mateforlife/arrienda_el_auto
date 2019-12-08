@@ -1,4 +1,5 @@
 class VehicleModelsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_vehicle_model, only: [:show, :edit, :update, :destroy]
 
   # GET /vehicle_models
