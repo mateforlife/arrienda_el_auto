@@ -25,14 +25,14 @@ gem 'jbuilder', '~> 2.7'
 # Active storage attachments content validator
 gem 'active_storage_validations'
 
-# Use Active Storage variant
-gem 'image_processing', '~> 1.2'
+# Amazon AWS sdk gem
+gem 'aws-sdk-s3'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-# Amazon AWS sdk gem
-gem 'aws-sdk-s3'
+# Ability
+gem 'cancancan'
 
 # Devise is a flexible authentication solution for Rails
 gem 'devise'
@@ -42,6 +42,12 @@ gem 'figaro'
 
 # Rack::Cors provides support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications.
 # gem 'rack-cors'
+
+# Use Active Storage variant
+gem 'image_processing', '~> 1.2'
+
+# redis db
+gem 'redis'
 
 # Chilean Rut validator
 gem 'rut_validation', '~> 1.1.1', git: 'https://github.com/mateforlife/rut_validation'
@@ -54,9 +60,6 @@ gem 'sendgrid-ruby'
 
 # to perform async jobs
 gem 'sidekiq', '~> 5.2.7'
-
-# redis db
-gem 'redis'
 
 # to translate enums
 gem 'translate_enum', require: 'translate_enum/active_record'
