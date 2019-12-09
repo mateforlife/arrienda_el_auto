@@ -46,7 +46,9 @@ es:
       forgotten: "Has olvidado tu contraseña?"
       change: "Cambia tu contraseña"
       new: "Nueva contraseña"
-      instructions: "Envíar mi nueva contraseña"
+      instructions: "Envíar instrucciones"
+      resend_confirmation_instructions: "Reenviar instrucciones de confirmación"
+      resend_instructions: "Reenviar instrucciones"
     registrations:
       destroyed: "Adiós, tu cuenta ha sido eliminada. Esperamos verte de vuelta pronto!"
       signed_up: "Bienvenido! Te has registrado correctamente."
@@ -63,6 +65,9 @@ es:
       send_instructions: "Recibirás un email con instrucciones para desbloquear tu cuenta en unos minutos"
       send_paranoid_instructions: "Si tu cuenta existe, recibirás un email con instrucciones para desbloquear tu cuenta en unos minutos"
       unlocked: "Tu cuenta ha sido desbloqueada. Inicia sesión para continuar."
+    links:
+      text:
+        didnt_receive_confirmation_instructions?: "No recibiste instrucciones de confirmación?"
   errors:
     messages:
       already_confirmed: "ya fue confirmada. Intenta ingresar."

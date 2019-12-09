@@ -70,6 +70,10 @@ es:
         last_name: Apellido
         second_last_name: Segundo Apellido
         birthdate: Fecha de nacimiento
+        gender: Sexo
+        gender_list:
+          male: "Masculino"
+          female: "Femenino"
         phone_number: Celular
         confirmation_sent_at: Confirmación enviada a
         confirmation_token: Código de confirmación

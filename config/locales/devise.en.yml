@@ -7,6 +7,9 @@ en:
       sign_up: "Sign up"
       log_in: "Log in"
       sign_out: "Sign out"
+      password: "Password"
+      edit_user: "Edit user"
+      cancel_account: "Cancel my account"
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
@@ -42,6 +45,9 @@ en:
       updated: "Your password has been changed successfully. You are now signed in."
       updated_not_active: "Your password has been changed successfully."
       forgotten: "Forgot your password?"
+      instructions: "Send instructions"
+      resend_confirmation_instructions: "Resend confirmation instructions"
+      resend_instructions: "Resend instructions"
     registrations:
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."
@@ -59,6 +65,9 @@ en:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
       unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+    links:
+      text:
+        didnt_receive_confirmation_instructions?: "Didn't receive confirmation instructions?"
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"
@@ -69,3 +78,4 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+  
