@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
+# legalDocument
 class LegalDocument < ApplicationRecord
   belongs_to :resource, polymorphic: true
   has_many_attached :files, dependent: :destroy
 
   enum document_type: %i[circulation_permit obligatory_insurance
-                         technical_review vehicle_register identity]
+                         technical_review vehicle_register identity
+                         driver_license driver_resume]
   enum status: %i[pending effective rejected expired]
   translate_enum :document_type
   translate_enum :status
@@ -17,10 +21,6 @@ class LegalDocument < ApplicationRecord
     rejected: :danger,
     expired: :danger
   }.freeze
-
-  # PERMITED_CONTENT_TYPES = %w[
-  #   image/png image/jpg image/jpeg application/pdf
-  # ].freeze
 
   validates_length_of :attachments, is: ATTACHMENTS_LIMIT, on: :create
   validates :attachments, presence: true, on: :create
