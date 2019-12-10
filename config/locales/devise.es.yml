@@ -9,6 +9,16 @@ es:
       password: "Contraseña"
       edit_user: "Editar usuario"
       cancel_account: "Cancelar mi cuenta"
+      confirm_my_account: 'Confirmar mi cuenta'
+      hello: "Hola"
+      welcome: "Bienvenido"
+      messages:
+        ignore: 'Si no solicitó esto, ignore este correo electrónico. Su contraseña no cambiará hasta que acceda al enlace de arriba y cree una nueva.'
+        click_link: 'Haga clic en el siguiente enlace para desbloquear su cuenta:'
+        notify: 'Nos contactamos con usted para notificarle que su contraseña ha sido modificada.'
+        is_being_changed: 'Nos comunicamos con usted para notificarle que su correo electrónico se está cambiando a'
+        has_been_changed: 'Nos estamos comunicando con usted para notificarle que su correo electrónico ha cambiado a'
+        confirm_account: 'Puede confirmar el correo electrónico de su cuenta a través del siguiente enlace:'
     confirmations:
       confirmed: "Tu correo electrónico ha sido confirmado exitosamente."
       send_instructions: "Recibirás un email con las instrucciones para confirmar tu correo electrónico en unos minutos."
@@ -49,6 +59,7 @@ es:
       instructions: "Envíar instrucciones"
       resend_confirmation_instructions: "Reenviar instrucciones de confirmación"
       resend_instructions: "Reenviar instrucciones"
+      reset_instructions: 'Alguien ha solicitado un enlace para cambiar su contraseña. Puede hacerlo a través del siguiente enlace.'
     registrations:
       destroyed: "Adiós, tu cuenta ha sido eliminada. Esperamos verte de vuelta pronto!"
       signed_up: "Bienvenido! Te has registrado correctamente."
@@ -64,7 +75,9 @@ es:
     unlocks:
       send_instructions: "Recibirás un email con instrucciones para desbloquear tu cuenta en unos minutos"
       send_paranoid_instructions: "Si tu cuenta existe, recibirás un email con instrucciones para desbloquear tu cuenta en unos minutos"
+      unlock_instructions: "Su cuenta ha sido bloqueada debido a un número excesivo de intentos fallidos de inicio de sesión."
       unlocked: "Tu cuenta ha sido desbloqueada. Inicia sesión para continuar."
+      unlock_my_account: 'Desbloquear mi cuenta'
     links:
       text:
         didnt_receive_confirmation_instructions?: "No recibiste instrucciones de confirmación?"

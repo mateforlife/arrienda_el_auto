@@ -10,6 +10,16 @@ en:
       password: "Password"
       edit_user: "Edit user"
       cancel_account: "Cancel my account"
+      confirm_my_account: 'Confirm my account'
+      hello: "Hello"
+      welcome: 'Welcome'
+      messages:
+        ignore: "If you didnt request this, please ignore this email. Your password wont change until you access the link above and create a new one."
+        click_link: 'Click the link below to unlock your account:'
+        notify: 'Were contacting you to notify you that your password has been changed.'
+        is_being_changed: 'Were contacting you to notify you that your email is being changed to'
+        has_been_changed: 'Were contacting you to notify you that your email has been changed to'
+        confirm_account: 'You can confirm your account email through the link below:'
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
@@ -48,6 +58,8 @@ en:
       instructions: "Send instructions"
       resend_confirmation_instructions: "Resend confirmation instructions"
       resend_instructions: "Resend instructions"
+      reset_instructions: 'Someone has requested a link to change your password. You can do this through the link below.'
+      change: "Change your password"
     registrations:
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."
@@ -65,6 +77,8 @@ en:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
       unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+      unlock_instructions: "Your account has been locked due to an excessive number of unsuccessful sign in attempts."
+      unlock_my_account: 'Unlock my account'
     links:
       text:
         didnt_receive_confirmation_instructions?: "Didn't receive confirmation instructions?"

@@ -1,5 +1,14 @@
-<p>Welcome <%= @email %>!</p>
+<div class="container col-xl-5 col-lg-10 col-md-6 col-sm-10">
+  <div class="card">
+    <div class="card-header">
+      <h2><%= I18n.t('devise.text.welcome')%> <%= @email %>!</h2>
+    </div>
+    <div class="card-body">
+      <p><%= I18n.t('devise.text.welcome')%> <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+      <p><%= I18n.t('devise.text.messages.confirm_account')%></p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+      <p><%= link_to I18n.t('devise.text.confirm_my_account'), confirmation_url(@resource, confirmation_token: @token) %></p>
+    </div>
+  </div>
+</div>
