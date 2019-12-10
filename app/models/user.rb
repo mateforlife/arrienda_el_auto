@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-
+# User
 class User < ApplicationRecord
   include Documentable
   # Include default devise modules. Others available are:
@@ -10,7 +11,8 @@ class User < ApplicationRecord
   has_many :vehicles
   validates :rut, presence: true
 
-  validates_presence_of %i[first_name last_name second_last_name rut birthdate gender phone_number]
+  validates_presence_of %i[first_name last_name second_last_name rut birthdate
+                           gender phone_number]
   validates :rut, uniqueness: true, if: proc { |usr| usr.rut.present? }
   validates :rut, format: { with: /\A\d{1,3}(\.\d{3})*-[0-9K]\z/,
                             message: 'Formato inválido' },
@@ -23,6 +25,7 @@ class User < ApplicationRecord
   before_save :trim_and_capitalize_names
 
   REQUIRED_DOCUMENTS = %w[identity].freeze
+  DRIVER_REQUIRED_DOCUMENTS = %w[driver_license driver_resume].freeze
 
   def full_name
     "#{first_name} #{last_name} #{second_last_name}"

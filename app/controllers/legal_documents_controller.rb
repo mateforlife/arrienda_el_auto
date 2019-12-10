@@ -17,7 +17,7 @@ class LegalDocumentsController < ApplicationController
   # GET vehicles/1/legal_documents/new
   def new
     if @remaining_documents.zero?
-      redirect_to vehicle_legal_documents_url(@resource), notice: 'Ya has subido todos los documentos, espera a que los validemos'
+      redirect_to legal_documents_path(@resource), notice: 'Ya has subido todos los documentos, espera a que los validemos'
     end
     @legal_document = @resource.legal_documents.build
   end
@@ -50,7 +50,7 @@ class LegalDocumentsController < ApplicationController
   def destroy
     @legal_document.destroy
 
-    redirect_to vehicle_legal_documents_url(@resource)
+    redirect_to legal_documents_path(@resource)
   end
 
   private

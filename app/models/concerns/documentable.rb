@@ -1,8 +1,19 @@
+# frozen_string_literal: true
+
+# Documentable
 module Documentable
   extend ActiveSupport::Concern
 
   included do
     has_many :legal_documents, as: :resource, dependent: :destroy
+  end
+
+  def legal_documents_effective?
+    return false if legal_documents.empty?
+
+    legal_documents.active
+                  &.pluck(:document_type)
+                  &.sort == self.class::REQUIRED_DOCUMENTS
   end
 
   def remaining_documents

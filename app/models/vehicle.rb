@@ -52,7 +52,8 @@ class Vehicle < ApplicationRecord
     where.not(user: current_user)
   }
   scope :pending_document_validation, lambda {
-    joins(:legal_documents).where(legal_documents: { status: :pending }).distinct
+    joins(:legal_documents)
+      .where(legal_documents: { status: :pending }).distinct
   }
 
   # ====================
@@ -68,12 +69,6 @@ class Vehicle < ApplicationRecord
       badge_color = 'danger'
     end
     { text: text, badge_color: badge_color }
-  end
-
-  def legal_documents_effective?
-    return false if legal_documents.empty?
-
-    legal_documents.active&.pluck(:document_type)&.sort == REQUIRED_DOCUMENTS
   end
 
   def update_images

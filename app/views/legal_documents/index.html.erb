@@ -23,15 +23,14 @@
             </span>
           </td>
           <% if current_user.admin? %>
-            <td><%= link_to I18n.t('buttons.edit'), edit_vehicle_legal_document_path(legal_document.resource, legal_document) %></td>
+            <td><%= link_to I18n.t('buttons.edit'), edit_legal_document_path(legal_document) %></td>
           <% end %>
         </tr>
       <% end %>
       </table>
 
-      <%= link_to 'New Legal document', new_vehicle_legal_document_path(params[:vehicle_id]) %>
+      <%= link_to 'New Legal document', new_legal_document_path(params) %>
 
     </div>
   </div>
 </div>
-
