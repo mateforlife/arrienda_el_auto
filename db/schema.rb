@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_06_014254) do
+ActiveRecord::Schema.define(version: 2019_12_10_024701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,7 +65,9 @@ ActiveRecord::Schema.define(version: 2019_12_06_014254) do
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "validator_id"
     t.index ["resource_type", "resource_id"], name: "index_legal_documents_on_resource_type_and_resource_id"
+    t.index ["validator_id"], name: "index_legal_documents_on_validator_id"
   end
 
   create_table "profile_images", force: :cascade do |t|

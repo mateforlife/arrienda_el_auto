@@ -76,7 +76,10 @@ class LegalDocumentsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def legal_document_params
+    if action_name == 'update'
+      params[:legal_document]['validator_id'] = current_user.id
+    end
     params.require(:legal_document).permit(:document_type, :due_date, :status,
-                                           attachments: [])
+                                           :validator_id, attachments: [])
   end
 end
