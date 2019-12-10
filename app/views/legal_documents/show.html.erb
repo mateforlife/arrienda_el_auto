@@ -1,29 +1,65 @@
-<div class="card">
-  <h5 class="card-header">Documentos del Vehículo</h5>
-  <div class="card-body">
-    <table class="table table-hover">
-      <tr>
-        <th>Document type:</th>
-        <th>Files:</th>
-        <th>Due date:</th>
-        <th>Status:</th>
-      </tr>
-<%= link_to I18n.t('buttons.validate'), edit_legal_document_path(@legal_document) %>
-
-      <tr>
-        <td><%= @legal_document.document_type %></td>
-        <td>
-          <% @legal_document.files&.each do |image| %>
-            <%= image_tag image, size:"180x110" %>
-          <% end %>
-        </td>
-        <td><%= @legal_document.due_date %></td>
-        <td><%= @legal_document.status %></td>
-      </tr>
-    </table>
-
-    <div class="text-right col-md-11">
-      <%= link_to 'Back', legal_documents_path(@legal_document.resource) %>
+<div class="container col-lg-10 col-md-6 col-sm-10">
+  <div class="card">
+    <h5 class="card-header col-xl-9 col-sm-7 col-14">Documentos del Vehículo</h5>
+    <div class="card-body">
+      <div class="table-responsive ">
+        <table class="table table-hover table-align">
+          <tr>
+            <th class="table-align"> Document type:</th>
+            <th>Files:</th>
+            <th>Due date:</th>
+            <th>Status:</th>
+          </tr>
+          <tr>
+            <td><%= @legal_document.document_type %></td>
+            <td>
+              <% @legal_document.files&.each do |image| %>
+                <%= image_tag image, size:"180x110" %>
+              <% end %>
+            </td>
+            <td><%= @legal_document.due_date %></td>
+            <td><span class="badge badge-pill badge-warning"><%= @legal_document.status %></span></td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
+
+  <div class="card">
+    <h5 class="card-header"><%= @resource.brand_model_and_year%></h5>
+    <div class="card-body">
+      <h3 class="card-title col-xl-9 col-sm-7 col-14"></h3>
+      <table class="table table-hover">
+        <tr>
+          <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.body_type')%>:</th>
+          <td><%= @resource.body_type%></td>
+        </tr>
+        <tr>
+          <th>Patente</th>
+          <td><%= @resource.license_plate%></td>
+        </tr>
+        <tr>
+          <th>Motor:</th>
+          <td><%= @resource.engine_type%></td>
+        </tr>
+        <tr>
+          <th>Año:</th>
+          <td><%= @resource.year%></td>
+        </tr>
+        <tr>
+          <th>N° de chasis:</th>
+          <td><%= @resource.chasis_number%></td>
+        </tr>
+        <tr>
+          <th>N° de motor:</th>
+          <td><%= @resource.engine_number%></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="text-right col-md-11">
+    <%= link_to 'Back', legal_documents_path(@legal_document.resource) %>
+    <%= link_to I18n.t('buttons.validate'), edit_legal_document_path(@legal_document) %>
+  </div>
 </div>
+

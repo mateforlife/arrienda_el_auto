@@ -123,3 +123,10 @@ section .section-title {
 .main-layout {
   min-height: 30em !important;
 }
+
+.table-align {
+  th,
+  td{
+    vertical-align: inherit !important;
+  } 
+}
