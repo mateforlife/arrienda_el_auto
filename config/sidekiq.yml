@@ -1,7 +1,9 @@
 ---
 # These must be ordered by priority
-:queues:
-  - default
-  - mailers
-  - easy_car_production_active_storage_analysis
-  - active_storage_analysis
+production:
+  :queues:
+    - default
+    - mailers
+    - easy_car_production_active_storage_analysis
+    - active_storage_analysis
+    - easy_car_production_mailers
