@@ -1,6 +1,9 @@
 es:
   created_at: Creado el
   language: Idioma
+  user:
+    headers:
+      index: Usuarios
   buttons:
     show: Detalles
     edit: Editar
