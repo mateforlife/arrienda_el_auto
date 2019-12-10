@@ -17,6 +17,7 @@ class User < ApplicationRecord
 
   enum permission: %i[basic admin]
   enum gender: %i[male female]
+  translate_enum :gender
 
   before_save :sanitize_email
   before_save :trim_and_capitalize_names

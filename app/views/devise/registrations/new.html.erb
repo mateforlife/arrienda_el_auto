@@ -32,7 +32,7 @@
 
           <div class="form-group col-md-6">     
             <%= f.label :gender %>        
-            <%= f.collection_select :gender, User.genders, :first, :first, {}, { class:"form-control" } %>          
+            <%= f.select :gender, options_for_select(@user.class.translated_genders.map { |t, k, _v| [t, k] }), {}, { class:"form-control" } %>         
           </div>
         </div>
 

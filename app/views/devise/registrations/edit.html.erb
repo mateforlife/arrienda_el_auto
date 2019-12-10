@@ -33,7 +33,7 @@
 
           <div class="form-group col-md-6">     
             <%= f.label :gender %>        
-            <%= f.collection_select :gender, User.genders, :first, :first, {}, { class:"form-control" } %>          
+            <%= f.select :gender, options_for_select(@user.class.translated_genders.map { |t, k, _v| [t, k] }), {}, { class:"form-control" } %>      
           </div>
         </div>
 
@@ -59,8 +59,8 @@
 
         <div class="form-row">
           <div class="form-group col-md-6">
-            <%= f.label :password %><small> (<%=I18n.t('text.leave_blank')%>)</small>
-            <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:I18n.t('text.password.minimum') %>
+            <%= f.label :password %><small> (<%=I18n.t('text.password.minimum')%>)</small>
+            <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:I18n.t('text.leave_blank') %>            
           </div>
           <div class="form-group col-md-6">
             <%= f.label :password_confirmation %>
@@ -73,7 +73,7 @@
           <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control", placeholder:I18n.t('text.password.current')%>
         </div>
 
-        <div class="actions">
+        <div class="form-group">
           <%= f.submit I18n.t('text.update'), class: "btn btn-outline-primary btn-lg btn-block"%>
         </div>
       <% end %>
