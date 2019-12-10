@@ -4,14 +4,6 @@
 module ExceptionHandler
   extend ActiveSupport::Concern
 
-  included do
-    rescue_from CanCan::AccessDenied do |exception|
-      respond_to do |format|
-        format.html { redirect_to my_vehicles_path, notice: exception.message }
-      end
-    end
-  end
-
   if Rails.env.production?
     included do
       rescue_from ActiveRecord::RecordNotFound do
@@ -28,6 +20,12 @@ module ExceptionHandler
 
       rescue_from NoMethodError do
         internal_server_error
+      end
+
+      rescue_from CanCan::AccessDenied do |exception|
+        respond_to do |format|
+          format.html { redirect_to my_vehicles_path, notice: exception.message }
+        end
       end
     end
   end
