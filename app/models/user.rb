@@ -25,7 +25,7 @@ class User < ApplicationRecord
   before_save :sanitize_email
   before_save :trim_and_capitalize_names
 
-  REQUIRED_DOCUMENTS = %w[identity].freeze
+  REQUIRED_DOCUMENTS = %w[identity criminal_record].freeze
   DRIVER_REQUIRED_DOCUMENTS = %w[driver_license driver_resume].freeze
 
   def full_name

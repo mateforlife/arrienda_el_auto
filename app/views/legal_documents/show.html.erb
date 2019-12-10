@@ -8,6 +8,7 @@
         <th>Due date:</th>
         <th>Status:</th>
       </tr>
+<%= link_to I18n.t('buttons.validate'), edit_legal_document_path(@legal_document) %>
 
       <tr>
         <td><%= @legal_document.document_type %></td>

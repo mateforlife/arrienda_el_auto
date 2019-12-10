@@ -18,13 +18,13 @@ module Documentable
 
     legal_documents.active
                   &.pluck(:document_type)
-                  &.sort == self.class::REQUIRED_DOCUMENTS
+                  &.sort == self.class::REQUIRED_DOCUMENTS.sort
   end
 
   def remaining_documents
     all_documents = LegalDocument.document_types.deep_dup
     current_documents = legal_documents.not_rejected&.pluck(:document_type)
-    documents_difference = (all_documents.keys - self.class::REQUIRED_DOCUMENTS)
+    documents_difference = (all_documents.keys - self.class::REQUIRED_DOCUMENTS.sort)
     documents_difference.concat(current_documents)
     documents_difference.each do |document|
       all_documents.except!(document)

@@ -4,8 +4,11 @@ $danger: rgb(179, 0, 0);
 @import 'direct_uploads';
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
+
 body {
-  padding-top: 70px;
+  padding-top: 70px; 
+  min-height:100%; 
+  position:relative;
 }
 
 nav {
@@ -51,6 +54,10 @@ section .section-title {
 }
 #footer {
     background: #006699 !important;
+    
+    bottom:0;
+    left:0;
+    
 }
 #footer h5{
 	padding-left: 10px;
@@ -114,5 +121,5 @@ section .section-title {
 }
 
 .main-layout {
-  min-height: 300px !important;
+  min-height: 30em !important;
 }
