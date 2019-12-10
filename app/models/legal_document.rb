@@ -2,6 +2,7 @@
 
 # legalDocument
 class LegalDocument < ApplicationRecord
+  include Notificable
   belongs_to :resource, polymorphic: true
   belongs_to :validator, class_name: 'User', foreign_key: 'validator_id',
                          optional: true
@@ -9,7 +10,7 @@ class LegalDocument < ApplicationRecord
 
   enum document_type: %i[circulation_permit obligatory_insurance
                          technical_review vehicle_register identity
-                         driver_license driver_resume]
+                         criminal_record driver_license driver_resume]
   enum status: %i[pending effective rejected expired]
   translate_enum :document_type
   translate_enum :status
