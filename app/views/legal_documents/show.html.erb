@@ -1,3 +1,4 @@
+<%= link_to I18n.t('buttons.validate'), edit_legal_document_path(@legal_document) %>
 <p>
   <b>Document type:</b>
   <%= @legal_document.document_type %>
@@ -20,4 +21,4 @@
   <%= @legal_document.status %>
 </p>
 
-<%= link_to 'Back', legal_documents_path(@legal_document.resource) %>
+
