@@ -1,0 +1,10 @@
+<div class="card">
+  <h5 class="card-header"><%= I18n.t("user.headers.index")%> (<%= @users.count %>)</h5>
+  <div class="card-body">
+    <div class="row">
+      <% @users.each do |user| %>
+        <%= link_to 'documentos', new_user_legal_document_path(user), class:"dropdown-item" %>
+      <% end%>
+    </div>
+  </div>
+</div>

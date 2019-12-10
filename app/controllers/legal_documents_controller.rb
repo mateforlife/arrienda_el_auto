@@ -1,10 +1,13 @@
 class LegalDocumentsController < ApplicationController
-  before_action :set_vehicle
+  include LegalDocumentsHelper
+  load_and_authorize_resource
+  before_action :set_resource
+  before_action :set_remaining_documents, only: %i[index new]
   before_action :set_legal_document, only: [:show, :edit, :update, :destroy]
 
   # GET vehicles/1/legal_documents
   def index
-    @legal_documents = @vehicle.legal_documents
+    @legal_documents = @resource.legal_documents
   end
 
   # GET vehicles/1/legal_documents/1
@@ -13,10 +16,10 @@ class LegalDocumentsController < ApplicationController
 
   # GET vehicles/1/legal_documents/new
   def new
-    if @vehicle.remaining_documents.count.zero?
-      redirect_to vehicle_legal_documents_url(@vehicle)
+    if @remaining_documents.zero?
+      redirect_to legal_documents_path(@resource), notice: 'Ya has subido todos los documentos, espera a que los validemos'
     end
-    @legal_document = @vehicle.legal_documents.build
+    @legal_document = @resource.legal_documents.build
   end
 
   # GET vehicles/1/legal_documents/1/edit
@@ -25,7 +28,7 @@ class LegalDocumentsController < ApplicationController
 
   # POST vehicles/1/legal_documents
   def create
-    @legal_document = @vehicle.legal_documents.build(legal_document_params)
+    @legal_document = @resource.legal_documents.build(legal_document_params)
 
     if @legal_document.save_with_images
       redirect_to([@legal_document.resource, @legal_document], notice: 'Legal document was successfully created.')
@@ -47,23 +50,36 @@ class LegalDocumentsController < ApplicationController
   def destroy
     @legal_document.destroy
 
-    redirect_to vehicle_legal_documents_url(@vehicle)
+    redirect_to legal_documents_path(@resource)
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_vehicle
-    @vehicle = Vehicle.find_by(id: params[:vehicle_id])
+  def set_resource
+    if params.include?('user_id')
+      return @resource = User.find_by(id: params[:user_id])
+    end
+
+    @resource = Vehicle.find_by(id: params[:vehicle_id])
   end
 
   def set_legal_document
-    @legal_document = @vehicle.legal_documents.find(params[:id])
+    @legal_document = @resource.legal_documents.find(params[:id])
+  end
+
+  def set_remaining_documents
+    return @remaining_documents = 0 if @resource.nil?
+
+    @remaining_documents = @resource.remaining_documents&.count || 0
   end
 
   # Only allow a trusted parameter "white list" through.
   def legal_document_params
-    params.require(:legal_document).permit(:document_type, :resource_id,
-                                           :due_date, :status, attachments: [])
+    if action_name == 'update'
+      params[:legal_document]['validator_id'] = current_user.id
+    end
+    params.require(:legal_document).permit(:document_type, :due_date, :status,
+                                           :validator_id, attachments: [])
   end
 end

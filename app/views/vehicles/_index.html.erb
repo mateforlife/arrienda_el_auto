@@ -1,32 +1,35 @@
 <% resource ||= 'vehicles' %>
-<% if notice %>
-  <div class="alert alert-success" role="alert" id="notice">
-    <%= notice %>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-<% end %>  
+
 <div class="card">
   <h5 class="card-header"><%= I18n.t("vehicle.headers.index.#{resource}")%> (<%= @vehicles.count %>)</h5>
   <div class="card-body">
     <div class="row">
       <% @vehicles.each do |vehicle| %>
-      <!-- vehicle  -->
+        <!-- vehicle  -->
         <div class="col-xl-3 col-lg-4 col-md-10 col-sm-12" style="padding-bottom: 20px;">
-          <%=link_to vehicle do%>
-            <div class="card shadow " >            
+          <%=link_to vehicle, class:"card-link-hover" do%>
+            <div class="card shadow ">            
               <div class="inner">
                 <%=image_tag vehicle&.profile_images&.first&.file, size: '300x210', class:"card-img-top" if vehicle.profile_images.present? %>
               </div>
               <div class="card-body">
                 <h5 class="card-title"><%= vehicle.brand_model_and_year %></h5>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Tarifa diaria: $<%= vehicle.fee.amount %> CLP</li>
-                  <li class="list-group-item">Combustible: <%= vehicle.engine_type %></li>
-                  <%= render 'vehicles/legal_status', vehicle: vehicle if vehicle.belongs_to_current_user?(current_user)%>
-                </ul>
-                <%= link_to I18n.t('buttons.show'), vehicle, class:"btn btn-outline-primary col-xl-12" %>
+                <div class="table table-responsive">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <th style="width:50%"><%= I18n.t('vehicle.show.daily_price') %>:</th>
+                        <td>$<%= vehicle.fee.amount %> CLP</td>
+                      </tr>          
+                      <tr>
+                        <th style="width:50%"><%= I18n.t('vehicle.show.fuel') %>:</th>
+                        <td><%= vehicle.engine_type %></td>
+                      </tr>
+                      <%= render 'vehicles/legal_status', vehicle: vehicle if vehicle.belongs_to_current_user?(current_user) || current_user.admin? %>
+                    </tbody>
+                  </table>                  
+                  <%= link_to I18n.t('buttons.show'), vehicle, class:"btn btn-outline-primary col-xl-12" %>
+                </div>
               </div>
             </div>
           <%end%>

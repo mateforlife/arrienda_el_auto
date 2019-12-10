@@ -2,15 +2,18 @@ $primary: rgb(0, 102, 153);
 $danger: rgb(179, 0, 0);
 @import '~bootstrap/scss/bootstrap';
 @import 'direct_uploads';
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
 
 body {
-  padding-top: 70px;
-  padding-right: 5px;
-  padding-left: 5px;
+  padding-top: 70px; 
+  min-height:100%; 
+  position:relative;
 }
- nav {
-  background-color: rgb(0, 102, 153);
- }
+
+nav {
+background-color: rgb(0, 102, 153);
+}
 
 .images-show {
   padding-left: 15px;
@@ -27,8 +30,97 @@ body {
 .inner:hover img{
   transform: scale(1.2);
 }
-a
-{
-text-decoration:none !important;
-color:inherit;
+.card-link-hover {
+  text-decoration:none !important;
+  color:inherit;
+ }
+
+
+/* Footer */
+
+section {
+    padding: 40px 0;
+    margin-top: 50px;
+    width: 100% !important;
+    box-shadow: 0 100vh 0 100vh #006699;
+    
+    padding-bottom: 10px 0;
+}
+
+section .section-title {
+    text-align: center;
+    color: #007b5e;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+#footer {
+    background: #006699 !important;
+    
+    bottom:0;
+    left:0;
+    
+}
+#footer h5{
+	padding-left: 10px;
+    border-left: 3px solid #eeeeee;
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+    color:#ffffff;
+}
+#footer a {
+    color: #ffffff;
+    text-decoration: none !important;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+#footer ul.social li{
+	padding: 3px 0;
+}
+#footer ul.social li a i {
+  margin-right: 5px;
+	font-size:25px;
+	-webkit-transition: .5s all ease;
+	-moz-transition: .5s all ease;
+	transition: .5s all ease;
+}
+#footer ul.social li:hover a i {
+	font-size:30px;
+	margin-top:-10px;
+}
+#footer ul.social li a,
+#footer ul.quick-links li a{
+	color:#ffffff;
+}
+#footer ul.social li a:hover{
+	color:#eeeeee;
+}
+#footer ul.quick-links li{
+	padding: 3px 0;
+	-webkit-transition: .5s all ease;
+	-moz-transition: .5s all ease;
+	transition: .5s all ease;
+}
+#footer ul.quick-links li:hover{
+	padding: 3px 0;
+	margin-left:5px;
+	font-weight:700;
+}
+#footer ul.quick-links li a i{
+	margin-right: 5px;
+}
+#footer ul.quick-links li:hover a i {
+    font-weight: 700;
+}
+
+@media (max-width:767px){
+	#footer h5 {
+    padding-left: 0;
+    border-left: transparent;
+    padding-bottom: 0px;
+    margin-bottom: 10px;
+  }
+}
+
+.main-layout {
+  min-height: 30em !important;
 }

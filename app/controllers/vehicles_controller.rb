@@ -1,6 +1,8 @@
 class VehiclesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
   before_action :set_brands, only: %i[edit new create update]
+  before_action :validate_legal_documents, only: %i[new create]
   before_action :brand_select_option, only: %i[edit update]
 
   # GET /vehicles
@@ -68,6 +70,15 @@ class VehiclesController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
+
+  def validate_legal_documents
+    return if current_user.legal_documents_effective?
+
+    respond_to do |format|
+      format.html { redirect_to current_user, notice: 'Debes validar tu documentacion legal antes de continuar.' }
+      format.json { head :no_content }
+    end
+  end
 
   def brand_select_option
     @selected_option = @vehicle&.vehicle_model&.brand&.id

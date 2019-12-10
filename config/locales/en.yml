@@ -40,7 +40,20 @@ en:
     back: Go back
     options: Options
     legal_documents: Legal documents
+  text:
+    password:
+      minimum: '6 characteres minimum'
+      confirmation: 'Confirm your password'
+      current: 'Current password'
+    leave_blank: 'leave it blank if you dont want to change the password'
+    current_password: 'We need your current password to confirm your changes'
+    back: 'Go back'
+    update: 'Update'
+    are_you_sure: 'Are you sure?'
   vehicle:
+    legal_status:
+        effective: Al día
+        pending: Pending (legal doc.)
     publish: Publish
     leasing: Leasing
     headers:
@@ -49,14 +62,52 @@ en:
         my_vehicles: "My Vehicles"  
         search_result: 'Search results'
       new: "New Vehicle"
+      edit: "Edit vehicle"
     show:
       description: "Description"
       details: "Details"
       legal_information: "Legal information"
       daily_price: "Daily price"
+      fuel: "Fuel"
+      status: "Status"
   activerecord:
     attributes:
+      legal_document:
+        document_type_list:
+          circulation_permit: Circulation permit
+          obligatory_insurance: Obligatory insurance
+          technical_review: Technical review
+          vehicle_register: Vehicle Register
+          identity: Identity
+        status_list:
+          pending: Pending
+          effective: Effective
+          rejected: Rejected
+          expired: Expired
+        document_type: Document Type
+        attachments: Attachments
+        status: Status
+        due_date: Due date
+        statuses:
+          pending: Pending
+          effective: Effective
+          rejected: Rejected
+          expired: Expired
       vehicle:
+        engine_type_list:
+          gasoline: Gasoline
+          diesel: Diesel
+        body_type_list:
+          citycar: City car
+          sedan: Sedan
+        transmission_list:
+          manual: Manual
+          automatic: Automatic
+        steering_list:
+          mechanical: Mechanical
+          power: Power
+          electric: Electric
+          hydraulic: Hidraulic
         brand_id: Brand
         vehicle_model_id: Model
         vehicle_model: Brand and model
@@ -77,3 +128,36 @@ en:
         comment: Comment
         profile_images: Your vehicle images
         images: images
+      user:
+        first_name: "First name"
+        last_name: "Last name"
+        second_last_name: "Second last name"
+        birthdate: "Birthdate"
+        gender: "Gender"
+        gender_list:
+          male: Male
+          female: Female
+        phone_number: "Phone number"
+        confirmation_sent_at: "Confirmation sent at"
+        confirmation_token: "Confirmation token"
+        confirmed_at: "Confirmed at"
+        created_at: "Created at"
+        current_password: "Current password"
+        current_sign_in_at: "Current sign in at"
+        current_sign_in_ip: "Current sign in ip"
+        email: "Email"
+        encrypted_password: "Encrypted password"
+        failed_attempts: "Failed attempts"
+        last_sign_in_at: "Last sign in at"
+        last_sign_in_ip: "Last sign in ip"
+        locked_at: "Locked at"
+        password: "Contraseña"
+        password_confirmation: "Password confirmation"
+        remember_created_at: "Remember created at"
+        remember_me: "Remember me"
+        reset_password_sent_at: "Reset password sent at"
+        reset_password_token: "Reset password token"
+        sign_in_count: "Sign in count"
+        unconfirmed_email: "Unconfirmed email"
+        unlock_token: "Unlock token"
+        updated_at: "Update at"

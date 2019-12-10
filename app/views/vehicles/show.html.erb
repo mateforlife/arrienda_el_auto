@@ -1,36 +1,9 @@
-<% if notice %>
-  <div class="alert alert-success" role="alert" id="notice">
-    <%= notice %>
-    
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-<% end %>
 
-<div class="container col-xl-7 col-lg-10 col-md-6 col-sm-10">
+
+<div class="container col-xl-8 col-lg-10 col-md-6 col-sm-10">
   <div class="card shadow">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"  data-interval="4000">
 
-      <!-- The slideshow -->
-      <div class="carousel-inner">
-        <% @vehicle.profile_images.each_with_index do |image, index| %>     
-          <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-            <%= image_tag image.file, class:"card-img-top" %>
-          </div>
-        <% end %>
-      </div>
-
-      <!-- Left and right controls -->
-      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
+    <%= render 'carousel', vehicle: @vehicle %>
 
     <div class="card-body">
       <div class='row'>
@@ -42,9 +15,9 @@
               <%= I18n.t('buttons.options') %>
             </button>
             <div class="dropdown-menu dropdown-menu-right">
-            <% if @vehicle.belongs_to_current_user?(current_user) %>
+            <% if @vehicle.belongs_to_current_user?(current_user) || current_user.admin? %>
               <%= link_to I18n.t('buttons.edit'), edit_vehicle_path(@vehicle), class:"dropdown-item" %>
-              <%= link_to I18n.t('buttons.legal_documents'), new_vehicle_legal_document_path(@vehicle), class:"dropdown-item" %>
+              <%= link_to I18n.t('buttons.legal_documents'), vehicle_legal_documents_path(@vehicle), class:"dropdown-item" %>
               <div class="dropdown-divider"></div>
               <%= link_to I18n.t('buttons.back'), my_vehicles_path, class:"dropdown-item" %>
             <% else %> 
@@ -126,18 +99,14 @@
                   <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.license_plate')%>:</th>
                   <td><%= @vehicle.license_plate %></td>
                 </tr>
-              <tbody>
-            <table>
+              </tbody>
+            </table>
           </div>
         <%end%>
-        <div class="card-body text-right">
+        <div class="text-right">
           <%= link_to I18n.t('buttons.back'), vehicles_path %>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-

@@ -1,5 +1,9 @@
 es:
+  created_at: Creado el
   language: Idioma
+  user:
+    headers:
+      index: Usuarios
   buttons:
     show: Detalles
     edit: Editar
@@ -18,6 +22,7 @@ es:
       legal_document:
         new: Nuevo documento
         index: Estado de documentos legales
+        edit: Validación de documentos
       index:
         vehicles: "Vehículos"  
         my_vehicles: "Mis Vehículos"
@@ -29,6 +34,8 @@ es:
       details: "Detalles"
       legal_information: "Información legal"
       daily_price: "Tarifa diaria"
+      fuel: "Combustible"
+      status: "Estado"
   text:	
     password:	
       minimum: '6 caracteres mínimo'	
@@ -41,11 +48,36 @@ es:
     are_you_sure: 'Estás seguro?'     
   activerecord:
     attributes:
+      legal_document:
+        document_type_list:
+          circulation_permit: Permiso de circulación
+          obligatory_insurance: Seguro Obligatorio
+          technical_review: Revisión Técnica
+          vehicle_register: Padrón
+          identity: Cédula de identidad
+        status_list:
+          pending: Pendiente
+          effective: Vigente
+          rejected: Rechazado
+          expired: Vencido
+        document_type: Tipo de documento
+        attachments: Archivos
+        status: Estado
+        due_date: Fecha de vencimiento
+        statuses:
+          pending: pendiente
+          effective: Vigente
+          rejected: Rechazado
+          expired: Expirado
       user:
         first_name: Nombres
         last_name: Apellido
         second_last_name: Segundo Apellido
         birthdate: Fecha de nacimiento
+        gender: Sexo
+        gender_list:
+          male: "Masculino"
+          female: "Femenino"
         phone_number: Celular
         confirmation_sent_at: Confirmación enviada a
         confirmation_token: Código de confirmación
@@ -70,8 +102,21 @@ es:
         unconfirmed_email: Email no confirmado
         unlock_token: Código de desbloqueo
         updated_at: Actualizado en
-
       vehicle:
+        engine_type_list:
+          gasoline: Bencina
+          diesel: Petroleo
+        body_type_list:
+          citycar: City Car
+          sedan: Sedán
+        transmission_list:
+          manual: Manual
+          automatic: Automática
+        steering_list:
+          mechanical: Mecánica
+          power: Asistida
+          electric: Eléctrica
+          hydraulic: Hidráulica
         brand_id: Marca
         vehicle_model_id: Modelo
         vehicle_model: Marca y Modelo
