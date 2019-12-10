@@ -24,6 +24,7 @@
           </td>
           <% if current_user.admin? %>
             <td><%= link_to I18n.t('buttons.edit'), edit_legal_document_path(legal_document) %></td>
+            <td><%= link_to "Show", legal_documents_path(legal_document) %></td>
           <% end %>
         </tr>
       <% end %>

@@ -1,23 +1,28 @@
-<p>
-  <b>Document type:</b>
-  <%= @legal_document.document_type %>
-</p>
+<div class="card">
+  <h5 class="card-header">Documentos del Vehículo</h5>
+  <div class="card-body">
+    <table class="table table-hover">
+      <tr>
+        <th>Document type:</th>
+        <th>Files:</th>
+        <th>Due date:</th>
+        <th>Status:</th>
+      </tr>
 
-<p>
-  <b>Files:</b>
-  <% @legal_document.files&.each do |image| %>
-    <%= image_tag image %>
-  <% end %>
-</p>
+      <tr>
+        <td><%= @legal_document.document_type %></td>
+        <td>
+          <% @legal_document.files&.each do |image| %>
+            <%= image_tag image, size:"180x110" %>
+          <% end %>
+        </td>
+        <td><%= @legal_document.due_date %></td>
+        <td><%= @legal_document.status %></td>
+      </tr>
+    </table>
 
-<p>
-  <b>Due date:</b>
-  <%= @legal_document.due_date %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @legal_document.status %>
-</p>
-
-<%= link_to 'Back', legal_documents_path(@legal_document.resource) %>
+    <div class="text-right col-md-11">
+      <%= link_to 'Back', legal_documents_path(@legal_document.resource) %>
+    </div>
+  </div>
+</div>
