@@ -34,10 +34,9 @@ class LegalDocument < ApplicationRecord
   scope :from_current_user_vehicles, lambda { |current_user|
     joins(:vehicle).where(vehicles: { user_id: current_user.id })
   }
-
-  def from_current_user_vehicle?(current_user)
-    resource.user_id == current_user.id
-  end
+  scope :from_current_user, lambda { |current_user|
+    joins(:user).where(users: { id: current_user.id })
+  }
 
   def status_color
     STATUSES_TABLE_COLORS[status.to_sym]

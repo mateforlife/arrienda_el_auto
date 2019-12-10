@@ -11,8 +11,11 @@ class Ability
       can :manage, Vehicle, user_id: user.id
       can :read, Vehicle, visible: true
       can :create, LegalDocument
-      can :read, LegalDocument do |document|
-        document.from_current_user_vehicle?(user)
+      can :read, LegalDocument, LegalDocument.from_current_user_vehicles(user) do
+        true
+      end
+      can :read, LegalDocument, LegalDocument.from_current_user(user) do
+        true
       end
       can :manage, User, id: user.id
     end
