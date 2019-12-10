@@ -12,6 +12,7 @@ es:
     back: Regresar
     options: Opciones
     legal_documents: Documentación legal
+    validate: Validar
   vehicle:
     publish: Publicar
     leasing: Arrendar

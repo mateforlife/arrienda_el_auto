@@ -14,6 +14,15 @@ module LegalDocumentsHelper
     end
   end
 
+  def legal_document_path(legal_document)
+    resource = legal_document.resource
+    if resource.class == Vehicle
+      vehicle_legal_document_path(resource, legal_document)
+    elsif resource.class == User
+      user_legal_document_path(resource, legal_document)
+    end
+  end
+
   def new_legal_document_path(params)
     if params[:vehicle_id]
       new_vehicle_legal_document_path(params[:vehicle_id])
