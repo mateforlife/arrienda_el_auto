@@ -51,10 +51,6 @@ class Vehicle < ApplicationRecord
   scope :not_from_current_user, lambda { |current_user|
     where.not(user: current_user)
   }
-  scope :pending_document_validation, lambda {
-    joins(:legal_documents)
-      .where(legal_documents: { status: :pending }).distinct
-  }
 
   # ====================
   # = INSTANCE METHODS =

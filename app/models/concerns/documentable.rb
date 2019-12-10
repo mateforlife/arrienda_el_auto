@@ -6,6 +6,11 @@ module Documentable
 
   included do
     has_many :legal_documents, as: :resource, dependent: :destroy
+
+    scope :pending_document_validation, lambda {
+      joins(:legal_documents)
+        .where(legal_documents: { status: :pending }).distinct
+    }
   end
 
   def legal_documents_effective?

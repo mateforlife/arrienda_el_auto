@@ -1,18 +1,8 @@
 class ValidateLegalDocumentsController < ApplicationController
   include ValidateLegalDocumentsHelper
-  before_action :set_resource
-  before_action :set_path
 
   def index
-    @resources = @resource.pending_document_validation
-  end
-
-  private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_resource
-    return @resource = User if params[:resource] == 'users'
-
-    @resource = Vehicle
+    @vehicles = Vehicle.pending_document_validation
+    @users = User.pending_document_validation
   end
 end

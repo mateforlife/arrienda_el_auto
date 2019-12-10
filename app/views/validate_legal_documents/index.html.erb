@@ -1,2 +1,2 @@
-<%= link_to 'Usuarios', validate_legal_documents_path(resource: 'users') %>
-<%= link_to 'Vehiculos', validate_legal_documents_path(resource: 'vehicles') %>
+<%= render 'users', vehicles: @vehicles %>
+<%= render 'vehicles', users: @users %>
