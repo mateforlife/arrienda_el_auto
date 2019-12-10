@@ -19,6 +19,7 @@ es:
       legal_document:
         new: Nuevo documento
         index: Estado de documentos legales
+        edit: Validación de documentos
       index:
         vehicles: "Vehículos"  
         my_vehicles: "Mis Vehículos"

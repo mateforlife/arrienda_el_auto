@@ -14,6 +14,7 @@ class Ability
       can :read, LegalDocument do |document|
         document.from_current_user_vehicle?(user)
       end
+      can :manage, User, id: user.id
     end
   end
 end

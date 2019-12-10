@@ -7,9 +7,6 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/brands">Marcas</a>
-      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= I18n.t('vehicle.headers.index.vehicles') %>
@@ -21,10 +18,11 @@
           <%= link_to I18n.t('vehicle.headers.index.my_vehicles'), my_vehicles_path, class:"dropdown-item" %>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Dashboard</a>
-      </li>
 
+      <!-- admin menu -->
+      <%= render 'nav/admin_dropdown' if current_user&.admin? %>
+      <!--  -->
+      <%= render 'nav/user_dropdown' if user_signed_in? %>
       <!-- language -->
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

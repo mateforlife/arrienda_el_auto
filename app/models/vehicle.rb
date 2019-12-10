@@ -2,11 +2,11 @@
 
 # Vehicle
 class Vehicle < ApplicationRecord
+  include Documentable
   belongs_to :vehicle_model
   belongs_to :user
   belongs_to :fee, required: false
   has_many :profile_images, as: :resource, dependent: :destroy
-  has_many :legal_documents, as: :resource, dependent: :destroy
   accepts_nested_attributes_for :profile_images
   attr_accessor :images
 
@@ -56,17 +56,6 @@ class Vehicle < ApplicationRecord
   # = INSTANCE METHODS =
   # ====================
 
-  def remaining_documents
-    all_documents = LegalDocument.document_types.deep_dup
-    current_documents = legal_documents.not_rejected&.pluck(:document_type)
-    documents_difference = (all_documents.keys - REQUIRED_DOCUMENTS)
-    documents_difference.concat(current_documents)
-    documents_difference.each do |document|
-      all_documents.except!(document)
-    end
-    all_documents
-  end
-
   def legal_status_badge
     if legal_documents_effective?
       text = I18n.t('vehicle.legal_status.effective')
@@ -76,12 +65,6 @@ class Vehicle < ApplicationRecord
       badge_color = 'danger'
     end
     { text: text, badge_color: badge_color }
-  end
-
-  def legal_documents_effective?
-    return false if legal_documents.empty?
-
-    legal_documents.active&.pluck(:document_type)&.sort == REQUIRED_DOCUMENTS
   end
 
   def update_images
