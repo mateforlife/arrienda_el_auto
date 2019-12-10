@@ -6,12 +6,11 @@ $danger: rgb(179, 0, 0);
 
 body {
   padding-top: 70px;
-  padding-right: 5px;
-  padding-left: 5px;
 }
- nav {
-  background-color: rgb(0, 102, 153);
- }
+
+nav {
+background-color: rgb(0, 102, 153);
+}
 
 .images-show {
   padding-left: 15px;
@@ -40,7 +39,7 @@ section {
     padding: 40px 0;
     margin-top: 50px;
     width: 100% !important;
-    box-shadow: 0 100vh 0 100vh #006699;
+    
     padding-bottom: 10px 0;
 }
 
@@ -111,5 +110,9 @@ section .section-title {
     border-left: transparent;
     padding-bottom: 0px;
     margin-bottom: 10px;
+  }
 }
+
+.main-layout {
+  min-height: 300px !important;
 }

@@ -12,8 +12,11 @@
     <div class="container-fuid">
       <%= render 'nav/main_navbar'  %>
       <%= render 'shared/flash_messages'  %>
-      <%= yield %>
-      <%= render 'layouts/footer'%>
-    </div>  
-  </body>  
+      <div class="main-layout">
+        <%= yield %>
+      </div>    
+    </div>
+  </body>
+  <%= render 'layouts/footer'%>
+    
 </html>
