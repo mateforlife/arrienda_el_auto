@@ -43,9 +43,7 @@ class LegalDocument < ApplicationRecord
   def due_date_is_future
     return if due_date.blank?
 
-    if due_date <= Date.today
-      errors.add(:due_date, 'debe ser futura')
-    end  
+    errors.add(:due_date, 'debe ser futura') if due_date <= Date.today
   end
 
   def status_color
