@@ -1,38 +1,40 @@
-<div class="container-fluid col-xl-5 col-lg-10 col-md-9 col-sm-10">
+<div class="container col-xl-6 col-lg-10 col-md-9 col-sm-10">
   <div class="card">
     <div class="card-header">
-      <h2><%= I18n.t('vehicle.headers.legal_document.index') %> (restantes: <%= @remaining_documents %>)</h2>
+      <h2><%= I18n.t('vehicle.headers.legal_document.index') %> (<%=I18n.t('text.remaining')%>: <%= @remaining_documents %>)</h2>
     </div>
     <div class="card-body text-center"> 
-      <table class="table table-sm table-responsive table-hover">
-        <thead>
-          <tr>
-            <th> <%= I18n.t('created_at') %> </th>
-            <th> <%= I18n.t('activerecord.attributes.legal_document.document_type') %> </th>
-            <th> <%= I18n.t('activerecord.attributes.legal_document.due_date') %> </th>
-            <th> <%= I18n.t('activerecord.attributes.legal_document.status') %> </th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @legal_documents.each do |legal_document| %>
+      <div class="table-responsive">
+        <table class="table table-sm table-hover">
+          <thead>
             <tr>
-              <td><%= legal_document.created_at.strftime('%d-%m-%Y') %></td>
-              <td><%= LegalDocument.translated_document_type(legal_document.document_type) %></td>
-              <td><%= legal_document.due_date %></td>
-              <td>
-                <span class="badge badge-pill badge-<%= legal_document.status_color %>">
-                  <%= LegalDocument.translated_status(legal_document.status) %>
-                </span>
-              </td>
-              <% if current_user.admin? %>
-                <td><%= link_to I18n.t('buttons.show'), legal_document_path(legal_document) %></td>
-              <% end %>
+              <th> <%= I18n.t('created_at') %> </th>
+              <th> <%= I18n.t('activerecord.attributes.legal_document.document_type') %> </th>
+              <th> <%= I18n.t('activerecord.attributes.legal_document.due_date') %> </th>
+              <th> <%= I18n.t('activerecord.attributes.legal_document.status') %> </th>
             </tr>
-          <% end %>
-        </tbody>  
-      </table>
+          </thead>
+          <tbody>
+            <% @legal_documents.each do |legal_document| %>
+              <tr>
+                <td><%= legal_document.created_at.strftime('%d-%m-%Y') %></td>
+                <td><%= LegalDocument.translated_document_type(legal_document.document_type) %></td>
+                <td><%= legal_document.due_date %></td>
+                <td>
+                  <span class="badge badge-pill badge-<%= legal_document.status_color %>">
+                    <%= LegalDocument.translated_status(legal_document.status) %>
+                  </span>
+                </td>
+                <% if current_user.admin? %>
+                  <td><%= link_to I18n.t('buttons.show'), legal_document_path(legal_document) %></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>  
+        </table>
+      </div>
 
-      <%= link_to 'New Legal document', new_legal_document_path(params) %>
+      <%= link_to I18n.t('text.legal_documents.new_legal_document'), new_legal_document_path(params), class: "btn btn-outline-primary btn-lg btn-block" %>
 
     </div>
   </div>
