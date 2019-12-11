@@ -34,9 +34,17 @@ en:
   hello: "Hello world"
   language: Language
   user:
+    first_name: First name
+    last_name: Last name
+    second_last_name: Second last name
+    birthdate: Birthdate
+    gender: Gender
+    rut: Rut
     headers:
       index: Users
       pending_users: Pending users
+      legal_document:
+        user_data: User data
   buttons:
     show: Show
     edit: Edit
@@ -98,6 +106,7 @@ en:
           technical_review: Technical review
           vehicle_register: Vehicle Register
           identity: Identity
+          criminal_record: Criminal record
         status_list:
           pending: Pending
           effective: Effective

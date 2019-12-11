@@ -2,9 +2,17 @@ es:
   created_at: Creado el
   language: Idioma
   user:
+    first_name: Nombre
+    last_name: Primer apellido
+    second_last_name: Segundo apellido
+    birthdate: Fecha de nacimiento
+    gender: Sexo
+    rut: Rut
     headers:
       index: Usuarios
       pending_users: Usuarios pendientes
+      legal_document:
+        user_data: Datos del usuario
   buttons:
     show: Detalles
     edit: Editar
