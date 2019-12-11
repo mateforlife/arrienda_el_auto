@@ -29,6 +29,7 @@ class LegalDocument < ApplicationRecord
   validates :attachments, presence: true, on: :create
   validates :document_type, presence: true, on: :create
   validates :due_date, presence: true, on: :update
+  validate :due_date_is_future
 
   scope :active, -> { where(status: :effective) }
   scope :not_rejected, -> { where.not(status: 'rejected') }
@@ -38,6 +39,12 @@ class LegalDocument < ApplicationRecord
   scope :from_current_user, lambda { |current_user|
     joins(:user).where(users: { id: current_user.id })
   }
+
+  def due_date_is_future
+    return if due_date.blank?
+
+    errors.add(:due_date, 'debe ser futura') if due_date <= Date.today
+  end
 
   def status_color
     STATUSES_TABLE_COLORS[status.to_sym]
