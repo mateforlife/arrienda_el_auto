@@ -1,7 +1,7 @@
 class ApplicationMailer < ActionMailer::Base
   require 'sendgrid-ruby'
   include SendGrid
-  default from: 'webmaster@easycar.cl'
+  default from: 'webmaster@easy-car.cl'
   layout 'mailer'
 
   def test_mail
@@ -10,7 +10,7 @@ class ApplicationMailer < ActionMailer::Base
   end
 
   def sendgrid_mail
-    from = SendGrid::Email.new(email: 'webmaster@easycar.cl')
+    from = SendGrid::Email.new(email: 'webmaster@easy-car.cl')
     to = SendGrid::Email.new(email: 'rodriguez.ruiz.alex@gmail.com')
     subject = 'Sending with Twilio SendGrid is Fun'
     content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
