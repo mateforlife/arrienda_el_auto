@@ -43,7 +43,6 @@ section {
     margin-top: 50px;
     width: 100% !important;
     box-shadow: 0 100vh 0 100vh #006699;
-    
     padding-bottom: 10px 0;
 }
 
@@ -123,4 +122,11 @@ section .section-title {
 
 .main-layout {
   min-height: 30em !important;
+}
+
+.table-align {
+  th,
+  td{
+    vertical-align: inherit !important;
+  } 
 }
