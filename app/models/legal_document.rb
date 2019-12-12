@@ -40,14 +40,21 @@ class LegalDocument < ApplicationRecord
     joins(:user).where(users: { id: current_user.id })
   }
 
+  def status_color
+    STATUSES_TABLE_COLORS[status.to_sym]
+  end
+
+  def self.translated_document(key)
+    I18n.t(key,
+           scope: 'activerecord.attributes.legal_document.document_type_list')
+  end
+
+  private
+
   def due_date_is_future
     return if due_date.blank?
 
     errors.add(:due_date, 'debe ser futura') if due_date <= Date.today
-  end
-
-  def status_color
-    STATUSES_TABLE_COLORS[status.to_sym]
   end
 
   def save_with_images
@@ -65,10 +72,5 @@ class LegalDocument < ApplicationRecord
       end
       true
     end
-  end
-
-  def self.translated_document(key)
-    I18n.t(key,
-           scope: 'activerecord.attributes.legal_document.document_type_list')
   end
 end

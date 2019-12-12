@@ -12,7 +12,6 @@ class Vehicle < ApplicationRecord
 
   REQUIRED_DOCUMENTS = %w[circulation_permit obligatory_insurance
                           technical_review vehicle_register].freeze
-
   # ====================
   # =     ENUMS        =
   # ====================
@@ -55,7 +54,6 @@ class Vehicle < ApplicationRecord
   # ====================
   # = INSTANCE METHODS =
   # ====================
-
   def legal_status_badge
     if legal_documents_effective?
       text = I18n.t('vehicle.legal_status.effective')
@@ -67,25 +65,8 @@ class Vehicle < ApplicationRecord
     { text: text, badge_color: badge_color }
   end
 
-  def update_images
-    images&.each do |image|
-      if images_full?
-        errors.add(:images, :limit_exceded)
-        raise ActiveRecord::Rollback
-      end
-      profile_images.create!(file: image)
-    rescue ActiveRecord::RecordInvalid
-      errors.add(:images, :record_invalid)
-      raise ActiveRecord::Rollback
-    end
-  end
-
   def images_full?
     profile_images.size >= ProfileImage::ATTACHMENTS_LIMIT
-  end
-
-  def upcase_license_plate
-    self.license_plate = license_plate.upcase
   end
 
   def belongs_to_current_user?(current_user)
@@ -98,27 +79,6 @@ class Vehicle < ApplicationRecord
 
   def brand_model_and_year
     "#{vehicle_model.brand.name} #{vehicle_model.name} - #{year}"
-  end
-
-  def save_with_images
-    ActiveRecord::Base.transaction do
-      return false unless save
-
-      images.each do |image|
-        profile_images.create!(file: image)
-      rescue ActiveRecord::RecordInvalid => e
-        errors.add(:images, e)
-        raise ActiveRecord::Rollback
-      end
-      true
-    end
-  end
-
-  def associate_fee
-    fee = Fee.find_by(body_type: body_type, engine_type: engine_type)
-    return errors.add(:fee, 'does not exist for your vehicle') if fee.nil?
-
-    self.fee = fee
   end
 
   # ====================
@@ -135,5 +95,48 @@ class Vehicle < ApplicationRecord
               .or(base_query.where('lower(brands.name) LIKE ?', "%#{params}"))
               .or(base_query.where('lower(brands.name) LIKE ?', "#{params}%"))
               .or(base_query.where('lower(brands.name) LIKE ?', "%#{params}%"))
+  end
+
+  # ====================
+  # =     PRIVATE      =
+  # ====================
+  private
+
+  def upcase_license_plate
+    self.license_plate = license_plate.upcase
+  end
+
+  def save_with_images
+    ActiveRecord::Base.transaction do
+      return false unless save
+
+      images.each do |image|
+        profile_images.create!(file: image)
+      rescue ActiveRecord::RecordInvalid => e
+        errors.add(:images, e)
+        raise ActiveRecord::Rollback
+      end
+      true
+    end
+  end
+
+  def update_images
+    images&.each do |image|
+      if images_full?
+        errors.add(:images, :limit_exceded)
+        raise ActiveRecord::Rollback
+      end
+      profile_images.create!(file: image)
+    rescue ActiveRecord::RecordInvalid
+      errors.add(:images, :record_invalid)
+      raise ActiveRecord::Rollback
+    end
+  end
+
+  def associate_fee
+    fee = Fee.find_by(body_type: body_type, engine_type: engine_type)
+    return errors.add(:fee, 'does not exist for your vehicle') if fee.nil?
+
+    self.fee = fee
   end
 end
