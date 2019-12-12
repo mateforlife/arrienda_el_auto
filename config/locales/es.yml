@@ -8,9 +8,13 @@ es:
     birthdate: Fecha de nacimiento
     gender: Sexo
     rut: Rut
+    email: Correo eléctronico
+    name: Nombre
     headers:
       index: Usuarios
       pending_users: Usuarios pendientes
+      my_profile: Mi perfil
+      personal_information: Información personal
       legal_document:
         user_data: Datos del usuario
         user_documents: Documentos del usuario
