@@ -1,0 +1,32 @@
+<tr>
+  <th><%= I18n.t('vehicle.brand')%>:</th>
+  <td><%= @resource.vehicle_model.brand.name%></td>
+</tr>
+<tr>
+  <th><%= I18n.t('vehicle.model')%>:</th>
+  <td><%= @resource.vehicle_model.name%></td>
+</tr>
+<tr>
+  <th style="width:20%;"><%= I18n.t('activerecord.attributes.vehicle.body_type')%>:</th>
+  <td><%= @resource.body_type%></td>
+</tr>
+<tr>
+  <th><%= I18n.t('activerecord.attributes.vehicle.license_plate')%>:</th>
+  <td><%= @resource.license_plate%></td>
+</tr>          
+<tr>
+  <th><%= I18n.t('activerecord.attributes.vehicle.engine_type')%></th>
+  <td><%= @resource.engine_type%></td>
+</tr>
+<tr>
+  <th><%= I18n.t('activerecord.attributes.vehicle.year')%>:</th>
+  <td><%= @resource.year%></td>
+</tr>
+<tr>
+  <th><%= I18n.t('activerecord.attributes.vehicle.chasis_number')%>:</th>
+  <td><%= @resource.chasis_number%></td>
+</tr>
+<tr>
+  <th><%= I18n.t('activerecord.attributes.vehicle.engine_number')%>:</th>
+  <td><%= @resource.engine_number%></td>
+</tr>
