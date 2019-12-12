@@ -39,8 +39,12 @@ en:
     second_last_name: Second last name
     birthdate: Birthdate
     gender: Gender
+    email: Email
+    name: Name
     rut: Rut
     headers:
+      my_profile: My profile
+      personal_information: Personal information
       index: Users
       pending_users: Pending users
       legal_document:
