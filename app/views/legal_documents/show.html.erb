@@ -1,24 +1,49 @@
-<%= link_to I18n.t('buttons.validate'), edit_legal_document_path(@legal_document) %>
-<p>
-  <b>Document type:</b>
-  <%= @legal_document.document_type %>
-</p>
+<div class="container col-lg-9 col-md-6 col-sm-10">
+  <div class="card">
+    <h5 class="card-header"><%= I18n.t("#{@resource.class.to_s.downcase}.headers.legal_document.#{@resource.class.to_s.downcase}_documents")%></h5>
+    <div class="card-body">
+      <div class="table-responsive ">
+        <table class="table table-hover table-sm">
+          <tr>
+            <th style="width:20%"><%= I18n.t('activerecord.attributes.legal_document.document_type') %>:</th>
+            <td>
+              <%= LegalDocument.translated_document_type(@legal_document.document_type) %> 
+              (<span class="badge badge-pill badge-<%= @legal_document.status_color %>">
+                <%= LegalDocument.translated_status(@legal_document.status) %>
+              </span>)
+            </td> 
+          </tr>
+          <tr>
+            <th><%= I18n.t('activerecord.attributes.legal_document.due_date') %>:</th>
+            <td><%= @legal_document&.due_date&.strftime('%d-%m-%Y') %></td>
+          </tr>
+          <tr>
+            <th><%= I18n.t('activerecord.attributes.legal_document.document_file')%>:</th>
+            <td>
+              <% @legal_document.files&.each do |image| %>
+                <%= image_tag image, size:"740x460", class:"img-fluid" %>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <b>Files:</b>
-  <% @legal_document.files&.each do |image| %>
-    <%= image_tag image %>
-  <% end %>
-</p>
-
-<p>
-  <b>Due date:</b>
-  <%= @legal_document.due_date %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @legal_document.status %>
-</p>
-
+  <div class="card">
+    <h5 class="card-header"><%= I18n.t("#{@resource.class.to_s.downcase}.headers.legal_document.#{@resource.class.to_s.downcase}_data")%></h5>
+    <div class="card-body">
+      <h3 class="card-title"></h3>
+      <div class="table-responsive">
+        <table class="table table-hover table-sm ">
+          <%= render "#{@resource.class.to_s.downcase}", resource: @resource %>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="text-right col-md-12">
+    <%= link_to I18n.t('buttons.validate'), edit_legal_document_path(@legal_document), class: "btn btn-outline-primary btn-lg btn-block" %><br>
+    <%= link_to I18n.t('text.back'), legal_documents_path(@legal_document.resource) %>
+  </div>
+</div>
 
