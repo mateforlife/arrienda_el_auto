@@ -13,6 +13,7 @@ es:
       pending_users: Usuarios pendientes
       legal_document:
         user_data: Datos del usuario
+        user_documents: Documentos del usuario
   buttons:
     show: Detalles
     edit: Editar
@@ -35,7 +36,7 @@ es:
         new: Nuevo documento
         index: Estado de documentos legales
         edit: Validación de documentos
-        vehicle_documents: Documentos del vehiculo
+        vehicle_documents: Documentos del vehículo
         vehicle_data: Datos del vehículo
       index:
         vehicles: "Vehículos"  

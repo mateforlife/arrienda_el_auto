@@ -12,13 +12,14 @@
 </tr>
 <tr>
   <th><%= I18n.t('user.birthdate')%>:</th>
-  <td><%= @resource.birthdate%></td>
+  <td><%= @resource.birthdate.strftime('%d-%m-%Y')%></td>
 </tr>
 <tr>
   <th><%= I18n.t('user.gender')%>:</th>
-  <td><%= @resource.gender%></td>
+  <td><%= User.translated_gender(@resource.gender) %></td>
 </tr>
 <tr>
   <th><%= I18n.t('user.rut')%>:</th>
   <td><%= @resource.rut%></td>
 </tr>
+
