@@ -1,19 +1,36 @@
-<div class="card">
-  <h5 class="card-header"><%=I18n.t('user.headers.pending_users')%> (<%= @users.count %>):</h5>
-  <div class="card-body">
-    <table class="table table-hover"> 
-      <tr>
-        <th><%= I18n.t('text.user')%></th>
-        <th><%= I18n.t('text.pending_documents')%></th>
-      </tr>
-      <% @users.each do |user| %>     
-        <tr>
-          <td><%= link_to user.first_name, new_user_legal_document_path(user), class:"card-link-hover list-group-item-action" %></td>
-          <td>
-          <span class="badge badge-warning offset-md-1"><%=user.legal_documents.count%></span>
-          </td>
-        </tr>
-      <% end%>  
-    </table>
+<div class="container col-lg-10 col-md-6 col-sm-10">
+  <div class="card">
+    <h5 class="card-header"><%=I18n.t('user.headers.index')%> (<%= @users.count %>):</h5>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover "> 
+          <thead>
+            <tr>            
+              <th><%= I18n.t('user.first_name')%>:</th>
+              <th><%= I18n.t('user.last_name')%>:</th>
+              <th><%= I18n.t('user.second_last_name')%>:</th>
+              <th><%= I18n.t('user.gender')%>:</th>
+              <th><%= I18n.t('user.email')%>:</th>            
+              <th><%= I18n.t('user.phone_number')%>:</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>  
+              <tr>
+                <td>
+                  <%= link_to user.first_name, new_user_legal_document_path(user), class:"card-link-hover list-group-item-action" %>
+                </td>
+                <td><%= user.last_name%></td>
+                <td><%= user.second_last_name%></td>
+                <td><%= User.translated_gender(user.gender) %></td>
+                <td><%= user.email%></td>
+                <td><%= user.phone_number%></td>
+                <td><%= link_to "Show", new_user_legal_document_path(user)%></td>
+              </tr>
+            <% end%>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

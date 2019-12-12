@@ -39,6 +39,7 @@ en:
     second_last_name: Second last name
     birthdate: Birthdate
     gender: Gender
+    phone_number: Phone number
     email: Email
     name: Name
     rut: Rut
