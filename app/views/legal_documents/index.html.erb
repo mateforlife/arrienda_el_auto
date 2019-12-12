@@ -19,7 +19,7 @@
               <tr>
                 <td><%= legal_document.created_at.strftime('%d-%m-%Y') %></td>
                 <td><%= LegalDocument.translated_document_type(legal_document.document_type) %></td>
-                <td><%= legal_document.due_date %></td>
+                <td><%= legal_document&.due_date&.strftime('%d-%m-%Y') %></td>
                 <td>
                   <span class="badge badge-pill badge-<%= legal_document.status_color %>">
                     <%= LegalDocument.translated_status(legal_document.status) %>
