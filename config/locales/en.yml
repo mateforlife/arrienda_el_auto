@@ -45,6 +45,7 @@ en:
       pending_users: Pending users
       legal_document:
         user_data: User data
+        user_documents: User documents
   buttons:
     show: Show
     edit: Edit
