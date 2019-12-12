@@ -30,8 +30,21 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  created_at: Created_at
   hello: "Hello world"
   language: Language
+  user:
+    first_name: First name
+    last_name: Last name
+    second_last_name: Second last name
+    birthdate: Birthdate
+    gender: Gender
+    rut: Rut
+    headers:
+      index: Users
+      pending_users: Pending users
+      legal_document:
+        user_data: User data
   buttons:
     show: Show
     edit: Edit
@@ -40,7 +53,12 @@ en:
     back: Go back
     options: Options
     legal_documents: Legal documents
+    validate: Validate
   text:
+    user: User
+    pending_documents: Pending documents
+    legal_documents:
+      new_legal_document: New legal document
     password:
       minimum: '6 characteres minimum'
       confirmation: 'Confirm your password'
@@ -50,13 +68,22 @@ en:
     back: 'Go back'
     update: 'Update'
     are_you_sure: 'Are you sure?'
+    remaining: Remaining
   vehicle:
+    brand: Brand
+    model: Model
     legal_status:
         effective: Al día
         pending: Pending (legal doc.)
     publish: Publish
     leasing: Leasing
     headers:
+      legal_document:
+        new: New document
+        index: Legal document status
+        edit: Document validation
+        vehicle_documents: Vehicle Documents
+        vehicle_data: Vehicle data
       index:
         vehicles: "Vehicles"  
         my_vehicles: "My Vehicles"  
@@ -79,6 +106,7 @@ en:
           technical_review: Technical review
           vehicle_register: Vehicle Register
           identity: Identity
+          criminal_record: Criminal record
         status_list:
           pending: Pending
           effective: Effective
@@ -93,6 +121,7 @@ en:
           effective: Effective
           rejected: Rejected
           expired: Expired
+        document_file: Document file
       vehicle:
         engine_type_list:
           gasoline: Gasoline

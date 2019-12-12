@@ -2,8 +2,17 @@ es:
   created_at: Creado el
   language: Idioma
   user:
+    first_name: Nombre
+    last_name: Primer apellido
+    second_last_name: Segundo apellido
+    birthdate: Fecha de nacimiento
+    gender: Sexo
+    rut: Rut
     headers:
       index: Usuarios
+      pending_users: Usuarios pendientes
+      legal_document:
+        user_data: Datos del usuario
   buttons:
     show: Detalles
     edit: Editar
@@ -14,6 +23,8 @@ es:
     legal_documents: Documentación legal
     validate: Validar
   vehicle:
+    brand: Marca
+    model: Modelo
     publish: Publicar
     leasing: Arrendar
     legal_status:
@@ -24,6 +35,8 @@ es:
         new: Nuevo documento
         index: Estado de documentos legales
         edit: Validación de documentos
+        vehicle_documents: Documentos del vehiculo
+        vehicle_data: Datos del vehículo
       index:
         vehicles: "Vehículos"  
         my_vehicles: "Mis Vehículos"
@@ -37,7 +50,11 @@ es:
       daily_price: "Tarifa diaria"
       fuel: "Combustible"
       status: "Estado"
-  text:	
+  text:
+    user: Usuario
+    pending_documents: Documentos Pendientes
+    legal_documents:
+      new_legal_document: Nuevo documento legal
     password:	
       minimum: '6 caracteres mínimo'	
       confirmation: 'Confirma tu contraseña'	
@@ -46,7 +63,8 @@ es:
     current_password: 'necesitamos su contraseña actual para confirmar sus cambios'	
     back: 'Atrás'	
     update: 'Actualizar'	
-    are_you_sure: 'Estás seguro?'     
+    are_you_sure: 'Estás seguro?'  
+    remaining: Restantes   
   activerecord:
     attributes:
       legal_document:
@@ -73,6 +91,7 @@ es:
           effective: Vigente
           rejected: Rechazado
           expired: Expirado
+        document_file: Imagen del documento
       user:
         first_name: Nombres
         last_name: Apellido

@@ -25,7 +25,7 @@ class LegalDocument < ApplicationRecord
     expired: :danger
   }.freeze
 
-  validates_length_of :attachments, is: ATTACHMENTS_LIMIT, on: :create
+  validates_length_of :attachments, in: 1..ATTACHMENTS_LIMIT, on: :create
   validates :attachments, presence: true, on: :create
   validates :document_type, presence: true, on: :create
   validates :due_date, presence: true, on: :update
