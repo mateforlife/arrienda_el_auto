@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
+  before_action :clear_notices
 
   protected
 
@@ -12,6 +13,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def clear_notices
+    flash = nil
+  end
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
