@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_10_024701) do
+ActiveRecord::Schema.define(version: 2019_12_12_232553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,12 +130,12 @@ ActiveRecord::Schema.define(version: 2019_12_10_024701) do
     t.integer "drive"
     t.integer "steering"
     t.integer "body_type"
-    t.boolean "visible"
     t.bigint "fee_id", null: false
     t.text "comment"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", default: 0
     t.index ["fee_id"], name: "index_vehicles_on_fee_id"
     t.index ["user_id"], name: "index_vehicles_on_user_id"
     t.index ["vehicle_model_id"], name: "index_vehicles_on_vehicle_model_id"

@@ -20,6 +20,7 @@ class Vehicle < ApplicationRecord
   enum transmission: %i[manual automatic]
   enum steering: %i[mechanical power electric hydraulic]
   enum drive: %w[4x2 4x4]
+  enum status: %i[created review ready published rented]
   translate_enum :body_type
   translate_enum :engine_type
   translate_enum :transmission
@@ -46,7 +47,7 @@ class Vehicle < ApplicationRecord
   # ====================
   # =      SCOPES      =
   # ====================
-  scope :available, -> { where(visible: true) }
+  scope :published, -> { where(status: 'published') }
   scope :not_from_current_user, lambda { |current_user|
     where.not(user: current_user)
   }
@@ -54,15 +55,29 @@ class Vehicle < ApplicationRecord
   # ====================
   # = INSTANCE METHODS =
   # ====================
-  def legal_status_badge
-    if legal_documents_effective?
-      text = I18n.t('vehicle.legal_status.effective')
-      badge_color = 'success'
-    else
-      text = I18n.t('vehicle.legal_status.pending')
-      badge_color = 'danger'
+  def save_with_images
+    ActiveRecord::Base.transaction do
+      return false unless save
+
+      images.each do |image|
+        profile_images.create!(file: image)
+      rescue ActiveRecord::RecordInvalid => e
+        errors.add(:images, e)
+        raise ActiveRecord::Rollback
+      end
+      true
     end
-    { text: text, badge_color: badge_color }
+  end
+
+  def set_status!
+    return ready! if legal_documents_effective? && review?
+
+    return review! if created?
+  end
+
+  def legal_status_badge
+    badge_color = legal_documents_effective? ? 'success' : 'danger'
+    { text: status, badge_color: badge_color }
   end
 
   def images_full?
@@ -104,20 +119,6 @@ class Vehicle < ApplicationRecord
 
   def upcase_license_plate
     self.license_plate = license_plate.upcase
-  end
-
-  def save_with_images
-    ActiveRecord::Base.transaction do
-      return false unless save
-
-      images.each do |image|
-        profile_images.create!(file: image)
-      rescue ActiveRecord::RecordInvalid => e
-        errors.add(:images, e)
-        raise ActiveRecord::Rollback
-      end
-      true
-    end
   end
 
   def update_images

@@ -14,8 +14,8 @@ module Notificable
 
   def notify_documents_effective
     resource_name = resource.class.to_s
-    to = resource&.email || resource.user.email
-
+    to = resource.try(:email) || resource.user.email
+    debugger
     LegalDocumentsMailer.documents_effective(resource_name, to).deliver_later
   end
 end
