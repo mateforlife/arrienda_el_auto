@@ -61,6 +61,7 @@ en:
     legal_documents: Legal documents
     validate: Validate
   text:
+    actions: Actions
     user: User
     pending_documents: Pending documents
     legal_documents:

@@ -1,4 +1,4 @@
-<div class="container col-lg-10 col-md-6 col-sm-10">
+<div class="container col-lg-12 col-md-6 col-sm-10">
   <div class="card">
     <h5 class="card-header"><%=I18n.t('user.headers.index')%> (<%= @users.count %>):</h5>
     <div class="card-body">
@@ -6,22 +6,17 @@
         <table class="table table-hover "> 
           <thead>
             <tr>            
-              <th><%= I18n.t('user.first_name')%>:</th>
-              <th><%= I18n.t('user.last_name')%>:</th>
-              <th><%= I18n.t('user.second_last_name')%>:</th>
+              <th><%= I18n.t('user.name')%>:</th>
               <th><%= I18n.t('user.gender')%>:</th>
               <th><%= I18n.t('user.email')%>:</th>            
               <th><%= I18n.t('user.phone_number')%>:</th>
+              <th><%= I18n.t('text.actions')%></th>
             </tr>
           </thead>
           <tbody>
-            <% @users.each do |user| %>  
+            <% @users.each do |user| %>
               <tr>
-                <td>
-                  <%= link_to user.first_name, new_user_legal_document_path(user), class:"card-link-hover list-group-item-action" %>
-                </td>
-                <td><%= user.last_name%></td>
-                <td><%= user.second_last_name%></td>
+                <td><%= user.full_name%></td>
                 <td><%= User.translated_gender(user.gender) %></td>
                 <td><%= user.email%></td>
                 <td><%= user.phone_number%></td>
