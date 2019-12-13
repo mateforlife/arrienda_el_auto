@@ -7,6 +7,7 @@ es:
     second_last_name: Segundo apellido
     birthdate: Fecha de nacimiento
     gender: Sexo
+    phone_number: N° de Teléfono
     rut: Rut
     email: Correo eléctronico
     name: Nombre
@@ -56,6 +57,7 @@ es:
       fuel: "Combustible"
       status: "Estado"
   text:
+    actions: Acciones
     user: Usuario
     pending_documents: Documentos Pendientes
     legal_documents:
