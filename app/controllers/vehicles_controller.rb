@@ -100,6 +100,7 @@ class VehiclesController < ApplicationController
                                     :chasis_number, :transmission, :engine_type,
                                     :passenger_capacity, :air_conditioning,
                                     :airbags_quantity, :door_quantity,
-                                    :steering, :body_type, :comment, images: [])
+                                    :steering, :body_type, :comment, :status,
+                                    images: [])
   end
 end
