@@ -10,6 +10,7 @@
         <h3 class="card-title col-xl-9 col-sm-7 col-14"><%= @vehicle.brand_model_and_year %></h3>
       <!-- Example single danger button -->
         <div class='container col-xl-3 col-sm-4 col-14' style='text-align: end;'>
+          <%= render 'publish_form', vehicle: @vehicle if @vehicle.ready? && @vehicle.belongs_to_current_user?(current_user) %>
           <div class="btn-group">
             <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%= I18n.t('buttons.options') %>
@@ -44,12 +45,12 @@
                 <td><%= @vehicle.odometer %></td>
               </tr>          
               <tr>
-                <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.transmission')%>:</th>
-                <td><%= @vehicle.transmission %></td>
+                <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.transmission')%>:</th>                
+                <td><%= Vehicle.translated_transmission(@vehicle.transmission) %></td>
               </tr>
               <tr>
                 <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.engine_type')%>:</th>
-                <td><%= @vehicle.engine_type %></td>
+                <td><%= Vehicle.translated_engine_type(@vehicle.engine_type) %></td>
               </tr>
               <tr>
                 <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.passenger_capacity')%>:</th>
@@ -73,11 +74,11 @@
               </tr>
               <tr>
                 <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.steering')%>:</th>
-                <td><%= @vehicle.steering %></td>
+                <td><%= Vehicle.translated_steering(@vehicle.steering) %></td>
               </tr>
               <tr>
                 <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.body_type')%>:</th>
-                <td><%= @vehicle.body_type %></td>
+                <td><%= Vehicle.translated_body_type(@vehicle.body_type) %></td>
               </tr>
             </tbody>
           </table><br>

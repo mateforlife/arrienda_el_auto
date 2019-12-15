@@ -8,7 +8,7 @@ class VehiclesController < ApplicationController
   # GET /vehicles
   # GET /vehicles.json
   def index
-    @vehicles = Vehicle.available
+    @vehicles = Vehicle.published
                        .not_from_current_user(current_user)
                        .preload(:profile_images)
     render '_index'
@@ -100,7 +100,7 @@ class VehiclesController < ApplicationController
                                     :chasis_number, :transmission, :engine_type,
                                     :passenger_capacity, :air_conditioning,
                                     :airbags_quantity, :door_quantity,
-                                    :steering, :body_type, :visible, :comment,
+                                    :steering, :body_type, :comment, :status,
                                     images: [])
   end
 end

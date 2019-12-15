@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Ability
 class Ability
   include CanCan::Ability
 
@@ -9,7 +10,7 @@ class Ability
       can :manage, :all
     elsif user.persisted?
       can :manage, Vehicle, user_id: user.id
-      can :read, Vehicle, visible: true
+      can :read, Vehicle, status: :published
       can :create, LegalDocument
       can :read, LegalDocument, LegalDocument.from_current_user_vehicles(user) do
         true

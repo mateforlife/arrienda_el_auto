@@ -12,7 +12,6 @@ class Vehicle < ApplicationRecord
 
   REQUIRED_DOCUMENTS = %w[circulation_permit obligatory_insurance
                           technical_review vehicle_register].freeze
-
   # ====================
   # =     ENUMS        =
   # ====================
@@ -21,6 +20,7 @@ class Vehicle < ApplicationRecord
   enum transmission: %i[manual automatic]
   enum steering: %i[mechanical power electric hydraulic]
   enum drive: %w[4x2 4x4]
+  enum status: %i[created review ready published rented]
   translate_enum :body_type
   translate_enum :engine_type
   translate_enum :transmission
@@ -47,7 +47,7 @@ class Vehicle < ApplicationRecord
   # ====================
   # =      SCOPES      =
   # ====================
-  scope :available, -> { where(visible: true) }
+  scope :published, -> { where(status: 'published') }
   scope :not_from_current_user, lambda { |current_user|
     where.not(user: current_user)
   }
@@ -55,51 +55,6 @@ class Vehicle < ApplicationRecord
   # ====================
   # = INSTANCE METHODS =
   # ====================
-
-  def legal_status_badge
-    if legal_documents_effective?
-      text = I18n.t('vehicle.legal_status.effective')
-      badge_color = 'success'
-    else
-      text = I18n.t('vehicle.legal_status.pending')
-      badge_color = 'danger'
-    end
-    { text: text, badge_color: badge_color }
-  end
-
-  def update_images
-    images&.each do |image|
-      if images_full?
-        errors.add(:images, :limit_exceded)
-        raise ActiveRecord::Rollback
-      end
-      profile_images.create!(file: image)
-    rescue ActiveRecord::RecordInvalid
-      errors.add(:images, :record_invalid)
-      raise ActiveRecord::Rollback
-    end
-  end
-
-  def images_full?
-    profile_images.size >= ProfileImage::ATTACHMENTS_LIMIT
-  end
-
-  def upcase_license_plate
-    self.license_plate = license_plate.upcase
-  end
-
-  def belongs_to_current_user?(current_user)
-    user == current_user
-  end
-
-  def brand_and_model
-    "#{vehicle_model.brand.name} #{vehicle_model.name}"
-  end
-
-  def brand_model_and_year
-    "#{vehicle_model.brand.name} #{vehicle_model.name} - #{year}"
-  end
-
   def save_with_images
     ActiveRecord::Base.transaction do
       return false unless save
@@ -114,11 +69,31 @@ class Vehicle < ApplicationRecord
     end
   end
 
-  def associate_fee
-    fee = Fee.find_by(body_type: body_type, engine_type: engine_type)
-    return errors.add(:fee, 'does not exist for your vehicle') if fee.nil?
+  def set_status!
+    return ready! if legal_documents_effective? && (review? || status.nil?)
 
-    self.fee = fee
+    return review! if created? || status.nil?
+  end
+
+  def legal_status_badge
+    badge_color = legal_documents_effective? ? 'success' : 'danger'
+    { text: status, badge_color: badge_color }
+  end
+
+  def images_full?
+    profile_images.size >= ProfileImage::ATTACHMENTS_LIMIT
+  end
+
+  def belongs_to_current_user?(current_user)
+    user == current_user
+  end
+
+  def brand_and_model
+    "#{vehicle_model.brand.name} #{vehicle_model.name}"
+  end
+
+  def brand_model_and_year
+    "#{vehicle_model.brand.name} #{vehicle_model.name} - #{year}"
   end
 
   # ====================
@@ -135,5 +110,34 @@ class Vehicle < ApplicationRecord
               .or(base_query.where('lower(brands.name) LIKE ?', "%#{params}"))
               .or(base_query.where('lower(brands.name) LIKE ?', "#{params}%"))
               .or(base_query.where('lower(brands.name) LIKE ?', "%#{params}%"))
+  end
+
+  # ====================
+  # =     PRIVATE      =
+  # ====================
+  private
+
+  def upcase_license_plate
+    self.license_plate = license_plate.upcase
+  end
+
+  def update_images
+    images&.each do |image|
+      if images_full?
+        errors.add(:images, :limit_exceded)
+        raise ActiveRecord::Rollback
+      end
+      profile_images.create!(file: image)
+    rescue ActiveRecord::RecordInvalid
+      errors.add(:images, :record_invalid)
+      raise ActiveRecord::Rollback
+    end
+  end
+
+  def associate_fee
+    fee = Fee.find_by(body_type: body_type, engine_type: engine_type)
+    return errors.add(:fee, 'does not exist for your vehicle') if fee.nil?
+
+    self.fee = fee
   end
 end
