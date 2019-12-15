@@ -70,9 +70,9 @@ class Vehicle < ApplicationRecord
   end
 
   def set_status!
-    return ready! if legal_documents_effective? && review?
+    return ready! if legal_documents_effective? && (review? || status.nil?)
 
-    return review! if created?
+    return review! if created? || status.nil?
   end
 
   def legal_status_badge
