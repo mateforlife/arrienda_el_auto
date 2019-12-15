@@ -45,12 +45,12 @@
                 <td><%= @vehicle.odometer %></td>
               </tr>          
               <tr>
-                <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.transmission')%>:</th>
-                <td><%= @vehicle.transmission %></td>
+                <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.transmission')%>:</th>                
+                <td><%= Vehicle.translated_transmission(@vehicle.transmission) %></td>
               </tr>
               <tr>
                 <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.engine_type')%>:</th>
-                <td><%= @vehicle.engine_type %></td>
+                <td><%= Vehicle.translated_engine_type(@vehicle.engine_type) %></td>
               </tr>
               <tr>
                 <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.passenger_capacity')%>:</th>
@@ -74,11 +74,11 @@
               </tr>
               <tr>
                 <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.steering')%>:</th>
-                <td><%= @vehicle.steering %></td>
+                <td><%= Vehicle.translated_steering(@vehicle.steering) %></td>
               </tr>
               <tr>
                 <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.body_type')%>:</th>
-                <td><%= @vehicle.body_type %></td>
+                <td><%= Vehicle.translated_body_type(@vehicle.body_type) %></td>
               </tr>
             </tbody>
           </table><br>
