@@ -1,4 +1,13 @@
 es:
+  number:
+    currency:
+      format:
+        delimiter: '.'
+        format: '$%n %u'
+        precision: 0
+        separator: ','
+        strip_insignificant_zeros: false
+        unit: ''
   created_at: Creado el
   language: Idioma
   user:

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get 'search/index', to: 'search#index'
     resources :vehicles do
       resources :legal_documents
+      resources :reservations
     end
     resources :vehicle_models
     resources :fees

@@ -7,6 +7,7 @@ class Vehicle < ApplicationRecord
   belongs_to :user
   belongs_to :fee, required: false
   has_many :profile_images, as: :resource, dependent: :destroy
+  has_many :reservations
   accepts_nested_attributes_for :profile_images
   attr_accessor :images
 
@@ -55,6 +56,12 @@ class Vehicle < ApplicationRecord
   # ====================
   # = INSTANCE METHODS =
   # ====================
+
+  # return sugested start date to reservation
+  def reservation_start_date
+    reservations.current_and_future&.first&.end_date || Date.today
+  end
+
   def save_with_images
     ActiveRecord::Base.transaction do
       return false unless save

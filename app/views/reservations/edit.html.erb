@@ -1,0 +1,6 @@
+<h1>Editing reservation</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', [@reservation.vehicle, @reservation] %> |
+<%= link_to 'Back', vehicle_reservations_path(@reservation.vehicle) %>

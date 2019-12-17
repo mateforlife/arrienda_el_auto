@@ -9,6 +9,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
   has_many :vehicles
+  has_many :reservations
   validates :rut, presence: true
 
   validates_presence_of %i[first_name last_name second_last_name rut birthdate

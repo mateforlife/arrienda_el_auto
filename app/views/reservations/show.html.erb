@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @reservation.user %>
+</p>
+
+<p>
+  <b>Vehicle:</b>
+  <%= @reservation.vehicle %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @reservation.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @reservation.end_date %>
+</p>
+
+<p>
+  <b>Deleted at:</b>
+  <%= @reservation.deleted_at %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @reservation.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_vehicle_reservation_path(@reservation.vehicle, @reservation) %> |
+<%= link_to 'Back', vehicle_reservations_path(@reservation.vehicle) %>
