@@ -56,6 +56,9 @@ gem 'sendgrid-ruby'
 # gem 'fog-aws'
 # gem 'asset_sync'
 
+# emails styles
+gem 'mjml-rails'
+
 # to perform async jobs
 gem 'sidekiq', '~> 5.2.7'
 
