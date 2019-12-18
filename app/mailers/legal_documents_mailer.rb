@@ -10,6 +10,7 @@ class LegalDocumentsMailer < ApplicationMailer
     mail(to: to, cc: 'acrodriguez@protonmail.com',
          subject: "Documentos de #{resource_name} validados",
          template_name: "#{resource_name}_documents") do |format|
+      format.text
       format.mjml
     end
   end
