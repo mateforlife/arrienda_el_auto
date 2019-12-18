@@ -65,6 +65,7 @@ class ReservationsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def reservation_params
+    params[:reservation]['user_id'] = current_user.id
     params.require(:reservation).permit(:user_id, :vehicle_id, :start_date, :end_date, :deleted_at, :status)
   end
 end

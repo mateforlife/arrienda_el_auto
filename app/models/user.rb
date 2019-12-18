@@ -10,6 +10,7 @@ class User < ApplicationRecord
          :confirmable
   has_many :vehicles
   has_many :reservations
+  has_one :driver_account
   validates :rut, presence: true
 
   validates_presence_of %i[first_name last_name second_last_name rut birthdate
