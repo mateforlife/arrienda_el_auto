@@ -10,6 +10,9 @@ es:
         unit: ''
   created_at: Creado el
   language: Idioma
+  legal_document_mails:
+    vehicle_mail: Hemos validado los documentos de tu vehículo
+    user_mail: Hemos validado tus documentos personales
   user:
     first_name: Nombre
     last_name: Primer apellido
