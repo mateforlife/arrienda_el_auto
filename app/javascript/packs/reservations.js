@@ -5,7 +5,7 @@ const calculateFee = () => {
     alert('Fecha inicial no puede ser mayor a fecha de termino')
     startDateInput.value = startDateInput.min
     amountField.textContent = amountField.textContent
-    amountField.textContent =  numberToCurrency(feeValue * daysDiff(Date.parse(startDateInput.value), endDate))
+    amountField.textContent = numberToCurrency(feeValue * daysDiff(Date.parse(startDateInput.value), endDate))
     return
   }
   amountField.textContent = numberToCurrency(feeValue * daysDiff(startDate, endDate))
