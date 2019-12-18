@@ -9,6 +9,9 @@ class LegalDocumentsMailer < ApplicationMailer
     resource_name.downcase!
     mail(to: to, cc: 'acrodriguez@protonmail.com',
          subject: "Documentos de #{resource_name} validados",
-         template: "#{resource_name}_documents")
+         template_name: "#{resource_name}_documents") do |format|
+      format.text
+      format.mjml
+    end
   end
 end
