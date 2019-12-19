@@ -12,7 +12,9 @@ class DriverAccountsController < ApplicationController
 
   # GET users/1/driver_accounts/new
   def new
-    redirect_to user_driver_account_path(id: @user.id) if @user.driver_account
+    if @user.driver_account
+      return redirect_to user_driver_account_path(id: @user.id)
+    end
 
     @driver_account = DriverAccount.new(user: @user)
     flash[:now] = 'Despues de crear la cuenta de conductor debes adjuntar
