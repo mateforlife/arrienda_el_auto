@@ -33,6 +33,8 @@ class User < ApplicationRecord
     "#{first_name} #{last_name} #{second_last_name}"
   end
 
+  private
+
   def sanitize_email
     self.email = email.downcase if email?
   end
