@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     devise_for :users
     resources :users do
       resources :legal_documents
+      resources :driver_accounts, path: :driver
+    end
+    resources :driver_accounts, path: :driver, only: :index do
+      resources :legal_documents
     end
     resources :brands
     resources :profile_images, only: :destroy

@@ -94,7 +94,7 @@ es:
           vehicle_register: Padrón
           identity: Cédula de identidad
           criminal_record: Certificado de Antecedentes
-          drive_license: Licencia de conducir
+          driver_license: Licencia de conducir
           driver_resume: Hoja de vida de conductor
         status_list:
           pending: Pendiente
