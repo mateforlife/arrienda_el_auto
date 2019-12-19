@@ -28,14 +28,7 @@ class User < ApplicationRecord
   before_save :trim_and_capitalize_names
 
   REQUIRED_DOCUMENTS = %w[identity criminal_record].freeze
-  DRIVER_REQUIRED_DOCUMENTS = %w[driver_license driver_resume].freeze
 
-  def has_driver_account?
-    debugger
-    return true if driver_account.persisted?
-
-    false
-  end
   def full_name
     "#{first_name} #{last_name} #{second_last_name}"
   end

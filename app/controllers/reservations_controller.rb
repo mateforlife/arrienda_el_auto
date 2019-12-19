@@ -26,7 +26,8 @@ class ReservationsController < ApplicationController
     @reservation = @vehicle.reservations.build(reservation_params)
 
     if @reservation.save
-      redirect_to([@reservation.vehicle, @reservation], notice: 'Reservation was successfully created.')
+      redirect_to([@reservation.vehicle, @reservation],
+                  notice: 'Reservation was successfully created.')
     else
       render action: 'new'
     end
@@ -35,7 +36,8 @@ class ReservationsController < ApplicationController
   # PUT vehicles/1/reservations/1
   def update
     if @reservation.update_attributes(reservation_params)
-      redirect_to([@reservation.vehicle, @reservation], notice: 'Reservation was successfully updated.')
+      redirect_to([@reservation.vehicle, @reservation],
+                  notice: 'Reservation was successfully updated.')
     else
       render action: 'edit'
     end
@@ -49,6 +51,7 @@ class ReservationsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_vehicle
     @vehicle = Vehicle.find(params[:vehicle_id])
@@ -66,6 +69,7 @@ class ReservationsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def reservation_params
     params[:reservation]['user_id'] = current_user.id
-    params.require(:reservation).permit(:user_id, :vehicle_id, :start_date, :end_date, :deleted_at, :status)
+    params.require(:reservation).permit(:user_id, :vehicle_id, :start_date,
+                                        :end_date, :deleted_at, :status)
   end
 end
