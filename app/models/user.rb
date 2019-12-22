@@ -29,6 +29,10 @@ class User < ApplicationRecord
 
   REQUIRED_DOCUMENTS = %w[identity criminal_record].freeze
 
+  def driver_accounts
+    DriverAccount
+  end
+
   def full_name
     "#{first_name} #{last_name} #{second_last_name}"
   end

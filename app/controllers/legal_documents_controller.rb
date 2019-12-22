@@ -1,5 +1,8 @@
 class LegalDocumentsController < ApplicationController
   include LegalDocumentsHelper
+  load_resource :user
+  load_resource :vehicle
+  load_resource :driver_account
   load_and_authorize_resource
   before_action :set_resource
   before_action :set_remaining_documents, only: %i[index new]
@@ -8,10 +11,12 @@ class LegalDocumentsController < ApplicationController
   # GET vehicles/1/legal_documents
   def index
     @legal_documents = @resource.legal_documents
+    authorize! :read, @resource
   end
 
   # GET vehicles/1/legal_documents/1
   def show
+    authorize! :read, @legal_document
   end
 
   # GET vehicles/1/legal_documents/new

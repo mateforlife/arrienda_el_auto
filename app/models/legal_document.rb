@@ -35,12 +35,39 @@ class LegalDocument < ApplicationRecord
 
   scope :active, -> { where(status: :effective) }
   scope :not_rejected, -> { where.not(status: 'rejected') }
+
   scope :from_current_user_vehicles, lambda { |current_user|
-    joins(:vehicle).where(vehicles: { user_id: current_user.id })
+    joins(
+      <<-SQL
+        INNER JOIN vehicles ON vehicles.id = legal_documents.resource_id
+        AND legal_documents.resource_type = 'Vehicle'
+      SQL
+    ).where(vehicles: { user_id: current_user.id })
   }
+
   scope :from_current_user, lambda { |current_user|
-    joins(:user).where(users: { id: current_user.id })
+    joins(
+      <<-SQL
+        INNER JOIN users ON users.id = legal_documents.resource_id
+        AND legal_documents.resource_type = 'User'
+      SQL
+    ).where(users: { id: current_user.id })
   }
+
+  scope :from_current_driver, lambda { |current_user|
+    joins(
+      <<-SQL
+        INNER JOIN driver_accounts ON driver_accounts.id = legal_documents.resource_id
+        AND legal_documents.resource_type = 'User'
+      SQL
+    ).where(driver_accounts: { user_id: current_user.id })
+  }
+
+  def self.resources_from_user(user)
+    from_current_user_vehicles(user)
+      .union(from_current_user(user)
+        .union(from_current_driver(user)))
+  end
 
   def save_with_images
     ActiveRecord::Base.transaction do
