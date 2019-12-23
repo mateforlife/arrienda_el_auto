@@ -59,7 +59,6 @@ class Vehicle < ApplicationRecord
 
   # return sugested start date to reservation
   def reservation_start_date
-    debugger
     reservations.current_and_future&.first&.end_date || Date.today
   end
 
