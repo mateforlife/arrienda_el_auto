@@ -12,6 +12,7 @@
         <div class='container col-xl-3 col-sm-4 col-14' style='text-align: end;'>
           <div class="row-fluid">
             <%= render 'publish_form', vehicle: @vehicle if @vehicle.ready? && @vehicle.belongs_to_current_user?(current_user) %>
+            <%= render 'reservation_link', vehicle: @vehicle if @vehicle.published? && !@vehicle.belongs_to_current_user?(current_user) %>
             <div class="btn-group">
               <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <%= I18n.t('buttons.options') %>

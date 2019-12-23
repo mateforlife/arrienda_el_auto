@@ -59,6 +59,7 @@ class Vehicle < ApplicationRecord
 
   # return sugested start date to reservation
   def reservation_start_date
+    debugger
     reservations.current_and_future&.first&.end_date || Date.today
   end
 
@@ -71,10 +72,6 @@ class Vehicle < ApplicationRecord
   def legal_status_badge
     badge_color = legal_documents_effective? ? 'success' : 'danger'
     { text: status, badge_color: badge_color }
-  end
-
-  def images_full?
-    profile_images.size >= ProfileImage::ATTACHMENTS_LIMIT
   end
 
   def belongs_to_current_user?(current_user)
@@ -109,6 +106,10 @@ class Vehicle < ApplicationRecord
   # =     PRIVATE      =
   # ====================
   private
+
+  def images_full?
+    profile_images.size >= ProfileImage::ATTACHMENTS_LIMIT
+  end
 
   def upcase_license_plate
     self.license_plate = license_plate.upcase

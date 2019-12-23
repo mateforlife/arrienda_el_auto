@@ -32,7 +32,8 @@ class LegalDocument < ApplicationRecord
   validates :due_date, presence: true, on: :update
   validate :due_date_is_future
 
-  after_save :set_status_for_vehicle, if: :resource_is_vehicle?
+  after_save :set_status_for_resource,
+             unless: :resource_is_user?
 
   scope :active, -> { where(status: :effective) }
   scope :not_rejected, -> { where.not(status: 'rejected') }
@@ -81,14 +82,20 @@ class LegalDocument < ApplicationRecord
 
   private
 
-  def set_status_for_vehicle
+  def set_status_for_resource
     resource.set_status!
   end
 
   def resource_is_vehicle?
-    return true if resource.class.to_s == 'Vehicle'
+    resource.class.to_s == 'Vehicle'
+  end
 
-    false
+  def resource_is_driver_account?
+    resource.class.to_s == 'DriverAccount'
+  end
+
+  def resource_is_user?
+    resource.class.to_s == 'User'
   end
 
   def due_date_is_future

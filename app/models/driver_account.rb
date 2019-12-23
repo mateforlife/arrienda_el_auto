@@ -12,6 +12,13 @@ class DriverAccount < ApplicationRecord
 
   REQUIRED_DOCUMENTS = %w[driver_license driver_resume].freeze
 
+  def set_status!
+    debugger
+    return approved! if legal_documents_effective? && (review? || status.nil?)
+
+    return review! if created? || status.nil?
+  end
+
   private
 
   def one_driver_account_per_user

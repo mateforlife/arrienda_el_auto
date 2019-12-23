@@ -1,4 +1,5 @@
 class Reservation < ApplicationRecord
+  include Notificable
   belongs_to :user
   belongs_to :vehicle
 
