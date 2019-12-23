@@ -3,13 +3,13 @@
 # Vehicle
 class Vehicle < ApplicationRecord
   include Documentable
+  include Imageable
   belongs_to :vehicle_model
   belongs_to :user
   belongs_to :fee, required: false
-  has_many :profile_images, as: :resource, dependent: :destroy
-  accepts_nested_attributes_for :profile_images
-  attr_accessor :images
+  has_many_attached :images, dependent: :destroy
 
+  ATTACHMENTS_LIMIT = 5
   REQUIRED_DOCUMENTS = %w[circulation_permit obligatory_insurance
                           technical_review vehicle_register].freeze
   # ====================
@@ -34,7 +34,7 @@ class Vehicle < ApplicationRecord
   validates :year, length: { is: 4 }
   validates :license_plate, length: { is: 6 }
   validates :odometer, length: { in: 1..7 }
-  validates_length_of :images, maximum: ProfileImage::ATTACHMENTS_LIMIT
+  validates_length_of :images, maximum: ATTACHMENTS_LIMIT
   validates :images, presence: true, on: :create
 
   # ====================
@@ -42,7 +42,6 @@ class Vehicle < ApplicationRecord
   # ====================
   before_create :associate_fee
   before_save :upcase_license_plate
-  before_update :update_images
 
   # ====================
   # =      SCOPES      =
@@ -55,20 +54,6 @@ class Vehicle < ApplicationRecord
   # ====================
   # = INSTANCE METHODS =
   # ====================
-  def save_with_images
-    ActiveRecord::Base.transaction do
-      return false unless save
-
-      images.each do |image|
-        profile_images.create!(file: image)
-      rescue ActiveRecord::RecordInvalid => e
-        errors.add(:images, e)
-        raise ActiveRecord::Rollback
-      end
-      true
-    end
-  end
-
   def set_status!
     return ready! if legal_documents_effective? && (review? || status.nil?)
 
@@ -119,19 +104,6 @@ class Vehicle < ApplicationRecord
 
   def upcase_license_plate
     self.license_plate = license_plate.upcase
-  end
-
-  def update_images
-    images&.each do |image|
-      if images_full?
-        errors.add(:images, :limit_exceded)
-        raise ActiveRecord::Rollback
-      end
-      profile_images.create!(file: image)
-    rescue ActiveRecord::RecordInvalid
-      errors.add(:images, :record_invalid)
-      raise ActiveRecord::Rollback
-    end
   end
 
   def associate_fee
