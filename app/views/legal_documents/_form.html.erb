@@ -23,13 +23,13 @@
       <%= f.label :status %><br />
       <%= f.select :status, options_for_select(@legal_document.class.translated_statuses.map { |t, k, _v| [t, k] }, @legal_document.status), {}, { class:"form-control" } %>
     </div>
-  
-  <% end %>
 
-  <div class="form-group">
-    <%= f.label :due_date %><br />
-    <%= f.date_field :due_date, min: Date.today, value: @legal_document.due_date || Date.today, class:"form-control"%>
-  </div>
+    <div class="form-group">
+      <%= f.label :due_date %><br />
+      <%= f.date_field :due_date, min: Date.today, value: @legal_document.due_date || Date.today, class:"form-control"%>
+    </div>
+  <% end %>
+  
 
   <div class="form-group">
     <%= f.submit I18n.t('buttons.submit'), { class: "btn btn-outline-primary btn-lg btn-block" } %>
