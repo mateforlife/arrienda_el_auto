@@ -30,7 +30,7 @@ class LegalDocumentsController < ApplicationController
   def create
     @legal_document = @resource.legal_documents.build(legal_document_params)
 
-    if @legal_document.save_with_images
+    if @legal_document.save
       redirect_to([@legal_document.resource, @legal_document], notice: 'Legal document was successfully created.')
     else
       render action: 'new'
@@ -80,6 +80,6 @@ class LegalDocumentsController < ApplicationController
       params[:legal_document]['validator_id'] = current_user.id
     end
     params.require(:legal_document).permit(:document_type, :due_date, :status,
-                                           :validator_id, attachments: [])
+                                           :validator_id, images: [])
   end
 end

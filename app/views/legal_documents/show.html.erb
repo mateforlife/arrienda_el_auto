@@ -20,7 +20,7 @@
           <tr>
             <th><%= I18n.t('activerecord.attributes.legal_document.document_file')%>:</th>
             <td>
-              <% @legal_document.files&.each do |image| %>
+              <% @legal_document.images&.each do |image| %>
                 <%= image_tag image, size:"740x460", class:"img-fluid" %>
               <% end %>
             </td>

@@ -3,7 +3,6 @@
 # Vehicle
 class Vehicle < ApplicationRecord
   include Documentable
-  include Imageable
   belongs_to :vehicle_model
   belongs_to :user
   belongs_to :fee, required: false
@@ -12,6 +11,7 @@ class Vehicle < ApplicationRecord
   ATTACHMENTS_LIMIT = 5
   REQUIRED_DOCUMENTS = %w[circulation_permit obligatory_insurance
                           technical_review vehicle_register].freeze
+  ALLOWED_FILE_TYPES = ['image/png', 'image/jpg', 'image/jpeg'].freeze
   # ====================
   # =     ENUMS        =
   # ====================
@@ -36,6 +36,7 @@ class Vehicle < ApplicationRecord
   validates :odometer, length: { in: 1..7 }
   validates_length_of :images, maximum: ATTACHMENTS_LIMIT
   validates :images, presence: true, on: :create
+  validates :images, attached: true, content_type: ALLOWED_FILE_TYPES
 
   # ====================
   # =    CALLBACKS     =
