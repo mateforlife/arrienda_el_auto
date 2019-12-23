@@ -11,6 +11,7 @@ require("packs/vehicles")
 require("packs/users")
 require("packs/direct_uploads")
 import 'bootstrap/dist/js/bootstrap';
+global.toastr = require("toastr")
 
 
 

@@ -10,7 +10,7 @@
             <%=link_to vehicle, class:"card-link-hover" do%>
               <div class="card shadow ">            
                 <div class="inner">
-                  <%=image_tag vehicle&.profile_images&.first&.file, size: '300x210', class:"card-img-top" if vehicle.profile_images.present? %>
+                  <%=image_tag vehicle&.images&.first, size: '300x210', class:"card-img-top" if vehicle.images.present? %>
                 </div>
                 <div class="card-body">
                   <h5 class="card-title"><%= vehicle.brand_model_and_year %></h5>

@@ -12,6 +12,11 @@ function fill_models(e){
   }
 }
 
+const removeImage = (e) => {
+  parent = e.target.parentElement;
+  imagesContainer.removeChild(parent)
+}
+
 document.addEventListener('turbolinks:load', () => {  
   brandSelect = document.getElementById("vehicle_brand_id");
   if (!modelSelect) {
@@ -19,6 +24,12 @@ document.addEventListener('turbolinks:load', () => {
   }
   document.getElementById('vehicle_vehicle_model_id').parentElement.hidden = true;
   brandSelect.addEventListener("change", (e) => fill_models(e));
+
+  imagesContainer = document.getElementById('vehicle_images_container');
+  destroyLinks = document.getElementsByClassName('destroy-vehicle-image');
+  for (let item of destroyLinks) {
+    item.addEventListener('click',(e) => { removeImage(e) })
+  }
 });
 
 // Workaround for displaying selected file
