@@ -64,32 +64,12 @@ class LegalDocument < ApplicationRecord
     ).where(driver_accounts: { user_id: current_user.id })
   }
 
-<<<<<<< HEAD
   def self.resources_from_user(user)
     from_current_user_vehicles(user)
       .union(from_current_user(user)
         .union(from_current_driver(user)))
   end
-
-  def save_with_images
-    ActiveRecord::Base.transaction do
-      begin
-        save!
-        files.attach(attachments)
-        files.each(&:save!)
-      rescue ActiveRecord::RecordInvalid => e
-        errors.add(:attachments, e)
-        raise ActiveRecord::Rollback
-      rescue StandardError => e
-        errors.add(:attachments, e)
-        raise ActiveRecord::Rollback
-      end
-      true
-    end
-  end
-
-=======
->>>>>>> develop
+  
   def status_color
     STATUSES_TABLE_COLORS[status.to_sym]
   end

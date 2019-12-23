@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# LegalDocumentsController
 class LegalDocumentsController < ApplicationController
   include LegalDocumentsHelper
   load_resource :user
