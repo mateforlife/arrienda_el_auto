@@ -2,6 +2,6 @@
 
 class MyVehiclesController < ApplicationController
   def index
-    @vehicles = current_user.vehicles.preload(:profile_images)
+    @vehicles = current_user.vehicles
   end
 end

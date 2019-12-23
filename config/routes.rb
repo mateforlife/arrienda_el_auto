@@ -19,8 +19,8 @@ Rails.application.routes.draw do
     resources :driver_accounts, path: :driver, only: :index do
       resources :legal_documents
     end
+    delete '/images/(:id)', to: 'images#destroy', as: :destroy_images
     resources :brands
-    resources :profile_images, only: :destroy
     get '/my_vehicles', to: 'my_vehicles#index'
     get '/validate_legal_documents', to: 'validate_legal_documents#index'
     root to: 'vehicles#index'

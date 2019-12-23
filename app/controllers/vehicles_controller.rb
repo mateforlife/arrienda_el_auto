@@ -10,7 +10,6 @@ class VehiclesController < ApplicationController
   def index
     @vehicles = Vehicle.published
                        .not_from_current_user(current_user)
-                       .preload(:profile_images)
     render '_index'
   end
 
@@ -33,7 +32,7 @@ class VehiclesController < ApplicationController
   def create
     @vehicle = current_user.vehicles.new(vehicle_params)
     respond_to do |format|
-      if @vehicle.save_with_images
+      if @vehicle.save
         format.html { redirect_to @vehicle, notice: 'Vehicle was successfully created.' }
         format.json { render :show, status: :created, location: @vehicle }
       else

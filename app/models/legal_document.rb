@@ -6,7 +6,7 @@ class LegalDocument < ApplicationRecord
   belongs_to :resource, polymorphic: true # resource can be User or Vehicle
   belongs_to :validator, class_name: 'User', foreign_key: 'validator_id',
                          optional: true
-  has_many_attached :files, dependent: :destroy
+  has_many_attached :images, dependent: :destroy
 
   enum document_type: %i[circulation_permit obligatory_insurance
                          technical_review vehicle_register identity
@@ -15,8 +15,8 @@ class LegalDocument < ApplicationRecord
   translate_enum :document_type
   translate_enum :status
 
-  attr_accessor :attachments
-
+  ALLOWED_FILE_TYPES = ['image/png', 'image/jpg', 'image/jpeg',
+                        'application/pdf'].freeze
   ATTACHMENTS_LIMIT = 2
   STATUSES_TABLE_COLORS = {
     pending: :warning,
@@ -25,8 +25,9 @@ class LegalDocument < ApplicationRecord
     expired: :danger
   }.freeze
 
-  validates_length_of :attachments, in: 1..ATTACHMENTS_LIMIT, on: :create
-  validates :attachments, presence: true, on: :create
+  validates_length_of :images, in: 1..ATTACHMENTS_LIMIT, on: :create
+  validates :images, attached: true, content_type: ALLOWED_FILE_TYPES
+  validates :images, presence: true, on: :create
   validates :document_type, presence: true, on: :create
   validates :due_date, presence: true, on: :update
   validate :due_date_is_future
@@ -63,6 +64,7 @@ class LegalDocument < ApplicationRecord
     ).where(driver_accounts: { user_id: current_user.id })
   }
 
+<<<<<<< HEAD
   def self.resources_from_user(user)
     from_current_user_vehicles(user)
       .union(from_current_user(user)
@@ -86,6 +88,8 @@ class LegalDocument < ApplicationRecord
     end
   end
 
+=======
+>>>>>>> develop
   def status_color
     STATUSES_TABLE_COLORS[status.to_sym]
   end
