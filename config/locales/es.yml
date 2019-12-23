@@ -1,4 +1,13 @@
 es:
+  number:
+    currency:
+      format:
+        delimiter: '.'
+        format: '$%n %u'
+        precision: 0
+        separator: ','
+        strip_insignificant_zeros: false
+        unit: ''
   created_at: Creado el
   language: Idioma
   legal_document_mails:
@@ -85,7 +94,7 @@ es:
           vehicle_register: Padrón
           identity: Cédula de identidad
           criminal_record: Certificado de Antecedentes
-          drive_license: Licencia de conducir
+          driver_license: Licencia de conducir
           driver_resume: Hoja de vida de conductor
         status_list:
           pending: Pendiente

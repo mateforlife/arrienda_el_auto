@@ -32,16 +32,44 @@ class LegalDocument < ApplicationRecord
   validates :due_date, presence: true, on: :update
   validate :due_date_is_future
 
-  after_save :set_status_for_vehicle, if: :resource_is_vehicle?
+  after_save :set_status_for_resource,
+             unless: :resource_is_user?
 
   scope :active, -> { where(status: :effective) }
   scope :not_rejected, -> { where.not(status: 'rejected') }
+
   scope :from_current_user_vehicles, lambda { |current_user|
-    joins(:vehicle).where(vehicles: { user_id: current_user.id })
+    joins(
+      <<-SQL
+        INNER JOIN vehicles ON vehicles.id = legal_documents.resource_id
+        AND legal_documents.resource_type = 'Vehicle'
+      SQL
+    ).where(vehicles: { user_id: current_user.id })
   }
+
   scope :from_current_user, lambda { |current_user|
-    joins(:user).where(users: { id: current_user.id })
+    joins(
+      <<-SQL
+        INNER JOIN users ON users.id = legal_documents.resource_id
+        AND legal_documents.resource_type = 'User'
+      SQL
+    ).where(users: { id: current_user.id })
   }
+
+  scope :from_current_driver, lambda { |current_user|
+    joins(
+      <<-SQL
+        INNER JOIN driver_accounts ON driver_accounts.id = legal_documents.resource_id
+        AND legal_documents.resource_type = 'User'
+      SQL
+    ).where(driver_accounts: { user_id: current_user.id })
+  }
+
+  def self.resources_from_user(user)
+    from_current_user_vehicles(user)
+      .union(from_current_user(user)
+        .union(from_current_driver(user)))
+  end
 
   def status_color
     STATUSES_TABLE_COLORS[status.to_sym]
@@ -54,14 +82,20 @@ class LegalDocument < ApplicationRecord
 
   private
 
-  def set_status_for_vehicle
+  def set_status_for_resource
     resource.set_status!
   end
 
   def resource_is_vehicle?
-    return true if resource.class.to_s == 'Vehicle'
+    resource.class.to_s == 'Vehicle'
+  end
 
-    false
+  def resource_is_driver_account?
+    resource.class.to_s == 'DriverAccount'
+  end
+
+  def resource_is_user?
+    resource.class.to_s == 'User'
   end
 
   def due_date_is_future

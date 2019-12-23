@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_18_173351) do
+ActiveRecord::Schema.define(version: 2019_12_23_024149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(version: 2019_12_18_173351) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "driver_accounts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "status", default: 0
+    t.datetime "deleted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_driver_accounts_on_user_id", unique: true
+  end
+
   create_table "fees", force: :cascade do |t|
     t.string "engine_type"
     t.string "body_type"
@@ -77,6 +86,19 @@ ActiveRecord::Schema.define(version: 2019_12_18_173351) do
     t.string "resource_type"
     t.bigint "resource_id"
     t.index ["resource_type", "resource_id"], name: "index_profile_images_on_resource_type_and_resource_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "vehicle_id", null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "deleted_at"
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+    t.index ["vehicle_id"], name: "index_reservations_on_vehicle_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -143,6 +165,9 @@ ActiveRecord::Schema.define(version: 2019_12_18_173351) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "driver_accounts", "users"
+  add_foreign_key "reservations", "users"
+  add_foreign_key "reservations", "vehicles"
   add_foreign_key "vehicle_models", "brands"
   add_foreign_key "vehicles", "fees"
   add_foreign_key "vehicles", "users"

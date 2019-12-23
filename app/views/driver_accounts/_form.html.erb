@@ -1,0 +1,6 @@
+<%= form_for([@driver_account.user, @driver_account]) do |f| %>
+  <%= render 'shared/errors', resource: @driver_account %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

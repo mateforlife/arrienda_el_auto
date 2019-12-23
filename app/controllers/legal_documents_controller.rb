@@ -1,5 +1,11 @@
+# frozen_string_literal: true
+
+# LegalDocumentsController
 class LegalDocumentsController < ApplicationController
   include LegalDocumentsHelper
+  load_resource :user
+  load_resource :vehicle
+  load_resource :driver_account
   load_and_authorize_resource
   before_action :set_resource
   before_action :set_remaining_documents, only: %i[index new]
@@ -8,10 +14,12 @@ class LegalDocumentsController < ApplicationController
   # GET vehicles/1/legal_documents
   def index
     @legal_documents = @resource.legal_documents
+    authorize! :read, @resource
   end
 
   # GET vehicles/1/legal_documents/1
   def show
+    authorize! :read, @legal_document
   end
 
   # GET vehicles/1/legal_documents/new
@@ -31,7 +39,8 @@ class LegalDocumentsController < ApplicationController
     @legal_document = @resource.legal_documents.build(legal_document_params)
 
     if @legal_document.save
-      redirect_to([@legal_document.resource, @legal_document], notice: 'Legal document was successfully created.')
+      redirect_to([@legal_document.resource, @legal_document],
+                  notice: 'Legal document was successfully created.')
     else
       render action: 'new'
     end
@@ -57,11 +66,13 @@ class LegalDocumentsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_resource
-    if params.include?('user_id')
-      return @resource = User.find_by(id: params[:user_id])
+    if params.include?('driver_account_id')
+      @resource = DriverAccount.find_by(id: params[:driver_account_id])
+    elsif params.include?('vehicle_id')
+      @resource = Vehicle.find_by(id: params[:vehicle_id])
+    elsif params.include?('user_id')
+      @resource = User.find_by(id: params[:user_id])
     end
-
-    @resource = Vehicle.find_by(id: params[:vehicle_id])
   end
 
   def set_legal_document

@@ -1,6 +1,6 @@
 <div class="container col-lg-9 col-md-6 col-sm-10">
   <div class="card">
-    <h5 class="card-header"><%= I18n.t("#{@resource.class.to_s.downcase}.headers.legal_document.#{@resource.class.to_s.downcase}_documents")%></h5>
+    <h5 class="card-header"><%= I18n.t("#{@resource.class.to_s.underscore}.headers.legal_document.#{@resource.class.to_s.underscore}_documents")%></h5>
     <div class="card-body">
       <div class="table-responsive ">
         <table class="table table-hover table-sm">
@@ -32,12 +32,12 @@
   </div>
 
   <div class="card">
-    <h5 class="card-header"><%= I18n.t("#{@resource.class.to_s.downcase}.headers.legal_document.#{@resource.class.to_s.downcase}_data")%></h5>
+    <h5 class="card-header"><%= I18n.t("#{@resource.class.to_s.underscore}.headers.legal_document.#{@resource.class.to_s.underscore}_data")%></h5>
     <div class="card-body">
       <h3 class="card-title"></h3>
       <div class="table-responsive">
         <table class="table table-hover table-sm ">
-          <%= render "#{@resource.class.to_s.downcase}", resource: @resource %>
+          <%= render "#{@resource.class.to_s.underscore}", resource: @resource %>
         </table>
       </div>
     </div>

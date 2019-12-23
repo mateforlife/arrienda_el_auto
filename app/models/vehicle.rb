@@ -6,6 +6,7 @@ class Vehicle < ApplicationRecord
   belongs_to :vehicle_model
   belongs_to :user
   belongs_to :fee, required: false
+  has_many :reservations
   has_many_attached :images, dependent: :destroy
 
   ATTACHMENTS_LIMIT = 5
@@ -55,6 +56,12 @@ class Vehicle < ApplicationRecord
   # ====================
   # = INSTANCE METHODS =
   # ====================
+
+  # return sugested start date to reservation
+  def reservation_start_date
+    reservations.current_and_future&.first&.end_date || Date.today
+  end
+
   def set_status!
     return ready! if legal_documents_effective? && (review? || status.nil?)
 
@@ -64,10 +71,6 @@ class Vehicle < ApplicationRecord
   def legal_status_badge
     badge_color = legal_documents_effective? ? 'success' : 'danger'
     { text: status, badge_color: badge_color }
-  end
-
-  def images_full?
-    profile_images.size >= ProfileImage::ATTACHMENTS_LIMIT
   end
 
   def belongs_to_current_user?(current_user)
@@ -102,6 +105,10 @@ class Vehicle < ApplicationRecord
   # =     PRIVATE      =
   # ====================
   private
+
+  def images_full?
+    profile_images.size >= ProfileImage::ATTACHMENTS_LIMIT
+  end
 
   def upcase_license_plate
     self.license_plate = license_plate.upcase

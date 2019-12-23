@@ -20,6 +20,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'active_record_union'
 # Active storage attachments content validator
 gem 'active_storage_validations'
 
