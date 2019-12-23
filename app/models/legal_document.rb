@@ -69,7 +69,7 @@ class LegalDocument < ApplicationRecord
       .union(from_current_user(user)
         .union(from_current_driver(user)))
   end
-  
+
   def status_color
     STATUSES_TABLE_COLORS[status.to_sym]
   end

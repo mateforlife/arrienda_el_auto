@@ -62,20 +62,6 @@ class Vehicle < ApplicationRecord
     reservations.current_and_future&.first&.end_date || Date.today
   end
 
-  def save_with_images
-    ActiveRecord::Base.transaction do
-      return false unless save
-
-      images.each do |image|
-        profile_images.create!(file: image)
-      rescue ActiveRecord::RecordInvalid => e
-        errors.add(:images, e)
-        raise ActiveRecord::Rollback
-      end
-      true
-    end
-  end
-
   def set_status!
     return ready! if legal_documents_effective? && (review? || status.nil?)
 
