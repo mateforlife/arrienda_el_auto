@@ -1,35 +1,43 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>User:</b>
-  <%= @reservation.user %>
-</p>
-
-<p>
-  <b>Vehicle:</b>
-  <%= @reservation.vehicle %>
-</p>
-
-<p>
-  <b>Start date:</b>
-  <%= @reservation.start_date %>
-</p>
-
-<p>
-  <b>End date:</b>
-  <%= @reservation.end_date %>
-</p>
-
-<p>
-  <b>Deleted at:</b>
-  <%= @reservation.deleted_at %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @reservation.status %>
-</p>
-
-
-<%= link_to 'Edit', edit_vehicle_reservation_path(@reservation.vehicle, @reservation) %> |
-<%= link_to 'Back', vehicle_reservations_path(@reservation.vehicle) %>
+<div class="container col-xl-6 col-lg-10 col-md-6 col-sm-10">
+  <div class="card shadow">  
+    <div class="card-header text-center">
+      <h2>Tu reserva</h2>
+    </div><br>
+    <div class="card-body">
+      <h4 class="card-title">Información del conductor:</h4><br>
+      <div class="table table-responsive">
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th style="width:40%;">User:</th>
+              <td><%= @reservation.user.full_name%></td>
+            </tr>
+            <tr>
+              <th>Vehicle:</th>
+              <td><%= @reservation.vehicle.brand_and_model %></td>
+            </tr>
+            <tr>
+              <th>Fecha de inicio:</th>
+              <td><%=@reservation.start_date.strftime('%d-%m-%Y')%></td>
+            </tr>
+              <th>Fecha de término:</th>
+              <td><%=@reservation.end_date.strftime('%d-%m-%Y')%></td>
+            </tr>
+            </tr>
+              <th>Fecha de cancelación:</th>
+              <td><%=@reservation.deleted_at%></td>
+            </tr>
+            </tr>
+              <th>Estado:</th>
+              <td><%= @reservation.status %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center">
+        <%= link_to 'Edit', edit_vehicle_reservation_path(@reservation.vehicle, @reservation) %> |
+        <%= link_to 'Back', vehicle_reservations_path(@reservation.vehicle) %>
+      </div>
+    </div>
+  </div>
+</div>
