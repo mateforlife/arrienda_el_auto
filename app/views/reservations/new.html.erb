@@ -1,5 +1,16 @@
-<h1>New reservation</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', vehicle_reservations_path(@reservation.vehicle) %>
+<div class="container col-xl-6 col-lg-10 col-md-6 col-sm-10">
+  <div class="card shadow">  
+    <div class="card-header text-center">
+      <h2><strong>New reservation</strong></h2>
+    </div><br>
+    <div class="card-body">
+      <div class="card-title">
+        <h4>Reserva los dias que necesitas</h4><br>
+      </div>
+      <%= render 'form' %>
+      <div class="text-right">
+        <%= link_to 'Back', vehicle_reservations_path(@reservation.vehicle) %>
+      </div>
+    </div>
+   </div> 
+</div>
