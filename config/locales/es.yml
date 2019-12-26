@@ -1,4 +1,13 @@
 es:
+  driver_account:
+    headers:
+      legal_document:
+        driver_account_documents: Documentos del conductor
+        driver_account_data: Datos del conductor
+      driver_info: Información del conductor
+    status: Estado
+    created_at: Fecha de creación
+    my_status: Ver estado de mis documentos
   number:
     currency:
       format:
@@ -40,6 +49,7 @@ es:
     options: Opciones
     legal_documents: Documentación legal
     validate: Validar
+    driver_account: Cuenta de conductor
   vehicle:
     brand: Marca
     model: Modelo
@@ -86,6 +96,9 @@ es:
     remaining: Restantes   
   activerecord:
     attributes:
+      driver_account:
+        status_list:
+          approved: Aprovado
       legal_document:
         document_type_list:
           circulation_permit: Permiso de circulación

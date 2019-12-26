@@ -1,33 +1,45 @@
-<h1>Listing reservations</h1>
+<div class="container col-xl-6 col-lg-10 col-md-9 col-sm-10">
+  <div class="card shadow">
+    <div class="card-header text-center">
+      <h2><strong>Listing reservations</strong></h2>
+    </div>
+    <div class="card-body text-center"><br> 
+      <div class="table-responsive">
+        <table class="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th>Vehicle</th>
+              <th>Start date</th>
+              <th>End date</th>
+              <th>Status</th>
+              <th>Actions</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @reservations.each do |reservation| %>
+              <tr>
+                <td><%= reservation.vehicle.brand_and_model %></td>
+                <td><%= reservation.start_date.strftime('%d-%m-%Y') %></td>
+                <td><%= reservation.end_date.strftime('%d-%m-%Y') %></td>
+                <td><%= reservation.status %></td>
+                <td>
+                  <%= link_to 'Show ', [reservation.vehicle, reservation] %> 
+                  <%= link_to 'Edit ', edit_vehicle_reservation_path(reservation.vehicle, reservation) %>
+                  <%= link_to 'Destroy', [reservation.vehicle, reservation], method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table><br>
+        <div class="text-right">
+          <%= link_to 'New Reservation', new_vehicle_reservation_path(params[:vehicle_id]) %>
+        </div>  
+      </div>
+    </div>
+  </div>
+</div>
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>Vehicle</th>
-    <th>Start date</th>
-    <th>End date</th>
-    <th>Deleted at</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @reservations.each do |reservation| %>
-  <tr>
-    <td><%= reservation.user %></td>
-    <td><%= reservation.vehicle %></td>
-    <td><%= reservation.start_date %></td>
-    <td><%= reservation.end_date %></td>
-    <td><%= reservation.deleted_at %></td>
-    <td><%= reservation.status %></td>
-    <td><%= link_to 'Show', [reservation.vehicle, reservation] %></td>
-    <td><%= link_to 'Edit', edit_vehicle_reservation_path(reservation.vehicle, reservation) %></td>
-    <td><%= link_to 'Destroy', [reservation.vehicle, reservation], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
-
-<%= link_to 'New Reservation', new_vehicle_reservation_path(params[:vehicle_id]) %>

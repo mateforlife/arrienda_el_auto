@@ -30,6 +30,15 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  driver_account:
+    headers:
+      legal_document:
+        driver_account_documents: Driver account documents
+        driver_account_data: Driver account data
+      driver_info: Driver information
+    status: Status
+    created_at: Created at
+    my_status: See status of my documents
   created_at: Created_at
   hello: "Hello world"
   language: Language
@@ -63,6 +72,7 @@ en:
     options: Options
     legal_documents: Legal documents
     validate: Validate
+    driver_account: Driver account
   text:
     actions: Actions
     user: User
@@ -109,6 +119,9 @@ en:
       status: "Status"
   activerecord:
     attributes:
+      driver_account:
+        status_list:
+          approved: Approved
       legal_document:
         document_type_list:
           circulation_permit: Circulation permit
@@ -117,6 +130,8 @@ en:
           vehicle_register: Vehicle Register
           identity: Identity
           criminal_record: Criminal record
+          driver_license: Driver license
+          driver_resume: Driver resume
         status_list:
           pending: Pending
           effective: Effective
