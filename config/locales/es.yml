@@ -1,6 +1,7 @@
 es:
   driver_account:
     headers:
+      new: Nueva cuenta de conductor
       legal_document:
         driver_account_documents: Documentos del conductor
         driver_account_data: Datos del conductor

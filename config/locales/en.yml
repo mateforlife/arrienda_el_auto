@@ -32,6 +32,7 @@
 en:
   driver_account:
     headers:
+      new: New driver account
       legal_document:
         driver_account_documents: Driver account documents
         driver_account_data: Driver account data
