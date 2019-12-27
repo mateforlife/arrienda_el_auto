@@ -19,6 +19,7 @@ class ReservationsController < ApplicationController
   # GET vehicles/1/reservations/new
   def new
     @reservation = @vehicle.reservations.build
+    authorize! :create, @reservation
   end
 
   # GET vehicles/1/reservations/1/edit
