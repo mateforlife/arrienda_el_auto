@@ -4,23 +4,26 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   scope '(:locale)', locale: /es|en/ do
-    get 'search/index', to: 'search#index'
-    resources :vehicles do
-      resources :legal_documents
-      resources :reservations
-    end
-    resources :vehicle_models
-    resources :fees
     devise_for :users
-    resources :users do
-      resources :legal_documents
-      resources :driver_accounts, path: :driver
+    resources :vehicles, except: :destroy do
+      resources :legal_documents, except: :destroy
+      resources :reservations, except: :destroy
+    end
+    resources :reservations, only: :index do
+      resources :payments, except: :destroy
+    end
+    resources :users, except: :destroy do
+      resources :legal_documents, except: :destroy
+      resources :driver_accounts, path: :driver, except: %i[destroy index]
     end
     resources :driver_accounts, path: :driver, only: :index do
-      resources :legal_documents
+      resources :legal_documents, except: :destroy
     end
+    resources :vehicle_models, except: :destroy
+    resources :fees, except: :destroy
+    resources :brands, except: :destroy
     delete '/images/(:id)', to: 'images#destroy', as: :destroy_images
-    resources :brands
+    get 'search/index', to: 'search#index'
     get '/my_vehicles', to: 'my_vehicles#index'
     get '/validate_legal_documents', to: 'validate_legal_documents#index'
     root to: 'vehicles#index'

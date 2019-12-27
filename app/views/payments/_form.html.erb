@@ -1,0 +1,16 @@
+<%= form_for([@payment.reservation, @payment]) do |f| %>
+  <%= render 'shared/errors', resource: @payment %>
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.number_field :amount, value: @payment.calculated_amount, disabled: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :file %><br />
+    <%= f.file_field :file %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

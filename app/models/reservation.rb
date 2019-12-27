@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
+# Reservation
 class Reservation < ApplicationRecord
   include Notificable
   belongs_to :user
   belongs_to :vehicle
+  has_many :payments
 
   enum status: %i[reserved current finished rejected]
 

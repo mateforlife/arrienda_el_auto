@@ -2,10 +2,6 @@
 
 # LegalDocumentsHelper
 module LegalDocumentsHelper
-  def image_size(width = 740, height = 460)
-    [width, height]
-  end
-
   def document_types
     'image/png,image/jpg,image/jpeg,application/pdf'
   end

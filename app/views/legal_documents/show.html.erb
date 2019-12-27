@@ -21,8 +21,7 @@
             <th><%= I18n.t('activerecord.attributes.legal_document.document_file')%>:</th>
             <td>
               <% @legal_document.images&.each do |image| %>
-                <% file_preview = image.previewable? ? image.preview(resize_to_limit: image_size) : image.variant(resize_to_limit: image_size) %>
-                <%= image_tag file_preview, class:"img-fluid" %>
+                <%= image_tag preview(image), class:"img-fluid" %>
               <% end %>
             </td>
           </tr>

@@ -29,7 +29,7 @@
   <b>Status:</b>
   <%= @reservation.status %>
 </p>
-
+<%= link_to 'PAGAR', new_reservation_payment_path(@reservation.id) %>
 
 <%= link_to 'Edit', edit_vehicle_reservation_path(@reservation.vehicle, @reservation) %> |
-<%= link_to 'Back', vehicle_reservations_path(@reservation.vehicle) %>
+

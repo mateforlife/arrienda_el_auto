@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
+# ReservationsController
 class ReservationsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_vehicle
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :set_reservation, only: [:show, :edit, :update]
   before_action :set_dates, only: %i[new create edit update]
 
   # GET vehicles/1/reservations
@@ -26,8 +30,8 @@ class ReservationsController < ApplicationController
     @reservation = @vehicle.reservations.build(reservation_params)
 
     if @reservation.save
-      redirect_to([@reservation.vehicle, @reservation],
-                  notice: 'Reservation was successfully created.')
+      redirect_to new_reservation_payment_path(@reservation,
+                                               notice: 'Reservation was successfully created.')
     else
       render action: 'new'
     end
@@ -41,13 +45,6 @@ class ReservationsController < ApplicationController
     else
       render action: 'edit'
     end
-  end
-
-  # DELETE vehicles/1/reservations/1
-  def destroy
-    @reservation.destroy
-
-    redirect_to vehicle_reservations_url(@vehicle)
   end
 
   private
@@ -69,7 +66,7 @@ class ReservationsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def reservation_params
     params[:reservation]['user_id'] = current_user.id
-    params.require(:reservation).permit(:user_id, :vehicle_id, :start_date,
-                                        :end_date, :deleted_at, :status)
+    params.require(:reservation).permit(:user_id, :start_date,
+                                        :end_date)
   end
 end
