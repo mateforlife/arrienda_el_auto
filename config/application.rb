@@ -10,7 +10,6 @@ module EasyCar
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-
     # config.middleware.use Rack::Cors do
     #   allow do
     #     origins [
@@ -28,7 +27,6 @@ module EasyCar
 
     config.i18n.default_locale = :es
     config.active_job.queue_adapter = :sidekiq
-
     # config.middleware.insert_before 0, Rack::Cors do
     #   allow do
     #     origins '*'

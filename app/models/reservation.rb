@@ -13,11 +13,24 @@ class Reservation < ApplicationRecord
   validate :consistent_dates
   validate :user_must_have_active_driver_account
 
+  after_create :set_payment_wait_time
+
   scope :current_and_future, lambda {
     where(status: %w[reserved current]).order('end_date DESC')
   }
 
+  def payment_effective?
+    return false if payments.empty?
+    return false if payments.last.rejected?
+
+    true
+  end
+
   private
+
+  def set_payment_wait_time
+    WaitPaymentWorker.perform_in(5.minutes, id)
+  end
 
   def user_must_have_active_driver_account
     return if self.user&.driver_account&.approved?
