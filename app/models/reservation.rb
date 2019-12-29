@@ -29,7 +29,7 @@ class Reservation < ApplicationRecord
   private
 
   def set_payment_wait_time
-    WaitPaymentWorker.perform_in(5.minutes, id)
+    CheckPaymentWorker.perform_in(5.minutes, id)
   end
 
   def user_must_have_active_driver_account
