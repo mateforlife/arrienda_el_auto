@@ -4,6 +4,7 @@ class Reservation < ApplicationRecord
   belongs_to :vehicle
 
   enum status: %i[reserved current finished rejected]
+  translate_enum :status
 
   validates_presence_of %i[start_date end_date]
   validate :consistent_dates

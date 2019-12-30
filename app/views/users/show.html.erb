@@ -13,7 +13,7 @@
             <div class="dropdown-menu dropdown-menu-right">
               <%= link_to I18n.t('buttons.edit'), '/users/edit', class:"dropdown-item" %>
               <%= link_to I18n.t('buttons.legal_documents'), user_legal_documents_path(@user), class:"dropdown-item" %>
-              <%= link_to 'Cuenta de conductor', new_user_driver_account_path(@user), class:"dropdown-item" %>
+              <%= link_to I18n.t('buttons.driver_account'), new_user_driver_account_path(@user), class:"dropdown-item" %>
             </div>
           </div>
         </div>
