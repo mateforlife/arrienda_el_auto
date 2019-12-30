@@ -6,6 +6,7 @@ class DriverAccount < ApplicationRecord
   belongs_to :user
   has_many :legal_documents, as: :resource
   enum status: %i[created review approved rejected]
+  translate_enum :status
 
   validate :one_driver_account_per_user, on: :create
   scope :active, -> { where(status: 'approved') }

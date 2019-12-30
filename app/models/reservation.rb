@@ -8,6 +8,7 @@ class Reservation < ApplicationRecord
   has_many :payments
 
   enum status: %i[reserved current finished rejected]
+  translate_enum :status
 
   validates_presence_of %i[start_date end_date]
   validate :consistent_dates

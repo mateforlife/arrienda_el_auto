@@ -1,35 +1,43 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>User:</b>
-  <%= @reservation.user %>
-</p>
-
-<p>
-  <b>Vehicle:</b>
-  <%= @reservation.vehicle %>
-</p>
-
-<p>
-  <b>Start date:</b>
-  <%= @reservation.start_date %>
-</p>
-
-<p>
-  <b>End date:</b>
-  <%= @reservation.end_date %>
-</p>
-
-<p>
-  <b>Deleted at:</b>
-  <%= @reservation.deleted_at %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @reservation.status %>
-</p>
-<%= link_to 'PAGAR', new_reservation_payment_path(@reservation.id) %>
-
-<%= link_to 'Edit', edit_vehicle_reservation_path(@reservation.vehicle, @reservation) %> |
-
+<div class="container col-xl-6 col-lg-10 col-md-6 col-sm-10">
+  <div class="card shadow">  
+    <div class="card-header text-center">
+      <h2><%= I18n.t('reservation.headers.your_reservation')%></h2>
+    </div><br>
+    <div class="card-body">
+      <h4 class="card-title"><%= I18n.t('reservation.text.driver_information')%>:</h4><br>
+      <div class="table table-responsive">
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th style="width:40%;"><%= I18n.t('reservation.text.user')%>:</th>
+              <td><%= @reservation.user.full_name%></td>
+            </tr>
+            <tr>
+              <th><%= I18n.t('reservation.text.vehicle')%>:</th>
+              <td><%= @reservation.vehicle.brand_and_model %></td>
+            </tr>
+            <tr>
+              <th><%= I18n.t('reservation.text.start_date')%>:</th>
+              <td><%=@reservation.start_date.strftime('%d-%m-%Y')%></td>
+            </tr>
+              <th><%= I18n.t('reservation.text.end_date')%>:</th>
+              <td><%=@reservation.end_date.strftime('%d-%m-%Y')%></td>
+            </tr>
+            </tr>
+              <th><%= I18n.t('reservation.text.cancellation_date')%>:</th>
+              <td><%=@reservation.deleted_at%></td>
+            </tr>
+            </tr>
+              <th><%= I18n.t('reservation.text.status')%>:</th>
+              <td><%= Reservation.translated_status(@reservation.status) %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-right">
+        <%= link_to 'PAGAR', new_reservation_payment_path(@reservation.id) %>
+        <%= link_to I18n.t('reservation.text.edit'), edit_vehicle_reservation_path(@reservation.vehicle, @reservation) %><br>
+      </div>
+    </div>
+  </div>
+</div>
