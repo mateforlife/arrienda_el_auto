@@ -19,9 +19,12 @@ class Reservation < ApplicationRecord
     where(status: %w[reserved current]).order('end_date DESC')
   }
 
+  scope :current, lambda {
+    where(status: 'current')
+  }
+
   def payment_effective?
-    return false if payments.empty?
-    return false if payments.last.rejected?
+    return false if payments.empty? || payments.last.rejected?
 
     true
   end

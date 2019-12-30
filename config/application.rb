@@ -10,6 +10,7 @@ module EasyCar
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
+    config.eager_load_paths << Rails.root.join('lib')
     # config.middleware.use Rack::Cors do
     #   allow do
     #     origins [
@@ -24,7 +25,8 @@ module EasyCar
 
     # Use Vips for processing variants.
     config.active_storage.variant_processor = :vips
-
+    config.active_record.default_timezone = :local
+    config.time_zone = 'America/Santiago'
     config.i18n.default_locale = :es
     config.active_job.queue_adapter = :sidekiq
     # config.middleware.insert_before 0, Rack::Cors do

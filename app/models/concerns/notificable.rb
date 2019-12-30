@@ -16,7 +16,7 @@ module Notificable
   end
 
   def vehicle?
-    self&.resource&.class&.to_s == 'Vehicle'
+    try(:resource)&.class&.to_s == 'Vehicle'
   end
 
   def reservation?
