@@ -118,8 +118,8 @@ es:
       reservation:
         status_list:
           reserved: Reservado
-          current: Actual
-          finished: Terminado
+          current: En curso
+          finished: Finalizado
           rejected: Rechazado
         start_date: Fecha de inicio
         end_date: Fecha de término
@@ -127,7 +127,7 @@ es:
         status_list:
           approved: Aprovado
           created: Creado
-          review: Evaluando
+          review: Revisión
           rejected: Rechazado
       legal_document:
         document_type_list:

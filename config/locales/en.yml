@@ -149,10 +149,10 @@ en:
     attributes:
       reservation:
         status_list:
-          reserved: Reserverd
+          reserved: Reserved
           current: Current
           finished: Finished
-          rejected: Rechazado
+          rejected: Rejected
       driver_account:
         status_list:
           approved: Approved
