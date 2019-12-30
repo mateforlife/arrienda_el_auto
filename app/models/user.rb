@@ -19,6 +19,7 @@ class User < ApplicationRecord
   validates :rut, format: { with: /\A\d{1,3}(\.\d{3})*-[0-9K]\z/,
                             message: 'Formato inválido' },
                   if: proc { |usr| usr.rut.present? }
+  validate :validate_age
 
   enum permission: %i[basic admin]
   enum gender: %i[male female]
@@ -38,6 +39,12 @@ class User < ApplicationRecord
   end
 
   private
+
+  def validate_age
+    if birthdate.present? && birthdate > 18.years.ago.to_date
+      errors.add(:birthdate, 'debes ser mayor de 18 años.')
+    end
+  end
 
   def sanitize_email
     self.email = email.downcase if email?
