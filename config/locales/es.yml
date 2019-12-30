@@ -117,6 +117,7 @@ es:
     attributes:
       reservation:
         status_list:
+          waiting_payment: Esperando pago
           reserved: Reservado
           current: En curso
           finished: Finalizado

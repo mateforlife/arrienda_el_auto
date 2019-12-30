@@ -21,8 +21,8 @@ class Ability
         can :create, Reservation
         can :create, Payment
       end
-      can :read, Reservation, user_id: user.id
       can :read, Payment, reservation: { user: { id: user.id } }
+      can %i[read edit destroy], Reservation, user_id: user.id
     end
     vehicles_id = user.vehicles.pluck(:id)
     cannot :create, Reservation, vehicle_id: vehicles_id

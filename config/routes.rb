@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     devise_for :users
     resources :vehicles, except: :destroy do
       resources :legal_documents, except: :destroy
-      resources :reservations, except: :destroy
+      resources :reservations
     end
     resources :reservations, only: :index do
       resources :payments, except: :destroy
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :brands, except: :destroy
     delete '/images/(:id)', to: 'images#destroy', as: :destroy_images
     get 'search/index', to: 'search#index'
+    get 'my_reservations', to: 'my_reservations#index'
     get '/my_vehicles', to: 'my_vehicles#index'
     get '/validate_legal_documents', to: 'validate_legal_documents#index'
     root to: 'vehicles#index'

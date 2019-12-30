@@ -2,7 +2,6 @@
 
 # legalDocument
 class LegalDocument < ApplicationRecord
-  include Notificable
   belongs_to :resource, polymorphic: true # resource can be User or Vehicle
   belongs_to :validator, class_name: 'User', foreign_key: 'validator_id',
                          optional: true
@@ -34,6 +33,7 @@ class LegalDocument < ApplicationRecord
 
   after_save :set_status_for_resource,
              unless: :resource_is_user?
+  after_update :check_ready_to_notify, if: :resource_is_vehicle?
 
   scope :active, -> { where(status: :effective) }
   scope :not_rejected, -> { where.not(status: 'rejected') }
@@ -81,6 +81,16 @@ class LegalDocument < ApplicationRecord
   end
 
   private
+
+  def check_ready_to_notify
+    notify_documents_effective if resource.legal_documents_effective?
+  end
+
+  def notify_documents_effective
+    resource_name = resource.class.to_s
+    to = resource.try(:email) || resource.user.email
+    LegalDocumentsMailer.documents_effective(resource_name, to).deliver_later
+  end
 
   def set_status_for_resource
     resource.set_status!

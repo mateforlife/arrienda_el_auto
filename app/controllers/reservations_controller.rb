@@ -24,6 +24,9 @@ class ReservationsController < ApplicationController
 
   # GET vehicles/1/reservations/1/edit
   def edit
+    return if @reservation.waiting_payment?
+
+    redirect_to my_reservations_path, alert: 'No se puede editar'
   end
 
   # POST vehicles/1/reservations
@@ -45,6 +48,17 @@ class ReservationsController < ApplicationController
                   notice: 'Reservation was successfully updated.')
     else
       render action: 'edit'
+    end
+  end
+
+  def destroy
+    respond_to do |format|
+      if @reservation.destroy
+        format.html { redirect_to [@reservation.vehicle, @reservation], notice: 'reservation was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to my_reservations_path, alert: 'no se puede eliminar' }
+      end
     end
   end
 
