@@ -1,7 +1,7 @@
 <div class="container col-xl-6 col-lg-10 col-md-6 col-sm-10">
   <div class="card shadow">  
     <div class="card-header text-center">
-      <h2><strong>Editing reservation</strong></h2>
+      <h2><strong>Editar reserva</strong></h2>
     </div><br>
     <div class="card-body">
       <div class="card-title">
@@ -11,7 +11,7 @@
         <%= render 'form' %>
 
       <div class="text-right"><br>
-        <%= link_to 'Back', vehicle_reservations_path(@reservation.vehicle) %>
+        <%= link_to I18n.t('text.back'), vehicle_reservations_path(@reservation.vehicle) %>
       </div>
     </div>
   </div> 

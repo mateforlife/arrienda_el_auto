@@ -1,4 +1,21 @@
 es:
+  reservation:
+    headers:
+      new_reservation: Nueva reservación
+      your_reservation: Tu reserva
+    text:
+      reserve_day: Reserva los dias que necesites
+      daily_rate: Tarifa diaria
+      total_value: Valor total
+      reserve: Reserva
+      driver_information: Información del conductor
+      user: Usuario
+      vehicle: Vehículo
+      start_date: Fecha de inicio
+      end_date: Fecha de término
+      cancellation_date: Fecha de cancelación
+      status: Estado
+      edit: Editar
   driver_account:
     headers:
       new: Nueva cuenta de conductor
@@ -79,6 +96,7 @@ es:
       daily_price: "Tarifa diaria"
       fuel: "Combustible"
       status: "Estado"
+      reserve: Reservar!
   text:
     actions: Acciones
     user: Usuario
@@ -97,9 +115,20 @@ es:
     remaining: Restantes   
   activerecord:
     attributes:
+      reservation:
+        status_list:
+          reserved: Reservado
+          current: Actual
+          finished: Terminado
+          rejected: Rechazado
+        start_date: Fecha de inicio
+        end_date: Fecha de término
       driver_account:
         status_list:
           approved: Aprovado
+          created: Creado
+          review: Evaluando
+          rejected: Rechazado
       legal_document:
         document_type_list:
           circulation_permit: Permiso de circulación

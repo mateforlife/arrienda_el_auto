@@ -30,6 +30,23 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  reservation:
+    headers:
+      new_reservation: New reservation
+      your_reservation: Your reservation
+    text:
+      reserve_day: Reserve the days you need
+      daily_rate: Daily rate
+      total_value: Total value
+      reserve: Reserve
+      driver_information: Driver information
+      user: User
+      vehicle: Vehicle
+      start_date: Start date
+      end_date: End date
+      cancellation_date: Cancellation date
+      status: Status
+      edit: Edit
   driver_account:
     headers:
       new: New driver account
@@ -40,6 +57,15 @@ en:
     status: Status
     created_at: Created at
     my_status: See status of my documents
+  number:
+    currency:
+      format:
+        delimiter: '.'
+        format: '$%n %u'
+        precision: 0
+        separator: ','
+        strip_insignificant_zeros: false
+        unit: ''
   created_at: Created_at
   hello: "Hello world"
   language: Language
@@ -118,11 +144,21 @@ en:
       daily_price: "Daily price"
       fuel: "Fuel"
       status: "Status"
+      reserve: Reserve!
   activerecord:
     attributes:
+      reservation:
+        status_list:
+          reserved: Reserverd
+          current: Current
+          finished: Finished
+          rejected: Rechazado
       driver_account:
         status_list:
           approved: Approved
+          created: Created
+          review: Review
+          rejected: Rejected
       legal_document:
         document_type_list:
           circulation_permit: Circulation permit
