@@ -27,6 +27,8 @@ class Reservation < ApplicationRecord
     where(status: 'current')
   }
 
+  scope :reserved, -> { where(status: 'reserved')}
+
   def payment_effective?
     return false if payments.empty? || payments.last.rejected?
 

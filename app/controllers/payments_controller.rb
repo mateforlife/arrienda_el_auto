@@ -39,7 +39,7 @@ class PaymentsController < ApplicationController
 
   # PUT reservations/1/payments/1
   def update
-    if @payment.update_attributes(payment_params)
+    if @payment.update(payment_params)
       redirect_to([@payment.reservation, @payment],
                   notice: 'Payment was successfully updated.')
     else
@@ -60,6 +60,6 @@ class PaymentsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def payment_params
-    params.require(:payment).permit(:file)
+    params.require(:payment).permit(:file, :status)
   end
 end

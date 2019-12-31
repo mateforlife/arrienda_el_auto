@@ -11,8 +11,10 @@ class User < ApplicationRecord
   has_many :vehicles
   has_many :reservations
   has_one :driver_account
-  validates :rut, presence: true
 
+  REQUIRED_DOCUMENTS = %w[identity criminal_record].freeze
+
+  validates :rut, presence: true
   validates_presence_of %i[first_name last_name second_last_name rut birthdate
                            gender phone_number]
   validates :rut, uniqueness: true, if: proc { |usr| usr.rut.present? }
@@ -27,7 +29,7 @@ class User < ApplicationRecord
   before_save :sanitize_email
   before_save :trim_and_capitalize_names
 
-  REQUIRED_DOCUMENTS = %w[identity criminal_record].freeze
+  scope :admins, -> { where(permission: 'admin') }
 
   def driver_accounts
     DriverAccount

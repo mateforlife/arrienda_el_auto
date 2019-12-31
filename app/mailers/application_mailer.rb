@@ -19,4 +19,8 @@ class ApplicationMailer < ActionMailer::Base
     response = sg.client.mail._('send').post(request_body: mail.to_json)
     puts response
   end
+
+  def set_admin_emails
+    @admin_emails = User.admins.pluck(:email)
+  end
 end

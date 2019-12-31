@@ -2,13 +2,28 @@
   <%= render 'shared/errors', resource: @payment %>
   <div class="field">
     <%= f.label :amount %><br />
-    <%= f.number_field :amount, value: @payment.calculated_amount, disabled: true %>
+    <%= f.text_field :amount, value: number_to_currency(@payment.calculated_amount), disabled: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :file %><br />
-    <%= f.file_field :file %>
-  </div>
+  <% if action_name.in?(%w[new create])%>
+    <div class="field">
+      <%= f.label :file %><br />
+      <%= f.file_field :file %>
+    </div>
+  <% elsif action_name.in?(%w[edit update])%>
+    <div class="field">
+      <%= f.label :file %>
+      <%= image_tag preview(@payment.file) %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :status %><br />
+      <%= f.select :status,
+          options_for_select(@payment.class.translated_statuses.map { |t, k, _v|
+           [t, k]
+          }, @payment.status), {}, { class:"form-control" }  %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>
