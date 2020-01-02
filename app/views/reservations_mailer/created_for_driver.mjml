@@ -1,15 +1,5 @@
-<mjml>
-  <mj-body>
-    <mj-section>
-      <mj-column>
-        <mj-text font-size="30px" color="#006699" font-family="arial"><strong>EasyCar</strong></mj-text>
-        <mj-divider border-color="#006699"></mj-divider>
-        <mj-text font-size="22px"  font-family="arial">Hola <%= @driver.first_name%>!</mj-text>
-        <mj-text font-size="18px"  font-family="arial">Has solicitado la reserva del vehículo <%= @vehicle.brand_and_model%>, para el día <%= @reservation.start_date.strftime('%d-%m-%Y')%>, hasta el día <%= @reservation.end_date.strftime('%d-%m-%Y')%>.</mj-text>
-        <mj-text font-size="18px"  font-family="arial">Si despues de 5 minutos no se realiza el pago, se cancelara la reserva del vehículo.</mj-text>
-        <mj-text font-size="18px"  font-family="arial">Para mas información revisa tu cuenta en <a href="http://easy-car.herokuapp.com">Easycar.</a></mj-text>
-        <mj-divider border-color="#006699"></mj-divider>
-      </mj-column>
-    </mj-section>
-  </mj-body>
-</mjml>
+<mj-text font-size="22px"  font-family="arial">Hola <%= @driver.first_name%>!</mj-text>
+<mj-text font-size="18px"  font-family="arial">Has solicitado la reserva del vehículo <%= @vehicle.brand_and_model%>, para el día <%= @reservation.start_date.strftime('%d-%m-%Y')%>, hasta el día <%= @reservation.end_date.strftime('%d-%m-%Y')%>.</mj-text>
+<mj-text font-size="18px"  font-family="arial">Si despues de 5 minutos no se realiza el pago, se cancelara la reserva del vehículo.</mj-text>
+<mj-text font-size="18px"  font-family="arial">Para mas información revisa tu cuenta en <a href="http://easy-car.herokuapp.com">Easycar.</a></mj-text>
+

@@ -1,5 +1,0 @@
-<mjml>
-  <mj-body>
-    <%= yield %>
-  </mj-body>
-</mjml>
