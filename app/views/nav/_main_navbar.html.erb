@@ -16,8 +16,16 @@
           <%= link_to I18n.t('vehicle.leasing'), vehicles_path, class:"dropdown-item" %>
           <div class="dropdown-divider"></div>
           <%= link_to I18n.t('vehicle.headers.index.my_vehicles'), my_vehicles_path, class:"dropdown-item" %>
-          <div class="dropdown-divider"></div>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Reservas
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to 'Mis Reservas', my_reservations_path, class:"dropdown-item" %>
+          <%= link_to 'Reservas de mis vehículos', my_reservations_path, class:"dropdown-item" %>
         </div>
       </li>
 
