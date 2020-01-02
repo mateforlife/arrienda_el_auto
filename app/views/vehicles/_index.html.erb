@@ -23,7 +23,7 @@
                         </tr>          
                         <tr>
                           <th style="width:50%"><%= I18n.t('vehicle.show.fuel') %>:</th>
-                          <td><%= vehicle.engine_type %></td>
+                          <td><%= Vehicle.translated_engine_type(vehicle.engine_type)  %></td>
                         </tr>
                         <%= render 'vehicles/legal_status', vehicle: vehicle if vehicle.belongs_to_current_user?(current_user) || current_user.admin? %>
                       </tbody>

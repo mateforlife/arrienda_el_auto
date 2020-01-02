@@ -26,6 +26,7 @@ class Vehicle < ApplicationRecord
   translate_enum :engine_type
   translate_enum :transmission
   translate_enum :steering
+  translate_enum :status
 
   # ====================
   # =   VALIDATORS     =

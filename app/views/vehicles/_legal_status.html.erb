@@ -1,6 +1,6 @@
 <th style="width:50%"><%= I18n.t('vehicle.show.status')%>:</th> 
 <td>
   <span class="badge badge-pill badge-<%= vehicle.legal_status_badge[:badge_color]%>">
-    <%= vehicle.legal_status_badge[:text] %>
+    <%= Vehicle.translated_status(vehicle.legal_status_badge[:text]) %>
   </span>
 </td>

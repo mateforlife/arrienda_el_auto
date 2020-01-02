@@ -208,6 +208,12 @@ es:
           power: Asistida
           electric: Eléctrica
           hydraulic: Hidráulica
+        status_list:
+          created: Creado
+          review: En revisión
+          ready: Disponible
+          published: Publicado
+          rented: Arrendado
         brand_id: Marca
         vehicle_model_id: Modelo
         vehicle_model: Marca y Modelo
