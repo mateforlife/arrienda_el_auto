@@ -7,7 +7,10 @@ class ReservationsMailer < ApplicationMailer
     @vehicle = vehicle
     @reservation = reservation
 
-    mail to: @owner.email, subject: 'Tu vehiculo ha sido reservado'
+    mail(to: @owner.email, subject: 'Tu vehiculo ha sido reservado') do |format|
+      format.text
+      format.mjml
+    end
   end
 
   def created_for_driver(driver, vehicle, reservation)
@@ -15,6 +18,9 @@ class ReservationsMailer < ApplicationMailer
     @vehicle = vehicle
     @reservation = reservation
 
-    mail to: @driver.email, subject: 'Has reservado un vehiculo'
+    mail(to: @driver.email, subject: 'Has reservado un vehiculo') do |format|
+      format.text
+      format.mjml
+    end
   end
 end
