@@ -1,0 +1,32 @@
+<div class="container col-xl-6 col-lg-10 col-md-6 col-sm-10">
+  <div class="card shadow">  
+    <div class="card-header text-center">
+      <h2><%= I18n.t('buttons.driver_account')%></h2>
+    </div><br>
+    <div class="card-body">
+      <h4 class="card-title"><%= I18n.t('driver_account.headers.driver_info')%>:</h4>
+      <div class="table table-responsive">
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th style="width:40%;"><%= I18n.t('user.name')%>:</th>
+              <td><%= @driver_account.user.full_name %></td>
+            </tr>
+            <tr>
+              <th><%= I18n.t('driver_account.status')%>:</th>
+              <td><%=  DriverAccount.translated_status(@driver_account.status) %></td>
+              
+            </tr>
+            <tr>
+              <th><%= I18n.t('driver_account.created_at')%>:</th>
+              <td><%=@driver_account.created_at.strftime('%d-%m-%Y')%></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-right">
+        <%= link_to I18n.t('driver_account.my_status'), driver_account_legal_documents_path(@driver_account) %>
+      </div>
+    </div>
+  </div>
+</div>

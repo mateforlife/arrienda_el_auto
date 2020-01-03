@@ -1,0 +1,24 @@
+<tr>
+  <th style="width:20%"><%= I18n.t('user.first_name')%>:</th>
+  <td><%= @resource.user.first_name%></td>
+</tr>
+<tr>
+  <th><%= I18n.t('user.last_name')%>:</th>
+  <td><%= @resource.user.last_name%></td>
+</tr>
+<tr>
+  <th><%= I18n.t('user.second_last_name')%>:</th>
+  <td><%= @resource.user.second_last_name%></td>
+</tr>
+<tr>
+  <th><%= I18n.t('user.birthdate')%>:</th>
+  <td><%= @resource.user.birthdate.strftime('%d-%m-%Y')%></td>
+</tr>
+<tr>
+  <th><%= I18n.t('user.gender')%>:</th>
+  <td><%= User.translated_gender(@resource.user.gender) %></td>
+</tr>
+<tr>
+  <th><%= I18n.t('user.rut')%>:</th>
+  <td><%= @resource.user.rut%></td>
+</tr>

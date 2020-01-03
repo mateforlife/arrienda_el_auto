@@ -20,6 +20,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'active_record_union'
 # Active storage attachments content validator
 gem 'active_storage_validations'
 
@@ -56,6 +57,9 @@ gem 'sendgrid-ruby'
 # gem 'fog-aws'
 # gem 'asset_sync'
 
+# emails styles
+gem 'mjml-rails'
+
 # to perform async jobs
 gem 'sidekiq', '~> 5.2.7'
 
@@ -77,6 +81,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+  # cronjobs
+  gem 'whenever', require: false
 end
 
 group :test do

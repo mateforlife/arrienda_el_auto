@@ -1,0 +1,23 @@
+<%= form_for([@reservation.vehicle, @reservation]) do |f| %>
+  <%= render 'shared/errors', resource: @reservation %>
+
+  <div class="form-group">
+    <%= f.label :start_date %>:<br />
+    <%= f.date_field :start_date, value: @start_date, min: @start_date, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :end_date %>:<br />
+    <%= f.date_field :end_date, value: @end_date, min: @end_date, class:"form-control" %>
+  </div>
+  <div class="row-fluid form-group">
+    <p><%= I18n.t('reservation.text.daily_rate')%>:</p>
+    <p id='fee_value', class="form-control"><%= number_to_currency(@vehicle.fee.amount.to_i)%></p>
+  </div>
+  <div class="row-fluid form-group">
+    <p><%= I18n.t('reservation.text.total_value')%>:</p>
+    <p id='final_amount', class="form-control"></p>
+  </div><br>
+  <div class="actions">
+    <%= f.submit I18n.t('reservation.text.reserve'), class: "btn btn-outline-primary btn-lg btn-block"%>
+  </div>
+<% end %>

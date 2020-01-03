@@ -1,0 +1,12 @@
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-text font-size="30px" color="#006699" font-family="arial"><strong>EasyCar</strong></mj-text>
+        <mj-divider border-color="#006699"></mj-divider>
+        <%= yield %>
+        <mj-divider border-color="#006699"></mj-divider>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

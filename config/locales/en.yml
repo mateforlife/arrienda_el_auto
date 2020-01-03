@@ -30,9 +30,48 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  reservation:
+    headers:
+      new_reservation: New reservation
+      your_reservation: Your reservation
+    text:
+      reserve_day: Reserve the days you need
+      daily_rate: Daily rate
+      total_value: Total value
+      reserve: Reserve
+      driver_information: Driver information
+      user: User
+      vehicle: Vehicle
+      start_date: Start date
+      end_date: End date
+      cancellation_date: Cancellation date
+      status: Status
+      edit: Edit
+  driver_account:
+    headers:
+      new: New driver account
+      legal_document:
+        driver_account_documents: Driver account documents
+        driver_account_data: Driver account data
+      driver_info: Driver information
+    status: Status
+    created_at: Created at
+    my_status: See status of my documents
+  number:
+    currency:
+      format:
+        delimiter: '.'
+        format: '$%n %u'
+        precision: 0
+        separator: ','
+        strip_insignificant_zeros: false
+        unit: ''
   created_at: Created_at
   hello: "Hello world"
   language: Language
+  legal_document_mails:
+    vehicle_mail: We have validated your vehicle documents
+    user_mail: We have validated your personal documents
   user:
     first_name: First name
     last_name: Last name
@@ -60,6 +99,7 @@ en:
     options: Options
     legal_documents: Legal documents
     validate: Validate
+    driver_account: Driver account
   text:
     actions: Actions
     user: User
@@ -104,8 +144,21 @@ en:
       daily_price: "Daily price"
       fuel: "Fuel"
       status: "Status"
+      reserve: Reserve!
   activerecord:
     attributes:
+      reservation:
+        status_list:
+          reserved: Reserved
+          current: Current
+          finished: Finished
+          rejected: Rejected
+      driver_account:
+        status_list:
+          approved: Approved
+          created: Created
+          review: Review
+          rejected: Rejected
       legal_document:
         document_type_list:
           circulation_permit: Circulation permit
@@ -114,6 +167,8 @@ en:
           vehicle_register: Vehicle Register
           identity: Identity
           criminal_record: Criminal record
+          driver_license: Driver license
+          driver_resume: Driver resume
         status_list:
           pending: Pending
           effective: Effective

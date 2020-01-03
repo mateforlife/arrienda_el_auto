@@ -10,9 +10,9 @@
   </head>
   <body>
     <div class="container-fuid">
-      <%= render 'nav/main_navbar'  %>
-      <%= render 'shared/flash_messages'  %>
+      <%= render 'nav/main_navbar' %>
       <div class="main-layout">
+        <%= toastr_flash %>
         <%= yield %>
       </div>    
     </div>

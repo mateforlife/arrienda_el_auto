@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_12_232553) do
+ActiveRecord::Schema.define(version: 2019_12_26_233347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(version: 2019_12_12_232553) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "driver_accounts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "status", default: 0
+    t.datetime "deleted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_driver_accounts_on_user_id", unique: true
+  end
+
   create_table "fees", force: :cascade do |t|
     t.string "engine_type"
     t.string "body_type"
@@ -70,6 +79,15 @@ ActiveRecord::Schema.define(version: 2019_12_12_232553) do
     t.index ["validator_id"], name: "index_legal_documents_on_validator_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.bigint "reservation_id", null: false
+    t.integer "amount"
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["reservation_id"], name: "index_payments_on_reservation_id"
+  end
+
   create_table "profile_images", force: :cascade do |t|
     t.string "type"
     t.datetime "created_at", precision: 6, null: false
@@ -77,6 +95,19 @@ ActiveRecord::Schema.define(version: 2019_12_12_232553) do
     t.string "resource_type"
     t.bigint "resource_id"
     t.index ["resource_type", "resource_id"], name: "index_profile_images_on_resource_type_and_resource_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "vehicle_id", null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "deleted_at"
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+    t.index ["vehicle_id"], name: "index_reservations_on_vehicle_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -100,6 +131,7 @@ ActiveRecord::Schema.define(version: 2019_12_12_232553) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -142,6 +174,10 @@ ActiveRecord::Schema.define(version: 2019_12_12_232553) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "driver_accounts", "users"
+  add_foreign_key "payments", "reservations"
+  add_foreign_key "reservations", "users"
+  add_foreign_key "reservations", "vehicles"
   add_foreign_key "vehicle_models", "brands"
   add_foreign_key "vehicles", "fees"
   add_foreign_key "vehicles", "users"

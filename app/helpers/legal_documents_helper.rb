@@ -11,6 +11,8 @@ module LegalDocumentsHelper
       vehicle_legal_documents_path(resource)
     elsif resource.class == User
       user_legal_documents_path(resource)
+    elsif resource.class == DriverAccount
+      driver_account_legal_documents_path(resource)
     end
   end
 
@@ -20,12 +22,16 @@ module LegalDocumentsHelper
       vehicle_legal_document_path(resource, legal_document)
     elsif resource.class == User
       user_legal_document_path(resource, legal_document)
+    elsif resource.class == DriverAccount
+      driver_account_legal_document_path(resource, legal_document)
     end
   end
 
   def new_legal_document_path(params)
     if params[:vehicle_id]
       new_vehicle_legal_document_path(params[:vehicle_id])
+    elsif params[:driver_account_id]
+      new_driver_account_legal_document_path(params[:driver_account_id])
     elsif params[:user_id]
       new_user_legal_document_path(params[:user_id])
     end
@@ -37,6 +43,8 @@ module LegalDocumentsHelper
       edit_vehicle_legal_document_path(resource, legal_document)
     elsif resource.class == User
       edit_user_legal_document_path(resource, legal_document)
+    elsif resource.class == DriverAccount
+      edit_driver_account_legal_document_path(resource, legal_document)
     end
   end
 end

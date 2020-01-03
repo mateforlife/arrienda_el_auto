@@ -1,6 +1,45 @@
 es:
+  reservation:
+    headers:
+      new_reservation: Nueva reservación
+      your_reservation: Tu reserva
+    text:
+      reserve_day: Reserva los dias que necesites
+      daily_rate: Tarifa diaria
+      total_value: Valor total
+      reserve: Reserva
+      driver_information: Información del conductor
+      user: Usuario
+      vehicle: Vehículo
+      start_date: Fecha de inicio
+      end_date: Fecha de término
+      cancellation_date: Fecha de cancelación
+      status: Estado
+      edit: Editar
+  driver_account:
+    headers:
+      new: Nueva cuenta de conductor
+      legal_document:
+        driver_account_documents: Documentos del conductor
+        driver_account_data: Datos del conductor
+      driver_info: Información del conductor
+    status: Estado
+    created_at: Fecha de creación
+    my_status: Ver estado de mis documentos
+  number:
+    currency:
+      format:
+        delimiter: '.'
+        format: '$%n %u'
+        precision: 0
+        separator: ','
+        strip_insignificant_zeros: false
+        unit: ''
   created_at: Creado el
   language: Idioma
+  legal_document_mails:
+    vehicle_mail: Hemos validado los documentos de tu vehículo
+    user_mail: Hemos validado tus documentos personales
   user:
     first_name: Nombre
     last_name: Primer apellido
@@ -28,6 +67,7 @@ es:
     options: Opciones
     legal_documents: Documentación legal
     validate: Validar
+    driver_account: Cuenta de conductor
   vehicle:
     brand: Marca
     model: Modelo
@@ -56,6 +96,7 @@ es:
       daily_price: "Tarifa diaria"
       fuel: "Combustible"
       status: "Estado"
+      reserve: Reservar!
   text:
     actions: Acciones
     user: Usuario
@@ -74,6 +115,26 @@ es:
     remaining: Restantes   
   activerecord:
     attributes:
+      payment:
+        status_list:
+          pending: Pendiente
+          approved: Aprovado
+          rejected: Rechazado
+      reservation:
+        status_list:
+          waiting_payment: Esperando pago
+          reserved: Reservado
+          current: En curso
+          finished: Finalizado
+          rejected: Rechazado
+        start_date: Fecha de inicio
+        end_date: Fecha de término
+      driver_account:
+        status_list:
+          approved: Aprovado
+          created: Creado
+          review: Revisión
+          rejected: Rechazado
       legal_document:
         document_type_list:
           circulation_permit: Permiso de circulación
@@ -82,7 +143,7 @@ es:
           vehicle_register: Padrón
           identity: Cédula de identidad
           criminal_record: Certificado de Antecedentes
-          drive_license: Licencia de conducir
+          driver_license: Licencia de conducir
           driver_resume: Hoja de vida de conductor
         status_list:
           pending: Pendiente
@@ -147,6 +208,12 @@ es:
           power: Asistida
           electric: Eléctrica
           hydraulic: Hidráulica
+        status_list:
+          created: Creado
+          review: En revisión
+          ready: Disponible
+          published: Publicado
+          rented: Arrendado
         brand_id: Marca
         vehicle_model_id: Modelo
         vehicle_model: Marca y Modelo

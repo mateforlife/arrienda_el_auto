@@ -10,20 +10,23 @@
         <h3 class="card-title col-xl-9 col-sm-7 col-14"><%= @vehicle.brand_model_and_year %></h3>
       <!-- Example single danger button -->
         <div class='container col-xl-3 col-sm-4 col-14' style='text-align: end;'>
-          <%= render 'publish_form', vehicle: @vehicle if @vehicle.ready? && @vehicle.belongs_to_current_user?(current_user) %>
-          <div class="btn-group">
-            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= I18n.t('buttons.options') %>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-            <% if @vehicle.belongs_to_current_user?(current_user) || current_user.admin? %>
-              <%= link_to I18n.t('buttons.edit'), edit_vehicle_path(@vehicle), class:"dropdown-item" %>
-              <%= link_to I18n.t('buttons.legal_documents'), vehicle_legal_documents_path(@vehicle), class:"dropdown-item" %>
-              <div class="dropdown-divider"></div>
-              <%= link_to I18n.t('buttons.back'), my_vehicles_path, class:"dropdown-item" %>
-            <% else %> 
-              <%= link_to I18n.t('buttons.back'), vehicles_path, class:"dropdown-item" %>
-            <% end %>
+          <div class="row-fluid">
+            <%= render 'publish_form', vehicle: @vehicle if @vehicle.ready? && @vehicle.belongs_to_current_user?(current_user) %>
+            <%= render 'reservation_link', vehicle: @vehicle if @vehicle.published? && !@vehicle.belongs_to_current_user?(current_user) %>
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= I18n.t('buttons.options') %>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+              <% if @vehicle.belongs_to_current_user?(current_user) || current_user.admin? %>
+                <%= link_to I18n.t('buttons.edit'), edit_vehicle_path(@vehicle), class:"dropdown-item" %>
+                <%= link_to I18n.t('buttons.legal_documents'), vehicle_legal_documents_path(@vehicle), class:"dropdown-item" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to I18n.t('buttons.back'), my_vehicles_path, class:"dropdown-item" %>
+              <% else %> 
+                <%= link_to I18n.t('buttons.back'), vehicles_path, class:"dropdown-item" %>
+              <% end %>
+              </div>
             </div>
           </div>
         </div>

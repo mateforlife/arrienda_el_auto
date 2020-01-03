@@ -1,0 +1,16 @@
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-text font-size="30px" color="#006699" font-family="arial"><strong>EasyCar</strong></mj-text>
+        <mj-divider border-color="#006699"></mj-divider>
+        <mj-text font-size="18px"  font-family="arial">
+          Debes validar el pago aqui! <%= link_to 'Aqui!', 
+                                          edit_reservation_payment_url(reservation_id: @reservation_id,
+                                                                       id: @payment_id)%>
+        </mj-text>
+        <mj-divider border-color="#006699"></mj-divider>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

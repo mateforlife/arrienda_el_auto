@@ -9,14 +9,19 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
   has_many :vehicles
-  validates :rut, presence: true
+  has_many :reservations
+  has_one :driver_account
 
+  REQUIRED_DOCUMENTS = %w[identity criminal_record].freeze
+
+  validates :rut, presence: true
   validates_presence_of %i[first_name last_name second_last_name rut birthdate
                            gender phone_number]
   validates :rut, uniqueness: true, if: proc { |usr| usr.rut.present? }
   validates :rut, format: { with: /\A\d{1,3}(\.\d{3})*-[0-9K]\z/,
                             message: 'Formato inválido' },
                   if: proc { |usr| usr.rut.present? }
+  validate :validate_age
 
   enum permission: %i[basic admin]
   enum gender: %i[male female]
@@ -25,11 +30,22 @@ class User < ApplicationRecord
   before_save :sanitize_email
   before_save :trim_and_capitalize_names
 
-  REQUIRED_DOCUMENTS = %w[identity criminal_record].freeze
-  DRIVER_REQUIRED_DOCUMENTS = %w[driver_license driver_resume].freeze
+  scope :admins, -> { where(permission: 'admin') }
+
+  def driver_accounts
+    DriverAccount
+  end
 
   def full_name
     "#{first_name} #{last_name} #{second_last_name}"
+  end
+
+  private
+
+  def validate_age
+    if birthdate.present? && birthdate > 18.years.ago.to_date
+      errors.add(:birthdate, 'debes ser mayor de 18 años.')
+    end
   end
 
   def sanitize_email

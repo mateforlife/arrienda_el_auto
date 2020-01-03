@@ -1,0 +1,16 @@
+<div class="container col-xl-6 col-lg-10 col-md-6 col-sm-10">
+  <div class="card shadow">  
+    <div class="card-header text-center">
+      <h2><strong><%= I18n.t('reservation.headers.new_reservation')%></strong></h2>
+    </div><br>
+    <div class="card-body">
+      <div class="card-title">
+        <h4><%= I18n.t('reservation.text.reserve_day')%></h4><br>
+      </div>
+      <%= render 'form' %><br>
+      <div class="text-right">
+        <%= link_to I18n.t('text.back'), vehicle_reservations_path(@reservation.vehicle) %>
+      </div>
+    </div>
+   </div> 
+</div>

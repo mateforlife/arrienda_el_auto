@@ -1,0 +1,31 @@
+<div class="container col-lg-12 col-md-6 col-sm-10">
+  <div class="card">
+    <h5 class="card-header"><%=I18n.t('user.headers.index')%> (<%= @users.count %>):</h5>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover "> 
+          <thead>
+            <tr>            
+              <th><%= I18n.t('user.name')%>:</th>
+              <th><%= I18n.t('user.gender')%>:</th>
+              <th><%= I18n.t('user.email')%>:</th>            
+              <th><%= I18n.t('user.phone_number')%>:</th>
+              <th><%= I18n.t('text.actions')%></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @drivers.each do |driver| %>
+              <tr>
+                <td><%= driver.user.full_name%></td>
+                <td><%= User.translated_gender(driver.user.gender) %></td>
+                <td><%= driver.user.email%></td>
+                <td><%= driver.user.phone_number%></td>
+                <td><%= link_to "Show", new_driver_account_legal_document_path(driver)%></td>
+              </tr>
+            <% end%>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

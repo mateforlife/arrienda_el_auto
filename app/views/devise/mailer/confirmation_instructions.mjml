@@ -1,0 +1,4 @@
+<mj-text font-size="22px" font-family="arial"><%=I18n.t('devise.text.welcome')%> <%= @resource.first_name%>!</mj-text>
+<mj-text font-size="16px" font-family="arial"><%= I18n.t('devise.text.messages.confirm_account')%></mj-text>
+<mj-text font-size="16px" font-family="arial"><%= link_to I18n.t('devise.text.confirm_my_account'), confirmation_url(@resource, confirmation_token: @token) %></mj-text>
+<mj-text font-size="16px" font-family="arial">Gracias por unirte a EasyCar.</mj-text>
