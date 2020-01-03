@@ -3,6 +3,7 @@
 # LegalDocumentsController
 class LegalDocumentsController < ApplicationController
   include LegalDocumentsHelper
+  include FilesHelper
   load_resource :user
   load_resource :vehicle
   load_resource :driver_account

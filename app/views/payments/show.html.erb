@@ -1,0 +1,24 @@
+
+<p>
+  <b>Reservation:</b>
+  <%= @payment.reservation %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @payment.amount %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @payment.status %>
+</p>
+
+<p>
+  <b>Comprobante:</b>
+</p>
+<p>
+  <%= image_tag preview(@payment.file, 1000, 700) %>
+</p>
+<%= link_to 'Edit', edit_reservation_payment_path(@payment.reservation, @payment) %> |
+<%= link_to 'Back', reservation_payments_path(@payment.reservation) %>

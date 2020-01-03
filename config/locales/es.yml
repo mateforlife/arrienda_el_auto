@@ -115,8 +115,14 @@ es:
     remaining: Restantes   
   activerecord:
     attributes:
+      payment:
+        status_list:
+          pending: Pendiente
+          approved: Aprovado
+          rejected: Rechazado
       reservation:
         status_list:
+          waiting_payment: Esperando pago
           reserved: Reservado
           current: En curso
           finished: Finalizado

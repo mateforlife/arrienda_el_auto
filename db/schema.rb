@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_23_024149) do
+ActiveRecord::Schema.define(version: 2019_12_26_233347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,15 @@ ActiveRecord::Schema.define(version: 2019_12_23_024149) do
     t.bigint "validator_id"
     t.index ["resource_type", "resource_id"], name: "index_legal_documents_on_resource_type_and_resource_id"
     t.index ["validator_id"], name: "index_legal_documents_on_validator_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "reservation_id", null: false
+    t.integer "amount"
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["reservation_id"], name: "index_payments_on_reservation_id"
   end
 
   create_table "profile_images", force: :cascade do |t|
@@ -166,6 +175,7 @@ ActiveRecord::Schema.define(version: 2019_12_23_024149) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "driver_accounts", "users"
+  add_foreign_key "payments", "reservations"
   add_foreign_key "reservations", "users"
   add_foreign_key "reservations", "vehicles"
   add_foreign_key "vehicle_models", "brands"

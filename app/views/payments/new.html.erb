@@ -1,0 +1,14 @@
+<h1>New payment</h1>
+
+debes realizar un deposito o transferencia a la siguiente cuenta:
+nombre:
+rut:
+banco:
+tipo de cuenta:
+numero de cuenta:
+email:
+comentario: reserva <%= @payment.reservation.id %>
+tienes 10 minutos para realizar el pago desde <%= @payment.reservation.created_at.strftime('%H:%M:%S') %>
+<%= render 'form' %>
+
+<%= link_to 'Back', reservation_payments_path(@payment.reservation) %>
