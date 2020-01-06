@@ -11,6 +11,7 @@ module EasyCar
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.eager_load_paths << Rails.root.join('lib')
+    config.eager_load_paths << Rails.root.join('node_modules')
     # config.middleware.use Rack::Cors do
     #   allow do
     #     origins [
