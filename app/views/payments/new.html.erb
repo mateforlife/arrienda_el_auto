@@ -1,14 +1,55 @@
-<h1>New payment</h1>
-
-debes realizar un deposito o transferencia a la siguiente cuenta:
-nombre:
-rut:
-banco:
-tipo de cuenta:
-numero de cuenta:
-email:
-comentario: reserva <%= @payment.reservation.id %>
-tienes 10 minutos para realizar el pago desde <%= @payment.reservation.created_at.strftime('%H:%M:%S') %>
-<%= render 'form' %>
-
-<%= link_to 'Back', reservation_payments_path(@payment.reservation) %>
+<div class="container col-xl-5 col-lg-10 col-md-6 col-sm-10">
+  <div class="card shadow">
+    <div class="card-header text-center">
+      <h2><strong>Nuevo pago</strong></h2>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title">Debes realizar un deposito o transferencia a la siguiente cuenta:</h4>
+      <p class="card-text", style="color:red">
+        Nota: tienes 2 horas para realizar el pago a contar de las <%= @payment.reservation.created_at.strftime('%H:%M:%S') %>, de lo contrario no se efectuará la reserva del vehículo.
+      </p><br>
+      <div class="table table-responsive">
+        <table class="table table-sm table-striped">
+          <tbody>
+            <tr>
+              <th>Nombre:</th>
+              <td>Marco Sepulveda</td>
+            </tr>
+            <tr>
+              <th>Rut:</th>
+              <td>16.032.427-9</td>
+            </tr>
+            <tr>
+              <th>Banco:</th>
+              <td>Banco Scotiabank</td>
+            </tr>
+            <tr>
+              <th>Tipo de cuenta:</th>
+              <td>Cuenta corriente</td>
+            </tr>
+            <tr>
+              <th>N° de cuenta:</th>
+              <td>000974000725</td>
+            </tr>
+            <tr>
+              <th>Email:</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Monto:</th>
+              <td><%= number_to_currency(@payment.calculated_amount)%></td>
+            </tr>
+          </tbody>
+          
+        </table><br>
+        <div>
+          <p>Debes subir una imagén del comprobante de pago.</p>
+          <%= render 'form' %>
+        </div>
+        <div class="text-right">
+          <%= link_to I18n.t('text.back'), reservation_payments_path(@payment.reservation) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

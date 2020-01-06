@@ -120,6 +120,7 @@ es:
           pending: Pendiente
           approved: Aprovado
           rejected: Rechazado
+        file: Imagén
       reservation:
         status_list:
           waiting_payment: Esperando pago
