@@ -31,7 +31,7 @@ es:
       format:
         delimiter: '.'
         format: '$%n'
-        precision:
+        precision: 0
         separator: ''
         strip_insignificant_zeros: false
         unit: ''
