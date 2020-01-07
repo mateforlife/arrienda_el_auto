@@ -1,2 +1,0 @@
-<mj-text font-size="22px"  font-family="arial"><%=I18n.t('devise.text.hello')%></mj-text>
-<mj-text font-size="18px"  font-family="arial"><%=I18n.t('legal_document_mails.user_mail')%></mj-text>
