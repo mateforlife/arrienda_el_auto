@@ -12,30 +12,20 @@ class DeviseMailer < Devise::Mailer
   def reset_password_instructions(record, token, opts={})
     @token = token
     @resource = record
-    # Custom logic to send the email with MJML
     mail(
       template_path: 'devise/mailer',
       from: 'notificaciones@easy-car.cl',
       to: record.email, cc: '',
-      subject: 'reset password instructions'
-    ) do |format|
-      format.text
-      format.mjml
-    end
+      subject: 'reset password instructions')
   end
 
   def confirmation_instructions(record, token, opts={})
     @token = token
     @resource = record
-    # Custom logic to send the email with MJML
     mail(
       template_path: 'devise/mailer',
       from: 'notificaciones@easy-car.cl',
       to: record.email, cc: '',
-      subject: 'confirmation instructions'
-    ) do |format|
-      format.text
-      format.mjml
-    end
+      subject: 'confirmation instructions')
   end
 end
