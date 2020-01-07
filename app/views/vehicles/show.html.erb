@@ -41,7 +41,7 @@
             <tbody>
               <tr>
                 <th style="width:50%;"><%= I18n.t('vehicle.show.daily_price') %>:</th>
-                <td>$<%= @vehicle.fee.amount %> CLP</td>
+                <td><%= number_to_currency(@vehicle.fee.amount)%> </td>
               </tr>          
               <tr>
                 <th style="width:50%;"> <%= I18n.t('activerecord.attributes.vehicle.odometer')%>:</th>

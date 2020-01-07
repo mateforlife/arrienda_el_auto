@@ -37,7 +37,7 @@
             </tr>
             <tr>
               <th>Monto:</th>
-              <td>$<%= @payment.calculated_amount%></td>
+              <td><%= number_to_currency(@payment.calculated_amount)%></td>
             </tr>
           </tbody>
           

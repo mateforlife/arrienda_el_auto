@@ -2616,9 +2616,9 @@ brands_with_models.each do |brand|
 end
 
 if Fee.count.zero?
-  Fee.find_or_create_by(body_type: 'citycar',engine_type: 'diesel', amount: 17.142)
+  Fee.find_or_create_by(body_type: 'citycar',engine_type: 'diesel', amount: 17142)
   Fee.find_or_create_by(body_type: 'citycar',engine_type: 'gasoline', amount: 14285)
-  Fee.find_or_create_by(body_type: 'sedan',engine_type: 'diesel', amount: 18.571)
+  Fee.find_or_create_by(body_type: 'sedan',engine_type: 'diesel', amount: 18571)
   Fee.find_or_create_by(body_type: 'sedan',engine_type: 'gasoline', amount: 15714)
 end
 
