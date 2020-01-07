@@ -1,14 +1,15 @@
 <%= form_for([@payment.reservation, @payment]) do |f| %>
   <%= render 'shared/errors', resource: @payment %>
-  <div class="field">
-    <%= f.label :amount %><br />
-    <%= f.text_field :amount, value: number_to_currency(@payment.calculated_amount), disabled: true %>
-  </div>
 
   <% if action_name.in?(%w[new create])%>
-    <div class="field">
-      <%= f.label :file %><br />
-      <%= f.file_field :file %>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="custom-file">
+          <%= f.label :file,  class: "custom-file-label" %><br />
+          <%= f.file_field :file, class: "form-control custom-file-input", accept: "image/png,image/jpg,image/jpeg", label: "Add an image" %>
+        </div>
+      </div>
+    </div>
     </div>
   <% elsif action_name.in?(%w[edit update])%>
     <div class="field">
@@ -24,8 +25,8 @@
           }, @payment.status), {}, { class:"form-control" }  %>
     </div>
   <% end %>
-
+  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Pagar",  class: "btn btn-outline-primary btn-lg btn-block"%>
   </div>
 <% end %>

@@ -120,6 +120,7 @@ es:
           pending: Pendiente
           approved: Aprovado
           rejected: Rechazado
+        file: Comprobante
       reservation:
         status_list:
           waiting_payment: Esperando pago

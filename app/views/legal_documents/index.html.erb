@@ -12,6 +12,7 @@
               <th> <%= I18n.t('activerecord.attributes.legal_document.document_type') %> </th>
               <th> <%= I18n.t('activerecord.attributes.legal_document.due_date') %> </th>
               <th> <%= I18n.t('activerecord.attributes.legal_document.status') %> </th>
+              <th>Acción</th>
             </tr>
           </thead>
           <tbody>
@@ -24,10 +25,8 @@
                   <span class="badge badge-pill badge-<%= legal_document.status_color %>">
                     <%= LegalDocument.translated_status(legal_document.status) %>
                   </span>
-                </td>
-                <% if current_user.admin? %>
-                  <td><%= link_to I18n.t('buttons.show'), legal_document_path(legal_document) %></td>
-                <% end %>
+                </td>                
+                <td><%= link_to I18n.t('buttons.show'), legal_document_path(legal_document) %></td>
               </tr>
             <% end %>
           </tbody>  
