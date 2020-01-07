@@ -6,7 +6,7 @@
 
 <p>
   <b>Amount:</b>
-  <%= @payment.amount %>
+  <%= number_to_currency(@payment.amount.to_i) %>
 </p>
 
 <p>
