@@ -128,6 +128,7 @@ es:
           current: En curso
           finished: Finalizado
           rejected: Rechazado
+          processing_payment: Procesando pago
         start_date: Fecha de inicio
         end_date: Fecha de término
       driver_account:

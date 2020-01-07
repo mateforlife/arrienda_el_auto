@@ -1,24 +1,36 @@
-
-<p>
-  <b>Reservation:</b>
-  <%= @payment.reservation %>
-</p>
-
-<p>
-  <b>Amount:</b>
-  <%= @payment.amount %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @payment.status %>
-</p>
-
-<p>
-  <b>Comprobante:</b>
-</p>
-<p>
-  <%= image_tag preview(@payment.file, 1000, 700) %>
-</p>
-<%= link_to 'Edit', edit_reservation_payment_path(@payment.reservation, @payment) %> |
-<%= link_to 'Back', reservation_payments_path(@payment.reservation) %>
+<div class="container col-lg-9 col-md-6 col-sm-10">
+  <div class="card shadow">  
+    <div class="card-header text-center">
+      <h2>Pago de reserva</h2>
+    </div>
+    <div class="card-body">
+      <div class="table table-responsive">
+        <table class="table table-sm table-hover">
+          <tbody>
+            <tr>
+              <th style="width:20%;">Reservación:</th>
+              <td>
+                <%= @payment.reservation_id %> (<span class="badge badge-pill badge-<%= @payment.status_color %>">
+                <%= Payment.translated_status(@payment.status) %></span>)
+              </td>
+            </tr>
+            <tr>
+              <th>Monto:</th>
+              <td>$<%= @payment.amount %></td>
+            </tr>
+            <tr>
+              <th>Comprobante:</th>
+              <td><%= image_tag preview(@payment.file, 900, 500), class:"img-fluid" %></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="text-center">
+          <%= link_to 'Validar', edit_reservation_payment_path(@payment.reservation, @payment), class: "btn btn-outline-primary btn-lg btn-block" if current_user.admin? %><br>
+          <div class="text-right">
+            <%= link_to 'Atrás', reservation_payments_path(@payment.reservation) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
