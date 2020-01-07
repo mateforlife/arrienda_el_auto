@@ -123,7 +123,6 @@ es:
         file: Comprobante
       reservation:
         status_list:
-          processing_payment: Procesando pago
           waiting_payment: Esperando pago
           reserved: Reservado
           current: En curso
