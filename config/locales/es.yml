@@ -30,9 +30,9 @@ es:
     currency:
       format:
         delimiter: '.'
-        format: '$%n %u'
-        precision: 0
-        separator: ','
+        format: '$%n'
+        precision:
+        separator: ''
         strip_insignificant_zeros: false
         unit: ''
   created_at: Creado el

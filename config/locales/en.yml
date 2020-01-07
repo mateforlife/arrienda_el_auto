@@ -61,7 +61,7 @@ en:
     currency:
       format:
         delimiter: '.'
-        format: '$%n %u'
+        format: '$ %n %u'
         precision: 0
         separator: ','
         strip_insignificant_zeros: false
