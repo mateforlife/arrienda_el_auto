@@ -1,5 +1,5 @@
 <p>Hola <%= @driver.first_name%>!</p>
 <p>Has solicitado la reserva del vehículo <%= @vehicle.brand_and_model%>, para el día <%= @reservation.start_date.strftime('%d-%m-%Y')%>, hasta el día <%= @reservation.end_date.strftime('%d-%m-%Y')%>.</p>
-<p>Si despues de 5 minutos no se realiza el pago, se cancelara la reserva del vehículo.</p>
+<p>Si despues de 2 horas no se realiza el pago, se cancelara la reserva del vehículo.</p>
 <p>Para mas información revisa tu cuenta en <a href="http://easy-car.herokuapp.com">Easycar.</a></p>
 
