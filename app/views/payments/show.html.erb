@@ -16,7 +16,7 @@
             </tr>
             <tr>
               <th>Monto:</th>
-              <td>$<%= @payment.amount %></td>
+              <td><%= number_to_currency(@payment.amount.to_i) %></td>
             </tr>
             <tr>
               <th>Comprobante:</th>

@@ -24,10 +24,6 @@
               <td><%=@reservation.end_date.strftime('%d-%m-%Y')%></td>
             </tr>
             </tr>
-              <th><%= I18n.t('reservation.text.cancellation_date')%>:</th>
-              <td><%=@reservation.deleted_at%></td>
-            </tr>
-            </tr>
               <th><%= I18n.t('reservation.text.status')%>:</th>
               <td><%= Reservation.translated_status(@reservation.status) %></td>
             </tr>

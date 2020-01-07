@@ -30,9 +30,9 @@ es:
     currency:
       format:
         delimiter: '.'
-        format: '$%n %u'
+        format: '$%n'
         precision: 0
-        separator: ','
+        separator: ''
         strip_insignificant_zeros: false
         unit: ''
   created_at: Creado el
@@ -123,6 +123,7 @@ es:
         file: Comprobante
       reservation:
         status_list:
+          processing_payment: Procesando pago
           waiting_payment: Esperando pago
           reserved: Reservado
           current: En curso
