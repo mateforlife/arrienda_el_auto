@@ -58,7 +58,7 @@ gem 'sendgrid-ruby'
 # gem 'asset_sync'
 
 # emails styles
-gem 'mjml-rails'
+gem 'premailer-rails'
 
 # to perform async jobs
 gem 'sidekiq', '~> 5.2.7'
