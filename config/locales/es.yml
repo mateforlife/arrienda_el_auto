@@ -118,7 +118,7 @@ es:
       payment:
         status_list:
           pending: Pendiente
-          approved: Aprovado
+          approved: Aprobado
           rejected: Rechazado
         file: Comprobante
       reservation:
@@ -132,7 +132,7 @@ es:
         end_date: Fecha de término
       driver_account:
         status_list:
-          approved: Aprovado
+          approved: Aprobado
           created: Creado
           review: Revisión
           rejected: Rechazado
