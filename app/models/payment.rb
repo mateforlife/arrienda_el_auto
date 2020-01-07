@@ -10,6 +10,12 @@ class Payment < ApplicationRecord
   ALLOWED_FILE_TYPES = ['image/png', 'image/jpg', 'image/jpeg',
                         'application/pdf'].freeze
 
+  STATUSES_TABLE_COLORS = {
+    pending: :warning,
+    approved: :success,
+    rejected: :danger
+  }.freeze
+
   validates :file, presence: true
   validates :file, attached: true, content_type: ALLOWED_FILE_TYPES
   before_create :set_amount
@@ -21,6 +27,10 @@ class Payment < ApplicationRecord
   def calculated_amount
     days = (reservation.end_date - reservation.start_date).to_i + 1
     fee_amount * days
+  end
+
+  def status_color
+    STATUSES_TABLE_COLORS[status.to_sym]
   end
 
   private

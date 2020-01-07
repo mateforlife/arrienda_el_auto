@@ -1,27 +1,39 @@
-<h1>Listing payments</h1>
+<div class="container col-xl-6 col-lg-10 col-md-9 col-sm-10">
+  <div class="card">
+    <div class="card-header text-center">
+      <h2>Lista de pagos</h2>
+    </div>
+    <div class="card-body text-center"> 
+      <div class="table-responsive">
+        <table class="table table-sm table-hover">
+          <tr>
+            <th>Reservación</th>
+            <th>Monto</th>
+            <th>Fecha de creación</th>
+            <th>Estado</th>
+            <th>Acción</th>
+          </tr>
 
-<table>
-  <tr>
-    <th>Reservation</th>
-    <th>Amount</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+          <% @payments.each do |payment| %>
+            <tr>
+              <td><%= payment.reservation_id %></td>
+              <td>$ <%= payment.amount %></td>
+              <td><%= payment.created_at.strftime('%d-%m-%Y')%></td>
+              <td>
+                <span class="badge badge-pill badge-<%= payment.status_color %>">
+                  <%= Payment.translated_status(payment.status) %>
+                </span>
+              </td>
+              <td><%= link_to 'Detalles', [payment.reservation, payment] %></td>
+            </tr>
+          <% end %>
+        </table>
 
-<% @payments.each do |payment| %>
-  <tr>
-    <td><%= payment.reservation %></td>
-    <td><%= payment.amount %></td>
-    <td><%= payment.status %></td>
-    <td><%= link_to 'Show', [payment.reservation, payment] %></td>
-    <td><%= link_to 'Edit', edit_reservation_payment_path(payment.reservation, payment) %></td>
-    <td><%= link_to 'Destroy', [payment.reservation, payment], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+        <br />
 
-<br />
-
-<%= link_to 'New Payment', new_reservation_payment_path(params[:reservation_id]) %>
+        <%= link_to 'New Payment', new_reservation_payment_path(params[:reservation_id]),
+          class: "btn btn-outline-primary btn-lg btn-block" %>
+      </div>
+    </div>
+  </div>
+</div>
