@@ -14,7 +14,7 @@
   <% elsif action_name.in?(%w[edit update])%>
     <div class="form-group">
       <%= f.label :file %>:
-      <%= image_tag preview(@payment.file) %>
+      <%= image_tag preview(@payment.file, 900, 500), class:"img-fluid" %>
     </div>
   
     <div class="form-group">
