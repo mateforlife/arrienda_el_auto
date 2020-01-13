@@ -49,10 +49,11 @@ class Payment < ApplicationRecord
     return if pending?
 
     to = reservation.user.email
+    payment = self
     mail = if approved?
              PaymentsMailer.payment_success(to, reservation)
            else
-             PaymentsMailer.payment_rejected(to, reservation)
+             PaymentsMailer.payment_rejected(to, reservation, payment)
            end
     mail.deliver_now!
   end

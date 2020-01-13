@@ -121,6 +121,8 @@ es:
           approved: Aprobado
           rejected: Rechazado
         file: Comprobante
+        comment: Comentario
+        status: Estado
       reservation:
         status_list:
           waiting_payment: Esperando pago

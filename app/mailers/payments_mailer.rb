@@ -15,8 +15,9 @@ class PaymentsMailer < ApplicationMailer
     mail to: to, cco: @admin_emails, subject: 'Tu pago ha sido validado'
   end
 
-  def payment_rejected(to, reservation)
+  def payment_rejected(to, reservation, payment_comment)
     @reservation = reservation
+    @payment = payment_comment
     mail to: to, cco: @admin_emails, subject: 'Tu pago ha sido rechazado'
   end
 end
