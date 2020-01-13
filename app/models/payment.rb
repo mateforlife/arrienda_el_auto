@@ -53,7 +53,7 @@ class Payment < ApplicationRecord
     mail = if approved?
              PaymentsMailer.payment_success(to, reservation)
            else
-             PaymentsMailer.payment_rejected(to, reservation, payment)
+             PaymentsMailer.payment_rejected(to, reservation, payment.comment)
            end
     mail.deliver_now!
   end
