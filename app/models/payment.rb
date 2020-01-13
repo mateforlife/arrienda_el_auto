@@ -58,7 +58,8 @@ class Payment < ApplicationRecord
   end
 
   def notify_to_admin
-    PaymentsMailer.notify_create_to_admin(id, reservation.id).deliver_later
+    PaymentsMailer.notify_create_to_admin(id, reservation.id,
+                                          reservation).deliver_later
   end
 
   def set_amount
