@@ -2,6 +2,6 @@
 <p>El usuario <%= @reservation.user.full_name%> a hecho una reserva</p>
 <p>
   Debes validar el pago aqui! <%= link_to 'Aqui!', 
-                                  edit_reservation_payment_url(reservation_id: @reservation_id,
+                                  edit_reservation_payment_url(reservation_id: @reservation.id,
                                                                 id: @payment_id)%>
 </p>

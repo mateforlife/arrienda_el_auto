@@ -49,18 +49,16 @@ class Payment < ApplicationRecord
     return if pending?
 
     to = reservation.user.email
-    payment = self
     mail = if approved?
              PaymentsMailer.payment_success(to, reservation)
            else
-             PaymentsMailer.payment_rejected(to, reservation, payment.comment)
+             PaymentsMailer.payment_rejected(to, reservation, comment)
            end
     mail.deliver_now!
   end
 
   def notify_to_admin
-    PaymentsMailer.notify_create_to_admin(id, reservation.id,
-                                          reservation).deliver_later
+    PaymentsMailer.notify_create_to_admin(id, reservation).deliver_later
   end
 
   def set_amount
