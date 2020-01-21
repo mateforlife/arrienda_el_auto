@@ -8,7 +8,7 @@ class VehiclesController < ApplicationController
   # GET /vehicles
   # GET /vehicles.json
   def index
-    @vehicles = Vehicle.published
+    @vehicles = Vehicle.available
                        .not_from_current_user(current_user)
     render '_index'
   end

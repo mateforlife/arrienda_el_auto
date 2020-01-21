@@ -18,11 +18,9 @@ class Ability
       can :manage, User, id: user.id
       cannot :index, Reservation
       if user&.driver_account&.legal_documents_effective?
-        can :create, Reservation
-        can :create, Payment
+        can %i[read edit create update destroy], Reservation, user_id: user.id
       end
-      can :read, Payment, reservation: { user: { id: user.id } }
-      can %i[read edit destroy], Reservation, user_id: user.id
+      can %i[read new create], Payment, reservation: { user: { id: user.id } }
     end
     vehicles_id = user.vehicles.pluck(:id)
     cannot :create, Reservation, vehicle_id: vehicles_id
