@@ -43,7 +43,7 @@ class ReservationsController < ApplicationController
 
   # PUT vehicles/1/reservations/1
   def update
-    if @reservation.update_attributes(reservation_params)
+    if @reservation.update(reservation_params)
       redirect_to([@reservation.vehicle, @reservation],
                   notice: 'Reservation was successfully updated.')
     else

@@ -27,6 +27,7 @@ class PaymentsController < ApplicationController
 
   # POST reservations/1/payments
   def create
+    debugger
     @payment = @reservation.payments.build(payment_params)
     if @payment.save
       redirect_to([@payment.reservation, @payment],

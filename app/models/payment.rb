@@ -21,6 +21,7 @@ class Payment < ApplicationRecord
   before_create :set_amount
   after_create :notify_to_admin
   after_create :set_processing_payment_to_reservation
+  after_update :change_vehicle_status
   after_update :notify_payment_success
   after_update :set_reservation_status
 
@@ -34,6 +35,10 @@ class Payment < ApplicationRecord
   end
 
   private
+
+  def change_vehicle_status
+    reservation.vehicle.rented! if approved?
+  end
 
   def set_reservation_status
     return reservation.reserved! if approved?

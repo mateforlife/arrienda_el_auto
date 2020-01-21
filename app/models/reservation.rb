@@ -13,7 +13,7 @@ class Reservation < ApplicationRecord
   validates_presence_of %i[start_date end_date]
   validate :consistent_dates
   validate :user_must_have_active_driver_account
-  validate :user_cannot_create_if_have_active_reservation
+  validate :user_cannot_create_if_have_active_reservation, on: :create
 
   after_create :notify_created_reservation
   after_create :set_payment_wait_time
@@ -40,8 +40,8 @@ class Reservation < ApplicationRecord
 
   def user_cannot_create_if_have_active_reservation
     reservations = self.class.current_and_future
-                    .where(vehicle_id: vehicle.id, user_id: user.id)
-                             .where('date(created_at) = ?', Date.today)
+                       .where(vehicle_id: vehicle.id, user_id: user.id)
+                       .where('date(created_at) = ?', Date.today)
     errors.add(:base, 'Ya posees una reserva activa') if reservations.present?
   end
 

@@ -49,7 +49,7 @@ class LegalDocumentsController < ApplicationController
 
   # PUT vehicles/1/legal_documents/1
   def update
-    if @legal_document.update_attributes(legal_document_params)
+    if @legal_document.update(legal_document_params)
       redirect_to([@legal_document.resource, @legal_document], notice: 'Legal document was successfully updated.')
     else
       render action: 'edit'

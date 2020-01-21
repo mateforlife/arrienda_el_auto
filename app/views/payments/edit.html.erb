@@ -4,6 +4,7 @@
       <h2>Validación de comprobante</h2>
     </div>
     <div class="card-body"> 
+      <p>Monto: <%= number_to_currency(@payment.calculated_amount.to_i) %></p>
       <%= render 'form' %><br>
       <div class="text-right">
         <%= link_to 'Detalles', [@payment.reservation, @payment] %><br>
@@ -11,4 +12,4 @@
       </div>
     </div>
   </div>
- </div> 
+ </div>
