@@ -52,13 +52,13 @@ class Payment < ApplicationRecord
     mail = if approved?
              PaymentsMailer.payment_success(to, reservation)
            else
-             PaymentsMailer.payment_rejected(to, reservation)
+             PaymentsMailer.payment_rejected(to, reservation, comment)
            end
     mail.deliver_now!
   end
 
   def notify_to_admin
-    PaymentsMailer.notify_create_to_admin(id, reservation.id).deliver_later
+    PaymentsMailer.notify_create_to_admin(id, reservation).deliver_later
   end
 
   def set_amount
