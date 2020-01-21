@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_13_170243) do
+ActiveRecord::Schema.define(version: 2020_01_21_202943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 2020_01_13_170243) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.bigint "state_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_cities_on_name"
+    t.index ["state_id"], name: "index_cities_on_state_id"
   end
 
   create_table "colors", force: :cascade do |t|
@@ -111,6 +120,12 @@ ActiveRecord::Schema.define(version: 2020_01_13_170243) do
     t.index ["vehicle_id"], name: "index_reservations_on_vehicle_id"
   end
 
+  create_table "states", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -175,6 +190,7 @@ ActiveRecord::Schema.define(version: 2020_01_13_170243) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cities", "states"
   add_foreign_key "driver_accounts", "users"
   add_foreign_key "payments", "reservations"
   add_foreign_key "reservations", "users"
