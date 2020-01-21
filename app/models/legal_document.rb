@@ -2,7 +2,8 @@
 
 # legalDocument
 class LegalDocument < ApplicationRecord
-  belongs_to :resource, polymorphic: true # resource can be User or Vehicle
+  # resource can be User or Vehicle or DriverAccount
+  belongs_to :resource, polymorphic: true
   belongs_to :validator, class_name: 'User', foreign_key: 'validator_id',
                          optional: true
   has_many_attached :images, dependent: :destroy

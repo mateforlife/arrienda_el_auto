@@ -3,22 +3,26 @@
 # PaymentsController
 class PaymentsController < ApplicationController
   include FilesHelper
-  load_and_authorize_resource
+  load_resource
+  load_and_authorize_resource only: %i[create update edit]
   before_action :set_reservation
   before_action :set_payment, only: [:show, :edit, :update]
 
   # GET reservations/1/payments
   def index
     @payments = @reservation.payments
+    authorize! :read, @payments.first
   end
 
   # GET reservations/1/payments/1
   def show
+    authorize! :read, @payment
   end
 
   # GET reservations/1/payments/new
   def new
     @payment = @reservation.payments.build
+    authorize! :new, @payment
   end
 
   # GET reservations/1/payments/1/edit

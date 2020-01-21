@@ -44,8 +44,8 @@ class ReservationsController < ApplicationController
   # PUT vehicles/1/reservations/1
   def update
     if @reservation.update(reservation_params)
-      redirect_to([@reservation.vehicle, @reservation],
-                  notice: 'Reservation was successfully updated.')
+      redirect_to new_reservation_payment_path(@reservation,
+                                               notice: 'Reservation was successfully created.')
     else
       render action: 'edit'
     end
@@ -74,8 +74,13 @@ class ReservationsController < ApplicationController
   end
 
   def set_dates
-    @start_date = @vehicle.reservation_start_date + 1.days
-    @end_date = @start_date + 3.days
+    if action_name.in?(%w[new create])
+      @start_date = @vehicle.reservation_start_date + 1.days
+      @end_date = @start_date + 3.days
+    elsif action_name.in?(%w[edit update])
+      @start_date = @reservation.start_date
+      @end_date = @reservation.end_date
+    end
   end
 
   # Only allow a trusted parameter "white list" through.

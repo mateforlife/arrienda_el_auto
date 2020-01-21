@@ -17,6 +17,7 @@ class Reservation < ApplicationRecord
 
   after_create :notify_created_reservation
   after_create :set_payment_wait_time
+  after_update :change_vehicle_status
   before_destroy :check_status
 
   scope :current_and_future, lambda {
@@ -37,6 +38,12 @@ class Reservation < ApplicationRecord
   end
 
   private
+
+  def change_vehicle_status
+    return unless finished? || vehicle.reservations.current_and_future.empty?
+
+    vehicle.published!
+  end
 
   def user_cannot_create_if_have_active_reservation
     reservations = self.class.current_and_future

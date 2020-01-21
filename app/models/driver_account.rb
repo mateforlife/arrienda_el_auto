@@ -4,7 +4,6 @@
 class DriverAccount < ApplicationRecord
   include Documentable
   belongs_to :user
-  has_many :legal_documents, as: :resource
   enum status: %i[created review approved rejected]
   translate_enum :status
 

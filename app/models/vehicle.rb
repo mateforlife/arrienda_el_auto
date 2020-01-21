@@ -53,6 +53,7 @@ class Vehicle < ApplicationRecord
   scope :not_from_current_user, lambda { |current_user|
     where.not(user: current_user)
   }
+  scope :available, -> { where(status: %w[published rented]) }
 
   # ====================
   # = INSTANCE METHODS =
