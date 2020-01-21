@@ -1,14 +1,7 @@
-<body>
-  <div>
-    <div>
-      <p><strong>EasyCar</strong></p>
-      <div></div>
-      <p>
-        Debes validar el pago aqui! <%= link_to 'Aqui!', 
-                                        edit_reservation_payment_url(reservation_id: @reservation_id,
-                                                                      id: @payment_id)%>
-      </p>
-      <div></div>
-    </div>
-  </div>
-</body>
+<h4 class="card-title"><%=I18n.t('devise.text.hello')%></h4>
+<p>El usuario <%= @reservation.user.full_name%> a hecho una reserva</p>
+<p>
+  Debes validar el pago aqui! <%= link_to 'Aqui!', 
+                                  edit_reservation_payment_url(reservation_id: @reservation.id,
+                                                                id: @payment_id)%>
+</p>

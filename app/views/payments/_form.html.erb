@@ -13,15 +13,19 @@
   <% elsif action_name.in?(%w[edit update])%>
     <div class="form-group">
       <%= f.label :file %>:
-      <%= image_tag preview(@payment.file) %>
+      <%= image_tag preview(@payment.file, 900, 500), class:"img-fluid" %>
     </div>
   
     <div class="form-group">
-      <%= f.label "Estado:" %><br />
+      <%= f.label :status %>:<br />
       <%= f.select :status,
           options_for_select(@payment.class.translated_statuses.map { |t, k, _v|
            [t, k]
           }, @payment.status), {}, { class:"form-control" } %>
+    </div>
+    <div class="form-group">
+      <%= f.label :comment %>:
+      <%= f.text_area :comment, class:"form-control" %>
     </div>
   <% end %>
   
