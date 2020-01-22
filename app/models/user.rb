@@ -43,6 +43,19 @@ class User < ApplicationRecord
     "#{first_name} #{last_name} #{second_last_name}"
   end
 
+  def update(params, *options)
+    if address
+      address.update!(params['address_attributes'])
+    else
+      adr = Address.new(params['address_attributes'])
+      adr.user = self
+      adr.save!
+    end
+    super(params, *options)
+  rescue ActiveRecord::RecordInvalid
+    raise ActiveRecord::Rollback
+  end
+
   private
 
   def address_invalid?(attributes)

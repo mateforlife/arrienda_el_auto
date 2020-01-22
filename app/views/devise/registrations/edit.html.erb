@@ -5,28 +5,32 @@
     </div>
     <div class="card-body">
 
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= form_for(setup_user(resource), as: resource_name,
+          url: registration_path(resource_name), html: { method: :put }) do |f| %>
       
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <!-- Account information -->
         <div class="form-group">
           <%= f.label :email %> 
-          <%= f.email_field :email, autocomplete: "email", class:"form-control", placeholder:"example@example.com" %>
+          <%= f.email_field :email, autocomplete: "email",
+              class:"form-control form-control-sm", placeholder:"example@example.com" %>
         </div>
         
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>          
+        <% end %>
 
         <div class="form-row">
           <div class="form-group col-md-6">
             <%= f.label :password %><small> (<%=I18n.t('text.password.minimum')%>)</small>
-            <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:I18n.t('text.leave_blank') %>            
+            <%= f.password_field :password, autocomplete: "new-password",
+                class:"form-control form-control-sm", placeholder:I18n.t('text.leave_blank') %>            
           </div>
           <div class="form-group col-md-6">
             <%= f.label :password_confirmation %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:I18n.t('text.password.confirmation') %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password",
+                class:"form-control form-control-sm", placeholder:I18n.t('text.password.confirmation') %>
           </div>
         </div>
 
@@ -38,16 +42,18 @@
 
         <div class="form-group">
           <%= f.label :current_password %><small> (<%=I18n.t('text.current_password')%>)</small>
-          <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control", placeholder:I18n.t('text.password.current')%>
+          <%= f.password_field :current_password, autocomplete: "current-password",
+              class:"form-control form-control-sm", placeholder:I18n.t('text.password.current')%>
         </div>
 
         <div class="form-group">
           <%= f.submit I18n.t('text.update'), class: "btn btn-outline-primary btn-lg btn-block"%>
         </div>
       <% end %>
-      
+
       <div class="text-right">
-        <%= link_to I18n.t('devise.text.cancel_account'), registration_path(resource_name), data: { confirm: I18n.t('text.are_you_sure') }, method: :delete %>
+        <%= link_to I18n.t('devise.text.cancel_account'), registration_path(resource_name),
+            data: { confirm: I18n.t('text.are_you_sure') }, method: :delete %>
       </div>
       <div class="text-right">
         <%= link_to I18n.t('text.back'), :back %>

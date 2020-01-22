@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   scope '(:locale)', locale: /es|en/ do
-    devise_for :users
+    devise_for :users, controllers: { registrations: 'users/registrations' }
     resources :vehicles, except: :destroy do
       resources :legal_documents, except: :destroy
       resources :reservations
