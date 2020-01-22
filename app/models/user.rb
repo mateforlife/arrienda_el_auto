@@ -11,12 +11,15 @@ class User < ApplicationRecord
   has_many :vehicles
   has_many :reservations
   has_one :driver_account
+  has_one :address, dependent: :destroy
+  accepts_nested_attributes_for :address, allow_destroy: true,
+                                          reject_if: :address_invalid?
 
   REQUIRED_DOCUMENTS = %w[identity criminal_record].freeze
 
-  validates :rut, presence: true
   validates_presence_of %i[first_name last_name second_last_name rut birthdate
                            gender phone_number]
+  validates :rut, presence: true
   validates :rut, uniqueness: true, if: proc { |usr| usr.rut.present? }
   validates :rut, format: { with: /\A\d{1,3}(\.\d{3})*-[0-9K]\z/,
                             message: 'Formato inválido' },
@@ -42,10 +45,16 @@ class User < ApplicationRecord
 
   private
 
+  def address_invalid?(attributes)
+    attributes['user_id'] = id
+    adr = Address.new(attributes)
+    adr.valid?
+  end
+
   def validate_age
-    if birthdate.present? && birthdate > 18.years.ago.to_date
-      errors.add(:birthdate, 'debes ser mayor de 18 años.')
-    end
+    return unless birthdate.present? && birthdate > 18.years.ago.to_date
+
+    errors.add(:birthdate, 'debes ser mayor de 18 años.')
   end
 
   def sanitize_email

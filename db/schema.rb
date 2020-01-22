@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_21_202943) do
+ActiveRecord::Schema.define(version: 2020_01_21_220251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,18 @@ ActiveRecord::Schema.define(version: 2020_01_21_202943) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "city_id", null: false
+    t.string "street", limit: 40
+    t.string "street_number", limit: 6
+    t.string "apartment", limit: 5
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["city_id"], name: "index_addresses_on_city_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "brands", force: :cascade do |t|
@@ -190,6 +202,8 @@ ActiveRecord::Schema.define(version: 2020_01_21_202943) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "cities"
+  add_foreign_key "addresses", "users"
   add_foreign_key "cities", "states"
   add_foreign_key "driver_accounts", "users"
   add_foreign_key "payments", "reservations"

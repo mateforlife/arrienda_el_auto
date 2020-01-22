@@ -26,6 +26,7 @@ module EasyCar
     # Use Vips for processing variants.
     config.active_storage.variant_processor = :vips
     config.active_record.default_timezone = :local
+    config.index_nested_attributes_errors = true
     config.time_zone = 'America/Santiago'
     config.i18n.default_locale = :es
     config.active_job.queue_adapter = :sidekiq

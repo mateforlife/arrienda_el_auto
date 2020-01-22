@@ -1,10 +1,10 @@
-<div class="container col-xl-5 col-lg-10 col-md-6 col-sm-10">
+<div class="container col-xl-7 col-lg-10 col-md-6 col-sm-10">
   <div class="card">
     <div class="card-header">
       <h2><%= I18n.t('devise.text.sign_up') %></h2>
     </div>
     <div class="card-body">  
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= form_for(setup_user(resource), as: resource_name, url: registration_path(resource_name)) do |f| %>
 
         <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -67,6 +67,8 @@
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:I18n.t('text.password.confirmation') %>
           </div>
         </div>
+
+        <%= render 'address_form', f: f %>
 
         <div class="form-group">
           <%= f.submit I18n.t('devise.text.sign_up'), class: "btn btn-outline-primary btn-lg btn-block" %>
