@@ -5,7 +5,6 @@ module Users
   class RegistrationsController < Devise::RegistrationsController
     before_action :configure_sign_up_params, only: [:create]
     before_action :configure_account_update_params, only: [:update]
-    # before_action :set_address, only: :edit
 
     # GET /resource/sign_up
     def new
@@ -57,12 +56,6 @@ module Users
 
     protected
 
-    # By default we want to require a password checks on update.
-    # You can overwrite this method in your own RegistrationsController.
-    def update_resource(resource, params)
-      resource.update_with_password(params)
-    end
-
     # If you have extra params to permit, append them to the sanitizer.
     def configure_sign_up_params
       devise_parameter_sanitizer.permit(:sign_up, keys: registration_params)
@@ -84,10 +77,6 @@ module Users
     end
 
     private
-
-    def set_address
-      resource.address ||= Address.new
-    end
 
     def registration_params
       [
