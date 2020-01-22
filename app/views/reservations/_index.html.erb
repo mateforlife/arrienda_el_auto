@@ -21,7 +21,11 @@
                 <td><%= reservation.vehicle.brand_and_model %></td>
                 <td><%= reservation.start_date.strftime('%d-%m-%Y') %></td>
                 <td><%= reservation.end_date.strftime('%d-%m-%Y') %></td>
-                <td><%= Reservation.translated_status(reservation.status) %></td>
+                <td>
+                  <span class="badge badge-pill badge-<%= reservation.status_color%>">
+                    <%= Reservation.translated_status(reservation.status) %>
+                  </span>
+                </td>
                 <td>
                   <% if reservation.waiting_payment? %>
                     <%= link_to 'Pagar', new_reservation_payment_path(reservation) %> |

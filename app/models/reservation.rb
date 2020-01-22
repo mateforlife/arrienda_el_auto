@@ -10,6 +10,15 @@ class Reservation < ApplicationRecord
                   reserved current finished rejected]
   translate_enum :status
 
+  STATUSES_TABLE_COLORS = {
+    waiting_payment: :warning,
+    processing_payment: :warning,
+    current: :success,
+    reserved: :success,
+    finished: :success,
+    rejected: :danger
+  }.freeze
+
   validates_presence_of %i[start_date end_date]
   validate :consistent_dates
   validate :user_must_have_active_driver_account
@@ -35,6 +44,10 @@ class Reservation < ApplicationRecord
     return false if payments.empty? || payments.last.rejected?
 
     true
+  end
+
+  def status_color
+    STATUSES_TABLE_COLORS[status.to_sym]
   end
 
   private
