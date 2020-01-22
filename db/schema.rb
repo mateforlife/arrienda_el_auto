@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_13_170243) do
+ActiveRecord::Schema.define(version: 2020_01_22_023618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,17 +36,31 @@ ActiveRecord::Schema.define(version: 2020_01_13_170243) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "addresses", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "city_id", null: false
+    t.string "street", limit: 40
+    t.string "street_number", limit: 6
+    t.string "apartment", limit: 5
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["city_id"], name: "index_addresses_on_city_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
   create_table "brands", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "colors", force: :cascade do |t|
+  create_table "cities", force: :cascade do |t|
     t.string "name"
-    t.string "hex_value"
+    t.bigint "state_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_cities_on_name"
+    t.index ["state_id"], name: "index_cities_on_state_id"
   end
 
   create_table "driver_accounts", force: :cascade do |t|
@@ -89,15 +103,6 @@ ActiveRecord::Schema.define(version: 2020_01_13_170243) do
     t.index ["reservation_id"], name: "index_payments_on_reservation_id"
   end
 
-  create_table "profile_images", force: :cascade do |t|
-    t.string "type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.index ["resource_type", "resource_id"], name: "index_profile_images_on_resource_type_and_resource_id"
-  end
-
   create_table "reservations", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "vehicle_id", null: false
@@ -109,6 +114,12 @@ ActiveRecord::Schema.define(version: 2020_01_13_170243) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_reservations_on_user_id"
     t.index ["vehicle_id"], name: "index_reservations_on_vehicle_id"
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -175,6 +186,9 @@ ActiveRecord::Schema.define(version: 2020_01_13_170243) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "cities"
+  add_foreign_key "addresses", "users"
+  add_foreign_key "cities", "states"
   add_foreign_key "driver_accounts", "users"
   add_foreign_key "payments", "reservations"
   add_foreign_key "reservations", "users"
