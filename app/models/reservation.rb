@@ -29,7 +29,7 @@ class Reservation < ApplicationRecord
     where(status: 'current')
   }
 
-  scope :reserved, -> { where(status: 'reserved')}
+  scope :reserved, -> { where(status: 'reserved') }
 
   def payment_effective?
     return false if payments.empty? || payments.last.rejected?
@@ -40,7 +40,7 @@ class Reservation < ApplicationRecord
   private
 
   def change_vehicle_status
-    return unless finished? || vehicle.reservations.current_and_future.empty?
+    return unless finished? && vehicle.reservations.current_and_future.empty?
 
     vehicle.published!
   end

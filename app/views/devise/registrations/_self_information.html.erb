@@ -1,0 +1,58 @@
+<div class="form-group">
+  <b><%= f.label 'Información personal:' %></b>
+  <%= f.text_field :first_name, autofocus: true, class:"form-control form-control-sm",
+      placeholder: I18n.t('activerecord.attributes.user.first_name') %>
+</div>
+
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= f.text_field :last_name, class:"form-control form-control-sm",
+        placeholder: I18n.t('activerecord.attributes.user.last_name') %>
+  </div>
+  <div class="form-group col-md-6">
+    <%= f.text_field :second_last_name, class:"form-control form-control-sm",
+        placeholder:I18n.t('activerecord.attributes.user.second_last_name') %>
+  </div>
+</div>
+
+<div class="form-row align-items-center">
+  <div class="form-group col-md-6">
+    <%= f.label :birthdate %>
+    <%= f.date_field :birthdate, class:"form-control form-control-sm" %>
+  </div>
+
+  <div class="form-group col-md-6">     
+    <%= f.label :gender %>        
+    <%= f.select :gender,
+          options_for_select(@user.class.translated_genders.map { |t, k, _v| [t, k] }),
+          {}, { class:"form-control form-control-sm" } %>         
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= f.label :phone_number %>
+    <div class="input-group">
+      <div class="input-group-prepend form-control-sm">
+        <span class="input-group-text" >+569</span>
+      </div>
+      <%= f.text_field :phone_number, class:"form-control form-control-sm",
+          placeholder:"12345678" %>
+    </div>
+  </div>
+  <% if action_name.in?(%w[new create]) %>
+    <div class="form-group col-md-6">
+      <%= f.label :rut %>
+      <%= f.text_field :rut, class:"form-control form-control-sm",
+          placeholder:"11.111.111-1" %>
+    </div>
+  <% elsif action_name.in?(%w[edit update])%>
+    <fieldset disabled class="col-md-6">
+      <div class="form-group ">
+        <%= f.label :rut %>
+        <%= f.text_field :rut, class:"form-control form-control-sm",
+            placeholder:"11.111.111-1" %>
+      </div>
+    </fieldset>
+  <% end %>
+</div>

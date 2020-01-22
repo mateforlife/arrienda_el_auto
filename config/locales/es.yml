@@ -45,7 +45,7 @@ es:
     last_name: Primer apellido
     second_last_name: Segundo apellido
     birthdate: Fecha de nacimiento
-    gender: Sexo
+    gender: Género
     phone_number: N° de Teléfono
     rut: Rut
     email: Correo eléctronico
@@ -169,7 +169,7 @@ es:
         last_name: Apellido
         second_last_name: Segundo Apellido
         birthdate: Fecha de nacimiento
-        gender: Sexo
+        gender: Género
         gender_list:
           male: "Masculino"
           female: "Femenino"
@@ -244,6 +244,14 @@ es:
         other: Usuarios
     errors:
       models:
+        address:
+          attributes:
+            city:
+              required: debe seleccionar Ciudad
+            street:
+              blank: no puede ser vacío
+            street_number:
+              blank: no puede ser vacío
         legal_document:
           attributes:
             document_type:
@@ -267,6 +275,7 @@ es:
               blank: 'no puede ser vacío'  
             rut:
               blank: 'no puede ser vacío'
+              taken: 'ya existe'
             password:
               blank: 'no puede ser vacío'
               too_short: '6 caracteres mínimo'

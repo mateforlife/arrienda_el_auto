@@ -1,72 +1,36 @@
-<div class="container col-xl-5 col-lg-10 col-md-6 col-sm-10">
+<div class="container col-xl-7 col-lg-10 col-md-6 col-sm-10">
   <div class="card">
     <div class="card-header">
       <h2><%= I18n.t('devise.text.sign_up') %></h2>
     </div>
     <div class="card-body">  
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= form_for(setup_user(resource), as: resource_name, url: registration_path(resource_name)) do |f| %>
 
         <%= render "devise/shared/error_messages", resource: resource %>
 
+        <!-- Account information -->
         <div class="form-group">
-          <%= f.label :first_name%> 
-          <%= f.text_field :first_name, autofocus: true, class:"form-control", placeholder: I18n.t('activerecord.attributes.user.first_name') %>
-        </div>
-        
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <%= f.label :last_name %>
-            <%= f.text_field :last_name, class:"form-control", placeholder: I18n.t('activerecord.attributes.user.last_name') %>
-          </div>
-          <div class="form-group col-md-6">
-            <%= f.label :second_last_name %>
-            <%= f.text_field :second_last_name, class:"form-control", placeholder:I18n.t('activerecord.attributes.user.second_last_name') %>
-          </div>
-        </div>
-
-        <div class="form-row align-items-center">
-          <div class="form-group col-md-6">
-            <%= f.label :birthdate %>
-            <%= f.date_field :birthdate, class:"form-control" %>
-          </div>
-
-          <div class="form-group col-md-6">     
-            <%= f.label :gender %>        
-            <%= f.select :gender, options_for_select(@user.class.translated_genders.map { |t, k, _v| [t, k] }), {}, { class:"form-control" } %>         
-          </div>
+          <b><%= f.label 'Información de registro:' %></b>
+          <%= f.email_field :email, autocomplete: "Email", class:"form-control form-control-sm", placeholder:"email: example@example.com" %>
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-6">
-            <%= f.label :phone_number %>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" >+569</span>
-              </div>
-              <%= f.text_field :phone_number, class:"form-control", placeholder:"12345678" %>
-            </div>
+            <%= f.password_field :password, autocomplete: "new-password",
+                class:"form-control form-control-sm", placeholder: 'Contraseña' %>
           </div>
           <div class="form-group col-md-6">
-            <%= f.label :rut %>
-            <%= f.text_field :rut, class:"form-control", placeholder:"11.111.111-1" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password",
+                class:"form-control form-control-sm" , placeholder: 'Confirmar contraseña'%>
           </div>
         </div>
 
-        <div class="form-group">
-          <%= f.label :email %> 
-          <%= f.email_field :email, autocomplete: "email", class:"form-control", placeholder:"example@example.com" %>
-        </div>
+        <!-- Self information -->
+        <%= render 'self_information', f: f %>
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <%= f.label :password %>
-            <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:I18n.t('text.password.minimum') %>
-          </div>
-          <div class="form-group col-md-6">
-            <%= f.label :password_confirmation %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:I18n.t('text.password.confirmation') %>
-          </div>
-        </div>
+
+        <!-- Address information -->
+        <%= render 'address', f: f %>
 
         <div class="form-group">
           <%= f.submit I18n.t('devise.text.sign_up'), class: "btn btn-outline-primary btn-lg btn-block" %>

@@ -1,0 +1,19 @@
+<%= f.fields_for :address do |ff| %>
+  <div class="form-group">
+    <b><%= ff.label 'Dirección' %></b>
+    <%= ff.grouped_collection_select :city_id,
+        State.all, :cities, :name, :id, :name,
+        { include_blank: true, placeholder: 'Comuna' }, { class:"form-control form-control-sm" } %>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= ff.text_field :street, class:"form-control form-control-sm", placeholder: 'Calle' %>
+    </div>
+    <div class="form-group col-md-3">
+      <%= ff.text_field :street_number, class:"form-control form-control-sm", placeholder: 'Número' %>
+    </div>
+    <div class="form-group col-md-3">
+      <%= ff.text_field :apartment, class:"form-control form-control-sm", placeholder: 'Depto/Block' %>
+    </div>
+  </div>
+<% end %>
