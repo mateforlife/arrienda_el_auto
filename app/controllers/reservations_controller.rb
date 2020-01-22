@@ -10,6 +10,7 @@ class ReservationsController < ApplicationController
   # GET vehicles/1/reservations
   def index
     @reservations = @vehicle.reservations
+    authorize! :index, @reservations.first
   end
 
   # GET vehicles/1/reservations/1
@@ -19,7 +20,7 @@ class ReservationsController < ApplicationController
   # GET vehicles/1/reservations/new
   def new
     @reservation = @vehicle.reservations.build
-    authorize! :create, @reservation
+    authorize! :new, @reservation
   end
 
   # GET vehicles/1/reservations/1/edit
