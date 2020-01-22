@@ -9,47 +9,7 @@
       
         <%= render "devise/shared/error_messages", resource: resource %>
 
-        <div class="form-group">
-          <%= f.label :first_name%> 
-          <%= f.text_field :first_name, autofocus: true, class:"form-control", placeholder:I18n.t('activerecord.attributes.user.first_name') %>
-        </div>
-        
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <%= f.label :last_name %>
-            <%= f.text_field :last_name, class:"form-control", placeholder: I18n.t('activerecord.attributes.user.last_name') %>
-          </div>
-          <div class="form-group col-md-6">
-            <%= f.label :second_last_name %>
-            <%= f.text_field :second_last_name, class:"form-control", placeholder: I18n.t('activerecord.attributes.user.second_last_name') %>
-          </div>
-        </div>
-
-        <div class="form-row align-items-center">
-          <div class="form-group col-md-6">
-            <%= f.label :birthdate %>
-            <%= f.date_field :birthdate, class:"form-control" %>
-          </div>
-
-          <div class="form-group col-md-6">     
-            <%= f.label :gender %>        
-            <%= f.select :gender, options_for_select(@user.class.translated_genders.map { |t, k, _v| [t, k] }), {}, { class:"form-control" } %>      
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <%= f.label :phone_number %>
-            <%= f.text_field :phone_number, class:"form-control", placeholder:"569xxxxxxxx" %>
-          </div>
-          <fieldset disabled class="col-md-6">
-            <div class="form-group ">
-              <%= f.label :rut %>
-              <%= f.text_field :rut, class:"form-control", placeholder:"11.111.111-1" %>
-            </div>
-          </fieldset>
-        </div>
-
+        <!-- Account information -->
         <div class="form-group">
           <%= f.label :email %> 
           <%= f.email_field :email, autocomplete: "email", class:"form-control", placeholder:"example@example.com" %>
@@ -70,12 +30,16 @@
           </div>
         </div>
 
+        <!-- Self information -->
+        <%= render 'self_information', f: f %>
+
+        <!-- Address information -->
+        <%= render 'address', f: f %>
+
         <div class="form-group">
           <%= f.label :current_password %><small> (<%=I18n.t('text.current_password')%>)</small>
           <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control", placeholder:I18n.t('text.password.current')%>
         </div>
-
-        <%= render 'address_form', f: f %>
 
         <div class="form-group">
           <%= f.submit I18n.t('text.update'), class: "btn btn-outline-primary btn-lg btn-block"%>

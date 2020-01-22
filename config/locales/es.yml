@@ -45,7 +45,7 @@ es:
     last_name: Primer apellido
     second_last_name: Segundo apellido
     birthdate: Fecha de nacimiento
-    gender: Sexo
+    gender: Género
     phone_number: N° de Teléfono
     rut: Rut
     email: Correo eléctronico
@@ -169,7 +169,7 @@ es:
         last_name: Apellido
         second_last_name: Segundo Apellido
         birthdate: Fecha de nacimiento
-        gender: Sexo
+        gender: Género
         gender_list:
           male: "Masculino"
           female: "Femenino"
