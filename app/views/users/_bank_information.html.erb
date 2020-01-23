@@ -1,0 +1,36 @@
+<h4 class="card-title col-xl-9 col-sm-7 col-14">Información bancaria:</h4>
+<div class="card-body">
+  <div class="table table-responsive">
+    <table class="table table-striped table-sm">
+      <tbody>
+        <tr>
+          <th>Nombre del titular:</th>
+          <td><%= @user.bank_account.name%></td>
+        </tr>
+        <tr>
+          <th>Email:</th>
+          <td><%= @user.bank_account.email%></td>
+        </tr>
+        <tr>
+          <th>Rut del titular:</th>
+          <td><%= @user.bank_account.rut%></td>
+        </tr>
+        <tr>
+          <th style="width:40%;">Banco:</th>
+          <td><%= @user.bank_account.bank.name%></td>
+        </tr>
+        <tr>
+          <th>Tipo de cuenta:</th>
+          <td><%= @user.bank_account.account_type%></td>
+        </tr>
+        <tr>
+          <th>Número de cuenta:</th>
+          <td><%= @user.bank_account.account_number%></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="text-right">
+    <%= link_to I18n.t('buttons.back'), :back %>
+  </div>
+</div>

@@ -46,11 +46,6 @@ class User < ApplicationRecord
     "#{first_name} #{last_name} #{second_last_name}"
   end
 
-  def full_address
-    "#{address.street} #{address.street_number}, #{address.city.name},
-    #{address.city.state.name}"
-  end
-
   def update(params, *options)
     ActiveRecord::Base.transaction do
       create_or_update_address!(params)
