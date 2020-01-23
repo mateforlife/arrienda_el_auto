@@ -47,7 +47,8 @@ class User < ApplicationRecord
   end
 
   def full_address
-    "#{address.street} #{address.street_number}, #{address.city.name}"
+    "#{address.street} #{address.street_number}, #{address.city.name},
+    #{address.city.state.name}"
   end
 
   def update(params, *options)
