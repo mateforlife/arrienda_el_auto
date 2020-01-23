@@ -41,7 +41,7 @@ class LegalDocumentsController < ApplicationController
 
     if @legal_document.save
       redirect_to([@legal_document.resource, @legal_document],
-                  notice: 'Legal document was successfully created.')
+                  notice: 'El documento ha sido creado exitosamente.')
     else
       render action: 'new'
     end
@@ -50,7 +50,7 @@ class LegalDocumentsController < ApplicationController
   # PUT vehicles/1/legal_documents/1
   def update
     if @legal_document.update(legal_document_params)
-      redirect_to([@legal_document.resource, @legal_document], notice: 'Legal document was successfully updated.')
+      redirect_to([@legal_document.resource, @legal_document], notice: 'El documento ha sido actualizado exitosamente.')
     else
       render action: 'edit'
     end
