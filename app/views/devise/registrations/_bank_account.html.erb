@@ -1,0 +1,28 @@
+<%= f.fields_for :bank_account do |ff| %>
+  <b><%= ff.label 'Información Bancaria' %></b>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= ff.collection_select :bank_id,
+          Bank.all, :id, :name,
+          { include_blank: 'Seleccione banco' }, { class:"form-control form-control-sm" } %>
+    </div>
+    <div class="form-group col-md-3">
+      <%= ff.collection_select :account_type, BankAccount.account_types, :first, :first,
+          { include_blank: 'Tipo de cuenta' }, class:"form-control form-control-sm"%>
+    </div>
+    <div class="form-group col-md-3">
+      <%= ff.text_field :account_number, class:"form-control form-control-sm", placeholder: 'Numero cuenta' %>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= ff.text_field :name, class:"form-control form-control-sm", placeholder: 'Nombre' %>
+    </div>
+    <div class="form-group col-md-3">
+      <%= ff.text_field :rut, class:"form-control form-control-sm", placeholder: 'Rut' %>
+    </div>
+    <div class="form-group col-md-3">
+      <%= ff.email_field :email, autocomplete: "Email", class:"form-control form-control-sm", placeholder: 'Email' %>
+    </div>
+  </div>  
+<% end %>

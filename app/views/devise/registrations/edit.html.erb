@@ -40,6 +40,9 @@
         <!-- Address information -->
         <%= render 'address', f: f %>
 
+        <!-- Bank Account information -->
+        <%= render 'bank_account', f: f %>
+
         <div class="form-group">
           <%= f.label :current_password %><small> (<%=I18n.t('text.current_password')%>)</small>
           <%= f.password_field :current_password, autocomplete: "current-password",
