@@ -9,6 +9,10 @@ class Address < ApplicationRecord
 
   before_save :trim_and_capitalize_attributes
 
+  def full_name
+    "#{street} #{street_number}, #{city.name}, #{city.state.name}"
+  end
+
   private
 
   def trim_and_capitalize_attributes
