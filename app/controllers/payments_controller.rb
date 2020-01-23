@@ -45,7 +45,7 @@ class PaymentsController < ApplicationController
   def update
     if @payment.update(payment_params)
       redirect_to([@payment.reservation, @payment],
-                  notice: 'Payment was successfully updated.')
+                  notice: 'El pago a sido aprovado.')
     else
       render action: 'edit'
     end

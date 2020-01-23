@@ -35,7 +35,7 @@ class ReservationsController < ApplicationController
 
     if @reservation.save
       redirect_to new_reservation_payment_path(@reservation,
-                                               notice: 'Reservation was successfully created.')
+                                               notice: 'La reservación fue creada exitosamente.')
     else
       render action: 'new'
     end
@@ -45,7 +45,7 @@ class ReservationsController < ApplicationController
   def update
     if @reservation.update(reservation_params)
       redirect_to new_reservation_payment_path(@reservation,
-                                               notice: 'Reservation was successfully created.')
+                                               notice: 'La reservación fue creada exitosamente.')
     else
       render action: 'edit'
     end
@@ -54,7 +54,7 @@ class ReservationsController < ApplicationController
   def destroy
     respond_to do |format|
       if @reservation.destroy
-        format.html { redirect_to [@reservation.vehicle, @reservation], notice: 'reservation was successfully destroyed.' }
+        format.html { redirect_to [@reservation.vehicle, @reservation], notice: 'La reservació fue eliminada exitosamente.' }
         format.json { head :no_content }
       else
         format.html { redirect_to my_reservations_path, alert: 'no se puede eliminar' }
