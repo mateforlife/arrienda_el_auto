@@ -43,6 +43,10 @@ class User < ApplicationRecord
     "#{first_name} #{last_name} #{second_last_name}"
   end
 
+  def full_address
+    "#{address.street} #{address.street_number}, #{address.city.name}"
+  end
+
   def update(params, *options)
     if address
       address.update!(params['address_attributes'])
