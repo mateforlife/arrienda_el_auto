@@ -32,6 +32,9 @@
         <!-- Address information -->
         <%= render 'address', f: f %>
 
+        <!-- Bank Account information -->
+        <%= render 'bank_account', f: f %>
+
         <div class="form-group">
           <%= f.submit I18n.t('devise.text.sign_up'), class: "btn btn-outline-primary btn-lg btn-block" %>
         </div>

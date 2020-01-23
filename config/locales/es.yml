@@ -244,6 +244,19 @@ es:
         other: Usuarios
     errors:
       models:
+        bank_account:
+          attributes:
+            account_type:
+              blank: se debe indicar
+            bank:
+              required: debe ser seleccionado
+            name:
+              blank: se debe indicar
+            account_number:
+              blank: se debe indicar
+            rut:
+            email:
+              blank: se debe indicar
         address:
           attributes:
             city:
@@ -311,10 +324,3 @@ es:
               blank: 'debe existir'
               too_short: 'muy corto'
               ivalid: 'formato inválido' 
-              
-
-
-
-
-
-

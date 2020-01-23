@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "tipo": "Bancos",
+    "codigoSBIF": "001",
+    "codigoRegistro": null,
+    "name": "BANCO DE CHILE"
+  },
+  {
+    "id": 2,
+    "tipo": "Bancos",
+    "codigoSBIF": "009",
+    "codigoRegistro": null,
+    "name": "BANCO INTERNACIONAL"
+  },
+  {
+    "id": 3,
+    "tipo": "Bancos",
+    "codigoSBIF": "014",
+    "codigoRegistro": null,
+    "name": "SCOTIABANK CHILE"
+  },
+  {
+    "id": 4,
+    "tipo": "Bancos",
+    "codigoSBIF": "016",
+    "codigoRegistro": null,
+    "name": "BANCO DE CREDITO E INVERSIONES"
+  },
+  {
+    "id": 5,
+    "tipo": "Bancos",
+    "codigoSBIF": "027",
+    "codigoRegistro": null,
+    "name": "CORPBANCA"
+  },
+  {
+    "id": 6,
+    "tipo": "Bancos",
+    "codigoSBIF": "028",
+    "codigoRegistro": null,
+    "name": "BANCO BICE"
+  },
+  {
+    "id": 7,
+    "tipo": "Bancos",
+    "codigoSBIF": "031",
+    "codigoRegistro": null,
+    "name": "HSBC BANK (CHILE)"
+  },
+  {
+    "id": 8,
+    "tipo": "Bancos",
+    "codigoSBIF": "037",
+    "codigoRegistro": null,
+    "name": "BANCO SANTANDER-CHILE"
+  },
+  {
+    "id": 9,
+    "tipo": "Bancos",
+    "codigoSBIF": "039",
+    "codigoRegistro": null,
+    "name": "BANCO ITAÚ CHILE"
+  },
+  {
+    "id": 10,
+    "tipo": "Bancos",
+    "codigoSBIF": "049",
+    "codigoRegistro": null,
+    "name": "BANCO SECURITY"
+  },
+  {
+    "id": 11,
+    "tipo": "Bancos",
+    "codigoSBIF": "051",
+    "codigoRegistro": null,
+    "name": "BANCO FALABELLA"
+  },
+  {
+    "id": 12,
+    "tipo": "Bancos",
+    "codigoSBIF": "052",
+    "codigoRegistro": null,
+    "name": "DEUTSCHE BANK (CHILE)"
+  },
+  {
+    "id": 13,
+    "tipo": "Bancos",
+    "codigoSBIF": "053",
+    "codigoRegistro": null,
+    "name": "BANCO RIPLEY"
+  },
+  {
+    "id": 14,
+    "tipo": "Bancos",
+    "codigoSBIF": "054",
+    "codigoRegistro": null,
+    "name": "RABOBANK CHILE (ex HNS BANCO)"
+  },
+  {
+    "id": 15,
+    "tipo": "Bancos",
+    "codigoSBIF": "055",
+    "codigoRegistro": null,
+    "name": "BANCO CONSORCIO (ex BANCO MONEX)"
+  },
+  {
+    "id": 16,
+    "tipo": "Bancos",
+    "codigoSBIF": "056",
+    "codigoRegistro": null,
+    "name": "BANCO PENTA"
+  },
+  {
+    "id": 17,
+    "tipo": "Bancos",
+    "codigoSBIF": "057",
+    "codigoRegistro": null,
+    "name": "BANCO PARIS"
+  },
+  {
+    "id": 27,
+    "tipo": "Bancos",
+    "codigoSBIF": "012",
+    "codigoRegistro": null,
+    "name": "BANCO DEL ESTADO DE CHILE"
+  }
+]
