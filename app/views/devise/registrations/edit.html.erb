@@ -1,7 +1,7 @@
 <div class="container col-xl-7 col-lg-10 col-md-6 col-sm-10">
-  <div class="card">
+  <div class="card shadow">
     <div class="card-header">
-      <h2><%=I18n.t('devise.text.edit_user')%></h2>
+      <h2 class="text-center"><%=I18n.t('devise.text.edit_user')%></h2>
     </div>
     <div class="card-body">
 
@@ -12,9 +12,8 @@
 
         <!-- Account information -->
         <div class="form-group">
-          <%= f.label :email %> 
-          <%= f.email_field :email, autocomplete: "email",
-              class:"form-control form-control-sm", placeholder:"example@example.com" %>
+          <b><%= f.label 'Información de registro:' %></b>
+          <%= f.email_field :email, autocomplete: "Email", class:"form-control form-control-sm", placeholder:"email: example@example.com" %>
         </div>
         
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -23,14 +22,12 @@
 
         <div class="form-row">
           <div class="form-group col-md-6">
-            <%= f.label :password %><small> (<%=I18n.t('text.password.minimum')%>)</small>
             <%= f.password_field :password, autocomplete: "new-password",
-                class:"form-control form-control-sm", placeholder:I18n.t('text.leave_blank') %>            
+                class:"form-control form-control-sm", placeholder: 'Contraseña' %>
           </div>
           <div class="form-group col-md-6">
-            <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation, autocomplete: "new-password",
-                class:"form-control form-control-sm", placeholder:I18n.t('text.password.confirmation') %>
+                class:"form-control form-control-sm" , placeholder: 'Confirmar contraseña'%>
           </div>
         </div>
 
@@ -39,6 +36,9 @@
 
         <!-- Address information -->
         <%= render 'address', f: f %>
+
+        <!-- Bank Account information -->
+        <%= render 'bank_account', f: f %>
 
         <div class="form-group">
           <%= f.label :current_password %><small> (<%=I18n.t('text.current_password')%>)</small>

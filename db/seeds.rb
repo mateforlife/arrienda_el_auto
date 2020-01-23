@@ -37,3 +37,8 @@ JSON.parse(File.read('db/chilean_cities.json')).each do |city|
     City.find_or_create_by(name: comuna, state_id: state.id)
   end
 end
+
+# Banks
+JSON.parse(File.read('db/chilean_banks.json')).each do |bank|
+  Bank.find_or_create_by(name: bank['name'])
+end

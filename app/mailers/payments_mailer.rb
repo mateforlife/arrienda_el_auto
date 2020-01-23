@@ -3,9 +3,9 @@
 # PaymentsMailer
 class PaymentsMailer < ApplicationMailer
   before_action :set_admin_emails
-  def notify_create_to_admin(payment_id, reservation)
+  def notify_create_to_admin(payment_id, reservation_id)
     @payment_id = payment_id
-    @reservation = reservation
+    @reservation = Reservation.find(reservation_id)
     mail to: @admin_emails, subject: 'Usuario ha realizado un pago!'
   end
 

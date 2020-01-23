@@ -1,6 +1,6 @@
 <% resource ||= 'vehicles' %>
 <div class="container col-lg-12 col-md-6 col-sm-10">
-  <div class="card">
+  <div class="card shadow">
     <h5 class="card-header"><%= I18n.t("vehicle.headers.index.#{resource}")%> (<%= @vehicles.count %>)</h5>
     <div class="card-body">
       <div class="row">
@@ -25,7 +25,7 @@
                           <th style="width:50%"><%= I18n.t('vehicle.show.fuel') %>:</th>
                           <td><%= Vehicle.translated_engine_type(vehicle.engine_type)  %></td>
                         </tr>
-                        <%= render 'vehicles/legal_status', vehicle: vehicle if vehicle.belongs_to_current_user?(current_user) || current_user.admin? %>
+                        <%= render 'vehicles/legal_status', vehicle: vehicle %>
                       </tbody>
                     </table>                  
                     <%= link_to I18n.t('buttons.show'), vehicle, class:"btn btn-outline-primary col-xl-12" %>

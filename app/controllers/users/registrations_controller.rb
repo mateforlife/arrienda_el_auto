@@ -84,6 +84,9 @@ module Users
         :rut, :phone_number, :birthdate, :gender,
         address_attributes: %i[
           id city_id street street_number apartment
+        ],
+        bank_account_attributes: %i[
+          id bank_id name rut account_number account_type email
         ]
       ]
     end
