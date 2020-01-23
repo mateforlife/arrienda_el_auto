@@ -39,7 +39,7 @@
 
   <div class="form-group col-md-3">          
     <%= f.select :gender,
-          options_for_select(@user.class.translated_genders.map { |t, k, _v| [t, k] }),
+          options_for_select(@user.class.translated_genders.map { |t, k, _v| [t, k] }, selected: @user.gender),
           { include_blank: 'Género' }, { class:"form-control form-control-sm" } %>         
   </div>
 </div>

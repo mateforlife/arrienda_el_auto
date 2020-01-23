@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2020_01_23_164621) do
     t.bigint "bank_id", null: false
     t.bigint "user_id", null: false
     t.string "name", limit: 40
-    t.string "rut", limit: 10
+    t.string "rut", limit: 12
     t.string "account_number"
     t.integer "account_type"
     t.string "email"

@@ -47,8 +47,13 @@ class User < ApplicationRecord
   end
 
   def update(params, *options)
-    create_or_update_address!(params)
-    create_or_update_bank_account!(params)
+    ActiveRecord::Base.transaction do
+      create_or_update_address!(params)
+      create_or_update_bank_account!(params)
+    rescue ActiveRecord::RecordInvalid => e
+      errors.add(:base, e)
+      raise ActiveRecord::Rollback
+    end
     super(params, *options)
   end
 
@@ -58,12 +63,10 @@ class User < ApplicationRecord
     if bank_account
       bank_account.update!(params['bank_account_attributes'])
     else
-      acc = Address.new(params['bank_account_attributes'])
+      acc = BankAccount.new(params['bank_account_attributes'])
       acc.user = self
       acc.save!
     end
-  rescue ActiveRecord::RecordInvalid
-    raise ActiveRecord::Rollback
   end
 
   def create_or_update_address!(params)
@@ -74,8 +77,6 @@ class User < ApplicationRecord
       adr.user = self
       adr.save!
     end
-  rescue ActiveRecord::RecordInvalid
-    raise ActiveRecord::Rollback
   end
 
   def bank_account_invalid?(attributes)
