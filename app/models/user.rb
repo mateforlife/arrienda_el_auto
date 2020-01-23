@@ -14,6 +14,9 @@ class User < ApplicationRecord
   has_one :address, dependent: :destroy
   accepts_nested_attributes_for :address, allow_destroy: true,
                                           reject_if: :address_invalid?
+  has_one :bank_account, dependent: :destroy
+  accepts_nested_attributes_for :bank_account, allow_destroy: true,
+                                               reject_if: :bank_account_invalid?
 
   REQUIRED_DOCUMENTS = %w[identity criminal_record].freeze
 
@@ -44,6 +47,26 @@ class User < ApplicationRecord
   end
 
   def update(params, *options)
+    create_or_update_address!(params)
+    create_or_update_bank_account!(params)
+    super(params, *options)
+  end
+
+  private
+
+  def create_or_update_bank_account!(params)
+    if bank_account
+      bank_account.update!(params['bank_account_attributes'])
+    else
+      acc = Address.new(params['bank_account_attributes'])
+      acc.user = self
+      acc.save!
+    end
+  rescue ActiveRecord::RecordInvalid
+    raise ActiveRecord::Rollback
+  end
+
+  def create_or_update_address!(params)
     if address
       address.update!(params['address_attributes'])
     else
@@ -51,12 +74,15 @@ class User < ApplicationRecord
       adr.user = self
       adr.save!
     end
-    super(params, *options)
   rescue ActiveRecord::RecordInvalid
     raise ActiveRecord::Rollback
   end
 
-  private
+  def bank_account_invalid?(attributes)
+    attributes['user_id'] = id
+    acc = BankAccount.new(attributes)
+    acc.valid?
+  end
 
   def address_invalid?(attributes)
     attributes['user_id'] = id

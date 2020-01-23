@@ -3,7 +3,7 @@
     <b><%= ff.label 'Dirección' %></b>
     <%= ff.grouped_collection_select :city_id,
         State.all, :cities, :name, :id, :name,
-        { include_blank: true, placeholder: 'Comuna' }, { class:"form-control form-control-sm" } %>
+        { include_blank: 'Seleccione Comuna' }, { class:"form-control form-control-sm" } %>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">

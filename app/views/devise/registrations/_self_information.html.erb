@@ -16,43 +16,43 @@
 </div>
 
 <div class="form-row align-items-center">
-  <div class="form-group col-md-6">
-    <%= f.label :birthdate %>
+
+  <% if action_name.in?(%w[new create]) %>
+    <div class="form-group col-md-6">
+      <%= f.text_field :rut, class:"form-control form-control-sm",
+          placeholder:"rut: 11.111.111-1" %>
+    </div>
+  <% elsif action_name.in?(%w[edit update])%>
+    <fieldset disabled class="col-md-6">
+      <div class="form-group ">
+        <%= f.text_field :rut, class:"form-control form-control-sm",
+            placeholder:"rut: 11.111.111-1" %>
+      </div>
+    </fieldset>
+  <% end %>
+  <div class="form-group col-md-1">
+    <%= f.label 'Nacimiento' , style: "display: inline;" %>
+  </div>
+  <div class="form-group col-md-2">
     <%= f.date_field :birthdate, class:"form-control form-control-sm" %>
   </div>
 
-  <div class="form-group col-md-6">     
-    <%= f.label :gender %>        
+  <div class="form-group col-md-3">          
     <%= f.select :gender,
           options_for_select(@user.class.translated_genders.map { |t, k, _v| [t, k] }),
-          {}, { class:"form-control form-control-sm" } %>         
+          { include_blank: 'Género' }, { class:"form-control form-control-sm" } %>         
   </div>
 </div>
 
 <div class="form-row">
   <div class="form-group col-md-6">
-    <%= f.label :phone_number %>
     <div class="input-group">
-      <div class="input-group-prepend form-control-sm">
+      <div class="input-group-prepend form-control-sm" style="padding-left: 0;">
         <span class="input-group-text" >+569</span>
       </div>
       <%= f.text_field :phone_number, class:"form-control form-control-sm",
-          placeholder:"12345678" %>
+          placeholder:"Número telefónico" %>
     </div>
   </div>
-  <% if action_name.in?(%w[new create]) %>
-    <div class="form-group col-md-6">
-      <%= f.label :rut %>
-      <%= f.text_field :rut, class:"form-control form-control-sm",
-          placeholder:"11.111.111-1" %>
-    </div>
-  <% elsif action_name.in?(%w[edit update])%>
-    <fieldset disabled class="col-md-6">
-      <div class="form-group ">
-        <%= f.label :rut %>
-        <%= f.text_field :rut, class:"form-control form-control-sm",
-            placeholder:"11.111.111-1" %>
-      </div>
-    </fieldset>
-  <% end %>
+
 </div>
