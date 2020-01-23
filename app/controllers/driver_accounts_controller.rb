@@ -29,7 +29,7 @@ class DriverAccountsController < ApplicationController
 
     if @driver_account.save
       redirect_to driver_account_legal_documents_path(@driver_account),
-                  notice: 'Tu cuenta de conductor a sido creada exitosamente.'
+                  notice: 'Tu cuenta de conductor ha sido creada exitosamente.'
     else
       render action: 'new'
     end
