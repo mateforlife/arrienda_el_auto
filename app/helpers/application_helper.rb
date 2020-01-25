@@ -15,4 +15,8 @@ module ApplicationHelper
       flash_messages << text.html_safe if message
     end.join("\n").html_safe
   end
+
+  def car_icon(size = 24)
+    "<img src='https://img.icons8.com/android/#{size}/000000/car.png'>".html_safe
+  end
 end

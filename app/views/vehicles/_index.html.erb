@@ -1,7 +1,11 @@
 <% resource ||= 'vehicles' %>
 <div class="container col-lg-12 col-md-6 col-sm-10">
   <div class="card shadow">
-    <h5 class="card-header"><%= I18n.t("vehicle.headers.index.#{resource}")%> (<%= @vehicles.count %>)</h5>
+    <h5 class="card-header">
+      <%= I18n.t("vehicle.headers.index.#{resource}")%> (<%= @vehicles.count %>)
+      <%= link_to '+ Crear', new_vehicle_path, class:"btn btn-outline-primary", style:'float: right;' %>
+    </h5>
+    
     <div class="card-body">
       <div class="row">
         <% @vehicles.each do |vehicle| %>

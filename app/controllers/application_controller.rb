@@ -4,8 +4,8 @@
 class ApplicationController < ActionController::Base
   include ExceptionHandler
   include ApplicationHelper
-  before_action :authenticate_user!
   before_action :set_locale
+  before_action :authenticate_user!
 
   private
 

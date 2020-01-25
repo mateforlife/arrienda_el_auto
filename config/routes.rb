@@ -27,7 +27,8 @@ Rails.application.routes.draw do
     get 'my_reservations', to: 'my_reservations#index'
     get '/my_vehicles', to: 'my_vehicles#index'
     get '/validate_legal_documents', to: 'validate_legal_documents#index'
-    root to: 'vehicles#index'
+    get '/welcome', to: 'welcome#index'
+    root to: 'welcome#index'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
