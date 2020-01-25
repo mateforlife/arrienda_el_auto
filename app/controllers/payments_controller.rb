@@ -4,7 +4,7 @@
 class PaymentsController < ApplicationController
   include FilesHelper
   load_resource
-  load_and_authorize_resource only: %i[create update edit]
+  load_and_authorize_resource only: %i[update edit]
   before_action :set_reservation
   before_action :set_payment, only: [:show, :edit, :update]
 
@@ -32,6 +32,7 @@ class PaymentsController < ApplicationController
   # POST reservations/1/payments
   def create
     @payment = @reservation.payments.build(payment_params)
+    authorize! :create, @payment
     if @payment.save
       redirect_to([@payment.reservation, @payment],
                   notice: 'Espera a que validemos tu pago, serás notificado

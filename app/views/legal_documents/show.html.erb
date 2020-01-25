@@ -1,49 +1,57 @@
-<div class="container col-xl-7 col-lg-10 col-md-6 col-sm-10">
+<div class="container col-xl-12 col-lg-10 col-md-6 col-sm-10">
   <div class="card shadow">
-    <h2 class="card-header text-center"><%= I18n.t("#{@resource.class.to_s.underscore}.headers.legal_document.#{@resource.class.to_s.underscore}_documents")%></h2>
-    <div class="card-body">
-      <div class="table-responsive ">
-        <table class="table table-hover table-sm">
-          <tr>
-            <th style="width:20%"><%= I18n.t('activerecord.attributes.legal_document.document_type') %>:</th>
-            <td>
-              <%= LegalDocument.translated_document_type(@legal_document.document_type) %> 
-              (<span class="badge badge-pill badge-<%= @legal_document.status_color %>">
-                <%= LegalDocument.translated_status(@legal_document.status) %>
-              </span>)
-            </td> 
-          </tr>
-          <tr>
-            <th><%= I18n.t('activerecord.attributes.legal_document.due_date') %>:</th>
-            <td><%= @legal_document&.due_date&.strftime('%d-%m-%Y') %></td>
-          </tr>
-          <tr>
-            <th><%= I18n.t('activerecord.attributes.legal_document.document_file')%>:</th>
-            <td>
-              <% @legal_document.images&.each do |image| %>
-                <%= image_tag preview(image), class:"img-fluid" %>
-              <% end %>
-            </td>
-          </tr>
-        </table>
+    <div class='row'>
+      <div class='col-md-7'>
+        <h2 class="card-header text-center">
+          <%= I18n.t("#{@resource.class.to_s.underscore}.headers.legal_document.#{@resource.class.to_s.underscore}_documents")%>:
+        </h2>
+        <div class="card-body">
+          <div class="table-responsive ">
+            <table class="table table-hover table-sm">
+              <tr>
+                <th style="width:20%"><%= I18n.t('activerecord.attributes.legal_document.document_type') %>:</th>
+                <td>
+                  <%= LegalDocument.translated_document_type(@legal_document.document_type) %> 
+                  (<span class="badge badge-pill badge-<%= @legal_document.status_color %>">
+                    <%= LegalDocument.translated_status(@legal_document.status) %>
+                  </span>)
+                </td> 
+              </tr>
+              <tr>
+                <th><%= I18n.t('activerecord.attributes.legal_document.due_date') %>:</th>
+                <td><%= @legal_document&.due_date&.strftime('%d-%m-%Y') %></td>
+              </tr>
+              <tr>
+                <th><%= I18n.t('activerecord.attributes.legal_document.document_file')%>:</th>
+                <td>
+                  <% @legal_document.images&.each do |image| %>
+                    <%= image_tag preview(image), class:"img-fluid" %>
+                  <% end %>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>  
+      </div>
+
+      <div class='col-md-5'>
+        <h2 class="card-header text-center">
+          <%= I18n.t("#{@resource.class.to_s.underscore}.headers.legal_document.#{@resource.class.to_s.underscore}_data")%>:
+        </h2>
+        <div class="card-body">
+          <h3 class="card-title"></h3>
+          <div class="table-responsive">
+            <table class="table table-hover table-sm ">
+              <%= render "#{@resource.class.to_s.underscore}", resource: @resource %>
+            </table>
+          </div>
+          <%= link_to I18n.t('buttons.validate'), edit_legal_document_path(@legal_document), class: "btn btn-outline-primary btn-lg btn-block" if current_user.admin? %><br>
+        </div>
+        <div class="text-right col-md-12">
+          <%= link_to I18n.t('text.back'), legal_documents_path(@legal_document.resource) %>
+        </div>
       </div>
     </div>
-
-
-
-    <h5 class="card-header"><%= I18n.t("#{@resource.class.to_s.underscore}.headers.legal_document.#{@resource.class.to_s.underscore}_data")%>:</h5>
-    <div class="card-body">
-      <h3 class="card-title"></h3>
-      <div class="table-responsive">
-        <table class="table table-hover table-sm ">
-          <%= render "#{@resource.class.to_s.underscore}", resource: @resource %>
-        </table>
-      </div>
-      <%= link_to I18n.t('buttons.validate'), edit_legal_document_path(@legal_document), class: "btn btn-outline-primary btn-lg btn-block" if current_user.admin? %><br>
-    </div>
-    <div class="text-right col-md-12">
-      <%= link_to I18n.t('text.back'), legal_documents_path(@legal_document.resource) %>
-    </div><br>
   </div>
 </div>
 
