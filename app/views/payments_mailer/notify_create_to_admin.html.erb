@@ -1,5 +1,5 @@
 <h4 class="card-title"><%=I18n.t('devise.text.hello')%></h4>
-<p>El usuario <%= @reservation.user.full_name%> a hecho una reserva</p>
+<p>El usuario <%= @reservation.user.full_name %> ha realizado el pago de una reserva</p>
 <p>
   Debes validar el pago aqui! <%= link_to 'Aqui!', 
                                   edit_reservation_payment_url(reservation_id: @reservation.id,

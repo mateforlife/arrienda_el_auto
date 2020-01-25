@@ -1,14 +1,13 @@
 <h4 class="card-title">
-  <%="#{I18n.t('devise.text.hello')} #{@reservation.user.first_name}"%>
+  <%="#{I18n.t('devise.text.hello')} #{@vehicle_owner.first_name}"%>
 </h4>
 <div class="alert alert-success" role="alert">
-  <p>El pago de tu reserva fué aprobado!</p>
+  <p>Se ha realizado un pago exitoso de una reserva de tu vehículo</p>
   <h4 class="alert-heading">Vehículo:</h4>
   <li><%= @reservation.vehicle.brand_model_and_year %></li>
-  <h4 class="alert-heading">Datos del propietario:</h4>
-  <li>Nombre: <%= @vehicle_owner.full_name %></li>
-  <li>Celular: +569<%=@vehicle_owner.phone_number %></li>
-  <li>Dirección: <%= @vehicle_owner.address.full_name %></li>
+  <h4 class="alert-heading">Datos del conductor:</h4>
+  <li>Nombre: <%= @reservation.user.full_name %></li>
+  <li>Celular: +569<%=@reservation.user.phone_number %></li>
   <hr>
   <p class="mb-0">Contáctate para coordinar el retiro del vehículo.</p>
     <p class="mb-0">O revisa más detalles 

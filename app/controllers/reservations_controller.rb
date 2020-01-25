@@ -15,6 +15,7 @@ class ReservationsController < ApplicationController
 
   # GET vehicles/1/reservations/1
   def show
+    @vehicle_owner = @reservation.vehicle.user
   end
 
   # GET vehicles/1/reservations/new

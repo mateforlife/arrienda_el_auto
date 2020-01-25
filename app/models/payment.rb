@@ -3,6 +3,7 @@
 # Payment
 class Payment < ApplicationRecord
   belongs_to :reservation
+  has_one :vehicle, through: :reservation
   has_one_attached :file
   enum status: %i[pending approved rejected]
   translate_enum :status
@@ -54,16 +55,23 @@ class Payment < ApplicationRecord
     return if pending?
 
     to = reservation.user.email
-    mail = if approved?
-             PaymentsMailer.payment_success(to, reservation)
-           else
-             PaymentsMailer.payment_rejected(to, reservation, comment)
-           end
-    mail.deliver_now!
+    return send_success_mails(to) if approved?
+
+    send_rejected_mails(to)
+  end
+
+  def send_success_mails(to)
+    PaymentsMailer.payment_success(to, reservation).deliver_later
+    PaymentsMailer.payment_success_owner(to, reservation).deliver_later
+  end
+
+  def send_rejected_mails(to)
+    PaymentsMailer.payment_rejected(to, reservation, comment).deliver_later
+    PaymentsMailer.payment_rejected_owner(to, reservation).deliver_later
   end
 
   def notify_to_admin
-    PaymentsMailer.notify_create_to_admin(id, reservation.id).deliver_later
+    PaymentsMailer.notify_create_to_admin(id, reservation).deliver_later
   end
 
   def set_amount
