@@ -2,9 +2,22 @@
   <div class="card shadow">  
     <div class="card-header text-center">
       <h2><%= I18n.t('reservation.headers.your_reservation')%></h2>
-    </div><br>
+    </div>
     <div class="card-body">
-      <h4 class="card-title"><%= I18n.t('reservation.text.driver_information')%>:</h4><br>
+      <%= render 'retirement' if @reservation.current? || @reservation.reserved? %>
+      <h4 class="card-title"><%= I18n.t('reservation.text.driver_information')%>:
+      <div class="btn-group" style='float: right;'>
+          <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= I18n.t('buttons.options') %>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <%= link_to 'Ver Pagos', reservation_payments_path(@reservation), class: 'dropdown-item'%>
+            <%= link_to I18n.t('reservation.text.edit'),
+                edit_vehicle_reservation_path(@reservation.vehicle, @reservation), class: 'dropdown-item' %>
+          </div>
+        </div>
+      </h4>
+      <br>
       <div class="table table-responsive">
         <table class="table table-striped">
           <tbody>
@@ -29,9 +42,6 @@
             </tr>
           </tbody>
         </table>
-      </div>
-      <div class="text-right">
-        <%= link_to I18n.t('reservation.text.edit'), edit_vehicle_reservation_path(@reservation.vehicle, @reservation) %><br>
       </div>
     </div>
   </div>

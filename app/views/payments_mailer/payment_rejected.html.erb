@@ -1,3 +1,8 @@
-<h4 class="card-title"><%="#{I18n.t('devise.text.hello')} #{@reservation.user.first_name}"%></h4>
-<p>tu pago ha sido rechazado por el siguiente motivo:</p>
+<h4 class="card-title">
+  <%="#{I18n.t('devise.text.hello')} #{@reservation.user.first_name}"%>
+</h4>
+<p>tu pago para reservar el vehículo: 
+  <%= @reservation.vehicle.brand_model_and_year %>
+  ha sido rechazado por el siguiente motivo:
+</p>
 <p>"<%= @payment_comment %>"</p>
