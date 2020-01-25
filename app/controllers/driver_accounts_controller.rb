@@ -19,8 +19,8 @@ class DriverAccountsController < ApplicationController
     end
 
     @driver_account = DriverAccount.new(user: @user)
-    flash[:now] = 'Despues de crear la cuenta de conductor debes adjuntar
-                   los documentos solicitados'
+    flash[:alert] = 'Despues de crear la cuenta de conductor
+                     debes adjuntar los documentos solicitados'
   end
 
   # POST users/1/driver_accounts
