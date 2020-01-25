@@ -14,7 +14,7 @@ class DeviseMailer < Devise::Mailer
     @resource = record
     mail(
       template_path: 'devise/mailer',
-      from: 'notificaciones@easy-car.cl',
+      from: 'notificaciones@arriendaelauto.cl',
       to: record.email, cc: '',
       subject: 'reset password instructions')
   end
@@ -24,7 +24,7 @@ class DeviseMailer < Devise::Mailer
     @resource = record
     mail(
       template_path: 'devise/mailer',
-      from: 'notificaciones@easy-car.cl',
+      from: 'notificaciones@arriendaelauto.cl',
       to: record.email, cc: '',
       subject: 'confirmation instructions')
   end

@@ -19,6 +19,7 @@ class User < ApplicationRecord
                                                reject_if: :bank_account_invalid?
 
   REQUIRED_DOCUMENTS = %w[identity criminal_record].freeze
+  USER_MIN_AGE = 27
 
   validates_presence_of %i[first_name last_name second_last_name rut birthdate
                            gender phone_number]
@@ -92,7 +93,7 @@ class User < ApplicationRecord
   end
 
   def validate_age
-    return unless birthdate.present? && birthdate > 18.years.ago.to_date
+    return unless birthdate.present? && birthdate > USER_MIN_AGE.years.ago.to_date
 
     errors.add(:birthdate, 'debes ser mayor de 18 años.')
   end

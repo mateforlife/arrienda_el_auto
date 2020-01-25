@@ -2,7 +2,7 @@
 
 # LegalDocumentsMailer
 class LegalDocumentsMailer < ApplicationMailer
-  default from: 'notificaciones@easy-car.cl'
+  default from: 'notificaciones@arriendaelauto.cl'
   layout 'mailer'
 
   def documents_effective(resource_name, to)

@@ -3,7 +3,7 @@
 ActionMailer::Base.smtp_settings = {
   user_name: 'apikey',
   password: ENV['SENDGRID_API_KEY'],
-  domain: 'easy-car.cl',
+  domain: 'arriendaelauto.cl',
   address: 'smtp.sendgrid.net',
   port: 587,
   authentication: :plain,

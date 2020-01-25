@@ -4,10 +4,17 @@
 class ApplicationController < ActionController::Base
   include ExceptionHandler
   include ApplicationHelper
-  before_action :authenticate_user!
   before_action :set_locale
+  before_action :authenticate_user!
+  before_action :user_status
 
   private
+
+  def user_status
+    return unless current_user
+
+
+  end
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
