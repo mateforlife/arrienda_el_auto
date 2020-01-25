@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module EasyCar
+module ArriendaElAuto
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
@@ -15,8 +15,8 @@ module EasyCar
     #   allow do
     #     origins [
     #       ENV['CLOUDFRONT_DNS'],
-    #       'https://easy-car.herokuapp.com',
-    #       'http://easy-car.herokuapp.com'
+    #       'https://arriendaelauto.herokuapp.com',
+    #       'http://arriendaelauto.herokuapp.com'
     #     ]
     #     resource '/assets/*', headers: :any,
     #                           methods: %i[get post delete put options head]

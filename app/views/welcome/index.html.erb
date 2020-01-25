@@ -1,0 +1,51 @@
+<div class="card">
+  <h5 class="card-header">Bienvenido</h5>
+  <div class="card-body">
+    <div class="row">
+      <div class='col-md-4'>
+        <h5 class="card-title">Identificación general  
+          <img src="https://img.icons8.com/doodle/48/000000/information.png">
+        </h5>
+        <p class="card-text">Todo usuario debe cumplir los siguientes requisitos:</p>
+          <li>Ser mayor de 27 años.</li>
+          <li>Adjuntar Cedula de identidad <%= link_to 'Aquí', user_legal_documents_path(current_user), target: '_blank' %></li>
+          <li>Adjuntar Certificado de antecedentes <%= link_to 'Aquí', user_legal_documents_path(current_user), target: '_blank' %></li>
+          <li>Espera a que validemos tus documentos, se te notificará mediante un Email.</li>
+          <br>
+      </div>
+      <div class='col-md-4'>
+        <h5 class="card-title">¿ Deseas conducír un Vehículo ?
+          <img src="https://img.icons8.com/color/48/000000/car.png">
+        </h5>
+        <p class="card-text">Requisitos:</p>
+          <li>Debes crear una cuenta de Conductor <%= link_to 'Aquí', new_user_driver_account_path(current_user), target: '_blank'  %></li>
+          <br>
+        <p class="card-text">Una vez creada tu cuenta debes cumplir con lo siguiente:</p>
+          <li>Adjuntar Licencia de conducir vigente 
+            <%= link_to 'Aquí', driver_account_legal_documents_path(current_user.driver_account),
+                target: '_blank' if current_user.driver_account %>
+          </li>
+          <li>Adjuntar Hoja de vida de conductor 
+              <%= link_to 'Aquí', driver_account_legal_documents_path(current_user.driver_account),
+                  target: '_blank' if current_user.driver_account %>
+          </li>
+          <br>
+      </div>
+      <div class='col-md-4'> 
+        <h5 class="card-title">¿ Deseas publicar un Vehículo ? 
+          <img src="https://img.icons8.com/doodle/48/000000/money.png">
+        </h5>
+        <li class="card-text">Puedes crear tus vehículos 
+          <%= link_to 'aquí', new_vehicle_path,
+              target: '_blank' if current_user %>
+        </li>
+        <br>
+        <p class="card-text">Para cada vehículo se debe adjuntar la siguiente documentación:</p>
+          <li>Permiso de circulación vigente.</li>
+          <li>Revisión técnica vigente.</li>
+          <li>Seguro Obligatorio vigente.</li>
+          <li>Padrón del vehículo.</li>
+      </div>
+    </div>
+  </div>
+</div>
