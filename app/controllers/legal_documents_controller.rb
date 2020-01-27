@@ -11,6 +11,7 @@ class LegalDocumentsController < ApplicationController
   before_action :set_resource
   before_action :set_remaining_documents, only: %i[index new]
   before_action :set_legal_document, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: :show
 
   # GET vehicles/1/legal_documents
   def index
@@ -64,6 +65,10 @@ class LegalDocumentsController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = @legal_document.resource_is_user? ? @resource : @resource.user
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_resource
