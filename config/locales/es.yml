@@ -223,6 +223,7 @@ es:
           ready: Disponible
           published: Publicado
           rented: Arrendado
+          disabled: Desactivado
         brand_id: Marca
         vehicle_model_id: Modelo
         vehicle_model: Marca y Modelo

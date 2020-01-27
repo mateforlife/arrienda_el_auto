@@ -52,6 +52,7 @@ class VehiclesController < ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @vehicle.errors, status: :unprocessable_entity }
+        format.js { flash[:now] = 'No es posible desactivar' }
       end
     end
   end

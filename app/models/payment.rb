@@ -2,7 +2,6 @@
 
 # Payment
 class Payment < ApplicationRecord
-  acts_as_paranoid
   belongs_to :reservation
   has_one :vehicle, through: :reservation
   has_one_attached :file, dependent: :purge_later

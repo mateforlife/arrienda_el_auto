@@ -14,6 +14,16 @@ class Vehicle < ApplicationRecord
   REQUIRED_DOCUMENTS = %w[circulation_permit obligatory_insurance
                           technical_review vehicle_register].freeze
   ALLOWED_FILE_TYPES = ['image/png', 'image/jpg', 'image/jpeg'].freeze
+
+  STATUSES_TABLE_COLORS = {
+    created: :danger,
+    review: :danger,
+    ready: :success,
+    published: :success,
+    rented: :success,
+    disabled: :warning
+  }.freeze
+
   # ====================
   # =     ENUMS        =
   # ====================
@@ -22,7 +32,7 @@ class Vehicle < ApplicationRecord
   enum transmission: %i[manual automatic]
   enum steering: %i[mechanical power electric hydraulic]
   enum drive: %w[4x2 4x4]
-  enum status: %i[created review ready published rented]
+  enum status: %i[created review ready published rented disabled]
   translate_enum :body_type
   translate_enum :engine_type
   translate_enum :transmission
@@ -45,6 +55,7 @@ class Vehicle < ApplicationRecord
   # =    CALLBACKS     =
   # ====================
   before_create :associate_fee
+  validate :active_reservations, on: :update, if: :disabled?
   before_save :upcase_license_plate
 
   # ====================
@@ -71,7 +82,7 @@ class Vehicle < ApplicationRecord
   end
 
   def legal_status_badge
-    badge_color = legal_documents_effective? ? 'success' : 'danger'
+    badge_color = STATUSES_TABLE_COLORS[status.to_sym]
     { text: status, badge_color: badge_color }
   end
 
@@ -87,8 +98,12 @@ class Vehicle < ApplicationRecord
     "#{vehicle_model.brand.name} #{vehicle_model.name} - #{year}"
   end
 
-  def has_active_reservations?
+  def active_reservations
+    return true if reservations.current_and_future.empty?
 
+    errors.add(:base, 'No puede desactivar vehiculo,
+                         ya que posee reservas activas')
+    false
   end
 
   # ====================
