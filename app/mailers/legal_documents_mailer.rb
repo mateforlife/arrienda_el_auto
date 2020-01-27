@@ -23,6 +23,6 @@ class LegalDocumentsMailer < ApplicationMailer
     @url = generate_resource_edit_url(@resource, resource_name)
     mail(to: @admin_emails,
          subject: "Validación de documentos de
-                   #{@resource_name}")
+                   #{@translated_name}")
   end
 end
