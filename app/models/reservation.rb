@@ -2,6 +2,7 @@
 
 # Reservation
 class Reservation < ApplicationRecord
+  acts_as_paranoid
   belongs_to :user
   belongs_to :vehicle
   has_many :payments
@@ -33,12 +34,6 @@ class Reservation < ApplicationRecord
     where(status: %w[waiting_payment processing_payment
                      reserved current]).order('end_date DESC')
   }
-
-  scope :current, lambda {
-    where(status: 'current')
-  }
-
-  scope :reserved, -> { where(status: 'reserved') }
 
   def payment_effective?
     return false if payments.empty? || payments.last.rejected?

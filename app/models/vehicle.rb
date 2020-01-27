@@ -2,12 +2,13 @@
 
 # Vehicle
 class Vehicle < ApplicationRecord
+  acts_as_paranoid
   include Documentable
   belongs_to :vehicle_model
   belongs_to :user
   belongs_to :fee, required: false
-  has_many :reservations
-  has_many_attached :images, dependent: :destroy
+  has_many :reservations, dependent: :destroy
+  has_many_attached :images
 
   ATTACHMENTS_LIMIT = 5
   REQUIRED_DOCUMENTS = %w[circulation_permit obligatory_insurance
@@ -49,7 +50,6 @@ class Vehicle < ApplicationRecord
   # ====================
   # =      SCOPES      =
   # ====================
-  scope :published, -> { where(status: 'published') }
   scope :not_from_current_user, lambda { |current_user|
     where.not(user: current_user)
   }
@@ -87,6 +87,10 @@ class Vehicle < ApplicationRecord
     "#{vehicle_model.brand.name} #{vehicle_model.name} - #{year}"
   end
 
+  def has_active_reservations?
+
+  end
+
   # ====================
   # =  CLASS METHODS   =
   # ====================
@@ -107,10 +111,6 @@ class Vehicle < ApplicationRecord
   # =     PRIVATE      =
   # ====================
   private
-
-  def images_full?
-    profile_images.size >= ProfileImage::ATTACHMENTS_LIMIT
-  end
 
   def upcase_license_plate
     self.license_plate = license_plate.upcase

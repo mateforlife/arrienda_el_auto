@@ -59,6 +59,10 @@ class VehiclesController < ApplicationController
   # DELETE /vehicles/1
   # DELETE /vehicles/1.json
   def destroy
+    if @vehicle.reservations.present?
+      redirect_to @vehicle, alert: 'Vehículo posee historial de reservas, no se puede eliminar'
+      return
+    end
     @vehicle.destroy
     respond_to do |format|
       format.html { redirect_to vehicles_url, notice: 'El vehículo ha sido eliminado exitosamente.' }

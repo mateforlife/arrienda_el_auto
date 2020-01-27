@@ -2,9 +2,10 @@
 
 # Payment
 class Payment < ApplicationRecord
+  acts_as_paranoid
   belongs_to :reservation
   has_one :vehicle, through: :reservation
-  has_one_attached :file
+  has_one_attached :file, dependent: :purge_later
   enum status: %i[pending approved rejected]
   translate_enum :status
 

@@ -21,6 +21,8 @@
                   <%= link_to I18n.t('buttons.edit'), edit_vehicle_path(@vehicle), class:"dropdown-item" %>
                   <%= link_to I18n.t('buttons.legal_documents'), vehicle_legal_documents_path(@vehicle), class:"dropdown-item" %>
                   <div class="dropdown-divider"></div>
+                   <%= link_to 'Eliminar', @vehicle, method: :delete,
+                       class:"alert-danger dropdown-item", data: { confirm: 'Estas seguro?' }%>
                   <%= link_to I18n.t('buttons.back'), my_vehicles_path, class:"dropdown-item" %>
                 <% else %> 
                   <%= link_to I18n.t('buttons.back'), vehicles_path, class:"dropdown-item" %>
