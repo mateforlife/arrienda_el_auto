@@ -34,7 +34,9 @@ class LegalDocument < ApplicationRecord
 
   after_save :set_status_for_resource,
              unless: :resource_is_user?
-  after_update :check_ready_to_notify, if: :resource_is_vehicle?
+  after_update :check_ready_to_notify
+
+  after_create :notify_admins, if: :resource_have_upload_all_documents?
 
   scope :active, -> { where(status: :effective) }
   scope :not_rejected, -> { where.not(status: 'rejected') }
@@ -66,12 +68,6 @@ class LegalDocument < ApplicationRecord
     ).where(driver_accounts: { user_id: current_user.id })
   }
 
-  def self.resources_from_user(user)
-    from_current_user_vehicles(user)
-      .union(from_current_user(user)
-        .union(from_current_driver(user)))
-  end
-
   def status_color
     STATUSES_TABLE_COLORS[status.to_sym]
   end
@@ -81,16 +77,35 @@ class LegalDocument < ApplicationRecord
            scope: 'activerecord.attributes.legal_document.document_type_list')
   end
 
+  def resource_is_user?
+    resource.class.to_s == 'User'
+  end
+
   private
+
+  def resource_have_upload_all_documents?
+    resource.remaining_documents.empty?
+  end
+
+  def notify_admins
+    LegalDocumentsMailer
+      .all_documents_uploaded(set_user, resource).deliver_later
+  end
 
   def check_ready_to_notify
     notify_documents_effective if resource.legal_documents_effective?
   end
 
   def notify_documents_effective
-    resource_name = resource.class.to_s
-    to = resource.try(:email) || resource.user.email
-    LegalDocumentsMailer.documents_effective(resource_name, to).deliver_later
+    resource_name = resource.class.to_s.underscore
+    receiver = set_user
+
+    LegalDocumentsMailer
+      .documents_effective(resource_name, receiver).deliver_later
+  end
+
+  def set_user
+    resource_is_user? ? resource : resource.user
   end
 
   def set_status_for_resource
@@ -103,10 +118,6 @@ class LegalDocument < ApplicationRecord
 
   def resource_is_driver_account?
     resource.class.to_s == 'DriverAccount'
-  end
-
-  def resource_is_user?
-    resource.class.to_s == 'User'
   end
 
   def due_date_is_future

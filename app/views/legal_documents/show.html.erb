@@ -39,13 +39,16 @@
           <%= I18n.t("#{@resource.class.to_s.underscore}.headers.legal_document.#{@resource.class.to_s.underscore}_data")%>:
         </h2>
         <div class="card-body">
-          <h3 class="card-title"></h3>
           <div class="table-responsive">
             <table class="table table-hover table-sm ">
+              <tr>
+                <th> Usuario:</th>
+                <td><%= link_to @user.full_name, user_path(@user), target: '_blank' %></td>
+              </tr>
               <%= render "#{@resource.class.to_s.underscore}", resource: @resource %>
             </table>
           </div>
-          <%= link_to I18n.t('buttons.validate'), edit_legal_document_path(@legal_document), class: "btn btn-outline-primary btn-lg btn-block" if current_user.admin? %><br>
+          <%= link_to I18n.t('buttons.validate'), edit_legal_document_path(@legal_document), class: "btn btn-outline-primary btn-lg btn-block" if current_user.admin? %>
         </div>
         <div class="text-right col-md-12">
           <%= link_to I18n.t('text.back'), legal_documents_path(@legal_document.resource) %>

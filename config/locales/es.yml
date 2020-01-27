@@ -1,4 +1,8 @@
 es:
+  resources:
+    user: Usuario
+    vehicle: Vehículo
+    driver_account: Cuenta de conductor
   reservation:
     headers:
       new_reservation: Nueva reservación
@@ -38,8 +42,9 @@ es:
   created_at: Creado el
   language: Idioma
   legal_document_mails:
-    vehicle_mail: Hemos validado los documentos de tu vehículo
-    user_mail: Hemos validado tus documentos personales
+    vehicle: Hemos validado los documentos de tu vehículo
+    user: Hemos validado tus documentos de identificación
+    driver_account: Hemos validado tus documentos de conductor
   user:
     first_name: Nombre
     last_name: Primer apellido
@@ -79,7 +84,7 @@ es:
     headers:
       legal_document:
         new: Nuevo documento
-        index: Estado de documentos legales
+        index: Documentos legales
         edit: Validación de documentos
         vehicle_documents: Documentos del vehículo
         vehicle_data: Datos del vehículo
