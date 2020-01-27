@@ -64,7 +64,7 @@
                   </tr>
                   <tr>
                     <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.air_conditioning')%>:</th>
-                    <td><%= @vehicle.air_conditioning %></td>
+                    <td><%= humanize_boolean(@vehicle.air_conditioning) %></td>
                   </tr>
                   <tr>
                     <th style="width:50%;"> Airbags:</th>
