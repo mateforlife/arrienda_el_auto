@@ -5,6 +5,7 @@ class SearchController < ApplicationController
     else
       @vehicles = Vehicle.search(params[:search]).published
                          .not_from_current_user(current_user)
+                         .eager_load(images_attachments: :blob)
     end
   end
 end

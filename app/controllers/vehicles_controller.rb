@@ -10,6 +10,7 @@ class VehiclesController < ApplicationController
   def index
     @vehicles = Vehicle.available
                        .not_from_current_user(current_user)
+                       .eager_load(images_attachments: :blob)
     render '_index'
   end
 
