@@ -20,7 +20,7 @@
                 <td><%= User.translated_gender(user.gender) %></td>
                 <td><%= user.email%></td>
                 <td><%= user.phone_number%></td>
-                <td><%= link_to "Show", new_user_legal_document_path(user)%></td>
+                <td><%= link_to "Show", user %></td>
               </tr>
             <% end%>
           </tbody>
