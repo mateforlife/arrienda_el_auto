@@ -10,7 +10,7 @@
           <!-- Example single danger button -->
           <div class='' style='text-align: end;'>
             <div class="row-fluid">
-              <%= render 'publish_form', vehicle: @vehicle if (@vehicle.ready? || @vehicle.disabled?) && @vehicle.belongs_to_current_user?(current_user) %>
+              <%= render 'publish_form', vehicle: @vehicle if (@vehicle.ready? || @vehicle.disabled?) && @vehicle.legal_documents_effective? && @vehicle.user == current_user %>
               <%= render 'reservation_link', vehicle: @vehicle if @vehicle.published? && !@vehicle.belongs_to_current_user?(current_user) %>
               <div class="btn-group">
                 <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
