@@ -21,12 +21,14 @@
                   <%= link_to I18n.t('buttons.edit'), edit_vehicle_path(@vehicle), class:"dropdown-item" %>
                   <%= link_to I18n.t('buttons.legal_documents'), vehicle_legal_documents_path(@vehicle), class:"dropdown-item" %>
                   <div class="dropdown-divider"></div>
+                  <% if current_user.admin? || @vehicle.belongs_to_current_user?(current_user) %>
                     <%= link_to 'Desactivar',
                         vehicle_path(vehicle: { status: :disabled }),
                         data: { confirm: 'Seguro?' }, method: :put, remote: true,
                         class:"alert-warning dropdown-item" %>
-                   <%= link_to 'Eliminar', @vehicle, method: :delete,
-                       class:"alert-danger dropdown-item", data: { confirm: 'Estas seguro?' }%>
+                    <%= link_to 'Eliminar', @vehicle, method: :delete,
+                        class:"alert-danger dropdown-item", data: { confirm: 'Estas seguro?' }%>
+                  <% end %>
                   <%= link_to I18n.t('buttons.back'), my_vehicles_path, class:"dropdown-item" %>
                 <% else %> 
                   <%= link_to I18n.t('buttons.back'), vehicles_path, class:"dropdown-item" %>
