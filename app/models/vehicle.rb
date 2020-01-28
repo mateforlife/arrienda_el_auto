@@ -11,8 +11,7 @@ class Vehicle < ApplicationRecord
   has_many_attached :images
 
   ATTACHMENTS_LIMIT = 5
-  REQUIRED_DOCUMENTS = %w[circulation_permit obligatory_insurance
-                          technical_review vehicle_register].freeze
+  REQUIRED_DOCUMENTS = %w[circulation_permit].freeze
   ALLOWED_FILE_TYPES = ['image/png', 'image/jpg', 'image/jpeg'].freeze
 
   STATUSES_TABLE_COLORS = {
