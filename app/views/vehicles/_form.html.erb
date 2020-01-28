@@ -2,131 +2,125 @@
   <%= render 'shared/errors', resource: vehicle %>
 
   <div class="form-group">
-    <%= form.label :brand_id %>
     <%= form.collection_select :brand_id, @brands, :id, :name,
-        { include_blank: true, selected: @selected_option },
+        { include_blank: 'Seleccione Marca', selected: @selected_option },
         { class: 'form-control form-control-sm', disabled: @disabled } %>
   </div>
 
   <div class="form-group">
-    <%= form.label :vehicle_model_id %>
     <%= form.grouped_collection_select :vehicle_model_id,
         @brands, :vehicle_models, :name, :id, :name,
-        { include_blank: true }, { class:"form-control form-control-sm" } %>
+        { include_blank: 'Seleccione Modelo' }, { class:"form-control form-control-sm" } %>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <%= form.label :year %>
       <%= form.select :year, (Date.today.year - 10..Date.today.year + 1),
-         { selected: Date.today.year }, { class:"form-control form-control-sm" } %>
+         { include_blank: 'Año', selected: vehicle.year }, { class:"form-control form-control-sm" } %>
     </div>
 
     <div class="form-group col-md-6">
-      <%= form.label :license_plate %>
-      <%= form.text_field :license_plate, class:"form-control form-control-sm" %>
+      <%= form.text_field :license_plate, class:"form-control form-control-sm",
+          placeholder: 'Patente' %>
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <%= form.label :engine_number %>
-      <%= form.text_field :engine_number, class:"form-control form-control-sm" %>
+      <%= form.text_field :engine_number, class:"form-control form-control-sm",
+          placeholder: 'Número de motor' %>
     </div>
 
     <div class="form-group col-md-6">
-      <%= form.label :chasis_number %>
-      <%= form.text_field :chasis_number, class:"form-control form-control-sm" %>
+      <%= form.text_field :chasis_number, class:"form-control form-control-sm",
+          placeholder: 'Número de chasís' %>
     </div>
   </div>
   
   <div class="form-row">
     <div class="form-group col-md-6">
-      <%= form.label :body_type %>
       <%= form.select :body_type, 
           options_for_select(vehicle.class.translated_body_types.map { 
             |t, k, _v| [t, k] 
-          }), {},
+          }, selected: vehicle.body_type), { include_blank: 'Carrocería' },
           { class:"form-control form-control-sm" } %>
     </div>
 
     <div class="form-group col-md-6">
-      <%= form.label :engine_type %>
       <%= form.select :engine_type,
           options_for_select(vehicle.class.translated_engine_types.map {
             |t, k, _v| [t, k] 
-          }), {},
+          }, selected: vehicle.engine_type), { include_blank: 'Combustible' },
           { class:"form-control form-control-sm" } %>
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <%= form.label :door_quantity %>
-      <%= form.number_field :door_quantity, class:"form-control form-control-sm" %>
+      <%= form.number_field :door_quantity, class:"form-control form-control-sm",
+          placeholder: 'Cantidad de puertas' %>
     </div>
 
     <div class="form-group col-md-6">
-      <%= form.label :passenger_capacity %>
-      <%= form.number_field :passenger_capacity, class:"form-control form-control-sm" %>
+      <%= form.number_field :passenger_capacity, class:"form-control form-control-sm",
+          placeholder: 'Capacidad de pasajeros' %>
     </div>
   </div>
 
   <div class="form-row">
-    <div class="form-group col-md-6">
-      <%= form.label :air_conditioning %>
+    <div class="form-group col-md-1">
       <%= form.check_box :air_conditioning, class:"form-control form-control-sm" %>
+      
     </div>
-
+    <div class="form-group col-md-5">
+       <%= form.label :air_conditioning, style: "" %>
+    </div>
     <div class="form-group col-md-6">
-      <%= form.label :airbags_quantity %>
-      <%= form.number_field :airbags_quantity, class:"form-control form-control-sm" %>
+      <%= form.number_field :airbags_quantity, class:"form-control form-control-sm",
+          placeholder: 'Cantidad de Airbags' %>
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <%= form.label :transmission %>
       <%= form.select :transmission,
           options_for_select(vehicle.class.translated_transmissions.map {
             |t, k, _v| [t, k]
-          }), {},
+          }, selected: vehicle.transmission), { include_blank: 'Transmisión' },
           { class:"form-control form-control-sm" } %>
     </div>
 
     <div class="form-group col-md-6">
-      <%= form.label :drive %>
-      <%= form.collection_select :drive, Vehicle.drives, :first, :first, {},
+      <%= form.collection_select :drive, Vehicle.drives, :first, :first,
+          { include_blank: 'Tracción' },
           { class:"form-control form-control-sm" } %>
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <%= form.label :steering %>
       <%= form.select :steering,
           options_for_select(vehicle.class.translated_steerings.map {
             |t, k, _v| [t, k]
-          }), {},
+          }, selected: vehicle.steering), { include_blank: 'Dirección' },
           { class:"form-control form-control-sm" } %>
     </div>
 
     <div class="form-group col-md-6">
-      <%= form.label :odometer %>
-      <%= form.number_field :odometer, class:"form-control form-control-sm" %>
+      <%= form.number_field :odometer, class:"form-control form-control-sm",
+          placeholder: 'Kilometraje' %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= form.label :comment %>
-    <%= form.text_area :comment, class:"form-control form-control-sm" %>
+    <%= form.text_area :comment, class:"form-control form-control-sm",
+        placeholder: 'Información adicional' %>
   </div>
 
   <div class="form-group">
     <div class="input-group">
       <div class="custom-file">
-        <%= form.label :images, class: "custom-file-label"%>
-        <%= form.file_field :images, multiple: true, class: "form-control form-control-sm custom-file-input",
+        <%= form.file_field :images, multiple: true, class: "form-control form-control-sm",
             accept: "image/png,image/jpg,image/jpeg", label: "Add an image" %>
       </div>
     </div>

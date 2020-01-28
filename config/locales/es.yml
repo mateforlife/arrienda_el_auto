@@ -102,12 +102,13 @@ es:
       fuel: "Combustible"
       status: "Estado"
       reserve: Reservar!
+      year: Año
   text:
     actions: Acciones
     user: Usuario
     pending_documents: Documentos Pendientes
     legal_documents:
-      new_legal_document: Nuevo documento legal
+      new_legal_document: Nuevo documento
     password:	
       minimum: '6 caracteres mínimo'	
       confirmation: 'Confirma tu contraseña'	
@@ -307,7 +308,7 @@ es:
         vehicle:
           attributes:
             images:
-              blank: 'deben existir'
+              blank: de deben adjuntar
               ivalid: 'formato inválido'
               record_invalid: 'formato inválido'
               too_long: 'límite excedido'
@@ -330,3 +331,7 @@ es:
               blank: 'debe existir'
               too_short: 'muy corto'
               ivalid: 'formato inválido' 
+            year:
+              wrong_length: debe tener 4 dígitos
+              blank: se debe indicar
+

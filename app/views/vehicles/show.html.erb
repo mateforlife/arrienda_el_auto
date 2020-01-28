@@ -6,42 +6,52 @@
       </div>
       <div class='col-md-4'>
         <div class="card-body">
-          <h3 class="card-title col-xl-9 col-sm-7 col-14"><%= @vehicle.brand_model_and_year %></h3>
+          <h3 class="card-title"><%= @vehicle.brand_and_model %></h3>
           <!-- Example single danger button -->
-          <div class='' style='text-align: end;'>
-            <div class="row-fluid">
-              <%= render 'publish_form', vehicle: @vehicle if (@vehicle.ready? || @vehicle.disabled?) && @vehicle.legal_documents_effective? && @vehicle.user == current_user %>
-              <%= render 'reservation_link', vehicle: @vehicle if @vehicle.published? && !@vehicle.belongs_to_current_user?(current_user) %>
-              <div class="btn-group">
-                <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <%= I18n.t('buttons.options') %>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right">
+          <div class='row mb-3' style='float: right;'>
+            <%= render 'publish_form', vehicle: @vehicle if (@vehicle.ready? || @vehicle.disabled?) && @vehicle.legal_documents_effective? && @vehicle.user == current_user %>
+            <%= render 'reservation_link', vehicle: @vehicle if @vehicle.published? && !@vehicle.belongs_to_current_user?(current_user) %>
+            <div class="btn-group ml-3 mr-3" style='float: right;'>
+              <button type="button" class="btn btn-outline-primary dropdown-toggle"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= I18n.t('buttons.options') %>
+              </button>
+              <!-- OWNER OPTIONS -->
+              <div class="dropdown-menu dropdown-menu-right">
                 <% if @vehicle.belongs_to_current_user?(current_user) || current_user.admin? %>
-                  <%= link_to I18n.t('buttons.edit'), edit_vehicle_path(@vehicle), class:"dropdown-item" %>
+                  <%= link_to 'Ver reservas', vehicle_reservations_path(@vehicle), class:"dropdown-item" %>
                   <%= link_to I18n.t('buttons.legal_documents'), vehicle_legal_documents_path(@vehicle), class:"dropdown-item" %>
-                  <div class="dropdown-divider"></div>
-                  <% if current_user.admin? || @vehicle.belongs_to_current_user?(current_user) %>
-                    <%= link_to 'Desactivar',
-                        vehicle_path(vehicle: { status: :disabled }),
-                        data: { confirm: 'Seguro?' }, method: :put, remote: true,
-                        class:"alert-warning dropdown-item" %>
-                    <%= link_to 'Eliminar', @vehicle, method: :delete,
-                        class:"alert-danger dropdown-item", data: { confirm: 'Estas seguro?' }%>
-                  <% end %>
+                  <%= link_to I18n.t('buttons.edit'), edit_vehicle_path(@vehicle), class:"dropdown-item" %>
+                  <%= link_to 'Desactivar',
+                      vehicle_path(vehicle: { status: :disabled }),
+                      data: { confirm: 'Seguro?' }, method: :put, remote: true,
+                      class:"alert-warning dropdown-item" %>
+                  <%= link_to 'Eliminar', @vehicle, method: :delete,
+                      class:"alert-danger dropdown-item", data: { confirm: 'Estas seguro?' }%>
                   <%= link_to I18n.t('buttons.back'), my_vehicles_path, class:"dropdown-item" %>
-                <% else %> 
-                  <%= link_to I18n.t('buttons.back'), vehicles_path, class:"dropdown-item" %>
+                      <div class="dropdown-divider"></div>
                 <% end %>
-                </div>
+                  <!-- OTHER USERS OPTIONS -->
+                <%= link_to I18n.t('buttons.back'), vehicles_path, class:"dropdown-item" %>
               </div>
             </div>
           </div>
           <div class="row-fluid">
-            <h5 class="card-title"><%= I18n.t('vehicle.show.details') %>:</h5>
             <div class="table table-responsive table-sm">
               <table class="table table-striped">
                 <tbody>
+                  <tr>
+                    <th>Estado:</th>
+                    <td>
+                      <span class="badge badge-pill badge-<%= @vehicle.legal_status_badge[:badge_color]%>">
+                        <%= Vehicle.translated_status(@vehicle.legal_status_badge[:text]) %>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th style="width:50%;"><%= I18n.t('vehicle.show.year') %>:</th>
+                    <td><%= @vehicle.year %></td>
+                  </tr> 
                   <tr>
                     <th style="width:50%;"><%= I18n.t('vehicle.show.daily_price') %>:</th>
                     <td><%= number_to_currency(@vehicle.fee.amount)%> </td>

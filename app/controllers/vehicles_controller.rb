@@ -80,7 +80,7 @@ class VehiclesController < ApplicationController
     return if current_user.legal_documents_effective?
 
     respond_to do |format|
-      format.html { redirect_to current_user, alert: 'Debes validar tu documentacion legal antes de continuar.' }
+      format.html { redirect_to user_legal_documents_path(current_user), alert: 'Debes validar tu documentacion legal antes de continuar.' }
       format.json { head :no_content }
     end
   end

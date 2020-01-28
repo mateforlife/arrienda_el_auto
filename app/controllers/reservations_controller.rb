@@ -11,7 +11,7 @@ class ReservationsController < ApplicationController
   # GET vehicles/1/reservations
   def index
     @reservations = @vehicle.reservations
-    authorize! :index, @reservations.first
+    authorize! :index, @reservations.first if @reservations.present?
   end
 
   # GET vehicles/1/reservations/1
