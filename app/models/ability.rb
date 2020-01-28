@@ -19,7 +19,7 @@ class Ability
         can %i[index read edit create update destroy], Reservation, user_id: user.id
         can :new, Reservation
       end
-      can :index, Reservation, vehicle: { user: { id: user.id } }
+      can %i[index read], Reservation, vehicle: { user: { id: user.id } }
       can %i[read new create], Payment, reservation: { user: { id: user.id } }
     end
     vehicles_id = user.vehicles.pluck(:id)

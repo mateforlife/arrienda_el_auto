@@ -3,7 +3,7 @@
 # ReservationsController
 class ReservationsController < ApplicationController
   load_resource
-  load_and_authorize_resource except: %i[index new]
+  load_and_authorize_resource except: %i[index new show]
   before_action :set_vehicle
   before_action :set_reservation, only: [:show, :edit, :update]
   before_action :set_dates, only: %i[new create edit update]
@@ -17,6 +17,7 @@ class ReservationsController < ApplicationController
   # GET vehicles/1/reservations/1
   def show
     @vehicle_owner = @reservation.vehicle.user
+    authorize! :read, @reservation
   end
 
   # GET vehicles/1/reservations/new
