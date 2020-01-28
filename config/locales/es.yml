@@ -5,7 +5,7 @@ es:
     driver_account: Cuenta de conductor
   reservation:
     headers:
-      new_reservation: Nueva reservación
+      new_reservation: Nueva reserva
       your_reservation: Tu reserva
     text:
       reserve_day: Reserva los dias que necesites
@@ -323,7 +323,6 @@ es:
               wrong_length: 'debe contener 6 caractéres'
             engine_number: 
               blank: 'debe existir'
-              ivalid: 'formato inválido'
             chasis_number: 
               blank: 'debe existir'
               ivalid: 'formato inválido'
