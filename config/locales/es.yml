@@ -308,7 +308,7 @@ es:
         vehicle:
           attributes:
             images:
-              blank: de deben adjuntar
+              blank: se deben adjuntar
               ivalid: 'formato inválido'
               record_invalid: 'formato inválido'
               too_long: 'límite excedido'

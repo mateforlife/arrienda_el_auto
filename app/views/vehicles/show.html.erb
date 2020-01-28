@@ -28,8 +28,7 @@
                       class:"alert-warning dropdown-item" %>
                   <%= link_to 'Eliminar', @vehicle, method: :delete,
                       class:"alert-danger dropdown-item", data: { confirm: 'Estas seguro?' }%>
-                  <%= link_to I18n.t('buttons.back'), my_vehicles_path, class:"dropdown-item" %>
-                      <div class="dropdown-divider"></div>
+                  <div class="dropdown-divider"></div>
                 <% end %>
                   <!-- OTHER USERS OPTIONS -->
                 <%= link_to I18n.t('buttons.back'), vehicles_path, class:"dropdown-item" %>
