@@ -2,13 +2,13 @@
 
 # ReservationsMailer
 class ReservationsMailer < ApplicationMailer
-  layout 'mailer'
+  layout 'bootstrap-mailer'
   def created_for_owner(owner, vehicle, reservation)
     @owner = owner
     @vehicle = vehicle
     @reservation = reservation
 
-    mail(to: @owner.email, subject: 'Tu vehiculo ha sido reservado')
+    make_bootstrap_mail(to: @owner.email, subject: 'Tu vehiculo ha sido reservado')
   end
 
   def created_for_driver(driver, vehicle, reservation)
@@ -16,6 +16,6 @@ class ReservationsMailer < ApplicationMailer
     @vehicle = vehicle
     @reservation = reservation
 
-    mail(to: @driver.email, subject: 'Has reservado un vehiculo')
+    make_bootstrap_mail(to: @driver.email, subject: 'Has reservado un vehiculo')
   end
 end
