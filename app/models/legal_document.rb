@@ -39,7 +39,6 @@ class LegalDocument < ApplicationRecord
   after_create :notify_admins, if: :resource_have_upload_all_documents?
 
   scope :active, -> { where(status: :effective) }
-  scope :not_rejected, -> { where.not(status: 'rejected') }
 
   scope :from_current_user_vehicles, lambda { |current_user|
     joins(
