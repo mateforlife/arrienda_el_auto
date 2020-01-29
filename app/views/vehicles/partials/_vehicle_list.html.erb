@@ -3,7 +3,7 @@
   <div class="card shadow">
     <h5 class="card-header">
       <%= I18n.t("vehicle.headers.index.#{resource}")%> (<%= @vehicles.count %>)
-      <%= link_to '+ Nuevo Vehículo', new_vehicle_path, class:"btn btn-outline-primary", style:'float: right;' %>
+      <%= link_to '+ Nuevo Vehículo', new_vehicle_path, class:"btn btn-outline-primary", style:'float: right;' unless resource == 'validate_vehicle' %>
     </h5>
 
     <div class="card-body">
