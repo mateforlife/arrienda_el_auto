@@ -62,12 +62,12 @@ class Payment < ApplicationRecord
 
   def send_success_mails(to)
     PaymentsMailer.payment_success(to, reservation).deliver_later
-    PaymentsMailer.payment_success_owner(to, reservation).deliver_later
+    PaymentsMailer.payment_success_owner(reservation).deliver_later
   end
 
   def send_rejected_mails(to)
     PaymentsMailer.payment_rejected(to, reservation, comment).deliver_later
-    PaymentsMailer.payment_rejected_owner(to, reservation).deliver_later
+    PaymentsMailer.payment_rejected_owner(reservation).deliver_later
   end
 
   def notify_to_admin
