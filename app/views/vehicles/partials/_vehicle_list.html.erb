@@ -29,7 +29,7 @@
                           <th style="width:50%"><%= I18n.t('vehicle.show.fuel') %>:</th>
                           <td><%= Vehicle.translated_engine_type(vehicle.engine_type)  %></td>
                         </tr>
-                        <%= render 'vehicles/legal_status', vehicle: vehicle %>
+                        <%= render 'vehicles/partials/legal_status', vehicle: vehicle %>
                       </tbody>
                     </table> 
                   </div>

@@ -1,0 +1,6 @@
+<% if flash[:notice] %>
+  toastr.success('<%= flash[:notice] %>')
+<% elsif flash[:alert] %>
+  toastr.error('<%= flash[:alert] %>')
+<% end %>
+window.location.reload();

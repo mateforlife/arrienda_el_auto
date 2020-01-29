@@ -1,16 +1,16 @@
-<div class="container col-xl-12 col-lg-10 col-md-6 col-sm-10">
+<div class="container col-xl-12 col-lg-10 col-md-6 col-sm-10" id='show_vehicle'>
   <div class="card shadow">
     <div class='row'>
       <div class='col-md-8'>
-        <%= render 'carousel', vehicle: @vehicle %>
+        <%= render 'vehicles/partials/carousel', vehicle: @vehicle %>
       </div>
       <div class='col-md-4'>
         <div class="card-body">
           <h3 class="card-title"><%= @vehicle.brand_and_model %></h3>
-          <!-- Example single danger button -->
+          <!-- upper buttons -->
           <div class='row mb-3' style='float: right;'>
-            <%= render 'publish_form', vehicle: @vehicle if (@vehicle.ready? || @vehicle.disabled?) && @vehicle.legal_documents_effective? && @vehicle.user == current_user %>
-            <%= render 'reservation_link', vehicle: @vehicle if @vehicle.published? && !@vehicle.belongs_to_current_user?(current_user) %>
+            <%= render 'vehicles/partials/publish_form', vehicle: @vehicle if (@vehicle.ready? || @vehicle.disabled?) && @vehicle.legal_documents_effective? && @vehicle.user == current_user %>
+            <%= render 'vehicles/partials/reservation_link', vehicle: @vehicle if @vehicle.published? && !@vehicle.belongs_to_current_user?(current_user) %>
             <div class="btn-group ml-3 mr-3" style='float: right;'>
               <button type="button" class="btn btn-outline-primary dropdown-toggle"
                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -22,108 +22,27 @@
                   <%= link_to 'Ver reservas', vehicle_reservations_path(@vehicle), class:"dropdown-item" %>
                   <%= link_to I18n.t('buttons.legal_documents'), vehicle_legal_documents_path(@vehicle), class:"dropdown-item" %>
                   <%= link_to I18n.t('buttons.edit'), edit_vehicle_path(@vehicle), class:"dropdown-item" %>
-                  <%= link_to 'Desactivar',
-                      vehicle_path(vehicle: { status: :disabled }),
-                      data: { confirm: 'Seguro?' }, method: :put, remote: true,
-                      class:"alert-warning dropdown-item" %>
+                  <% if @vehicle.disabled? %>
+                    <%= link_to 'Activar',
+                        vehicle_enable_path(@vehicle), method: :put,
+                        data: { confirm: 'Seguro?' }, action: :enable, remote: true,
+                        class:"alert-success dropdown-item" %>
+                  <% else %>
+                    <%= link_to 'Desactivar',
+                        vehicle_disable_path(@vehicle), method: :put, action: :disable, remote: true,
+                        class:"alert-warning dropdown-item" %>
+                  <% end %>
                   <%= link_to 'Eliminar', @vehicle, method: :delete,
                       class:"alert-danger dropdown-item", data: { confirm: 'Estas seguro?' }%>
                   <div class="dropdown-divider"></div>
                 <% end %>
-                  <!-- OTHER USERS OPTIONS -->
+                <!-- OTHER USERS OPTIONS -->
                 <%= link_to I18n.t('buttons.back'), vehicles_path, class:"dropdown-item" %>
               </div>
             </div>
           </div>
-          <div class="row-fluid">
-            <div class="table table-responsive table-sm">
-              <table class="table table-striped">
-                <tbody>
-                  <tr>
-                    <th>Estado:</th>
-                    <td>
-                      <span class="badge badge-pill badge-<%= @vehicle.legal_status_badge[:badge_color]%>">
-                        <%= Vehicle.translated_status(@vehicle.legal_status_badge[:text]) %>
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th style="width:50%;"><%= I18n.t('vehicle.show.year') %>:</th>
-                    <td><%= @vehicle.year %></td>
-                  </tr> 
-                  <tr>
-                    <th style="width:50%;"><%= I18n.t('vehicle.show.daily_price') %>:</th>
-                    <td><%= number_to_currency(@vehicle.fee.amount)%> </td>
-                  </tr>          
-                  <tr>
-                    <th style="width:50%;"> <%= I18n.t('activerecord.attributes.vehicle.odometer')%>:</th>
-                    <td><%= @vehicle.odometer %></td>
-                  </tr>          
-                  <tr>
-                    <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.transmission')%>:</th>                
-                    <td><%= Vehicle.translated_transmission(@vehicle.transmission) %></td>
-                  </tr>
-                  <tr>
-                    <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.engine_type')%>:</th>
-                    <td><%= Vehicle.translated_engine_type(@vehicle.engine_type) %></td>
-                  </tr>
-                  <tr>
-                    <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.passenger_capacity')%>:</th>
-                    <td><%= @vehicle.passenger_capacity %> personas</td>
-                  </tr>
-                  <tr>
-                    <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.air_conditioning')%>:</th>
-                    <td><%= @vehicle.air_conditioning %></td>
-                  </tr>
-                  <tr>
-                    <th style="width:50%;"> Airbags:</th>
-                    <td><%= @vehicle.airbags_quantity %></td>
-                  </tr>
-                  <tr>
-                    <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.door_quantity')%>:</th>
-                    <td><%= @vehicle.door_quantity %></td>
-                  </tr>
-                  <tr>
-                    <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.drive')%>:</th>
-                    <td><%= @vehicle.drive %></td>
-                  </tr>
-                  <tr>
-                    <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.steering')%>:</th>
-                    <td><%= Vehicle.translated_steering(@vehicle.steering) %></td>
-                  </tr>
-                  <tr>
-                    <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.body_type')%>:</th>
-                    <td><%= Vehicle.translated_body_type(@vehicle.body_type) %></td>
-                  </tr>
-                  <tr>
-                    <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.comment')%>:</th>
-                    <td><%= @vehicle.comment %></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <%if @vehicle.belongs_to_current_user?(current_user)%>
-              <h5 class="card-title"><%= I18n.t('vehicle.show.legal_information') %>:</h5>
-              <div class="table table-responsive table-sm">
-                <table class="table table-striped">
-                  <tbody>
-                    <tr>
-                      <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.engine_number')%>:</th>
-                      <td><%= @vehicle.engine_number %></td>
-                    </tr>
-                    <tr>
-                      <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.chasis_number')%>:</th>
-                      <td><%= @vehicle.chasis_number %></td>
-                    </tr>
-                    <tr>
-                      <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.license_plate')%>:</th>
-                      <td><%= @vehicle.license_plate %></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            <%end%>
-          </div>
+          <!-- VEHICLE DATA HERE -->
+          <%= render 'vehicles/partials/data', vehicle: @vehicle %>
         </div>
       </div>
     </div>  

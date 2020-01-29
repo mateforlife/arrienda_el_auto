@@ -97,6 +97,24 @@ class Vehicle < ApplicationRecord
     "#{vehicle_model.brand.name} #{vehicle_model.name} - #{year}"
   end
 
+  def disable
+    return false if reservations.current_and_future.present? || disabled?
+
+    disabled!
+  rescue ActiveRecord::ActiveRecordError
+    false
+  end
+
+  def enable
+    return false unless disabled?
+    return created! if legal_documents.empty?
+    return review! unless legal_documents_effective?
+
+    ready!
+  rescue ActiveRecord::ActiveRecordError
+    false
+  end
+
   # ====================
   # =  CLASS METHODS   =
   # ====================
@@ -112,10 +130,10 @@ class Vehicle < ApplicationRecord
               .or(base_query.where('lower(brands.name) LIKE ?', "#{params}%"))
               .or(base_query.where('lower(brands.name) LIKE ?', "%#{params}%"))
   end
-
   # ====================
   # =     PRIVATE      =
   # ====================
+
   private
 
   def active_reservations

@@ -1,5 +1,0 @@
-<% if @vehicle.errors %>
-  <% @vehicle.errors&.full_messages.each do |message| %>
-    toastr.error('<%= @vehicle.errors&.full_messages || flash[:now] %>')
-  <% end %>
-<% end %>

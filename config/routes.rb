@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /es|en/ do
     devise_for :users, controllers: { registrations: 'users/registrations' }
     resources :vehicles do
+      put :enable
+      put :disable
       resources :legal_documents, except: :destroy
       resources :reservations
     end
