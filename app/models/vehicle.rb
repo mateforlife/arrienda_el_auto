@@ -15,11 +15,11 @@ class Vehicle < ApplicationRecord
   ALLOWED_FILE_TYPES = ['image/png', 'image/jpg', 'image/jpeg'].freeze
 
   STATUSES_TABLE_COLORS = {
-    created: :danger,
+    created: :info,
     review: :danger,
     ready: :success,
     published: :success,
-    rented: :success,
+    rented: :info,
     disabled: :warning
   }.freeze
 

@@ -10,7 +10,7 @@ class LegalDocumentsMailer < ApplicationMailer
     resource_name.downcase!
     @resource_name = resource_name
     @name = receiver.first_name
-    mail(to: receiver.email, cc: @admin_emails,
+    mail(to: receiver.email,
          subject: "Documentos de
                    #{I18n.t("resources.#{resource_name}")} validados")
   end
