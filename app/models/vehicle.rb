@@ -97,14 +97,6 @@ class Vehicle < ApplicationRecord
     "#{vehicle_model.brand.name} #{vehicle_model.name} - #{year}"
   end
 
-  def active_reservations
-    return true if reservations.current_and_future.empty?
-
-    errors.add(:base, 'No puede desactivar vehiculo,
-                         ya que posee reservas activas')
-    false
-  end
-
   # ====================
   # =  CLASS METHODS   =
   # ====================
@@ -125,6 +117,14 @@ class Vehicle < ApplicationRecord
   # =     PRIVATE      =
   # ====================
   private
+
+  def active_reservations
+    return true if reservations.current_and_future.empty?
+
+    errors.add(:base, 'No puede desactivar vehículo,
+                         ya que posee reservas activas')
+    false
+  end
 
   def upcase_license_plate
     self.license_plate = license_plate.upcase

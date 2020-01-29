@@ -50,6 +50,7 @@ class VehiclesController < ApplicationController
       if @vehicle.update(vehicle_params)
         format.html { redirect_to @vehicle, notice: 'El vehículo ha sido actualizado exitosamente.' }
         format.json { render :show, status: :ok, location: @vehicle }
+        format.js { flash[:now] = 'Vehiculo desactivado' }
       else
         format.html { render :edit }
         format.json { render json: @vehicle.errors, status: :unprocessable_entity }
