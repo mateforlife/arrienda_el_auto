@@ -4,7 +4,6 @@
 class LegalDocumentsMailer < ApplicationMailer
   include MailHelper
   default from: 'notificaciones@arriendaelauto.cl'
-  layout 'bootstrap-mailer'
 
   def documents_effective(resource_name, receiver)
     resource_name.downcase!

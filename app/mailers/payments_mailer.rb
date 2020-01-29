@@ -2,7 +2,6 @@
 
 # PaymentsMailer
 class PaymentsMailer < ApplicationMailer
-  layout 'bootstrap-mailer'
   def notify_create_to_admin(payment_id, reservation)
     @payment_id = payment_id
     @reservation = reservation

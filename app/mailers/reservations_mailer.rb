@@ -2,7 +2,6 @@
 
 # ReservationsMailer
 class ReservationsMailer < ApplicationMailer
-  layout 'bootstrap-mailer'
   def created_for_owner(owner, vehicle, reservation)
     @owner = owner
     @vehicle = vehicle
