@@ -17,11 +17,12 @@ class PaymentsMailer < ApplicationMailer
                                                               validado')
   end
 
-  def payment_success_owner(to, reservation)
+  def payment_success_owner(_to, reservation)
     @reservation = reservation
     @vehicle_owner = reservation.vehicle.user
-    make_bootstrap_mail(to: to, cco: @admin_emails, subject: 'Se ha aprobado el
-                        pago de una reserva de tu vehículo')
+    make_bootstrap_mail(to: @vehicle_owner.email, cco: @admin_emails,
+                        subject: 'Se ha aprobado el pago de una reserva de tu
+                        vehículo')
   end
 
   def payment_rejected(to, reservation, payment_comment)
@@ -31,10 +32,11 @@ class PaymentsMailer < ApplicationMailer
                                                               rechazado')
   end
 
-  def payment_rejected_owner(to, reservation)
+  def payment_rejected_owner(_to, reservation)
     @reservation = reservation
     @vehicle_owner = reservation.vehicle.user
-    make_bootstrap_mail(to: to, cco: @admin_emails, subject: 'Se ha rechazado
-                        el pago de una reserva de tu vehículo')
+    make_bootstrap_mail(to: @vehicle_owner.email, cco: @admin_emails,
+                        subject: 'Se ha rechazado el pago de una reserva de tu
+                        vehículo')
   end
 end
