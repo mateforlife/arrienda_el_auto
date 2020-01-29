@@ -60,6 +60,7 @@ gem 'sendgrid-ruby'
 # gem 'asset_sync'
 
 # emails styles
+gem 'bootstrap-email'
 gem 'premailer-rails'
 
 # to perform async jobs

@@ -3,7 +3,7 @@
 # ApplicationMailer
 class ApplicationMailer < ActionMailer::Base
   default from: 'webmaster@arriendaelauto.cl'
-  layout 'mailer'
+  layout 'bootstrap-mailer'
   before_action :set_admin_emails
 
   private
