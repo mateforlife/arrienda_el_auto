@@ -4,7 +4,7 @@
       <h2><%=I18n.t('vehicle.headers.edit')%></h2>
     </div>
     <div class="card-body">
-      <%= render 'form', vehicle: @vehicle %>
+      <%= render 'partials/form', vehicle: @vehicle %>
       <div class="text-right">
         <%= link_to 'Show', @vehicle %><br>
         <%= link_to 'Back', vehicles_path %>

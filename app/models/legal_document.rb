@@ -6,7 +6,7 @@ class LegalDocument < ApplicationRecord
   belongs_to :resource, polymorphic: true
   belongs_to :validator, class_name: 'User', foreign_key: 'validator_id',
                          optional: true
-  has_many_attached :images, dependent: :destroy
+  has_many_attached :images, dependent: :purge_later
 
   enum document_type: %i[circulation_permit obligatory_insurance
                          technical_review vehicle_register identity
