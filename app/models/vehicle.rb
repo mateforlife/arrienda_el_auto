@@ -11,8 +11,7 @@ class Vehicle < ApplicationRecord
   has_many_attached :images
 
   ATTACHMENTS_LIMIT = 5
-  REQUIRED_DOCUMENTS = %w[circulation_permit obligatory_insurance
-                          technical_review vehicle_register].freeze
+  REQUIRED_DOCUMENTS = %w[circulation_permit].freeze
   ALLOWED_FILE_TYPES = ['image/png', 'image/jpg', 'image/jpeg'].freeze
 
   STATUSES_TABLE_COLORS = {
@@ -98,11 +97,21 @@ class Vehicle < ApplicationRecord
     "#{vehicle_model.brand.name} #{vehicle_model.name} - #{year}"
   end
 
-  def active_reservations
-    return true if reservations.current_and_future.empty?
+  def disable
+    return false if reservations.current_and_future.present? || disabled?
 
-    errors.add(:base, 'No puede desactivar vehiculo,
-                         ya que posee reservas activas')
+    disabled!
+  rescue ActiveRecord::ActiveRecordError
+    false
+  end
+
+  def enable
+    return false unless disabled?
+    return created! if legal_documents.empty?
+    return review! unless legal_documents_effective?
+
+    ready!
+  rescue ActiveRecord::ActiveRecordError
     false
   end
 
@@ -121,11 +130,19 @@ class Vehicle < ApplicationRecord
               .or(base_query.where('lower(brands.name) LIKE ?', "#{params}%"))
               .or(base_query.where('lower(brands.name) LIKE ?', "%#{params}%"))
   end
-
   # ====================
   # =     PRIVATE      =
   # ====================
+
   private
+
+  def active_reservations
+    return true if reservations.current_and_future.empty?
+
+    errors.add(:base, 'No puede desactivar vehículo,
+                         ya que posee reservas activas')
+    false
+  end
 
   def upcase_license_plate
     self.license_plate = license_plate.upcase

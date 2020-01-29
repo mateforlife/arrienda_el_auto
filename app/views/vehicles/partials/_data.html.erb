@@ -1,0 +1,89 @@
+<div class="row-fluid" id='vehicle_data'>
+  <div class="table table-responsive table-sm">
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th>Estado:</th>
+          <td>
+            <span class="badge badge-pill badge-<%= @vehicle.legal_status_badge[:badge_color]%>">
+              <%= Vehicle.translated_status(@vehicle.legal_status_badge[:text]) %>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <th style="width:50%;"><%= I18n.t('vehicle.show.year') %>:</th>
+          <td><%= @vehicle.year %></td>
+        </tr> 
+        <tr>
+          <th style="width:50%;"><%= I18n.t('vehicle.show.daily_price') %>:</th>
+          <td><%= number_to_currency(@vehicle.fee.amount)%> </td>
+        </tr>          
+        <tr>
+          <th style="width:50%;"> <%= I18n.t('activerecord.attributes.vehicle.odometer')%>:</th>
+          <td><%= @vehicle.odometer %></td>
+        </tr>          
+        <tr>
+          <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.transmission')%>:</th>                
+          <td><%= Vehicle.translated_transmission(@vehicle.transmission) %></td>
+        </tr>
+        <tr>
+          <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.engine_type')%>:</th>
+          <td><%= Vehicle.translated_engine_type(@vehicle.engine_type) %></td>
+        </tr>
+        <tr>
+          <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.passenger_capacity')%>:</th>
+          <td><%= @vehicle.passenger_capacity %> personas</td>
+        </tr>
+        <tr>
+          <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.air_conditioning')%>:</th>
+          <td><%= @vehicle.air_conditioning %></td>
+        </tr>
+        <tr>
+          <th style="width:50%;"> Airbags:</th>
+          <td><%= @vehicle.airbags_quantity %></td>
+        </tr>
+        <tr>
+          <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.door_quantity')%>:</th>
+          <td><%= @vehicle.door_quantity %></td>
+        </tr>
+        <tr>
+          <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.drive')%>:</th>
+          <td><%= @vehicle.drive %></td>
+        </tr>
+        <tr>
+          <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.steering')%>:</th>
+          <td><%= Vehicle.translated_steering(@vehicle.steering) %></td>
+        </tr>
+        <tr>
+          <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.body_type')%>:</th>
+          <td><%= Vehicle.translated_body_type(@vehicle.body_type) %></td>
+        </tr>
+        <tr>
+          <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.comment')%>:</th>
+          <td><%= @vehicle.comment %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <%if @vehicle.belongs_to_current_user?(current_user)%>
+    <h5 class="card-title"><%= I18n.t('vehicle.show.legal_information') %>:</h5>
+    <div class="table table-responsive table-sm">
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.engine_number')%>:</th>
+            <td><%= @vehicle.engine_number %></td>
+          </tr>
+          <tr>
+            <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.chasis_number')%>:</th>
+            <td><%= @vehicle.chasis_number %></td>
+          </tr>
+          <tr>
+            <th style="width:50%;"><%= I18n.t('activerecord.attributes.vehicle.license_plate')%>:</th>
+            <td><%= @vehicle.license_plate %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <%end%>
+</div>

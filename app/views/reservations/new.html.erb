@@ -2,10 +2,13 @@
   <div class="card shadow">  
     <div class="card-header text-center">
       <h2><strong><%= I18n.t('reservation.headers.new_reservation')%></strong></h2>
-    </div><br>
+    </div>
     <div class="card-body">
       <div class="card-title">
-        <h4><%= I18n.t('reservation.text.reserve_day')%></h4><br>
+        <h4><%= I18n.t('reservation.text.reserve_day')%></h4>
+        <div class="alert alert-primary" role="alert">
+          <li>Solo permitimos reservas con un mínimo de 3 días y un máximo de 14 días</li>
+        </div>
       </div>
       <%= render 'form' %><br>
       <div class="text-right">

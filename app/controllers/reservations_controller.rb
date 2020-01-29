@@ -2,7 +2,8 @@
 
 # ReservationsController
 class ReservationsController < ApplicationController
-  load_and_authorize_resource
+  load_resource
+  load_and_authorize_resource except: %i[index new show]
   before_action :set_vehicle
   before_action :set_reservation, only: [:show, :edit, :update]
   before_action :set_dates, only: %i[new create edit update]
@@ -10,16 +11,19 @@ class ReservationsController < ApplicationController
   # GET vehicles/1/reservations
   def index
     @reservations = @vehicle.reservations
-    authorize! :index, @reservations.first
+    authorize! :index, @reservations.first if @reservations.present?
   end
 
   # GET vehicles/1/reservations/1
   def show
     @vehicle_owner = @reservation.vehicle.user
+    authorize! :read, @reservation
   end
 
   # GET vehicles/1/reservations/new
   def new
+    return redirect_to @vehicle, alert: @message unless driver_effective?
+
     @reservation = @vehicle.reservations.build
     authorize! :new, @reservation
   end
@@ -65,6 +69,22 @@ class ReservationsController < ApplicationController
   end
 
   private
+
+  def driver_effective?
+    unless current_user&.driver_account
+      @message = 'No has creado aún tu cuenta de conductor'
+      return false
+    end
+    if current_user&.driver_account&.remaining_documents.present?
+      @message = 'Aún no ingresas todos los documentos de conductor'
+      return false
+    end
+    unless current_user&.driver_account&.approved?
+      @message = 'Aún no validamos tus documentos de conductor'
+      return false
+    end
+    true
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_vehicle

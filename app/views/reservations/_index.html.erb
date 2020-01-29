@@ -1,16 +1,17 @@
-<div class="container col-xl-8 col-lg-10 col-md-9 col-sm-10">
+<div class="container col-xl-10 col-lg-10 col-md-9 col-sm-10">
   <div class="card shadow">
     <div class="card-header text-center">
       <h2><strong>Lista de reservas</strong></h2>
     </div>
     <div class="card-body"><br> 
       <div class="table-responsive">
-        <table class="table table-sm table-hover">
+        <table class="table table-sm table-hover mb-0">
           <thead>
             <tr>
               <th>Vehículo</th>
-              <th>Fecha de inicio</th>
-              <th>Fecha de término</th>
+              <th>Reservado por</th>
+              <th>Desde</th>
+              <th>Hasta (inclusive)</th>
               <th>Estado</th>
               <th>Acciones</th>
             </tr>
@@ -18,7 +19,8 @@
           <tbody>
             <% @reservations.each do |reservation| %>
               <tr>
-                <td><%= reservation.vehicle.brand_and_model %></td>
+                <td><%= link_to reservation.vehicle.brand_model_and_year, reservation.vehicle %></td>
+                <td><%= link_to reservation.user.full_name, reservation.user %></td>
                 <td><%= reservation.start_date.strftime('%d-%m-%Y') %></td>
                 <td><%= reservation.end_date.strftime('%d-%m-%Y') %></td>
                 <td>

@@ -6,7 +6,7 @@ class LegalDocument < ApplicationRecord
   belongs_to :resource, polymorphic: true
   belongs_to :validator, class_name: 'User', foreign_key: 'validator_id',
                          optional: true
-  has_many_attached :images, dependent: :destroy
+  has_many_attached :images, dependent: :purge_later
 
   enum document_type: %i[circulation_permit obligatory_insurance
                          technical_review vehicle_register identity
@@ -39,7 +39,6 @@ class LegalDocument < ApplicationRecord
   after_create :notify_admins, if: :resource_have_upload_all_documents?
 
   scope :active, -> { where(status: :effective) }
-  scope :not_rejected, -> { where.not(status: 'rejected') }
 
   scope :from_current_user_vehicles, lambda { |current_user|
     joins(

@@ -5,21 +5,21 @@
       <%= I18n.t("vehicle.headers.index.#{resource}")%> (<%= @vehicles.count %>)
       <%= link_to '+ Nuevo Vehículo', new_vehicle_path, class:"btn btn-outline-primary", style:'float: right;' %>
     </h5>
-    
+
     <div class="card-body">
       <div class="row">
         <% @vehicles.each do |vehicle| %>
           <!-- vehicle  -->
           <div class="col-xl-3 col-lg-4 col-md-10 col-sm-12" style="padding-bottom: 20px;">
             <%=link_to vehicle, class:"card-link-hover" do%>
-              <div class="card shadow ">            
+              <div class="card shadow">            
                 <div class="inner">
                   <%=image_tag vehicle&.images&.first, size: '300x210', class:"card-img-top" if vehicle.images.present? %>
                 </div>
-                <div class="card-body">
-                  <h5 class="card-title"><%= vehicle.brand_model_and_year %></h5>
-                  <div class="table table-responsive">
-                    <table class="table">
+                <div class="card-body mb-0">
+                  <p class="card-title bold ml-2"><%= vehicle.brand_model_and_year %></p>
+                  <div class="table table-responsive mb-0">
+                    <table class="table mb-0">
                       <tbody>
                         <tr>
                           <th style="width:50%"><%= I18n.t('vehicle.show.daily_price') %>:</th>
@@ -29,10 +29,9 @@
                           <th style="width:50%"><%= I18n.t('vehicle.show.fuel') %>:</th>
                           <td><%= Vehicle.translated_engine_type(vehicle.engine_type)  %></td>
                         </tr>
-                        <%= render 'vehicles/legal_status', vehicle: vehicle %>
+                        <%= render 'vehicles/partials/legal_status', vehicle: vehicle %>
                       </tbody>
-                    </table>                  
-                    <%= link_to I18n.t('buttons.show'), vehicle, class:"btn btn-outline-primary col-xl-12" %>
+                    </table> 
                   </div>
                 </div>
               </div>

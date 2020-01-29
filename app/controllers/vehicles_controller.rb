@@ -1,6 +1,6 @@
 class VehiclesController < ApplicationController
   load_and_authorize_resource
-  before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
+  before_action :set_vehicle, only: [:show, :edit, :update, :destroy, :enable, :disable]
   before_action :set_brands, only: %i[edit new create update]
   before_action :validate_legal_documents, only: %i[new create]
   before_action :brand_select_option, only: %i[edit update]
@@ -10,7 +10,7 @@ class VehiclesController < ApplicationController
   def index
     @vehicles = Vehicle.available
                        .not_from_current_user(current_user)
-    render '_index'
+                       .eager_load(images_attachments: :blob)
   end
 
   # GET /vehicles/1
@@ -52,7 +52,6 @@ class VehiclesController < ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @vehicle.errors, status: :unprocessable_entity }
-        format.js { flash[:now] = 'No es posible desactivar' }
       end
     end
   end
@@ -71,6 +70,26 @@ class VehiclesController < ApplicationController
     end
   end
 
+  def enable
+    respond_to do |format|
+      if @vehicle.enable
+        format.js { flash[:notice] = 'Vehículo activado!' }
+      else
+        format.js { flash[:alert] = 'No fué posible activar tu vehículo' }
+      end
+    end
+  end
+
+  def disable
+    respond_to do |format|
+      if @vehicle.disable
+        format.js { flash[:notice] = 'Vehículo desactivado correctamente' }
+      else
+        format.js { flash[:alert] = 'No fué posible desactivar tu vehículo, revisa si este posee reservas activas' }
+      end
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -79,7 +98,7 @@ class VehiclesController < ApplicationController
     return if current_user.legal_documents_effective?
 
     respond_to do |format|
-      format.html { redirect_to current_user, alert: 'Debes validar tu documentacion legal antes de continuar.' }
+      format.html { redirect_to user_legal_documents_path(current_user), alert: 'Debes validar tu documentacion legal antes de continuar.' }
       format.json { head :no_content }
     end
   end
@@ -94,7 +113,7 @@ class VehiclesController < ApplicationController
   end
 
   def set_vehicle
-    @vehicle = Vehicle.find(params[:id])
+    @vehicle = Vehicle.find(params[:id] || params[:vehicle_id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
