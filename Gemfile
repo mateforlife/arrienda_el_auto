@@ -19,6 +19,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# to stote sessions in db
+gem 'activerecord-session_store'
 # soft delete
 gem 'acts_as_paranoid'
 
