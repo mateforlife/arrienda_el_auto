@@ -97,6 +97,7 @@ es:
         vehicles: "Vehículos"  
         my_vehicles: "Mis Vehículos"
         search_result: 'Resultados de busqueda' 
+        validate_vehicle: 'Validación de vehículos'
       new: Nuevo vehículo
       edit: Editar vehículo
     show:
