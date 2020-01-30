@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'securerandom'
 # User
 class User < ApplicationRecord
   include Documentable
@@ -39,6 +40,7 @@ class User < ApplicationRecord
 
   scope :admins, -> { where(permission: 'admin') }
 
+  # metodo para hacer funcionar un form con una asociacion one to one
   def driver_accounts
     DriverAccount
   end
@@ -57,6 +59,13 @@ class User < ApplicationRecord
     end
     super(params, *options)
   end
+
+  # an Hacky method to logout user
+  # def log_out!
+  #   current_password = encrypted_password
+  #   update!(password: SecureRandom.hex)
+  #   update!(encrypted_password: current_password)
+  # end
 
   private
 

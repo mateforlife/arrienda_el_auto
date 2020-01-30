@@ -11,6 +11,7 @@ class Reservation < ApplicationRecord
                   reserved current finished rejected]
   translate_enum :status
 
+  DEADLINE_TO_CREATE = 2.minutes
   STATUSES_TABLE_COLORS = {
     waiting_payment: :warning,
     processing_payment: :warning,

@@ -7,6 +7,7 @@
       <div class="card-title">
         <h4><%= I18n.t('reservation.text.reserve_day')%></h4>
         <div class="alert alert-primary" role="alert">
+          <li>Tienes <%= Reservation::DEADLINE_TO_CREATE %> para crear la reserva</li>
           <li>Solo permitimos reservas con un mínimo de 3 días y un máximo de 14 días</li>
         </div>
       </div>

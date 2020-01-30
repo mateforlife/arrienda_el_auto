@@ -72,7 +72,7 @@ class VehiclesController < ApplicationController
 
   def enable
     respond_to do |format|
-      if @vehicle.enable
+      if @vehicle.back_to_status
         format.js { flash[:notice] = 'Vehículo activado!' }
       else
         format.js { flash[:alert] = 'No fué posible activar tu vehículo' }

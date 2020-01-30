@@ -13,7 +13,6 @@ class Vehicle < ApplicationRecord
   ATTACHMENTS_LIMIT = 5
   REQUIRED_DOCUMENTS = %w[circulation_permit].freeze
   ALLOWED_FILE_TYPES = ['image/png', 'image/jpg', 'image/jpeg'].freeze
-
   STATUSES_TABLE_COLORS = {
     created: :info,
     review: :danger,
@@ -31,7 +30,7 @@ class Vehicle < ApplicationRecord
   enum transmission: %i[manual automatic]
   enum steering: %i[mechanical power electric hydraulic]
   enum drive: %w[4x2 4x4]
-  enum status: %i[created review ready published rented disabled]
+  enum status: %i[created review ready published rented disabled temp_disabled]
   translate_enum :body_type
   translate_enum :engine_type
   translate_enum :transmission
@@ -49,12 +48,12 @@ class Vehicle < ApplicationRecord
   validates_length_of :images, maximum: ATTACHMENTS_LIMIT
   validates :images, presence: true, on: :create
   validates :images, attached: true, content_type: ALLOWED_FILE_TYPES
+  validate :active_reservations, on: :update, if: :disabled?
 
   # ====================
   # =    CALLBACKS     =
   # ====================
   before_create :associate_fee
-  validate :active_reservations, on: :update, if: :disabled?
   before_save :upcase_license_plate
 
   # ====================
@@ -98,20 +97,30 @@ class Vehicle < ApplicationRecord
   end
 
   def disable
-    return false if reservations.current_and_future.present? || disabled?
+    if reservations.current_and_future.present? || disabled? || temp_disabled?
+      return false
+    end
 
     disabled!
   rescue ActiveRecord::ActiveRecordError
     false
   end
 
-  def enable
-    return false unless disabled?
+  def back_to_status
     return created! if legal_documents.empty?
     return review! unless legal_documents_effective?
+    return published! if temp_disabled?
 
     ready!
   rescue ActiveRecord::ActiveRecordError
+    false
+  end
+
+  def temporal_disable(user)
+    temp_disabled!
+    time_to_create_reservation(user)
+  rescue StandardError => e
+    puts e
     false
   end
 
@@ -135,6 +144,11 @@ class Vehicle < ApplicationRecord
   # ====================
 
   private
+
+  def time_to_create_reservation(user)
+    ReservationDeadlineWorker
+      .perform_in(Reservation::DEADLINE_TO_CREATE, id, user.id)
+  end
 
   def active_reservations
     return true if reservations.current_and_future.empty?

@@ -3,6 +3,7 @@
 # CheckPaymentWorker
 class CheckPaymentWorker
   include Sidekiq::Worker
+  sidekiq_options queue: 'reservations'
 
   def perform(reservation_id)
     reservation = Reservation.find(reservation_id)

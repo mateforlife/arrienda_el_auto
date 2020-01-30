@@ -1,4 +1,9 @@
 es:
+  time:
+    now:
+      minute:
+        one: minuto
+        many: minutos
   resources:
     user: Usuario
     vehicle: Vehículo
@@ -225,6 +230,7 @@ es:
           published: Publicado
           rented: Arrendado
           disabled: Desactivado
+          temp_disabled: Desabilitado por reserva
         brand_id: Marca
         vehicle_model_id: Modelo
         vehicle_model: Marca y Modelo

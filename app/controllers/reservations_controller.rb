@@ -23,6 +23,12 @@ class ReservationsController < ApplicationController
   # GET vehicles/1/reservations/new
   def new
     return redirect_to @vehicle, alert: @message unless driver_effective?
+    unless @vehicle.published?
+      return redirect_to @vehicle, alert: 'Este vehículo ya no está disponible'
+    end
+    unless @vehicle.temporal_disable(current_user)
+      return redirect_to @vehicle, alert: 'Error inesperado'
+    end
 
     @reservation = @vehicle.reservations.build
     authorize! :new, @reservation
@@ -70,6 +76,7 @@ class ReservationsController < ApplicationController
 
   private
 
+  # TODO: move this method to model
   def driver_effective?
     unless current_user&.driver_account
       @message = 'No has creado aún tu cuenta de conductor'
