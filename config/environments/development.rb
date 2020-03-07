@@ -33,9 +33,9 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
 
-  config.action_controller.asset_host = 'http://localhost:3000'
+  config.action_controller.asset_host = ENV['BACKEND_URL']
 
-  config.action_mailer.asset_host = 'localhost:3000'
+  config.action_mailer.asset_host = ENV['BACKEND_URL']
 
   config.action_mailer.raise_delivery_errors = true
 
